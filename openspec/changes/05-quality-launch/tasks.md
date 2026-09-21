@@ -1,0 +1,4 @@
+- [ ] Run automated verification.
+- [ ] Inspect desktop and mobile screenshots in one bounded pass.
+- [ ] Inspect two-page print output.
+- [ ] Fix findings in one batch and confirm once.

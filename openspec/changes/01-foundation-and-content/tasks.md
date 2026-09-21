@@ -1,0 +1,4 @@
+- [x] Scaffold Nuxt, TypeScript, lint, unit, and browser test tooling.
+- [x] Configure static metadata, sitemap, robots, fonts, and analytics.
+- [x] Model and verify portfolio content.
+- [x] Record approved product and design context.

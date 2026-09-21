@@ -1,0 +1,159 @@
+@layer reset, tokens, base, components, utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/poppins-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/poppins-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  src: url('/fonts/worksans-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Work Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/worksans-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Milkshake';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/milkshake.woff2') format('woff2');
+}
+
+@layer tokens {
+  :root {
+    color-scheme: light;
+    --paper: #fdfbf9;
+    --paper-deep: #fbf6f1;
+    --ink: #252422;
+    --ink-strong: #0f0e0e;
+    --teal: #84a59d;
+    --teal-deep: #5c736e;
+    --blush: #ddb6b0;
+    --blush-light: #f5cac3;
+    --gold: #f6bd60;
+    --gold-deep: #c5974d;
+    --rule: #ded5cb;
+    --rule-strong: color-mix(in srgb, var(--ink) 44%, transparent);
+    --grid-line: color-mix(in srgb, var(--teal) 13%, transparent);
+    --font-display: 'Poppins', sans-serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-note: 'Milkshake', cursive;
+    --page-gutter: clamp(1.25rem, 4vw, 4rem);
+    --content-max: 100rem;
+    --header-height: 5.25rem;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 160ms;
+    --duration-medium: 360ms;
+    --duration-draw: 650ms;
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-block-start: 0;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  a {
+    font: inherit;
+  }
+
+  button {
+    color: inherit;
+  }
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+  }
+
+  body {
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      var(--paper);
+    background-size: 2rem 2rem;
+    min-width: 20rem;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink-strong);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--teal-deep);
+    outline-offset: 4px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
