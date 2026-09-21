@@ -1,3 +1,3 @@
-- [ ] Build semantic desktop sections.
-- [ ] Build factual work specimens and destinations.
-- [ ] Match approved composition and visual hierarchy.
+- [x] Build semantic desktop sections.
+- [x] Build factual work specimens and destinations.
+- [x] Match approved composition and visual hierarchy.

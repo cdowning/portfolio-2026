@@ -125,6 +125,12 @@
     overflow-x: clip;
   }
 
+  body,
+  button,
+  a {
+    line-height: 1.35;
+  }
+
   ::selection {
     background: var(--gold);
     color: var(--ink-strong);

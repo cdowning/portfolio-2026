@@ -11,6 +11,7 @@ export default defineConfig({
     command: 'pnpm dev --host 127.0.0.1 --port 4310',
     url: 'http://127.0.0.1:4310',
     reuseExistingServer: false,
+    timeout: 120_000,
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },

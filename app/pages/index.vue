@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { profile } from '~/content/site'
+import HomeAbout from '~/components/home/HomeAbout.vue'
+import HomeContact from '~/components/home/HomeContact.vue'
+import HomeExperience from '~/components/home/HomeExperience.vue'
+import HomeHeader from '~/components/home/HomeHeader.vue'
+import HomeHero from '~/components/home/HomeHero.vue'
+import HomeToolkit from '~/components/home/HomeToolkit.vue'
+import HomeWork from '~/components/home/HomeWork.vue'
+import { experience, navigation, profile, toolkit, workItems } from '~/content/site'
 
 useSeoMeta({
   title: 'Caitlin Hawley — Frontend Developer & Design System Builder',
@@ -17,17 +24,39 @@ useHead({
 </script>
 
 <template>
-  <main class="phase-shell">
-    <h1>{{ profile.name }}</h1>
-    <p>{{ profile.shortSummary }}</p>
-  </main>
+  <div class="home-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <HomeHeader :items="navigation" />
+    <main id="main-content">
+      <HomeHero :profile="profile" />
+      <HomeWork :items="workItems" />
+      <HomeAbout :profile="profile" />
+      <HomeExperience :roles="experience" />
+      <HomeToolkit :items="toolkit" />
+    </main>
+    <HomeContact :profile="profile" />
+  </div>
 </template>
 
 <style scoped>
-.phase-shell {
+.home-page {
   margin-inline: auto;
   max-width: var(--content-max);
-  min-height: 100vh;
-  padding: var(--page-gutter);
+  min-height: 100svh;
+}
+
+.skip-link {
+  background: var(--ink-strong);
+  color: var(--paper);
+  left: 1rem;
+  padding: .75rem 1rem;
+  position: fixed;
+  top: 1rem;
+  translate: 0 -200%;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  translate: 0;
 }
 </style>
