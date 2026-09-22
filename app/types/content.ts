@@ -14,6 +14,7 @@ export interface SiteProfile {
   role: string
   email: string
   location: string
+  experienceLabel: string
   summary: string
   shortSummary: string
   approach: string

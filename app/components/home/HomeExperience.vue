@@ -4,6 +4,7 @@ import SectionMarker from '~/components/ui/SectionMarker.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
+  experienceLabel: string
   roles: ExperienceRole[]
 }>()
 </script>
@@ -13,26 +14,23 @@ defineProps<{
     <SectionMarker class="experience__marker" number="04" />
     <header class="experience__heading">
       <h2 id="experience-title">Experience</h2>
-      <p>A decade of building, learning, and growing.</p>
+      <p>{{ experienceLabel }} of building, learning, and growing.</p>
     </header>
     <div class="experience__summary">
-      <strong>10+ years</strong>
+      <strong>{{ experienceLabel }}</strong>
       <span>of frontend<br>development<br>experience</span>
     </div>
     <ol class="experience__list">
       <li v-for="role in roles" :key="`${role.company}-${role.title}`">
         <div>
           <strong>{{ role.title }}</strong>
-          <span>{{ role.discipline }}</span>
+          <span>{{ role.company }}</span>
         </div>
         <time>{{ role.shortPeriod }}</time>
         <p>{{ role.skills.join(' · ') }}</p>
       </li>
     </ol>
-    <div class="experience__aside" aria-hidden="true">
-      <span>05</span>
-      <p>Experience<br>builds<br>perspective</p>
-    </div>
+    <div class="experience__aside" aria-hidden="true" />
     <ActionControl class="experience__link" href="/resume">View full resume</ActionControl>
   </section>
 </template>
@@ -62,8 +60,7 @@ defineProps<{
 }
 
 .experience__heading p,
-.experience__summary span,
-.experience__aside p {
+.experience__summary span {
   font-size: .56rem;
   letter-spacing: .28em;
   line-height: 1.65;
@@ -142,14 +139,6 @@ defineProps<{
   grid-column: 4;
   grid-row: 1 / 3;
   padding-left: 1.5rem;
-}
-
-.experience__aside > span {
-  font-size: .65rem;
-}
-
-.experience__aside p {
-  margin-top: 1rem;
 }
 
 .experience__link {

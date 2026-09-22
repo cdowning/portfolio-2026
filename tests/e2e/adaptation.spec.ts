@@ -33,6 +33,15 @@ test.describe('responsive navigation and editorial motion', () => {
       .toHaveAttribute('aria-current', 'location')
   })
 
+  test('Experience navigation returns from the résumé to the homepage timeline', async ({ page }) => {
+    await page.goto('/resume')
+
+    await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Experience' }).click()
+
+    await expect(page).toHaveURL(/\/#experience$/)
+    await expect(page.locator('#experience').getByRole('heading', { name: 'Experience' })).toBeVisible()
+  })
+
   test('reduced motion removes spatial reveals while retaining visible content', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto('/')

@@ -23,6 +23,7 @@ Experience. The homepage leads with Caitlin’s point of view and proof; the ré
 - Asymmetrical 12-column editorial grid with fine full-width rules.
 - Sections begin with index numbers and construction labels.
 - Photography is a material sample, not a generic banner.
+- Palette swatches are solid fabric samples with small pinked edges; their interiors are unpatterned.
 - Navigation uses an underline marker; primary actions use gold.
 - Motion draws rules and reveals relationships; hover movement stays within 2–4px.
 - Mobile becomes one deliberate reading column; decorative notes may move or disappear only when redundant.

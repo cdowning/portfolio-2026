@@ -18,11 +18,23 @@ test.describe('résumé', () => {
     await expect(page.getByRole('heading', { name: 'Toolkit' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Let’s build something thoughtful.' })).toBeVisible()
 
+    await expect(page.getByRole('article', { name: 'Allocate, Senior Frontend Engineer' })).toBeVisible()
+    await expect(page.getByRole('article', { name: 'Allocate, Frontend Engineer' })).toBeVisible()
     await expect(page.getByRole('article', { name: 'Quore, Frontend Developer' })).toBeVisible()
     await expect(page.getByRole('article', { name: 'NIC, Inc, Senior User Interface Designer' })).toBeVisible()
     await expect(page.getByRole('article', { name: 'NIC, Inc, User Interface Designer' })).toBeVisible()
     await expect(page.getByRole('article', { name: 'ARS Interactive, Frontend Developer' })).toBeVisible()
     await expect(page.getByText('verified roles')).toHaveCount(0)
+
+    const swatches = page.locator('.resume-intro__swatches .fabric-swatch')
+    await expect(swatches).toHaveCount(4)
+    expect(await swatches.first().evaluate((swatch) => ({
+      backgroundImage: getComputedStyle(swatch).backgroundImage,
+      maskImage: getComputedStyle(swatch).maskImage,
+    }))).toEqual({
+      backgroundImage: 'none',
+      maskImage: expect.stringContaining('conic-gradient'),
+    })
   })
 
   test('the print control invokes the browser print action', async ({ page }) => {

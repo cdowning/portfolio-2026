@@ -28,7 +28,7 @@ useHead({
       <HomeHero :profile="profile" />
       <HomeWork :items="workItems" />
       <HomeAbout :profile="profile" />
-      <HomeExperience :roles="experience" />
+      <HomeExperience :experience-label="profile.experienceLabel" :roles="experience" />
       <HomeToolkit :items="toolkit" />
     </main>
     <HomeContact :profile="profile" />

@@ -55,7 +55,6 @@
     --gold-deep: #c5974d;
     --rule: #ded5cb;
     --rule-strong: color-mix(in srgb, var(--ink) 44%, transparent);
-    --grid-line: color-mix(in srgb, var(--teal) 13%, transparent);
     --font-display: 'Poppins', sans-serif;
     --font-body: 'Work Sans', sans-serif;
     --font-note: 'Milkshake', cursive;
@@ -116,11 +115,7 @@
   }
 
   body {
-    background:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
-      var(--paper);
-    background-size: 2rem 2rem;
+    background: var(--paper);
     min-width: 20rem;
     overflow-x: clip;
   }

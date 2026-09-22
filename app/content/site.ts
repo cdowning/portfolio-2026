@@ -10,7 +10,7 @@ import type {
 export const navigation: NavigationItem[] = [
   { label: 'Work', href: '/#work' },
   { label: 'About', href: '/#about' },
-  { label: 'Resume', href: '/resume' },
+  { label: 'Experience', href: '/#experience' },
   { label: 'Contact', href: '/#contact' },
 ]
 
@@ -19,10 +19,11 @@ export const profile: SiteProfile = {
   role: 'Frontend Developer',
   email: 'caitlin.j.hawley@gmail.com',
   location: 'Franklin, Tennessee',
+  experienceLabel: '15+ years',
   website: 'https://www.caitlinhawley.com',
   shortSummary: 'Frontend developer with a passion for design.',
   summary:
-    'Frontend developer with more than a decade of experience turning visual ideas into clear, reusable interfaces. I focus on accessible interfaces, Vue, Nuxt, TypeScript, and design systems — combining design sensibility with practical, human-centered solutions.',
+    'Frontend developer with 15+ years of experience turning visual ideas into clear, reusable interfaces. I focus on accessible interfaces, Vue, Nuxt, TypeScript, and design systems — combining design sensibility with practical, human-centered solutions.',
   approach:
     'I’m drawn to the space where design, technology, and human understanding meet. I care about details — from the logic under the hood to the little moments people experience on screen. I build accessible, reusable interfaces with Vue, Nuxt, and TypeScript, and I love turning complex problems into simple, intuitive solutions.',
   contacts: [
@@ -67,10 +68,38 @@ export const workItems: WorkItem[] = [
 
 export const experience: ExperienceRole[] = [
   {
+    company: 'Allocate',
+    title: 'Senior Frontend Engineer',
+    period: '2026 — Present',
+    shortPeriod: '2026 — Present',
+    discipline: 'Product engineering',
+    bullets: [
+      'Develop rich, focused user experiences for new products.',
+      'Partner with product to iterate on designs and user experience flows.',
+      'Deliver customer-facing and administrative portal features across the stack.',
+      'Build reusable, testable code that supports engineering maturity.',
+    ],
+    skills: ['Vue', 'TypeScript', 'Design systems', 'Product development'],
+  },
+  {
+    company: 'Allocate',
+    title: 'Frontend Engineer',
+    period: '2024 — 2026',
+    shortPeriod: '2024 — 2026',
+    discipline: 'Frontend engineering',
+    bullets: [
+      'Developed frontend web applications with Vue.js and TypeScript.',
+      'Collaborated with product and design to refine interfaces and user flows.',
+      'Contributed to cross-functional design, development, testing, and delivery.',
+      'Wrote clean, maintainable, and testable application code.',
+    ],
+    skills: ['Vue', 'TypeScript', 'Frontend architecture', 'Accessibility'],
+  },
+  {
     company: 'Quore',
     title: 'Frontend Developer',
-    period: 'October 2016 — Present',
-    shortPeriod: '2016 — Present',
+    period: 'October 2016 — 2024',
+    shortPeriod: '2016 — 2024',
     discipline: 'Product development',
     bullets: [
       'Create and manage global Vue.js components using Storybook.',

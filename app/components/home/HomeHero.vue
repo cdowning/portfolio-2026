@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import ActionControl from '~/components/ui/ActionControl.vue'
+import FabricSwatches from '~/components/ui/FabricSwatches.vue'
 import type { SiteProfile } from '~/types/content'
+
+const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5cb'] as const
 
 defineProps<{
   profile: SiteProfile
@@ -17,7 +20,7 @@ defineProps<{
 
       <div class="hero__facts">
         <div>
-          <strong>10+ years</strong>
+          <strong>{{ profile.experienceLabel }}</strong>
           <span>Building for a brighter,<br> more human web.</span>
         </div>
         <div>
@@ -41,10 +44,7 @@ defineProps<{
         </div>
       </div>
       <div class="hero__swatches" aria-hidden="true">
-        <span class="swatch swatch--teal" />
-        <span class="swatch swatch--blush" />
-        <span class="swatch swatch--gold" />
-        <span class="swatch swatch--paper" />
+        <FabricSwatches :colors="swatchColors" />
       </div>
       <p class="hero__margin-note" aria-hidden="true">Good ideas fit here.</p>
       <p class="hero__side-note" aria-hidden="true">Patterns<br>ideas<br>people<br>progress</p>
@@ -244,18 +244,8 @@ defineProps<{
   right: 2rem;
   top: 8rem;
   width: 3.8rem;
+  z-index: 3;
 }
-
-.swatch {
-  height: 3.5rem;
-  mask-image: radial-gradient(circle at 3px 3px, transparent 2px, #000 2.5px);
-  mask-size: 6px 6px;
-}
-
-.swatch--teal { background: var(--teal); }
-.swatch--blush { background: var(--blush-light); }
-.swatch--gold { background: var(--gold); }
-.swatch--paper { background: #ded5cb; }
 
 .hero__margin-note {
   bottom: 9rem;
@@ -276,6 +266,7 @@ defineProps<{
   right: 2.2rem;
   text-transform: uppercase;
   top: 2rem;
+  z-index: 3;
 }
 
 .hero__ruler {

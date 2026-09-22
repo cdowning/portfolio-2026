@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import ActionControl from '~/components/ui/ActionControl.vue'
+import FabricSwatches from '~/components/ui/FabricSwatches.vue'
 import SkillTag from '~/components/ui/SkillTag.vue'
 import type { SiteProfile } from '~/types/content'
+
+const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5cb'] as const
 
 defineProps<{
   capabilities: string[]
@@ -55,7 +58,7 @@ const emit = defineEmits<{
       </div>
       <aside class="resume-intro__swatches" aria-hidden="true">
         <p>Ideas<br>people<br>progress</p>
-        <i class="teal" /><i class="blush" /><i class="gold" /><i class="neutral" />
+        <FabricSwatches :colors="swatchColors" />
         <span>Same<br>better<br>brighter<br>together</span>
       </aside>
       <p class="resume-intro__profile-note" aria-hidden="true">Thoughtful code for a brighter web. — C</p>
@@ -222,6 +225,8 @@ const emit = defineEmits<{
 }
 
 .resume-intro__swatches {
+  --swatch-height: 3.25rem;
+
   border-left: 1px solid var(--rule-strong);
   display: grid;
   gap: .45rem;
@@ -239,17 +244,6 @@ const emit = defineEmits<{
   line-height: 1.75;
   text-transform: uppercase;
 }
-
-.resume-intro__swatches i {
-  height: 3.25rem;
-  mask-image: radial-gradient(circle at 3px 3px, transparent 2px, #000 2.5px);
-  mask-size: 6px 6px;
-}
-
-.resume-intro__swatches .teal { background: var(--teal); }
-.resume-intro__swatches .blush { background: var(--blush-light); }
-.resume-intro__swatches .gold { background: var(--gold); }
-.resume-intro__swatches .neutral { background: #ded5cb; }
 
 .resume-intro__profile-note {
   bottom: 4.5rem;
