@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ActionControl from '~/components/ui/ActionControl.vue'
+import SkillTag from '~/components/ui/SkillTag.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -12,7 +14,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <section class="resume-intro" aria-labelledby="resume-name">
+  <section class="resume-intro" aria-labelledby="resume-name" data-reveal="hero">
     <div class="resume-intro__identity">
       <div class="resume-kicker"><span>01</span><i />Code <b>×</b> Design <b>×</b> People</div>
       <h1 id="resume-name">Caitlin<br>Hawley</h1>
@@ -31,7 +33,7 @@ const emit = defineEmits<{
         >{{ contact.label }}</a>
       </address>
       <div class="resume-intro__print">
-        <button type="button" @click="emit('print')">Print résumé <span aria-hidden="true">→</span></button>
+        <ActionControl @click="emit('print')">Print résumé</ActionControl>
         <span>Cmd + P</span>
       </div>
       <p class="resume-intro__note" aria-hidden="true">Same ideas.<br>More possibilities.</p>
@@ -48,7 +50,7 @@ const emit = defineEmits<{
         <p>{{ profile.summary }}</p>
         <h3>Core capabilities</h3>
         <ul>
-          <li v-for="capability in capabilities" :key="capability">{{ capability }}</li>
+          <SkillTag v-for="capability in capabilities" :key="capability" :label="capability" />
         </ul>
       </div>
       <aside class="resume-intro__swatches" aria-hidden="true">
@@ -139,18 +141,6 @@ const emit = defineEmits<{
   margin-top: 2rem;
 }
 
-.resume-intro__print button {
-  align-items: center;
-  background: var(--gold);
-  border: 0;
-  cursor: pointer;
-  display: inline-flex;
-  gap: 2rem;
-  min-height: 3.8rem;
-  padding: 0 1.4rem;
-}
-
-.resume-intro__print button span { font-size: 1.25rem; }
 .resume-intro__print > span { font-size: .75rem; }
 
 .resume-intro__note {
@@ -206,7 +196,7 @@ const emit = defineEmits<{
   padding: 0;
 }
 
-.resume-intro__profile li {
+.resume-intro__profile :deep(.skill-tag) {
   align-items: center;
   background: color-mix(in srgb, var(--teal) 28%, var(--paper));
   display: flex;
@@ -217,7 +207,7 @@ const emit = defineEmits<{
   text-align: center;
 }
 
-.resume-intro__profile li:nth-last-child(-n + 2) { grid-column: span 3; }
+.resume-intro__profile :deep(.skill-tag:nth-last-child(-n + 2)) { grid-column: span 3; }
 
 .resume-intro__arc {
   fill: none;
@@ -293,11 +283,13 @@ const emit = defineEmits<{
   .resume-intro__contact { grid-template-columns: 1fr; }
   .resume-intro__profile { padding: 4rem 1.25rem 7rem; }
   .resume-intro__profile ul { grid-template-columns: 1fr; }
-  .resume-intro__profile li,
-  .resume-intro__profile li:nth-last-child(-n + 2) { grid-column: auto; }
+  .resume-intro__profile :deep(.skill-tag),
+  .resume-intro__profile :deep(.skill-tag:nth-last-child(-n + 2)) { grid-column: auto; }
   .resume-intro__arc { opacity: .25; }
   .resume-intro__swatches { display: none; }
   .resume-intro__profile-note { display: none; }
+  .resume-intro__note,
+  .resume-intro__print > span { display: none; }
   .resume-intro__ruler { left: 1.25rem; right: 1.25rem; }
 }
 </style>

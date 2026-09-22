@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SkillTag from '~/components/ui/SkillTag.vue'
 import type { WorkItem } from '~/types/content'
 
 defineProps<{
@@ -7,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <section id="work" class="work" aria-labelledby="work-title">
+  <section id="work" class="work" aria-labelledby="work-title" data-reveal>
     <header class="work__heading">
       <div class="section-index"><span>Next</span><strong>02</strong></div>
       <div>
@@ -49,7 +50,7 @@ defineProps<{
             <p class="work-card__eyebrow">{{ item.eyebrow }}</p>
             <p class="work-card__description">{{ item.description }}</p>
             <ul class="work-card__tags" aria-label="Technologies and disciplines">
-              <li v-for="tag in item.tags" :key="tag">{{ tag }}</li>
+              <SkillTag v-for="tag in item.tags" :key="tag" :label="tag" />
             </ul>
             <a
               class="work-card__link"
@@ -309,7 +310,7 @@ defineProps<{
 
 .system-map i {
   background: #e7e8e5;
-  border-left: 3px solid var(--teal-deep);
+  border-left: 1px solid var(--teal-deep);
   height: 2.2rem;
 }
 
@@ -357,11 +358,7 @@ defineProps<{
   padding: 0;
 }
 
-.work-card__tags li {
-  background: color-mix(in srgb, var(--teal) 12%, var(--paper));
-  font-size: .63rem;
-  padding: .3rem .45rem;
-}
+.work-card__tags :deep(.skill-tag) { font-size: .63rem; min-height: 0; padding: .3rem .45rem; }
 
 .work-card__link {
   font-size: .75rem;

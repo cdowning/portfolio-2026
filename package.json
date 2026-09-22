@@ -13,9 +13,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
     "verify:phase1": "node scripts/verify-phase1.mjs",
     "verify:phase2": "node scripts/verify-phase2.mjs",
-    "verify:phase3": "node scripts/verify-phase3.mjs"
+    "verify:phase3": "node scripts/verify-phase3.mjs",
+    "verify:phase4": "node scripts/verify-phase4.mjs"
   },
   "dependencies": {
     "nuxt": "^4.0.0",
@@ -27,13 +30,18 @@
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/test-utils": "^3.19.2",
     "@playwright/test": "^1.55.0",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/vue3-vite": "^10.6.0",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/vue": "^8.1.0",
     "@types/node": "^24.5.2",
+    "@vitejs/plugin-vue": "^6.0.9",
     "@vue/test-utils": "^2.4.6",
     "eslint": "^10.4.0",
     "happy-dom": "^18.0.1",
+    "storybook": "^10.6.0",
     "typescript": "^5.9.2",
+    "vite": "^8.3.0",
     "vitest": "^3.2.4",
     "vue-tsc": "^3.0.7"
   }

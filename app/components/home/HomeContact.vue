@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ActionControl from '~/components/ui/ActionControl.vue'
+import SectionMarker from '~/components/ui/SectionMarker.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -7,13 +9,13 @@ defineProps<{
 </script>
 
 <template>
-  <footer id="contact" class="contact">
-    <div class="contact__marker">06</div>
+  <footer id="contact" class="contact" data-reveal>
+    <SectionMarker class="contact__marker" number="06" />
     <div class="contact__main">
       <h2>Let’s make something thoughtful.</h2>
       <p>I’m always open to meaningful conversations about interesting work.</p>
       <div class="contact__links">
-        <a class="contact__primary" :href="`mailto:${profile.email}`">Say hello <span aria-hidden="true">→</span></a>
+        <ActionControl class="contact__primary" :href="`mailto:${profile.email}`" tone="ink">Say hello</ActionControl>
         <a
           v-for="link in profile.contacts.filter((item) => item.label === 'LinkedIn' || item.label === 'GitHub')"
           :key="link.label"
@@ -48,10 +50,7 @@ defineProps<{
   padding: 3.5rem var(--page-gutter) 1.5rem;
 }
 
-.contact__marker {
-  border-right: 1px solid color-mix(in srgb, var(--ink) 50%, transparent);
-  font-size: .7rem;
-}
+.contact__marker { --rule-strong: color-mix(in srgb, var(--ink) 50%, transparent); }
 
 .contact__main h2 {
   color: var(--ink-strong);
@@ -77,17 +76,6 @@ defineProps<{
 .contact__links a:not(.contact__primary) {
   font-size: .85rem;
   text-underline-offset: .35rem;
-}
-
-.contact__primary {
-  align-items: center;
-  background: var(--ink-strong);
-  color: var(--paper);
-  display: inline-flex;
-  gap: 2rem;
-  min-height: 3.5rem;
-  padding: 0 1.4rem;
-  text-decoration: none;
 }
 
 .contact__drawing {

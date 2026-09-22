@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ActionControl from '~/components/ui/ActionControl.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -7,14 +8,12 @@ defineProps<{
 </script>
 
 <template>
-  <section id="top" class="hero" aria-labelledby="hero-title">
+  <section id="top" class="hero" aria-labelledby="hero-title" data-reveal="hero">
     <div class="hero__copy">
       <div class="kicker"><span>01</span><i />Code <b>×</b> Design <b>×</b> People</div>
       <h1 id="hero-title" class="hero__title">I build thoughtful<br>interfaces,<br>from system to screen.</h1>
       <p class="hero__lede">{{ profile.shortSummary }}</p>
-      <a class="hero__cta" href="#work">
-        View my work <span aria-hidden="true">→</span>
-      </a>
+      <ActionControl class="hero__cta" href="#work" size="large">View my work</ActionControl>
 
       <div class="hero__facts">
         <div>
@@ -109,27 +108,7 @@ defineProps<{
   margin-bottom: 2.5rem;
 }
 
-.hero__cta {
-  align-items: center;
-  align-self: flex-start;
-  background: var(--gold);
-  display: inline-flex;
-  font-size: 1.1rem;
-  font-weight: 600;
-  gap: 2.5rem;
-  min-height: 4.2rem;
-  padding: 0 2rem;
-  text-decoration: none;
-}
-
-.hero__cta span {
-  font-size: 1.75rem;
-  transition: translate var(--duration-fast) var(--ease-out);
-}
-
-.hero__cta:is(:hover, :focus-visible) span {
-  translate: .35rem 0;
-}
+.hero__cta { align-self: flex-start; }
 
 .hero__facts {
   border-top: 1px solid var(--rule-strong);

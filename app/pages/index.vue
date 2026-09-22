@@ -2,11 +2,10 @@
 import HomeAbout from '~/components/home/HomeAbout.vue'
 import HomeContact from '~/components/home/HomeContact.vue'
 import HomeExperience from '~/components/home/HomeExperience.vue'
-import HomeHeader from '~/components/home/HomeHeader.vue'
 import HomeHero from '~/components/home/HomeHero.vue'
 import HomeToolkit from '~/components/home/HomeToolkit.vue'
 import HomeWork from '~/components/home/HomeWork.vue'
-import { experience, navigation, profile, toolkit, workItems } from '~/content/site'
+import { experience, profile, toolkit, workItems } from '~/content/site'
 
 useSeoMeta({
   title: 'Caitlin Hawley — Frontend Developer & Design System Builder',
@@ -25,8 +24,6 @@ useHead({
 
 <template>
   <div class="home-page">
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <HomeHeader :items="navigation" />
     <main id="main-content">
       <HomeHero :profile="profile" />
       <HomeWork :items="workItems" />
@@ -45,18 +42,4 @@ useHead({
   min-height: 100svh;
 }
 
-.skip-link {
-  background: var(--ink-strong);
-  color: var(--paper);
-  left: 1rem;
-  padding: .75rem 1rem;
-  position: fixed;
-  top: 1rem;
-  translate: 0 -200%;
-  z-index: 100;
-}
-
-.skip-link:focus {
-  translate: 0;
-}
 </style>

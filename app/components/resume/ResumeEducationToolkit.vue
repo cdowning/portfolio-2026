@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SectionMarker from '~/components/ui/SectionMarker.vue'
+import SkillTag from '~/components/ui/SkillTag.vue'
 import type { EducationEntry } from '~/types/content'
 
 defineProps<{
@@ -8,9 +10,9 @@ defineProps<{
 </script>
 
 <template>
-  <section class="resume-foundation" aria-label="Education and toolkit">
+  <section class="resume-foundation" aria-label="Education and toolkit" data-reveal>
     <div class="resume-foundation__education">
-      <div class="resume-foundation__marker">05</div>
+      <SectionMarker class="resume-foundation__marker" number="05" />
       <div>
         <h2>Education</h2>
         <p class="tagline">Early foundations. Lasting curiosity.</p>
@@ -21,12 +23,12 @@ defineProps<{
       </div>
     </div>
     <div class="resume-foundation__toolkit">
-      <div class="resume-foundation__marker">06</div>
+      <SectionMarker class="resume-foundation__marker" number="06" />
       <div>
         <h2>Toolkit</h2>
         <p class="tagline">The tools that help ideas take shape.</p>
         <ul>
-          <li v-for="item in toolkit" :key="item">{{ item }}</li>
+          <SkillTag v-for="item in toolkit" :key="item" :label="item" />
         </ul>
       </div>
     </div>
@@ -52,11 +54,6 @@ defineProps<{
 .resume-foundation__toolkit {
   border-left: 1px dashed var(--rule-strong);
   padding-left: 2rem;
-}
-
-.resume-foundation__marker {
-  border-right: 1px solid var(--rule-strong);
-  font-size: .7rem;
 }
 
 .resume-foundation h2 {
@@ -97,13 +94,7 @@ defineProps<{
   padding: 0;
 }
 
-.resume-foundation li {
-  background: color-mix(in srgb, var(--teal) 10%, var(--paper));
-  font-size: .72rem;
-  min-width: 5rem;
-  padding: .55rem .75rem;
-  text-align: center;
-}
+.resume-foundation :deep(.skill-tag) { min-width: 5rem; }
 
 .resume-foundation aside {
   border-left: 1px solid var(--rule-strong);

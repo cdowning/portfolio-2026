@@ -7,6 +7,7 @@ playwright-report
 test-results
 output
 tmp
+storybook-static
 .DS_Store
 .superpowers
 .nuxtrc

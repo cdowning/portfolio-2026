@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SectionMarker from '~/components/ui/SectionMarker.vue'
+import SkillTag from '~/components/ui/SkillTag.vue'
 import type { SiteProfile, SkillGroup } from '~/types/content'
 
 defineProps<{
@@ -8,8 +10,8 @@ defineProps<{
 </script>
 
 <template>
-  <section class="resume-skills" aria-labelledby="resume-skills-title">
-    <div class="resume-skills__marker">03</div>
+  <section class="resume-skills" aria-labelledby="resume-skills-title" data-reveal>
+    <SectionMarker class="resume-skills__marker" number="03" />
     <div class="resume-skills__intro">
       <h2 id="resume-skills-title">Profile / Skills</h2>
       <p class="resume-skills__tagline">A solid foundation for meaningful work.</p>
@@ -22,7 +24,7 @@ defineProps<{
     >
       <h3>{{ group.title }}</h3>
       <ul>
-        <li v-for="item in group.items" :key="item">{{ item }}</li>
+        <SkillTag v-for="item in group.items" :key="item" :label="item" />
       </ul>
     </div>
     <aside aria-hidden="true"><i /><p>Ideas into<br>interfaces</p></aside>
@@ -36,11 +38,6 @@ defineProps<{
   gap: 2.5rem;
   grid-template-columns: 3rem minmax(18rem, .85fr) repeat(2, minmax(19rem, 1fr)) 7rem;
   padding: 3rem var(--page-gutter);
-}
-
-.resume-skills__marker {
-  border-right: 1px solid var(--rule-strong);
-  font-size: .7rem;
 }
 
 .resume-skills h2 {
@@ -85,11 +82,7 @@ defineProps<{
   padding: 0;
 }
 
-.resume-skills__group li {
-  background: color-mix(in srgb, var(--teal) 11%, var(--paper));
-  font-size: .75rem;
-  padding: .65rem .85rem;
-}
+.resume-skills__group :deep(.skill-tag) { font-size: .75rem; padding: .65rem .85rem; }
 
 .resume-skills aside {
   border-left: 1px solid var(--rule-strong);

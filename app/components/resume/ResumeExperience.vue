@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionMarker from '~/components/ui/SectionMarker.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
@@ -7,8 +8,8 @@ defineProps<{
 </script>
 
 <template>
-  <section id="experience" class="resume-experience" aria-labelledby="resume-experience-title">
-    <div class="resume-experience__marker">04</div>
+  <section id="experience" class="resume-experience" aria-labelledby="resume-experience-title" data-reveal>
+    <SectionMarker class="resume-experience__marker" number="04" />
     <header>
       <h2 id="resume-experience-title">Experience</h2>
       <p>Real work. Lasting impact.</p>
@@ -43,11 +44,7 @@ defineProps<{
   padding: 3rem var(--page-gutter) 2.5rem;
 }
 
-.resume-experience__marker {
-  border-right: 1px solid var(--rule-strong);
-  font-size: .7rem;
-  grid-row: 1 / 3;
-}
+.resume-experience__marker { grid-row: 1 / 3; }
 
 .resume-experience header { grid-column: 2; }
 
@@ -177,17 +174,18 @@ defineProps<{
 }
 
 @media (max-width: 64rem) {
-  .resume-experience { grid-template-columns: 3rem 1fr; }
+  .resume-experience { grid-template-columns: 3rem minmax(0, 1fr); }
   .resume-experience aside { display: none; }
 }
 
 @media (max-width: 42rem) {
-  .resume-experience { gap: 1.5rem 1rem; grid-template-columns: 2.5rem 1fr; padding: 3rem 1.25rem; }
+  .resume-experience { gap: 1.5rem 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); padding: 3rem 1.25rem; }
   .resume-experience > ol { padding-left: 2.5rem; }
   .resume-experience > ol::before { left: .5rem; }
   .resume-experience > ol > li { padding-top: 2.5rem; }
   .resume-experience > ol > li > time { left: 0; top: 0; width: auto; }
   .resume-experience > ol > li::before { left: -2.3rem; top: 2.9rem; }
-  .resume-experience__role { gap: .75rem; }
+  .resume-experience__role { flex-direction: column; gap: .35rem; }
+  .resume-experience__role time { white-space: normal; }
 }
 </style>

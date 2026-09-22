@@ -1,4 +1,4 @@
-- [ ] Build accessible responsive navigation.
-- [ ] Adapt desktop compositions to tablet and mobile.
-- [ ] Add reduced-motion-aware editorial motion.
-- [ ] Extract stable shared components and document in Storybook.
+- [x] Build accessible responsive navigation.
+- [x] Adapt desktop compositions to tablet and mobile.
+- [x] Add reduced-motion-aware editorial motion.
+- [x] Extract stable shared components and document in Storybook.

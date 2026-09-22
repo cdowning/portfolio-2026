@@ -25,14 +25,14 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V6: 320/390/768/1024/desktop have no horizontal overflow; touch controls >=44px.
 - V7: no fake metrics/client claims; work images derive from real public work or abstract labeled specimens.
 - V8: shared UI extracted only after >=3 same-intent uses; typed props/events.
-- V9: lint + typecheck + generate exit 0; ⊥ project-owned or dependency-compat warnings.
+- V9: lint + typecheck + generate + Storybook build exit 0; ⊥ project-owned or dependency-compat warnings.
 
 # §T
 id|status|goal|cites
 T1|x|foundation, content, tests, OpenSpec records|V1,V2,V9,I.content
 T2|x|homepage static composition + destinations|V2,V3,V7,I./
 T3|x|resume web + two-page print|V2,V4,I./resume
-T4|.|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
+T4|x|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
 T5|.|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 
 # §B
@@ -44,3 +44,6 @@ B4|2026-09-21|Nuxt 4.5.2 Nitro bundle reports unused imports inside `@nuxt/nitro
 B5|2026-09-21|rotation on fixed-width header signature cell expanded its bounds past viewport|V6; rotate handwritten child only + browser overflow assertion
 B6|2026-09-21|Nuxt test server exceeded Playwright's 60s startup window after cold generation; clean isolated rerun passed|raise isolated server timeout to 120s; no §V (tooling latency)
 B7|2026-09-21|print test clicked SSR button before Vue hydration attached listener|V4; wait for browser network idle before interaction
+B8|2026-09-21|login shell selected a stale Homebrew Node binary missing its ICU library|use the bundled pnpm launcher directly; no §V (host tool state)
+B9|2026-09-21|standalone Storybook had no direct Vite or Vue SFC compiler dependency under pnpm isolation|V9
+B10|2026-09-21|résumé experience grid used intrinsic `1fr`, allowing role dates to force 37px overflow at 320px|V6; use `minmax(0, 1fr)` and stack the role heading on phones

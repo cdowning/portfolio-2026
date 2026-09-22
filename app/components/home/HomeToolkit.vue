@@ -1,18 +1,20 @@
 <script setup lang="ts">
+import SectionMarker from '~/components/ui/SectionMarker.vue'
+import SkillTag from '~/components/ui/SkillTag.vue'
 defineProps<{
   items: string[]
 }>()
 </script>
 
 <template>
-  <section class="toolkit" aria-labelledby="toolkit-title">
-    <div class="toolkit__marker">05</div>
+  <section class="toolkit" aria-labelledby="toolkit-title" data-reveal>
+    <SectionMarker class="toolkit__marker" number="05" />
     <header>
       <h2 id="toolkit-title">Toolkit</h2>
       <p>The tools that help ideas take shape.</p>
     </header>
     <ul>
-      <li v-for="item in items" :key="item">{{ item }}</li>
+      <SkillTag v-for="item in items" :key="item" :label="item" variant="ruled" />
     </ul>
     <aside aria-hidden="true"><span>06</span><p>Tools<br>people<br>possibilities</p></aside>
   </section>
@@ -28,11 +30,7 @@ defineProps<{
   padding: 2.5rem var(--page-gutter);
 }
 
-.toolkit__marker {
-  align-self: stretch;
-  border-right: 1px solid var(--rule-strong);
-  font-size: .7rem;
-}
+.toolkit__marker { align-self: stretch; }
 
 .toolkit h2 {
   font-family: var(--font-display);
@@ -59,12 +57,7 @@ defineProps<{
   padding: 0;
 }
 
-.toolkit li {
-  border-left: 1px solid var(--rule-strong);
-  font-size: .67rem;
-  min-height: 3rem;
-  padding: .25rem .65rem;
-}
+.toolkit :deep(.skill-tag) { font-size: .67rem; min-height: 3rem; padding: .25rem .65rem; text-align: left; }
 
 .toolkit aside {
   align-self: stretch;

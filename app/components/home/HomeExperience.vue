@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ActionControl from '~/components/ui/ActionControl.vue'
+import SectionMarker from '~/components/ui/SectionMarker.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
@@ -7,8 +9,8 @@ defineProps<{
 </script>
 
 <template>
-  <section id="experience" class="experience" aria-labelledby="experience-title">
-    <div class="experience__marker">04</div>
+  <section id="experience" class="experience" aria-labelledby="experience-title" data-reveal>
+    <SectionMarker class="experience__marker" number="04" />
     <header class="experience__heading">
       <h2 id="experience-title">Experience</h2>
       <p>A decade of building, learning, and growing.</p>
@@ -31,7 +33,7 @@ defineProps<{
       <span>05</span>
       <p>Experience<br>builds<br>perspective</p>
     </div>
-    <a class="experience__link" href="/resume">View full resume <span aria-hidden="true">→</span></a>
+    <ActionControl class="experience__link" href="/resume">View full resume</ActionControl>
   </section>
 </template>
 
@@ -45,11 +47,7 @@ defineProps<{
   position: relative;
 }
 
-.experience__marker {
-  border-right: 1px solid var(--rule-strong);
-  font-size: .7rem;
-  grid-row: 1 / 3;
-}
+.experience__marker { grid-row: 1 / 3; }
 
 .experience__heading {
   grid-column: 2 / 4;
@@ -155,17 +153,11 @@ defineProps<{
 }
 
 .experience__link {
-  align-items: center;
-  background: var(--gold);
   bottom: 2.25rem;
-  display: flex;
   font-size: .75rem;
-  gap: 1rem;
   min-height: 3.2rem;
-  padding: 0 1.3rem;
   position: absolute;
   right: var(--page-gutter);
-  text-decoration: none;
 }
 
 @media (max-width: 68rem) {

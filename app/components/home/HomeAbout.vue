@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionMarker from '~/components/ui/SectionMarker.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -7,8 +8,8 @@ defineProps<{
 </script>
 
 <template>
-  <section id="about" class="about" aria-labelledby="about-title">
-    <div class="about__marker"><span>03</span></div>
+  <section id="about" class="about" aria-labelledby="about-title" data-reveal>
+    <SectionMarker class="about__marker" number="03" />
     <div class="about__copy">
       <h2 id="about-title">About / How I work</h2>
       <p class="about__eyebrow">Thoughtful interfaces for real people.</p>
@@ -42,11 +43,6 @@ defineProps<{
   gap: clamp(2rem, 4vw, 4rem);
   grid-template-columns: 3rem minmax(18rem, .9fr) minmax(20rem, .85fr) minmax(20rem, 1fr);
   padding: clamp(4rem, 6vw, 6.5rem) var(--page-gutter);
-}
-
-.about__marker {
-  border-right: 1px solid var(--rule-strong);
-  font-size: .7rem;
 }
 
 .about__copy h2 {

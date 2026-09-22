@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ActionControl from '~/components/ui/ActionControl.vue'
+import SectionMarker from '~/components/ui/SectionMarker.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -7,13 +9,13 @@ defineProps<{
 </script>
 
 <template>
-  <footer class="resume-contact">
-    <div class="resume-contact__marker">07</div>
+  <footer id="contact" class="resume-contact" data-reveal>
+    <SectionMarker class="resume-contact__marker" number="07" />
     <div class="resume-contact__main">
       <h2>Let’s build something thoughtful.</h2>
       <p>I’m always open to meaningful conversations about interesting work.</p>
       <div class="resume-contact__links">
-        <a class="resume-contact__primary" :href="`mailto:${profile.email}`">Get in touch <span aria-hidden="true">→</span></a>
+        <ActionControl class="resume-contact__primary" :href="`mailto:${profile.email}`" tone="ink">Get in touch</ActionControl>
         <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
         <a
           v-for="contact in profile.contacts.filter((item) => item.label === 'LinkedIn' || item.label === 'GitHub')"
@@ -49,10 +51,7 @@ defineProps<{
   padding: 3.5rem var(--page-gutter) 1.5rem;
 }
 
-.resume-contact__marker {
-  border-right: 1px solid color-mix(in srgb, var(--ink) 50%, transparent);
-  font-size: .7rem;
-}
+.resume-contact__marker { --rule-strong: color-mix(in srgb, var(--ink) 50%, transparent); }
 
 .resume-contact__main h2 {
   color: var(--ink-strong);
@@ -76,17 +75,6 @@ defineProps<{
 .resume-contact__links a:not(.resume-contact__primary) {
   font-size: .8rem;
   text-underline-offset: .35rem;
-}
-
-.resume-contact__primary {
-  align-items: center;
-  background: var(--ink-strong);
-  color: var(--paper);
-  display: inline-flex;
-  gap: 2rem;
-  min-height: 3.5rem;
-  padding: 0 1.4rem;
-  text-decoration: none;
 }
 
 .resume-contact__drawing { align-self: center; position: relative; }
