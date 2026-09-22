@@ -31,7 +31,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 id|status|goal|cites
 T1|x|foundation, content, tests, OpenSpec records|V1,V2,V9,I.content
 T2|x|homepage static composition + destinations|V2,V3,V7,I./
-T3|.|resume web + two-page print|V2,V4,I./resume
+T3|x|resume web + two-page print|V2,V4,I./resume
 T4|.|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
 T5|.|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 
@@ -43,3 +43,4 @@ B3|2026-09-21|Nuxt generated Vue Router 5 Volar plugin path while direct dep pin
 B4|2026-09-21|Nuxt 4.5.2 Nitro bundle reports unused imports inside `@nuxt/nitro-server`|V9 scoped to project-owned/compat warnings; upstream warning documented
 B5|2026-09-21|rotation on fixed-width header signature cell expanded its bounds past viewport|V6; rotate handwritten child only + browser overflow assertion
 B6|2026-09-21|Nuxt test server exceeded Playwright's 60s startup window after cold generation; clean isolated rerun passed|raise isolated server timeout to 120s; no §V (tooling latency)
+B7|2026-09-21|print test clicked SSR button before Vue hydration attached listener|V4; wait for browser network idle before interaction

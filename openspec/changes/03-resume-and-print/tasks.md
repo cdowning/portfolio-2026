@@ -1,3 +1,3 @@
-- [ ] Build résumé web surface.
-- [ ] Add browser print action.
-- [ ] Verify a two-page Letter PDF.
+- [x] Build résumé web surface.
+- [x] Add browser print action.
+- [x] Verify a two-page Letter PDF.

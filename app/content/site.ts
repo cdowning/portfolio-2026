@@ -23,6 +23,8 @@ export const profile: SiteProfile = {
   shortSummary: 'Frontend developer with a passion for design.',
   summary:
     'Frontend developer with more than a decade of experience turning visual ideas into clear, reusable interfaces. I focus on accessible interfaces, Vue, Nuxt, TypeScript, and design systems — combining design sensibility with practical, human-centered solutions.',
+  approach:
+    'I’m drawn to the space where design, technology, and human understanding meet. I care about details — from the logic under the hood to the little moments people experience on screen. I build accessible, reusable interfaces with Vue, Nuxt, and TypeScript, and I love turning complex problems into simple, intuitive solutions.',
   contacts: [
     { label: 'Email', href: 'mailto:caitlin.j.hawley@gmail.com' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/caitlindowning/', external: true },

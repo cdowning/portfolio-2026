@@ -16,6 +16,7 @@ export interface SiteProfile {
   location: string
   summary: string
   shortSummary: string
+  approach: string
   website: string
   contacts: ContactLink[]
 }

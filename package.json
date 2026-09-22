@@ -14,7 +14,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "verify:phase1": "node scripts/verify-phase1.mjs",
-    "verify:phase2": "node scripts/verify-phase2.mjs"
+    "verify:phase2": "node scripts/verify-phase2.mjs",
+    "verify:phase3": "node scripts/verify-phase3.mjs"
   },
   "dependencies": {
     "nuxt": "^4.0.0",
