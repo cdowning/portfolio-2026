@@ -69,13 +69,24 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 .site-header {
   align-items: stretch;
   background: color-mix(in srgb, var(--paper) 95%, transparent);
-  border-bottom: 1px solid var(--rule);
   display: grid;
   grid-template-columns: minmax(17rem, 1fr) auto 12rem;
   min-height: var(--header-height);
   position: sticky;
   top: 0;
   z-index: 40;
+}
+
+.site-header::after {
+  background: var(--rule);
+  bottom: 0;
+  content: '';
+  height: 1px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100vw;
 }
 
 .brand {

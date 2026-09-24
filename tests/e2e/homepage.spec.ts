@@ -60,10 +60,15 @@ test.describe('homepage composition', () => {
     await expect(page.getByRole('img', { name: /Sunlight spilling over clouds/i })).toBeVisible()
   })
 
-  test('defers the portrait while preserving employer subtitles and solid paper treatment', async ({ page }) => {
-    await expect(page.getByRole('img', {
-      name: "Portrait placeholder awaiting Caitlin's original photograph",
-    })).toBeVisible()
+  test('shows Caitlin’s original portrait without changing its pixel dimensions', async ({ page }) => {
+    const portrait = page.getByRole('img', { name: 'Caitlin Hawley smiling' })
+    await expect(portrait).toBeVisible()
+    await expect(portrait).toHaveAttribute('src', '/images/portfolio-high-res.png')
+    await expect.poll(() => portrait.evaluate((image: HTMLImageElement) => ({
+      width: image.naturalWidth,
+      height: image.naturalHeight,
+    }))).toEqual({ width: 1230, height: 1278 })
+    await expect(page.getByText('Original source pending')).toHaveCount(0)
 
     const firstRole = page.locator('.experience__list > li').first()
     await expect(firstRole).toContainText('Senior Frontend Engineer')

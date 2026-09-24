@@ -48,7 +48,10 @@ defineProps<{
   display: grid;
   gap: 2rem;
   grid-template-columns: 3rem minmax(30rem, 1.35fr) minmax(17rem, .65fr) minmax(13rem, .5fr);
+  margin-left: calc(50% - 50vw);
   padding: 3.5rem var(--page-gutter) 1.5rem;
+  padding-inline: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2 + var(--page-gutter)));
+  width: 100vw;
 }
 
 .resume-contact__marker { --rule-strong: color-mix(in srgb, var(--ink) 50%, transparent); }
@@ -74,6 +77,7 @@ defineProps<{
 
 .resume-contact__links a:not(.resume-contact__primary) {
   font-size: .8rem;
+  min-width: 2.75rem;
   text-underline-offset: .35rem;
 }
 

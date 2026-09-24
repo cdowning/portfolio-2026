@@ -62,6 +62,40 @@ test.describe('responsive navigation and editorial motion', () => {
 })
 
 test.describe('responsive layout contract', () => {
+  for (const route of ['/', '/resume']) {
+    test(`${route} header rule spans the viewport without widening the header content`, async ({ page }) => {
+      await page.setViewportSize({ width: 2048, height: 900 })
+      await page.goto(route)
+
+      const header = page.getByRole('banner')
+      const bounds = await header.boundingBox()
+      const rule = await header.evaluate((element) => {
+        const style = getComputedStyle(element, '::after')
+        return { width: Number.parseFloat(style.width), height: Number.parseFloat(style.height), color: style.backgroundColor }
+      })
+
+      expect(bounds).not.toBeNull()
+      expect(bounds!.x).toBeGreaterThan(0)
+      expect(bounds!.width).toBeLessThan(2048)
+      expect(rule).toEqual({ width: 2048, height: 1, color: 'rgb(222, 213, 203)' })
+    })
+  }
+
+  for (const route of ['/', '/resume']) {
+    test(`${route} gold footer reaches both viewport edges on wide screens`, async ({ page }) => {
+      await page.setViewportSize({ width: 2048, height: 900 })
+      await page.goto(route)
+
+      const footer = page.locator('footer#contact')
+      const bounds = await footer.boundingBox()
+
+      expect(bounds).not.toBeNull()
+      expect(bounds!.x).toBeCloseTo(0, 0)
+      expect(bounds!.width).toBeCloseTo(2048, 0)
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(2048)
+    })
+  }
+
   for (const width of [320, 390, 768, 1024]) {
     for (const route of ['/', '/resume']) {
       test(`${route} has no horizontal overflow at ${width}px`, async ({ page }) => {

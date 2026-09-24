@@ -1,0 +1,73 @@
+name: Deploy development
+
+on:
+  push:
+    branches:
+      - impeccable-exploration
+
+permissions:
+  contents: read
+
+concurrency:
+  group: development-deployment
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to dev.caitlinhawley.com
+    runs-on: ubuntu-latest
+
+    environment:
+      name: development
+      url: https://dev.caitlinhawley.com
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm and Node.js
+        uses: pnpm/setup@v3
+        with:
+          version: 11.19.0
+          runtime: node@24
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate static site
+        run: pnpm generate
+
+      - name: Install SFTP client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp
+
+      - name: Upload generated site
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_PATH: ${{ vars.SFTP_PATH }}
+        run: |
+          set -euo pipefail
+
+          for variable in SFTP_HOST SFTP_PORT SFTP_USERNAME LFTP_PASSWORD SFTP_PATH; do
+            if [[ -z "${!variable:-}" ]]; then
+              echo "Missing required development environment value: ${variable}" >&2
+              exit 1
+            fi
+          done
+
+          lftp \
+            --env-password \
+            --user "$SFTP_USERNAME" \
+            --port "$SFTP_PORT" \
+            --execute "
+              set sftp:auto-confirm yes;
+              mirror --reverse --verbose --parallel=4 --no-perms .output/public \"$SFTP_PATH\";
+              bye
+            " \
+            "sftp://$SFTP_HOST"

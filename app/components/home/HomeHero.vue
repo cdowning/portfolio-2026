@@ -36,13 +36,14 @@ defineProps<{
         <path d="M77 650C14 421 62 176 312 46" />
         <path d="M58 386C-30 386 -35 386 -88 386" />
       </svg>
-      <div class="portrait-placeholder" role="img" aria-label="Portrait placeholder awaiting Caitlin's original photograph">
-        <div class="portrait-placeholder__halo" />
-        <div class="portrait-placeholder__label">
-          <span>Portrait study</span>
-          <strong>Original source pending</strong>
-        </div>
-      </div>
+      <img
+        class="hero__image"
+        src="/images/portfolio-high-res.png"
+        alt="Caitlin Hawley smiling"
+        width="1230"
+        height="1278"
+        fetchpriority="high"
+      >
       <div class="hero__swatches" aria-hidden="true">
         <FabricSwatches :colors="swatchColors" />
       </div>
@@ -151,77 +152,16 @@ defineProps<{
   position: relative;
 }
 
-.portrait-placeholder {
-  background:
-    linear-gradient(135deg, transparent 0 42%, color-mix(in srgb, var(--teal) 22%, transparent) 42% 43%, transparent 43%),
-    repeating-linear-gradient(105deg, transparent 0 1.5rem, color-mix(in srgb, var(--ink) 4%, transparent) 1.5rem 1.6rem),
-    linear-gradient(145deg, var(--paper-deep), #e6ded4);
+.hero__image {
   bottom: 0;
-  clip-path: polygon(21% 11%, 78% 4%, 94% 29%, 91% 100%, 4% 100%, 8% 33%);
-  left: 8%;
-  min-height: 76%;
-  overflow: hidden;
-  position: absolute;
-  right: 13%;
-}
-
-.portrait-placeholder::before,
-.portrait-placeholder::after {
-  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
-  border-radius: 50%;
-  content: '';
-  position: absolute;
-}
-
-.portrait-placeholder::before {
-  aspect-ratio: 1;
-  background: color-mix(in srgb, var(--blush) 50%, var(--paper));
-  left: 27%;
-  top: 16%;
-  width: 48%;
-}
-
-.portrait-placeholder::after {
-  background: color-mix(in srgb, var(--ink) 88%, var(--teal-deep));
-  border-radius: 48% 48% 0 0;
-  bottom: -9%;
-  height: 60%;
-  left: 15%;
-  width: 72%;
-}
-
-.portrait-placeholder__halo {
-  border: 1px dashed var(--ink);
-  border-radius: 50%;
-  height: 56%;
-  left: 18%;
-  opacity: .4;
-  position: absolute;
-  top: 7%;
-  width: 64%;
-}
-
-.portrait-placeholder__label {
-  background: var(--paper);
-  border: 1px solid var(--rule-strong);
-  bottom: 7%;
-  left: 8%;
-  padding: .8rem 1rem;
-  position: absolute;
-  z-index: 2;
-}
-
-.portrait-placeholder__label span,
-.portrait-placeholder__label strong {
   display: block;
-  font-size: .58rem;
-  letter-spacing: .22em;
-  line-height: 1.55;
-  text-transform: uppercase;
-}
-
-.portrait-placeholder__label strong {
-  font-size: .68rem;
+  height: auto;
+  left: 50%;
+  max-width: 1230px;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 1;
 }
 
 .hero__arc {
@@ -322,8 +262,12 @@ defineProps<{
 
   .hero__swatches {
     right: 1rem;
-    top: 4rem;
+    top: 8rem;
     width: 2.7rem;
+  }
+
+  .hero__margin-note {
+    left: .8rem;
   }
 
   .swatch {

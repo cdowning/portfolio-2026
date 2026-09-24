@@ -47,7 +47,10 @@ defineProps<{
   display: grid;
   gap: 2rem;
   grid-template-columns: 3rem minmax(30rem, 1.4fr) minmax(18rem, .7fr) minmax(13rem, .5fr);
+  margin-left: calc(50% - 50vw);
   padding: 3.5rem var(--page-gutter) 1.5rem;
+  padding-inline: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2 + var(--page-gutter)));
+  width: 100vw;
 }
 
 .contact__marker { --rule-strong: color-mix(in srgb, var(--ink) 50%, transparent); }
@@ -75,6 +78,7 @@ defineProps<{
 
 .contact__links a:not(.contact__primary) {
   font-size: .85rem;
+  min-width: 2.75rem;
   text-underline-offset: .35rem;
 }
 
