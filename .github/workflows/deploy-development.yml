@@ -39,35 +39,34 @@ jobs:
       - name: Generate static site
         run: pnpm generate
 
-      - name: Install SFTP client
+      - name: Install SSH password helper
         run: |
           sudo apt-get update
-          sudo apt-get install --yes lftp
+          sudo apt-get install --yes sshpass
 
       - name: Upload generated site
         env:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
           SFTP_PORT: ${{ secrets.SFTP_PORT }}
           SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
-          LFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
           SFTP_PATH: ${{ vars.SFTP_PATH }}
         run: |
           set -euo pipefail
 
-          for variable in SFTP_HOST SFTP_PORT SFTP_USERNAME LFTP_PASSWORD SFTP_PATH; do
+          for variable in SFTP_HOST SFTP_PORT SFTP_USERNAME SSHPASS SFTP_PATH; do
             if [[ -z "${!variable:-}" ]]; then
               echo "Missing required development environment value: ${variable}" >&2
               exit 1
             fi
           done
 
-          lftp \
-            --env-password \
-            --user "$SFTP_USERNAME" \
-            --port "$SFTP_PORT" \
-            --execute "
-              set sftp:auto-confirm yes;
-              mirror --reverse --verbose --parallel=4 --no-perms .output/public \"$SFTP_PATH\";
-              bye
-            " \
-            "sftp://$SFTP_HOST"
+          sshpass -e scp \
+            -P "$SFTP_PORT" \
+            -o StrictHostKeyChecking=accept-new \
+            -o IdentitiesOnly=yes \
+            -o PreferredAuthentications=password \
+            -o PubkeyAuthentication=no \
+            -r \
+            .output/public/. \
+            "$SFTP_USERNAME@$SFTP_HOST:$SFTP_PATH/"
