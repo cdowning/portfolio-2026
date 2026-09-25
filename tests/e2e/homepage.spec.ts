@@ -60,6 +60,19 @@ test.describe('homepage composition', () => {
     await expect(page.getByRole('img', { name: /Sunlight spilling over clouds/i })).toBeVisible()
   })
 
+  test('renders handwritten annotations with the approved note face', async ({ page }) => {
+    const note = page.locator('.hero__margin-note')
+
+    await expect.poll(() => note.evaluate(element => (
+      getComputedStyle(element).fontFamily.replaceAll('"', '')
+    ))).toBe('Dawning of a New Day, cursive')
+    await page.evaluate(() => document.fonts.ready)
+
+    expect(await page.evaluate(() => Array.from(document.fonts).some(font => (
+      font.family === 'Dawning of a New Day' && font.status === 'loaded'
+    )))).toBe(true)
+  })
+
   test('shows Caitlin’s original portrait without changing its pixel dimensions', async ({ page }) => {
     const portrait = page.getByRole('img', { name: 'Caitlin Hawley smiling' })
     await expect(portrait).toBeVisible()

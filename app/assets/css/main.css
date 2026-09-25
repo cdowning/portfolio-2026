@@ -34,10 +34,10 @@
 
 @font-face {
   font-display: swap;
-  font-family: 'Milkshake';
+  font-family: 'Dawning of a New Day';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/milkshake.woff2') format('woff2');
+  src: url('/fonts/dawning-of-a-new-day-regular.woff2') format('woff2');
 }
 
 @layer tokens {
@@ -57,7 +57,7 @@
     --rule-strong: color-mix(in srgb, var(--ink) 44%, transparent);
     --font-display: 'Poppins', sans-serif;
     --font-body: 'Work Sans', sans-serif;
-    --font-note: 'Milkshake', cursive;
+    --font-note: 'Dawning of a New Day', cursive;
     --page-gutter: clamp(1.25rem, 4vw, 4rem);
     --content-max: 100rem;
     --header-height: 5.25rem;

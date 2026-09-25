@@ -16,7 +16,7 @@ Experience. The homepage leads with Caitlin’s point of view and proof; the ré
 - Blush: `#ddb6b0`, `#f5cac3`
 - Gold: `#f6bd60`, `#c5974d`
 - Rule: `#ded5cb`
-- Display/UI: Poppins; body: Work Sans; handwritten notes: Milkshake.
+- Display/UI: Poppins; body: Work Sans; handwritten notes: Dawning of a New Day.
 
 ## Composition and behavior
 
