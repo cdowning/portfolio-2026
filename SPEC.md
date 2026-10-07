@@ -7,7 +7,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - light-only v1; modern CSS; no Tailwind/SCSS/CMS/server
 - approved desktop comps immutable; responsive adaptation intentional
 - factual content/links only; no invented metrics/client claims
-- hero uses honest placeholder until original portrait arrives
+- hero uses supplied transparent portrait; no distorted or enlarged low-resolution derivative
 - resume print = 2 US Letter pages; no web preview
 
 # §I
@@ -33,7 +33,7 @@ T1|x|foundation, content, tests, OpenSpec records|V1,V2,V9,I.content
 T2|x|homepage static composition + destinations|V2,V3,V7,I./
 T3|x|resume web + two-page print|V2,V4,I./resume
 T4|x|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
-T4a|.|correct reviewed content, grid, and swatches; portrait restored to honest placeholder and deferred|V2,V3,V4,V5,V6,V7
+T4a|~|correct reviewed content, hero fidelity, portrait, grid, and swatches|V2,V3,V4,V5,V6,V7
 T5|.|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 
 # §B

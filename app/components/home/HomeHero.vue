@@ -30,18 +30,65 @@ defineProps<{
       </div>
     </div>
 
-    <div class="hero__portrait">
-      <svg class="hero__arc" viewBox="0 0 620 720" aria-hidden="true">
-        <path d="M57 650C-8 414 34 150 300 20" />
-        <path d="M77 650C14 421 62 176 312 46" />
-        <path d="M58 386C-30 386 -35 386 -88 386" />
+    <div class="hero__construction" aria-hidden="true">
+      <svg class="hero__construction-drawing" viewBox="0 0 1600 840" preserveAspectRatio="none">
+        <path
+          class="hero__construction-path hero__construction-path--solid"
+          d="M914 770C842 504 874 206 1121 54"
+        />
+        <path
+          class="hero__construction-path hero__construction-path--dashed"
+          d="M934 770C866 515 902 229 1139 79"
+        />
+        <path
+          class="hero__construction-path hero__construction-path--dashed hero__construction-path--flow"
+          d="M263 535C363 535 390 477 456 493C526 511 542 564 618 554C720 541 747 468 895 468"
+        />
+        <path
+          class="hero__construction-path hero__construction-path--dashed hero__construction-path--lower"
+          d="M786 735C828 678 873 665 927 677C971 687 1000 712 1028 741"
+        />
+
+        <g class="hero__crosshair" transform="translate(895 468)">
+          <circle r="7" />
+          <path d="M-14 0H14M0-14V14" />
+        </g>
+        <g class="hero__crosshair" transform="translate(786 735)">
+          <circle r="8" />
+          <path d="M-15 0H15M0-15V15" />
+        </g>
+        <g class="hero__crosshair" transform="translate(934 770)">
+          <path d="M-10-10L10 10M10-10L-10 10" />
+        </g>
+
+        <g class="hero__measurements">
+          <path d="M1121 54H1170M1121 43V66M1170 43V66" />
+          <path d="M1400 74V309M1388 74H1412M1388 191H1412M1388 309H1412" />
+          <path d="M1006 788H1427M1006 778V800M1427 778V800" />
+        </g>
       </svg>
+
+      <p class="hero__callout hero__callout--02">
+        <span class="hero__callout-index">02</span>
+        <span>A more<br>human web</span>
+      </p>
+      <p class="hero__callout hero__callout--03">
+        <span class="hero__callout-index">03</span>
+        <span>Good things<br>take shape</span>
+      </p>
+      <p class="hero__callout hero__callout--04">
+        <span class="hero__callout-index">04</span>
+        <span>Scale ideas<br>not ego</span>
+      </p>
+    </div>
+
+    <div class="hero__portrait">
       <img
         class="hero__image"
-        src="/images/portfolio-high-res.png"
+        src="/images/hero-portrait-caitlin.png"
         alt="Caitlin Hawley smiling"
-        width="1230"
-        height="1278"
+        width="1098"
+        height="1433"
         fetchpriority="high"
       >
       <div class="hero__swatches" aria-hidden="true">
@@ -59,8 +106,10 @@ defineProps<{
   border-bottom: 1px solid var(--rule);
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(32rem, .88fr);
+  isolation: isolate;
   min-height: calc(100svh - var(--header-height));
   overflow: hidden;
+  position: relative;
 }
 
 .hero__copy {
@@ -69,7 +118,7 @@ defineProps<{
   justify-content: center;
   padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 5vw, 5.5rem) 3.5rem var(--page-gutter);
   position: relative;
-  z-index: 2;
+  z-index: 4;
 }
 
 .kicker {
@@ -150,6 +199,7 @@ defineProps<{
   border-left: 1px solid var(--rule);
   min-height: 52rem;
   position: relative;
+  z-index: 2;
 }
 
 .hero__image {
@@ -157,24 +207,101 @@ defineProps<{
   display: block;
   height: auto;
   left: 50%;
-  max-width: 1230px;
+  max-width: 1098px;
   position: absolute;
   transform: translateX(-50%);
   width: 100%;
   z-index: 1;
 }
 
-.hero__arc {
-  fill: none;
-  height: 88%;
-  left: -9%;
+.hero__construction {
+  inset: 0;
+  pointer-events: none;
   position: absolute;
+  z-index: 3;
+}
+
+.hero__construction-drawing {
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+}
+
+.hero__construction-path,
+.hero__crosshair,
+.hero__measurements {
+  fill: none;
   stroke: var(--ink);
-  stroke-dasharray: 9 8;
+  stroke-linecap: round;
   stroke-width: 1;
-  top: 4%;
-  width: 65%;
-  z-index: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.hero__construction-path--solid {
+  stroke-dasharray: none;
+}
+
+.hero__construction-path--dashed {
+  stroke-dasharray: 8 8;
+}
+
+.hero__construction-path--flow,
+.hero__construction-path--lower {
+  opacity: .88;
+}
+
+.hero__crosshair circle {
+  fill: var(--paper);
+}
+
+.hero__measurements {
+  opacity: .68;
+}
+
+.hero__callout {
+  align-items: flex-start;
+  border-left: 1px solid var(--ink);
+  display: flex;
+  font-size: .58rem;
+  gap: .7rem;
+  letter-spacing: .3em;
+  line-height: 1.9;
+  margin: 0;
+  padding: .1rem 0 .85rem .75rem;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.hero__callout::after {
+  background: var(--ink);
+  bottom: 0;
+  content: '';
+  height: 1px;
+  left: .75rem;
+  position: absolute;
+  width: .9rem;
+}
+
+.hero__callout-index {
+  font-size: .7rem;
+  letter-spacing: 0;
+}
+
+.hero__callout--02 {
+  left: 54.2%;
+  top: 7.5%;
+}
+
+.hero__callout--03 {
+  left: 48.4%;
+  top: 61%;
+}
+
+.hero__callout--04 {
+  bottom: 1.6rem;
+  right: 3.5%;
 }
 
 .hero__swatches {
@@ -228,6 +355,10 @@ defineProps<{
     border-left: 0;
     border-top: 1px solid var(--rule);
     min-height: 44rem;
+  }
+
+  .hero__construction {
+    display: none;
   }
 }
 

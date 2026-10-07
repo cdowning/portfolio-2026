@@ -73,15 +73,34 @@ test.describe('homepage composition', () => {
     )))).toBe(true)
   })
 
-  test('shows Caitlin’s original portrait without changing its pixel dimensions', async ({ page }) => {
+  test('shows the supplied portrait and the approved hero construction layer', async ({ page }) => {
     const portrait = page.getByRole('img', { name: 'Caitlin Hawley smiling' })
     await expect(portrait).toBeVisible()
-    await expect(portrait).toHaveAttribute('src', '/images/portfolio-high-res.png')
+    await expect(portrait).toHaveAttribute('src', '/images/hero-portrait-caitlin.png')
     await expect.poll(() => portrait.evaluate((image: HTMLImageElement) => ({
       width: image.naturalWidth,
       height: image.naturalHeight,
-    }))).toEqual({ width: 1230, height: 1278 })
+    }))).toEqual({ width: 1098, height: 1433 })
     await expect(page.getByText('Original source pending')).toHaveCount(0)
+
+    const construction = page.locator('.hero__construction')
+    await expect(construction).toHaveAttribute('aria-hidden', 'true')
+    await expect(construction.locator('.hero__construction-path--solid')).toHaveCount(1)
+    await expect(construction.locator('.hero__construction-path--dashed')).toHaveCount(3)
+    await expect(construction.locator('.hero__crosshair')).toHaveCount(3)
+    await expect(page.locator('.hero__callout')).toHaveCount(3)
+    await expect(page.locator('.hero__callout-index')).toHaveText(['02', '03', '04'])
+
+    const constructionStyles = await construction.evaluate((element) => {
+      const solid = element.querySelector<SVGPathElement>('.hero__construction-path--solid')
+      const dashed = element.querySelector<SVGPathElement>('.hero__construction-path--dashed')
+      return {
+        solidDash: solid ? getComputedStyle(solid).strokeDasharray : '',
+        dashedDash: dashed ? getComputedStyle(dashed).strokeDasharray : '',
+      }
+    })
+    expect(constructionStyles.solidDash).toBe('none')
+    expect(constructionStyles.dashedDash).not.toBe('none')
 
     const firstRole = page.locator('.experience__list > li').first()
     await expect(firstRole).toContainText('Senior Frontend Engineer')
