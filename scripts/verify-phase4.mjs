@@ -12,6 +12,7 @@ const checks = [
     'tests/e2e/homepage.spec.ts',
     'tests/e2e/resume.spec.ts',
     'tests/e2e/adaptation.spec.ts',
+    'tests/e2e/hero-motion.spec.ts',
     '--project=chromium',
   ],
 ]

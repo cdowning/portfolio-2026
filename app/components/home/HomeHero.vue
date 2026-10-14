@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useTemplateRef } from 'vue'
+
 import ActionControl from '~/components/ui/ActionControl.vue'
 import FabricSwatches from '~/components/ui/FabricSwatches.vue'
+import { useHeroScrollMotion } from '~/composables/useHeroScrollMotion'
 import type { SiteProfile } from '~/types/content'
 
 const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5cb'] as const
@@ -8,37 +11,42 @@ const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5
 defineProps<{
   profile: SiteProfile
 }>()
+
+const hero = useTemplateRef<HTMLElement>('hero')
+
+useHeroScrollMotion(hero)
 </script>
 
 <template>
-  <section id="top" class="hero" aria-labelledby="hero-title" data-reveal="hero">
-    <div class="hero__copy">
-      <div class="kicker"><span>01</span><i />Code <b>×</b> Design <b>×</b> People</div>
-      <h1 id="hero-title" class="hero__title">I build thoughtful<br>interfaces,<br>from system to screen.</h1>
-      <p class="hero__lede">{{ profile.shortSummary }}</p>
-      <ActionControl class="hero__cta" href="#work" size="large">View my work</ActionControl>
+  <section id="top" ref="hero" class="hero" aria-labelledby="hero-title" data-reveal="hero">
+    <div class="hero__stage">
+      <div class="hero__copy">
+        <div class="kicker"><span>01</span><i />Code <b>×</b> Design <b>×</b> People</div>
+        <h1 id="hero-title" class="hero__title">I build thoughtful<br>interfaces,<br>from system to screen.</h1>
+        <p class="hero__lede">{{ profile.shortSummary }}</p>
+        <ActionControl class="hero__cta" href="#work" size="large">View my work</ActionControl>
 
-      <div class="hero__facts">
-        <div>
-          <strong>{{ profile.experienceLabel }}</strong>
-          <span>Building for a brighter,<br> more human web.</span>
-        </div>
-        <div>
-          <strong>Vue · TypeScript · Design systems</strong>
-          <span>Interfaces that carry ideas further.</span>
+        <div class="hero__facts">
+          <div>
+            <strong>{{ profile.experienceLabel }}</strong>
+            <span>Building for a brighter,<br> more human web.</span>
+          </div>
+          <div>
+            <strong>Vue · TypeScript · Design systems</strong>
+            <span>Interfaces that carry ideas further.</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="hero__construction" aria-hidden="true">
-      <svg class="hero__construction-drawing" viewBox="0 0 1600 840" preserveAspectRatio="none">
+      <div class="hero__construction" aria-hidden="true">
+        <svg class="hero__construction-drawing" viewBox="0 0 1600 840" preserveAspectRatio="none">
         <path
           class="hero__construction-path hero__construction-path--solid"
-          d="M914 770C842 504 874 206 1121 54"
+          d="M1121 54C874 206 842 504 914 770"
         />
         <path
           class="hero__construction-path hero__construction-path--dashed"
-          d="M934 770C866 515 902 229 1139 79"
+          d="M1139 79C902 229 866 515 934 770"
         />
         <path
           class="hero__construction-path hero__construction-path--dashed hero__construction-path--flow"
@@ -66,7 +74,7 @@ defineProps<{
           <path d="M1400 74V309M1388 74H1412M1388 191H1412M1388 309H1412" />
           <path d="M1006 788H1427M1006 778V800M1427 778V800" />
         </g>
-      </svg>
+        </svg>
 
       <p class="hero__callout hero__callout--02">
         <span class="hero__callout-index">02</span>
@@ -80,36 +88,91 @@ defineProps<{
         <span class="hero__callout-index">04</span>
         <span>Scale ideas<br>not ego</span>
       </p>
-    </div>
-
-    <div class="hero__portrait">
-      <img
-        class="hero__image"
-        src="/images/hero-portrait-caitlin.png"
-        alt="Caitlin Hawley smiling"
-        width="1098"
-        height="1433"
-        fetchpriority="high"
-      >
-      <div class="hero__swatches" aria-hidden="true">
-        <FabricSwatches :colors="swatchColors" />
       </div>
-      <p class="hero__margin-note" aria-hidden="true">Good ideas fit here.</p>
-      <p class="hero__side-note" aria-hidden="true">Patterns<br>ideas<br>people<br>progress</p>
-      <div class="hero__ruler" aria-hidden="true" />
+
+      <div class="hero__portrait">
+        <img
+          class="hero__image"
+          src="/images/hero-portrait-caitlin.png"
+          alt="Caitlin Hawley smiling"
+          width="1098"
+          height="1433"
+          fetchpriority="high"
+        >
+        <div class="hero__portrait-paper" aria-hidden="true" />
+        <div class="hero__swatches" aria-hidden="true">
+          <FabricSwatches :colors="swatchColors" />
+        </div>
+        <p class="hero__margin-note" aria-hidden="true">Good ideas fit here.</p>
+        <p class="hero__side-note" aria-hidden="true">Patterns<br>ideas<br>people<br>progress</p>
+        <div class="hero__ruler" aria-hidden="true" />
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
+@property --hero-progress {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
 .hero {
   border-bottom: 1px solid var(--rule);
+  min-height: calc(100svh - var(--header-height));
+  position: relative;
+  --hero-progress: 1;
+}
+
+.hero__stage {
+  --hero-register: clamp(0, calc(var(--hero-progress) * 5.5556), 1);
+  --hero-cut: clamp(0, calc((var(--hero-progress) - .08) * 3.8462), 1);
+  --hero-seam: clamp(0, calc((var(--hero-progress) - .18) * 3.5714), 1);
+  --hero-connect: clamp(0, calc((var(--hero-progress) - .3) * 3.125), 1);
+  --hero-assemble: clamp(0, calc((var(--hero-progress) - .52) * 3.3333), 1);
+  --hero-release: clamp(0, calc((var(--hero-progress) - .76) * 4.1667), 1);
+  --hero-register-shift: calc((1 - var(--hero-register)) * 14px);
+  --hero-cut-clip: calc((1 - var(--hero-cut)) * 100%);
+  --hero-seam-clip: calc((1 - var(--hero-seam)) * 100%);
+  --hero-paper-clip: calc(var(--hero-cut) * 100%);
+  --hero-connect-clip: calc((1 - var(--hero-connect)) * 100%);
+  --hero-assemble-clip: calc((1 - var(--hero-assemble)) * 100%);
+  --hero-release-clip: calc((1 - var(--hero-release)) * 100%);
+  --hero-portrait-shift: calc((1 - var(--hero-assemble)) * 20px);
+  --hero-swatch-1: clamp(0, calc((var(--hero-progress) - .54) * 7.1429), 1);
+  --hero-swatch-2: clamp(0, calc((var(--hero-progress) - .6) * 7.1429), 1);
+  --hero-swatch-3: clamp(0, calc((var(--hero-progress) - .66) * 7.1429), 1);
+  --hero-swatch-4: clamp(0, calc((var(--hero-progress) - .72) * 7.1429), 1);
+  --hero-swatch-1-shift: calc((1 - var(--hero-swatch-1)) * -18px);
+  --hero-swatch-2-shift: calc((1 - var(--hero-swatch-2)) * -18px);
+  --hero-swatch-3-shift: calc((1 - var(--hero-swatch-3)) * -18px);
+  --hero-swatch-4-shift: calc((1 - var(--hero-swatch-4)) * -18px);
+  background: var(--paper);
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(32rem, .88fr);
   isolation: isolate;
   min-height: calc(100svh - var(--header-height));
   overflow: hidden;
   position: relative;
+}
+
+.hero[data-hero-motion='scroll'] {
+  min-height: calc(175svh - var(--header-height));
+  view-timeline-axis: block;
+  view-timeline-name: --hero-drafting;
+}
+
+.hero[data-hero-motion='scroll'] .hero__stage {
+  height: calc(100svh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+}
+
+.hero[data-hero-driver='native'] .hero__stage {
+  animation: hero-native-progress 1ms linear both;
+  animation-range: contain 0% contain 100%;
+  animation-timeline: --hero-drafting;
 }
 
 .hero__copy {
@@ -209,9 +272,19 @@ defineProps<{
   left: 50%;
   max-width: 1098px;
   position: absolute;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(var(--hero-portrait-shift));
   width: 100%;
   z-index: 1;
+}
+
+.hero__portrait-paper {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--paper) 32%, transparent), color-mix(in srgb, var(--paper) 12%, transparent));
+  clip-path: inset(0 0 0 var(--hero-paper-clip));
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
 }
 
 .hero__construction {
@@ -240,11 +313,21 @@ defineProps<{
 }
 
 .hero__construction-path--solid {
+  clip-path: inset(0 0 var(--hero-cut-clip) 0);
   stroke-dasharray: none;
 }
 
 .hero__construction-path--dashed {
+  clip-path: inset(0 0 var(--hero-seam-clip) 0);
   stroke-dasharray: 8 8;
+}
+
+.hero__construction-path--flow {
+  clip-path: inset(0 var(--hero-connect-clip) 0 0);
+}
+
+.hero__construction-path--lower {
+  clip-path: inset(0 var(--hero-release-clip) 0 0);
 }
 
 .hero__construction-path--flow,
@@ -256,8 +339,18 @@ defineProps<{
   fill: var(--paper);
 }
 
+.hero__crosshair {
+  opacity: var(--hero-connect);
+  scale: calc(.55 + var(--hero-connect) * .45);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero__crosshair:nth-of-type(2) { opacity: var(--hero-assemble); scale: calc(.55 + var(--hero-assemble) * .45); }
+.hero__crosshair:nth-of-type(3) { opacity: var(--hero-release); scale: calc(.55 + var(--hero-release) * .45); }
+
 .hero__measurements {
-  opacity: .68;
+  opacity: calc(var(--hero-register) * .68);
 }
 
 .hero__callout {
@@ -272,6 +365,7 @@ defineProps<{
   padding: .1rem 0 .85rem .75rem;
   position: absolute;
   text-transform: uppercase;
+  transform: translateY(var(--hero-register-shift));
 }
 
 .hero__callout::after {
@@ -291,16 +385,19 @@ defineProps<{
 
 .hero__callout--02 {
   left: 54.2%;
+  opacity: var(--hero-register);
   top: 7.5%;
 }
 
 .hero__callout--03 {
   left: 48.4%;
+  opacity: var(--hero-assemble);
   top: 61%;
 }
 
 .hero__callout--04 {
   bottom: 1.6rem;
+  opacity: var(--hero-release);
   right: 3.5%;
 }
 
@@ -314,6 +411,11 @@ defineProps<{
   z-index: 3;
 }
 
+.hero__swatches :deep(.fabric-swatch:nth-child(1)) { opacity: var(--hero-swatch-1); transform: translateY(var(--hero-swatch-1-shift)); }
+.hero__swatches :deep(.fabric-swatch:nth-child(2)) { opacity: var(--hero-swatch-2); transform: translateY(var(--hero-swatch-2-shift)); }
+.hero__swatches :deep(.fabric-swatch:nth-child(3)) { opacity: var(--hero-swatch-3); transform: translateY(var(--hero-swatch-3-shift)); }
+.hero__swatches :deep(.fabric-swatch:nth-child(4)) { opacity: var(--hero-swatch-4); transform: translateY(var(--hero-swatch-4-shift)); }
+
 .hero__margin-note {
   bottom: 9rem;
   font-family: var(--font-note);
@@ -322,6 +424,8 @@ defineProps<{
   line-height: .95;
   position: absolute;
   rotate: -10deg;
+  clip-path: inset(0 var(--hero-assemble-clip) 0 0);
+  white-space: nowrap;
   z-index: 3;
 }
 
@@ -330,9 +434,11 @@ defineProps<{
   letter-spacing: .35em;
   line-height: 1.9;
   position: absolute;
+  opacity: var(--hero-assemble);
   right: 2.2rem;
   text-transform: uppercase;
   top: 2rem;
+  transform: translateY(var(--hero-register-shift));
   z-index: 3;
 }
 
@@ -344,10 +450,67 @@ defineProps<{
   opacity: .35;
   position: absolute;
   right: 4%;
+  scale: var(--hero-release) 1;
+  transform-origin: left;
 }
 
-@media (max-width: 70rem) {
-  .hero {
+.hero[data-hero-motion='scroll'] :is(
+  .hero__image,
+  .hero__portrait-paper,
+  .hero__construction-path,
+  .hero__crosshair,
+  .hero__measurements,
+  .hero__callout,
+  .hero__side-note,
+  .hero__ruler,
+  .hero__swatches :deep(.fabric-swatch)
+) {
+  will-change: clip-path, opacity, transform;
+}
+
+@media (min-width: 64.001rem) and (max-height: 58rem) {
+  .hero__copy {
+    padding-block: 1.5rem 1.25rem;
+  }
+
+  .kicker {
+    margin-bottom: 1.35rem;
+  }
+
+  .hero__title {
+    font-size: clamp(3.3rem, 5vw, 4.5rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__lede {
+    font-size: clamp(1.05rem, 1.55vw, 1.4rem);
+    margin-bottom: 1.35rem;
+  }
+
+  .hero__facts {
+    gap: 1.25rem;
+    padding-top: 1rem;
+  }
+
+  .hero__facts > div + div {
+    padding-left: 1.5rem;
+  }
+
+  .hero__facts strong {
+    margin-bottom: .45rem;
+  }
+
+  .hero__portrait {
+    min-height: 0;
+  }
+
+  .hero__margin-note {
+    bottom: 6rem;
+  }
+}
+
+@media (max-width: 64rem) {
+  .hero__stage {
     grid-template-columns: 1fr;
   }
 
@@ -358,7 +521,32 @@ defineProps<{
   }
 
   .hero__construction {
+    bottom: 0;
+    height: 44rem;
+    inset-inline: 0;
+    top: auto;
+  }
+
+  .hero__construction-path--flow,
+  .hero__construction-path--lower,
+  .hero__measurements,
+  .hero__callout--03,
+  .hero__callout--04 {
     display: none;
+  }
+
+  .hero__callout--02 {
+    left: 55%;
+    top: 5%;
+  }
+
+  .hero[data-hero-motion='compact'][data-revealed='true'] .hero__construction-path--solid,
+  .hero[data-hero-motion='compact'][data-revealed='true'] .hero__construction-path--dashed {
+    animation: hero-compact-cut 720ms var(--ease-out) both;
+  }
+
+  .hero[data-hero-motion='compact'][data-revealed='true'] .hero__crosshair {
+    animation: hero-compact-register 420ms var(--ease-out) 440ms both;
   }
 }
 
@@ -391,6 +579,19 @@ defineProps<{
     min-height: 34rem;
   }
 
+  .hero__construction {
+    height: 34rem;
+  }
+
+  .hero__construction-drawing {
+    transform: translateX(18%);
+  }
+
+  .hero__callout--02,
+  .hero__side-note {
+    display: none;
+  }
+
   .hero__swatches {
     right: 1rem;
     top: 8rem;
@@ -404,5 +605,29 @@ defineProps<{
   .swatch {
     height: 2.5rem;
   }
+}
+
+@keyframes hero-compact-cut {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes hero-native-progress {
+  from { --hero-progress: 0; }
+  to { --hero-progress: 1; }
+}
+
+@keyframes hero-compact-register {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__stage { position: relative; top: auto; }
+  .hero__image { transform: translateX(-50%); }
+  .hero__portrait-paper { display: none; }
+  .hero__construction-path { clip-path: inset(0); }
+  .hero__margin-note { clip-path: inset(0); }
+  .hero__ruler { scale: 1; }
 }
 </style>

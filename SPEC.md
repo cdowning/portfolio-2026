@@ -26,6 +26,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V7: no fake metrics/client claims; work images derive from real public work or abstract labeled specimens.
 - V8: shared UI extracted only after >=3 same-intent uses; typed props/events.
 - V9: lint + typecheck + generate + Storybook build exit 0; ⊥ project-owned or dependency-compat warnings.
+- V10: hero scroll → bounded five-frame drafting sequence; content always readable; desktop sticky only; mobile/reduced-motion intentional; ⊥ scroll trap/layout thrash.
 
 # §T
 id|status|goal|cites
@@ -33,7 +34,8 @@ T1|x|foundation, content, tests, OpenSpec records|V1,V2,V9,I.content
 T2|x|homepage static composition + destinations|V2,V3,V7,I./
 T3|x|resume web + two-page print|V2,V4,I./resume
 T4|x|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
-T4a|~|correct reviewed content, hero fidelity, portrait, grid, and swatches|V2,V3,V4,V5,V6,V7
+T4a|x|correct reviewed content, hero fidelity, portrait, grid, and swatches|V2,V3,V4,V5,V6,V7
+T4b|x|add reversible, accessible hero drafting scroll choreography|V3,V5,V6,V10
 T5|.|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 
 # §B
@@ -50,3 +52,4 @@ B9|2026-09-21|standalone Storybook had no direct Vite or Vue SFC compiler depend
 B10|2026-09-21|résumé experience grid used intrinsic `1fr`, allowing role dates to force 37px overflow at 320px|V6; use `minmax(0, 1fr)` and stack the role heading on phones
 B11|2026-09-22|manual visual-QA server occupied Playwright's isolated port during verification|no new §V; B2 already specifies isolated-port behavior, stop preview before release suite
 B12|2026-09-22|focused mobile verification could not launch after Playwright's expected WebKit revision was absent from the host cache|no new §V; host dependency state, use an installed browser for focused proof or install the matching revision before the release suite
+B13|2026-10-14|desktop drafting geometry activated by width alone, clipping hero facts on short viewports and crossing the portrait on phones|V5,V6,V10; require sufficient height for sticky mode + use portrait-safe mobile geometry
