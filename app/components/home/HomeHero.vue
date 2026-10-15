@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 
-import ActionControl from '~/components/ui/ActionControl.vue'
-import FabricSwatches from '~/components/ui/FabricSwatches.vue'
+import CButton from '~/components/ui/CButton/CButton.vue'
+import FabricSwatches from '~/components/ui/FabricSwatches/FabricSwatches.vue'
 import { useHeroScrollMotion } from '~/composables/useHeroScrollMotion'
 import type { SiteProfile } from '~/types/content'
 
@@ -24,7 +24,7 @@ useHeroScrollMotion(hero)
         <div class="kicker"><span>01</span><i />Code <b>×</b> Design <b>×</b> People</div>
         <h1 id="hero-title" class="hero__title">I build thoughtful<br>interfaces,<br>from system to screen.</h1>
         <p class="hero__lede">{{ profile.shortSummary }}</p>
-        <ActionControl class="hero__cta" href="#work" size="large">View my work</ActionControl>
+        <CButton class="hero__cta" href="#work" size="large">View my work</CButton>
 
         <div class="hero__facts">
           <div>

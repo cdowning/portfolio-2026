@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SectionMarker from '~/components/ui/SectionMarker.vue'
-import SkillTag from '~/components/ui/SkillTag.vue'
+import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
+import CTag from '~/components/ui/CTag/CTag.vue'
 import type { EducationEntry } from '~/types/content'
 
 defineProps<{
@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <section class="resume-foundation" aria-label="Education and toolkit" data-reveal>
     <div class="resume-foundation__education">
-      <SectionMarker class="resume-foundation__marker" number="05" />
+      <CSectionMarker class="resume-foundation__marker" number="05" />
       <div>
         <h2>Education</h2>
         <p class="tagline">Early foundations. Lasting curiosity.</p>
@@ -23,12 +23,12 @@ defineProps<{
       </div>
     </div>
     <div class="resume-foundation__toolkit">
-      <SectionMarker class="resume-foundation__marker" number="06" />
+      <CSectionMarker class="resume-foundation__marker" number="06" />
       <div>
         <h2>Toolkit</h2>
         <p class="tagline">The tools that help ideas take shape.</p>
         <ul>
-          <SkillTag v-for="item in toolkit" :key="item" :label="item" />
+          <CTag v-for="item in toolkit" :key="item" :label="item" />
         </ul>
       </div>
     </div>

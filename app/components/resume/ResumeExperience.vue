@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SectionMarker from '~/components/ui/SectionMarker.vue'
+import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <section id="experience" class="resume-experience" aria-labelledby="resume-experience-title" data-reveal>
-    <SectionMarker class="resume-experience__marker" number="04" />
+    <CSectionMarker class="resume-experience__marker" number="04" />
     <header>
       <h2 id="resume-experience-title">Experience</h2>
       <p>Real work. Lasting impact.</p>

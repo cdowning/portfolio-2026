@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ActionControl from '~/components/ui/ActionControl.vue'
-import SectionMarker from '~/components/ui/SectionMarker.vue'
+import CButton from '~/components/ui/CButton/CButton.vue'
+import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
   <section id="experience" class="experience" aria-labelledby="experience-title" data-reveal>
-    <SectionMarker class="experience__marker" number="04" />
+    <CSectionMarker class="experience__marker" number="04" />
     <header class="experience__heading">
       <h2 id="experience-title">Experience</h2>
       <p>{{ experienceLabel }} of building, learning, and growing.</p>
@@ -31,7 +31,7 @@ defineProps<{
       </li>
     </ol>
     <div class="experience__aside" aria-hidden="true" />
-    <ActionControl class="experience__link" href="/resume">View full resume</ActionControl>
+    <CButton class="experience__link" href="/resume">View full resume</CButton>
   </section>
 </template>
 

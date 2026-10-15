@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ActionControl from '~/components/ui/ActionControl.vue'
-import SectionMarker from '~/components/ui/SectionMarker.vue'
+import CButton from '~/components/ui/CButton/CButton.vue'
+import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -10,12 +10,12 @@ defineProps<{
 
 <template>
   <footer id="contact" class="contact" data-reveal>
-    <SectionMarker class="contact__marker" number="06" />
+    <CSectionMarker class="contact__marker" number="06" />
     <div class="contact__main">
       <h2>Let’s make something thoughtful.</h2>
       <p>I’m always open to meaningful conversations about interesting work.</p>
       <div class="contact__links">
-        <ActionControl class="contact__primary" :href="`mailto:${profile.email}`" tone="ink">Say hello</ActionControl>
+        <CButton class="contact__primary" :href="`mailto:${profile.email}`" tone="ink">Say hello</CButton>
         <a
           v-for="link in profile.contacts.filter((item) => item.label === 'LinkedIn' || item.label === 'GitHub')"
           :key="link.label"

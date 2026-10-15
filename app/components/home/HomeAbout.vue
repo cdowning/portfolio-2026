@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SectionMarker from '~/components/ui/SectionMarker.vue'
+import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
 import type { SiteProfile } from '~/types/content'
 
 defineProps<{
@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <section id="about" class="about" aria-labelledby="about-title" data-reveal>
-    <SectionMarker class="about__marker" number="03" />
+    <CSectionMarker class="about__marker" number="03" />
     <div class="about__copy">
       <h2 id="about-title">About / How I work</h2>
       <p class="about__eyebrow">Thoughtful interfaces for real people.</p>

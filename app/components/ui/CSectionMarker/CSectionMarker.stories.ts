@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import SectionMarker from './SectionMarker.vue'
+import CSectionMarker from './CSectionMarker.vue'
 
 const meta = {
   title: 'Editorial/Section Marker',
-  component: SectionMarker,
+  component: CSectionMarker,
   args: {
     label: 'Next',
     number: '02',
   },
   decorators: [() => ({ template: '<div style="height: 8rem; width: 5rem"><story /></div>' })],
-} satisfies Meta<typeof SectionMarker>
+} satisfies Meta<typeof CSectionMarker>
 
 export default meta
 type Story = StoryObj<typeof meta>

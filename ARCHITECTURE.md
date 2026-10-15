@@ -21,9 +21,9 @@ Route files remain composition-only and consume the typed exports in `app/conten
 Extract only after at least three same-intent uses are visible across both pages:
 
 - `SiteHeader`: navigation; `items: NavigationItem[]`; owns open/close state and emits no domain events.
-- `SectionMarker`: numbered editorial heading; `index`, `label`, optional `titleId`.
+- `CSectionMarker`: numbered editorial heading; `index`, `label`, optional `titleId`.
 - `DraftingPath`: decorative SVG variant; `variant`, optional `animated`; always `aria-hidden`.
-- `SkillTag`: one presentational label; `label`, optional `tone`.
+- `CTag`: one presentational label; `label`, optional `tone`.
 - `ContactFooter`: gold contact panel; `profile: SiteProfile`.
 
 ## Browser behavior

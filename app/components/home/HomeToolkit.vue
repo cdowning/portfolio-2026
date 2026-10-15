@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SectionMarker from '~/components/ui/SectionMarker.vue'
-import SkillTag from '~/components/ui/SkillTag.vue'
+import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
+import CTag from '~/components/ui/CTag/CTag.vue'
 defineProps<{
   items: string[]
 }>()
@@ -8,13 +8,13 @@ defineProps<{
 
 <template>
   <section class="toolkit" aria-labelledby="toolkit-title" data-reveal>
-    <SectionMarker class="toolkit__marker" number="05" />
+    <CSectionMarker class="toolkit__marker" number="05" />
     <header>
       <h2 id="toolkit-title">Toolkit</h2>
       <p>The tools that help ideas take shape.</p>
     </header>
     <ul>
-      <SkillTag v-for="item in items" :key="item" :label="item" variant="ruled" />
+      <CTag v-for="item in items" :key="item" :label="item" variant="ruled" />
     </ul>
     <aside aria-hidden="true"><span>06</span><p>Tools<br>people<br>possibilities</p></aside>
   </section>

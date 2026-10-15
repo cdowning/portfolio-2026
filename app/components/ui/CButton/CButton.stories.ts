@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import ActionControl from './ActionControl.vue'
+import CButton from './CButton.vue'
 
 const meta = {
-  title: 'Editorial/Action Control',
-  component: ActionControl,
+  title: 'Editorial/Button',
+  component: CButton,
   args: {
     href: '#work',
     size: 'regular',
@@ -15,11 +15,11 @@ const meta = {
     tone: { control: 'inline-radio', options: ['gold', 'ink'] },
   },
   render: args => ({
-    components: { ActionControl },
+    components: { CButton },
     setup: () => ({ args }),
-    template: '<ActionControl v-bind="args">View my work</ActionControl>',
+    template: '<CButton v-bind="args">View my work</CButton>',
   }),
-} satisfies Meta<typeof ActionControl>
+} satisfies Meta<typeof CButton>
 
 export default meta
 type Story = StoryObj<typeof meta>

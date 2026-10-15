@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SkillTag from '~/components/ui/SkillTag.vue'
+import CTag from '~/components/ui/CTag/CTag.vue'
 import type { WorkItem } from '~/types/content'
 
 defineProps<{
@@ -50,7 +50,7 @@ defineProps<{
             <p class="work-card__eyebrow">{{ item.eyebrow }}</p>
             <p class="work-card__description">{{ item.description }}</p>
             <ul class="work-card__tags" aria-label="Technologies and disciplines">
-              <SkillTag v-for="tag in item.tags" :key="tag" :label="tag" />
+              <CTag v-for="tag in item.tags" :key="tag" :label="tag" />
             </ul>
             <a
               class="work-card__link"

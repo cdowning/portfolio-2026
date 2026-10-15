@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ActionControl from '~/components/ui/ActionControl.vue'
-import FabricSwatches from '~/components/ui/FabricSwatches.vue'
-import SkillTag from '~/components/ui/SkillTag.vue'
+import CButton from '~/components/ui/CButton/CButton.vue'
+import FabricSwatches from '~/components/ui/FabricSwatches/FabricSwatches.vue'
+import CTag from '~/components/ui/CTag/CTag.vue'
 import type { SiteProfile } from '~/types/content'
 
 const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5cb'] as const
@@ -36,7 +36,7 @@ const emit = defineEmits<{
         >{{ contact.label }}</a>
       </address>
       <div class="resume-intro__print">
-        <ActionControl @click="emit('print')">Print résumé</ActionControl>
+        <CButton @click="emit('print')">Print résumé</CButton>
         <span>Cmd + P</span>
       </div>
       <p class="resume-intro__note" aria-hidden="true">Same ideas.<br>More possibilities.</p>
@@ -53,7 +53,7 @@ const emit = defineEmits<{
         <p>{{ profile.summary }}</p>
         <h3>Core capabilities</h3>
         <ul>
-          <SkillTag v-for="capability in capabilities" :key="capability" :label="capability" />
+          <CTag v-for="capability in capabilities" :key="capability" :label="capability" />
         </ul>
       </div>
       <aside class="resume-intro__swatches" aria-hidden="true">
