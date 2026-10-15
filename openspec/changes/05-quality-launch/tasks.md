@@ -4,7 +4,8 @@
 - [x] Emit complete SSR OpenGraph + Twitter tags on `/` + `/resume`.
 - [x] Bind canonical + share URLs to configured dev/prod origin.
 - [x] Cover image contract, both origins, and crawler-visible HTML.
-- [ ] Deploy development build; verify crawler response + fresh external scrape.
+- [x] Deploy development build; verify live crawler response.
+- [ ] Request fresh platform scrape if cached preview persists.
 
 ## Release QA
 
