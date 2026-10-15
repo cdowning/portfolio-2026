@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
   modules: ['@nuxt/eslint', 'nuxt-gtag'],
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://www.caitlinhawley.com',
+    },
+  },
   gtag: {
     id: 'G-CRTHWFY5XP',
   },

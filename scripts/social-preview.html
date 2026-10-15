@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Social preview source</title>
+    <style>
+      @font-face {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 400;
+        src: url('../public/fonts/poppins-regular.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 700;
+        src: url('../public/fonts/poppins-bold.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: Work Sans;
+        font-style: normal;
+        font-weight: 400;
+        src: url('../public/fonts/worksans-regular.woff2') format('woff2');
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; }
+
+      .social-card {
+        background:
+          linear-gradient(rgba(59, 51, 47, .055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 51, 47, .055) 1px, transparent 1px),
+          #fdfbf9;
+        background-position: 676px 0;
+        background-size: 32px 32px;
+        color: #171310;
+        font-family: 'Work Sans', sans-serif;
+        height: 630px;
+        overflow: hidden;
+        position: relative;
+        width: 1200px;
+      }
+
+      .identity { left: 58px; position: absolute; top: 42px; z-index: 3; }
+      .name { font-family: Poppins, sans-serif; font-size: 21px; font-weight: 700; letter-spacing: .34em; line-height: 1; }
+      .role { font-size: 9px; letter-spacing: .5em; margin-top: 10px; text-transform: uppercase; }
+
+      .kicker {
+        align-items: center;
+        display: flex;
+        font-size: 10px;
+        gap: 14px;
+        left: 60px;
+        letter-spacing: .35em;
+        position: absolute;
+        text-transform: uppercase;
+        top: 157px;
+        z-index: 3;
+      }
+
+      .kicker::after { background: #827970; content: ''; height: 1px; order: -1; width: 44px; }
+
+      h1 {
+        font-family: Poppins, sans-serif;
+        font-size: 67px;
+        font-weight: 700;
+        left: 58px;
+        letter-spacing: -.055em;
+        line-height: .98;
+        margin: 0;
+        max-width: 660px;
+        position: absolute;
+        top: 211px;
+        z-index: 3;
+      }
+
+      .descriptor { font-size: 21px; left: 61px; letter-spacing: -.02em; position: absolute; top: 448px; z-index: 3; }
+
+      .footer {
+        align-items: center;
+        border-top: 1px solid #a59d96;
+        bottom: 0;
+        display: flex;
+        font-size: 10px;
+        height: 70px;
+        justify-content: space-between;
+        left: 58px;
+        letter-spacing: .3em;
+        position: absolute;
+        right: 58px;
+        text-transform: uppercase;
+        z-index: 4;
+      }
+
+      .portrait {
+        bottom: -121px;
+        height: 694px;
+        object-fit: contain;
+        position: absolute;
+        right: -28px;
+        width: 565px;
+        z-index: 2;
+      }
+
+      .arc, .route { fill: none; position: absolute; z-index: 1; }
+      .arc { height: 700px; right: 238px; stroke: #39312d; stroke-width: 1.3; top: 29px; width: 410px; }
+      .arc path:last-child { stroke-dasharray: 8 8; }
+      .route { bottom: 58px; height: 132px; left: 294px; stroke: #675e58; stroke-dasharray: 8 8; stroke-width: 1.35; width: 410px; }
+
+      .route-dot {
+        background: #fdfbf9;
+        border: 1px solid #171310;
+        border-radius: 50%;
+        bottom: 135px;
+        height: 17px;
+        left: 663px;
+        position: absolute;
+        width: 17px;
+        z-index: 4;
+      }
+
+      .route-dot::before, .route-dot::after {
+        background: #171310;
+        content: '';
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .route-dot::before { height: 29px; width: 1px; }
+      .route-dot::after { height: 1px; width: 29px; }
+
+      .patterns {
+        font-size: 9px;
+        letter-spacing: .38em;
+        line-height: 2;
+        position: absolute;
+        right: 41px;
+        text-transform: uppercase;
+        top: 47px;
+        z-index: 4;
+      }
+
+      .swatches { display: grid; gap: 7px; position: absolute; right: 43px; top: 143px; z-index: 4; }
+      .swatches i {
+        clip-path: polygon(0 7%, 5% 0, 10% 7%, 15% 0, 20% 7%, 25% 0, 30% 7%, 35% 0, 40% 7%, 45% 0, 50% 7%, 55% 0, 60% 7%, 65% 0, 70% 7%, 75% 0, 80% 7%, 85% 0, 90% 7%, 95% 0, 100% 7%, 100% 93%, 95% 100%, 90% 93%, 85% 100%, 80% 93%, 75% 100%, 70% 93%, 65% 100%, 60% 93%, 55% 100%, 50% 93%, 45% 100%, 40% 93%, 35% 100%, 30% 93%, 25% 100%, 20% 93%, 15% 100%, 10% 93%, 5% 100%, 0 93%);
+        display: block;
+        height: 38px;
+        width: 68px;
+      }
+
+      .swatches i:nth-child(1) { background: #8fa69f; }
+      .swatches i:nth-child(2) { background: #efcbc2; }
+      .swatches i:nth-child(3) { background: #f6bd5b; }
+      .swatches i:nth-child(4) { background: #ded5cb; }
+      .frame { border: 1px solid #aaa19a; bottom: 69px; position: absolute; right: 0; top: 0; width: 470px; z-index: 1; }
+    </style>
+  </head>
+  <body>
+    <main class="social-card">
+      <div class="identity">
+        <div class="name">CAITLIN HAWLEY</div>
+        <div class="role">Frontend developer</div>
+      </div>
+      <div class="kicker">01 &nbsp; Code × Design × People</div>
+      <h1>I build thoughtful<br>interfaces, from<br>system to screen.</h1>
+      <p class="descriptor">Accessible interfaces shaped with clarity and care.</p>
+      <svg class="route" viewBox="0 0 410 132" aria-hidden="true"><path d="M0 90C66 100 89 16 161 47S253 122 410 49" /></svg>
+      <span class="route-dot" aria-hidden="true"></span>
+      <svg class="arc" viewBox="0 0 410 700" aria-hidden="true">
+        <path d="M369 14C106 96 8 306 92 684" />
+        <path d="M389 27C137 118 44 318 116 668" />
+      </svg>
+      <div class="frame" aria-hidden="true"></div>
+      <img class="portrait" src="../public/images/hero-portrait-caitlin-4k-refined.png" alt="">
+      <div class="patterns">Patterns<br>Ideas<br>People<br>Progress</div>
+      <div class="swatches" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <footer class="footer">
+        <span>Vue · TypeScript · Design systems</span>
+        <span>caitlinhawley.com</span>
+      </footer>
+    </main>
+  </body>
+</html>

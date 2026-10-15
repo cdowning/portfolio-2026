@@ -7,21 +7,24 @@ import ResumePrint from '~/components/resume/ResumePrint.vue'
 import ResumeSkills from '~/components/resume/ResumeSkills.vue'
 import { usePrintResume } from '~/composables/usePrintResume'
 import { education, experience, profile, skillGroups, toolkit } from '~/content/site'
+import { createPageSeo } from '~/utils/seo'
 
 const { printResume } = usePrintResume()
 const capabilities = ['Vue.js', 'Nuxt', 'TypeScript', 'Accessibility', 'Design systems']
 
-useSeoMeta({
+const { canonical, meta } = createPageSeo({
+  siteUrl: useRuntimeConfig().public.siteUrl,
+  path: '/resume',
   title: 'Caitlin Hawley — Résumé',
   description: `${profile.role} experience, skills, tools, and education.`,
   ogTitle: 'Caitlin Hawley — Résumé',
   ogDescription: profile.summary,
   ogType: 'profile',
-  ogUrl: `${profile.website}/resume`,
 })
 
+useSeoMeta(meta)
 useHead({
-  link: [{ rel: 'canonical', href: `${profile.website}/resume` }],
+  link: [{ rel: 'canonical', href: canonical }],
 })
 </script>
 

@@ -36,7 +36,7 @@ T3|x|resume web + two-page print|V2,V4,I./resume
 T4|x|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
 T4a|x|correct reviewed content, hero fidelity, portrait, grid, and swatches|V2,V3,V4,V5,V6,V7
 T4b|x|add reversible, accessible hero drafting scroll choreography|V3,V5,V6,V10
-T5|.|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
+T5|~|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 
 # §B
 id|date|cause|fix

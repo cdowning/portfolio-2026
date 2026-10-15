@@ -6,19 +6,21 @@ import HomeHero from '~/components/home/HomeHero.vue'
 import HomeToolkit from '~/components/home/HomeToolkit.vue'
 import HomeWork from '~/components/home/HomeWork.vue'
 import { experience, profile, toolkit, workItems } from '~/content/site'
+import { createPageSeo } from '~/utils/seo'
 
-useSeoMeta({
+const { canonical, meta } = createPageSeo({
+  siteUrl: useRuntimeConfig().public.siteUrl,
+  path: '/',
   title: 'Caitlin Hawley — Frontend Developer & Design System Builder',
   description: profile.shortSummary,
   ogTitle: 'Caitlin Hawley — Frontend Developer',
   ogDescription: profile.shortSummary,
   ogType: 'website',
-  ogUrl: profile.website,
-  twitterCard: 'summary_large_image',
 })
 
+useSeoMeta(meta)
 useHead({
-  link: [{ rel: 'canonical', href: profile.website }],
+  link: [{ rel: 'canonical', href: canonical }],
 })
 </script>
 
