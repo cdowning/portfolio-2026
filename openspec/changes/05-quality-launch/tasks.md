@@ -1,6 +1,6 @@
 ## OpenGraph
 
-- [x] Use supplied refined portrait as PNG preview.
+- [x] Add intentional 1200×630 PNG share card.
 - [x] Emit complete SSR OpenGraph + Twitter tags on `/` + `/resume`.
 - [x] Bind canonical + share URLs to configured dev/prod origin.
 - [x] Cover image contract, both origins, and crawler-visible HTML.
