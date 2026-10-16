@@ -78,7 +78,7 @@ test.describe('homepage composition', () => {
     }
   })
 
-  test('renders handwritten annotations with Lindsey Signature from Adobe Fonts', async ({ page }) => {
+  test('renders the handwritten sign-off with Lindsey Signature from Adobe Fonts', async ({ page }) => {
     const note = page.locator('.hero__margin-note')
 
     await expect(page.locator('link[rel="stylesheet"][href="https://use.typekit.net/dsu3xor.css"]'))
@@ -93,7 +93,10 @@ test.describe('homepage composition', () => {
     )))).toBe(true)
   })
 
-  test('places the handwritten note in the lower white copy panel', async ({ page }) => {
+  test('places the larger Caitlin sign-off in the lower white copy panel', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/')
+
     const presentation = await page.locator('.hero__margin-note').evaluate((element) => {
       const copy = element.closest<HTMLElement>('.hero__copy')
       const facts = copy?.querySelector<HTMLElement>('.hero__facts')
@@ -107,6 +110,7 @@ test.describe('homepage composition', () => {
       return {
         backgroundColor: styles.backgroundColor,
         borderStyle: styles.borderTopStyle,
+        clipPath: styles.clipPath,
         color: styles.color,
         fontSize: Number.parseFloat(styles.fontSize),
         insetLeft: noteRect.left - copyRect.left,
@@ -114,6 +118,7 @@ test.describe('homepage composition', () => {
         noteBottom: noteRect.bottom,
         factsTop: factsRect.top,
         startsInRightHalf: noteRect.left > copyRect.left + copyRect.width / 2,
+        text: element.textContent?.trim(),
         rotate: styles.rotate,
         textShadow: styles.textShadow,
       }
@@ -122,7 +127,9 @@ test.describe('homepage composition', () => {
     expect(presentation.backgroundColor).toBe('rgba(0, 0, 0, 0)')
     expect(presentation.color).toBe('rgb(37, 36, 34)')
     expect(presentation.borderStyle).toBe('none')
-    expect(presentation.fontSize).toBe(36)
+    expect(presentation.clipPath).toContain('inset')
+    expect(presentation.fontSize).toBeGreaterThanOrEqual(72)
+    expect(presentation.text).toBe('Caitlin')
     expect(presentation.rotate).not.toBe('none')
     expect(presentation.textShadow).toBe('none')
     expect(presentation.insetLeft).toBeGreaterThanOrEqual(12)
@@ -187,7 +194,7 @@ test.describe('homepage composition', () => {
       }
     })
 
-    expect(presentation.noteLineHeight / presentation.noteFontSize).toBeCloseTo(1.4, 1)
+    expect(presentation.noteLineHeight / presentation.noteFontSize).toBeCloseTo(2, 1)
   })
 
   test('keeps the seam callout clear above the CTA connector', async ({ page }) => {
@@ -231,6 +238,34 @@ test.describe('homepage composition', () => {
     await expect(page.locator('.hero__crosshair')).toHaveCount(3)
     await expect(page.locator('.hero__callout')).toHaveCount(3)
     await expect(page.locator('.hero__callout-index')).toHaveText(['02', '03', '04'])
+
+    const measurementRuler = page.locator('.hero__measurement-ruler')
+    const measurementTicks = page.locator('.hero__measurement-ticks')
+    if ((page.viewportSize()?.width ?? 0) > 1024) {
+      await expect(measurementRuler).toBeVisible()
+      await expect(measurementTicks).toBeVisible()
+
+      const rulerGeometry = await page.locator('.hero__construction').evaluate((element) => {
+        const ruler = element.querySelector<SVGPathElement>('.hero__measurement-ruler')
+        const ticks = element.querySelector<SVGPathElement>('.hero__measurement-ticks')
+        const callout = element.querySelector<HTMLElement>('.hero__callout--04')
+        if (!ruler || !ticks || !callout) throw new Error('Hero ruler treatment is missing')
+
+        const rulerRect = ruler.getBoundingClientRect()
+        const ticksRect = ticks.getBoundingClientRect()
+        const calloutRect = callout.getBoundingClientRect()
+
+        return {
+          gapToCallout: calloutRect.left - rulerRect.right,
+          ticksHeight: ticksRect.height,
+          ticksWidth: ticksRect.width,
+        }
+      })
+
+      expect(rulerGeometry.gapToCallout).toBeGreaterThanOrEqual(24)
+      expect(rulerGeometry.ticksHeight).toBeGreaterThanOrEqual(8)
+      expect(rulerGeometry.ticksWidth).toBeGreaterThan(200)
+    }
 
     const constructionStyles = await construction.evaluate((element) => {
       const solid = element.querySelector<SVGPathElement>('.hero__construction-path--solid')

@@ -63,8 +63,6 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
         <i aria-hidden="true" />
       </a>
     </nav>
-
-    <div class="signature" aria-hidden="true"><span>Caitlin</span><i>—</i></div>
   </header>
 </template>
 
@@ -73,8 +71,8 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   align-items: stretch;
   background: color-mix(in srgb, var(--canvas) 95%, transparent);
   display: grid;
-  grid-template-areas: 'brand navigation theme signature';
-  grid-template-columns: minmax(17rem, 1fr) auto 3.25rem 12rem;
+  grid-template-areas: 'brand navigation theme';
+  grid-template-columns: minmax(17rem, 1fr) auto 3.25rem;
   min-height: var(--header-height);
   position: sticky;
   top: 0;
@@ -148,18 +146,6 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 
 .primary-nav__link i { display: none; font-style: normal; }
 
-.signature {
-  align-items: center;
-  border-left: 1px solid var(--rule);
-  display: flex;
-  font-family: var(--font-note);
-  font-size: 1.65rem;
-  grid-area: signature;
-  justify-content: center;
-}
-
-.signature span { display: inline-block; rotate: -4deg; }
-.signature i { font-family: var(--font-body); font-size: .75rem; font-style: normal; margin-left: .6rem; }
 .site-header :deep(.theme-toggle) { border-left: 0; grid-area: theme; }
 .nav-trigger { display: none; grid-area: trigger; }
 
@@ -168,7 +154,6 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     grid-template-areas: 'brand navigation theme';
     grid-template-columns: 1fr auto 4.5rem;
   }
-  .signature { display: none; }
   .primary-nav__link { min-width: auto; padding-inline: .75rem; }
 }
 

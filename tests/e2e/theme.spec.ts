@@ -117,22 +117,19 @@ test('the header control toggles, persists, and keeps keyboard focus visible', a
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 })
 
-test('the theme control occupies the approved desktop and mobile header cells', async ({ page }) => {
+test('the theme control ends the desktop header and occupies the approved mobile cell', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto('/')
 
   const desktop = await page.getByRole('banner').evaluate((header) => {
     const navigation = header.querySelector<HTMLElement>('.primary-nav')!
-    const signature = header.querySelector<HTMLElement>('.signature')!
     const toggle = header.querySelector<HTMLElement>('.theme-toggle')!
     const navigationBox = navigation.getBoundingClientRect()
-    const signatureBox = signature.getBoundingClientRect()
     const toggleBox = toggle.getBoundingClientRect()
     const headerBox = header.getBoundingClientRect()
     return {
       navigationRight: navigationBox.right,
-      signatureLeft: signatureBox.left,
-      signatureRight: signatureBox.right,
+      headerSignatureCount: header.querySelectorAll('.signature').length,
       toggleLeft: toggleBox.left,
       toggleRight: toggleBox.right,
       toggleWidth: toggleBox.width,
@@ -143,8 +140,8 @@ test('the theme control occupies the approved desktop and mobile header cells', 
   })
 
   expect(desktop.toggleLeft).toBeCloseTo(desktop.navigationRight, 0)
-  expect(desktop.signatureLeft).toBeCloseTo(desktop.toggleRight, 0)
-  expect(desktop.signatureRight).toBeCloseTo(desktop.headerRight, 0)
+  expect(desktop.headerSignatureCount).toBe(0)
+  expect(desktop.toggleRight).toBeCloseTo(desktop.headerRight, 0)
   expect(desktop.toggleWidth).toBeCloseTo(52, 0)
   expect(desktop.toggleWidth).toBeGreaterThanOrEqual(44)
   expect(desktop.toggleHeight).toBeGreaterThanOrEqual(44)

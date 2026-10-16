@@ -28,7 +28,7 @@ Experience. The homepage leads with Caitlin’s point of view and proof; the ré
 - Navigation uses an underline marker; primary actions use gold.
 - Light theme uses gold for primary actions + footer. Dark theme uses blush for primary actions + footer, black footer action, teal support, gold only for rare drafting/navigation details.
 - Components consume semantic surface, text, rule, action, focus, selection, and footer contrast roles; palette primitives remain for authored swatches/details.
-- First visit follows system preference; a single icon button toggles + persists `light`/`dark`. Desktop places the compact 52px utility cell directly after navigation and keeps the signature at the far-right endpoint; mobile gives the control its own 44px target between brand + navigation.
+- First visit follows system preference; a single icon button toggles + persists `light`/`dark`. Desktop ends the header with the compact 52px utility cell directly after navigation; mobile gives the control its own 44px target between brand + navigation. The handwritten Caitlin sign-off lives in the lower hero copy panel and reveals with the assembly phase.
 - Motion draws rules and reveals relationships; hover movement stays within 2–4px.
 - Mobile becomes one deliberate reading column; decorative notes may move or disappear only when redundant.
 - Print stays white/black and removes navigation, theme controls, paths, and backgrounds while preserving content and section rules.

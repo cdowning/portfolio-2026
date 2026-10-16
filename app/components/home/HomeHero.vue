@@ -44,7 +44,7 @@ useHeroScrollMotion(hero)
         </div>
 
         <div class="hero__lower">
-          <p class="hero__margin-note" aria-hidden="true">Good ideas fit here.</p>
+          <p class="hero__margin-note" aria-hidden="true">Caitlin</p>
           <div class="hero__facts">
             <div>
               <strong>{{ profile.experienceLabel }}</strong>
@@ -84,7 +84,14 @@ useHeroScrollMotion(hero)
         <g class="hero__measurements">
           <path d="M1121 54H1170M1121 43V66M1170 43V66" />
           <path d="M1400 74V309M1388 74H1412M1388 191H1412M1388 309H1412" />
-          <path d="M1006 788H1427M1006 778V800M1427 778V800" />
+          <path
+            class="hero__measurement-ruler"
+            d="M950 788H1340M950 778V800M1340 778V800"
+          />
+          <path
+            class="hero__measurement-ticks"
+            d="M974 788V796M998 788V800M1022 788V796M1046 788V800M1070 788V796M1094 788V800M1118 788V796M1142 788V800M1166 788V796M1190 788V800M1214 788V796M1238 788V800M1262 788V796M1286 788V800M1310 788V796M1334 788V800"
+          />
         </g>
         </svg>
 
@@ -417,6 +424,10 @@ useHeroScrollMotion(hero)
   opacity: calc(var(--hero-register) * .68);
 }
 
+.hero__measurement-ticks {
+  opacity: .72;
+}
+
 .hero__callout {
   align-items: flex-start;
   border-left: 1px solid var(--text);
@@ -482,8 +493,8 @@ useHeroScrollMotion(hero)
 
 .hero__margin-note {
   font-family: var(--font-note);
-  font-size: 2.25rem;
-  line-height: 1.4;
+  font-size: 5em;
+  line-height: 2;
   margin: 0 clamp(1rem, 5vw, 4.5rem) 3.5rem auto;
   rotate: -6deg;
   clip-path: inset(0 var(--hero-assemble-clip) 0 0);
