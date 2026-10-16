@@ -27,8 +27,8 @@ useEditorialMotion()
 }
 
 .skip-link {
-  background: var(--ink-strong);
-  color: var(--paper);
+  background: var(--text-strong);
+  color: var(--canvas);
   left: 1rem;
   min-height: 2.75rem;
   padding: .75rem 1rem;

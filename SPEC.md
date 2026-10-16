@@ -4,7 +4,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 # §C
 - fresh repo; old repo read-only source
 - Nuxt 4; Vue 3; TS; `<script setup>`
-- light-only v1; modern CSS; no Tailwind/SCSS/CMS/server
+- light + dark screen themes; modern CSS; no Tailwind/SCSS/CMS/server
 - approved desktop comps immutable; responsive adaptation intentional
 - factual content/links only; no invented metrics/client claims
 - hero uses supplied transparent portrait; no distorted or enlarged low-resolution derivative
@@ -27,6 +27,9 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V8: shared UI extracted only after >=3 same-intent uses; typed props/events.
 - V9: lint + typecheck + generate + Storybook build exit 0; ⊥ project-owned or dependency-compat warnings.
 - V10: hero scroll → bounded five-frame drafting sequence; content always readable; desktop sticky only; mobile/reduced-motion intentional; ⊥ scroll trap/layout thrash.
+- V11: first paint follows system theme unless valid persisted `light`/`dark`; one accessible header control toggles + persists resolved theme across `/` + `/resume`.
+- V12: semantic surface/text/rule/action/focus/selection/footer roles meet WCAG AA in light + dark; light action/footer = gold; dark action/footer = blush; teal = support.
+- V13: print fixed white/black; theme switch → ⊥ overflow/layout shift/hydration warning/motion requirement.
 
 # §T
 id|status|goal|cites
@@ -37,6 +40,7 @@ T4|x|responsive nav, editorial motion, shared extraction, Storybook|V5,V6,V8
 T4a|x|correct reviewed content, hero fidelity, portrait, grid, and swatches|V2,V3,V4,V5,V6,V7
 T4b|x|add reversible, accessible hero drafting scroll choreography|V3,V5,V6,V10
 T5|~|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
+T6|x|adaptive light/dark themes, persisted toggle, contrast verification|V3,V4,V5,V6,V9,V11,V12,V13
 
 # §B
 id|date|cause|fix

@@ -35,6 +35,12 @@ test.describe('responsive navigation and editorial motion', () => {
 
   test('Experience navigation returns from the résumé to the homepage timeline', async ({ page }) => {
     await page.goto('/resume')
+    await page.waitForFunction(() => document.documentElement.dataset.motion === 'enhanced')
+
+    if ((page.viewportSize()?.width ?? 0) <= 640) {
+      await page.getByRole('button', { name: 'Open navigation' }).click()
+      await expect(page.getByRole('button', { name: 'Close navigation' })).toBeVisible()
+    }
 
     await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Experience' }).click()
 
@@ -62,6 +68,51 @@ test.describe('responsive navigation and editorial motion', () => {
 })
 
 test.describe('responsive layout contract', () => {
+  for (const footer of [
+    { route: '/', footer: '.contact', drawing: '.contact__drawing', note: '.contact__drawing p' },
+    { route: '/resume', footer: '.resume-contact', drawing: '.resume-contact__drawing', note: '.resume-contact__drawing p' },
+  ]) {
+    test(`${footer.route} keeps the footer annotation below the curve`, async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 })
+      await page.goto(footer.route)
+
+      const noteOffsetRatio = await page.locator(footer.footer).evaluate((element, selectors) => {
+        const drawing = element.querySelector<HTMLElement>(selectors.drawing)
+        const note = element.querySelector<HTMLElement>(selectors.note)
+        if (!drawing || !note) throw new Error('Footer composition is missing')
+
+        const drawingRect = drawing.getBoundingClientRect()
+        const noteRect = note.getBoundingClientRect()
+        return (noteRect.top - drawingRect.top) / drawingRect.height
+      }, footer)
+
+      expect(noteOffsetRatio).toBeGreaterThanOrEqual(.56)
+    })
+
+    test(`${footer.route} keeps selected footer text visible`, async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 })
+      await page.goto(footer.route)
+
+      const presentation = await page.locator(footer.footer).evaluate((element) => {
+        const copy = element.querySelector<HTMLElement>('p')
+        if (!copy) throw new Error('Footer copy is missing')
+
+        const footerStyles = getComputedStyle(element)
+        const selectionStyles = getComputedStyle(copy, '::selection')
+
+        return {
+          footerBackground: footerStyles.backgroundColor,
+          selectionBackground: selectionStyles.backgroundColor,
+          selectionColor: selectionStyles.color,
+        }
+      })
+
+      expect(presentation.selectionBackground).not.toBe(presentation.footerBackground)
+      expect(presentation.selectionBackground).toBe('rgb(92, 115, 110)')
+      expect(presentation.selectionColor).toBe('rgb(253, 251, 249)')
+    })
+  }
+
   for (const route of ['/', '/resume']) {
     test(`${route} header rule spans the viewport without widening the header content`, async ({ page }) => {
       await page.setViewportSize({ width: 2048, height: 900 })

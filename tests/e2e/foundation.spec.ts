@@ -26,6 +26,7 @@ test('publishes both portfolio routes with complete server-rendered social metad
   expect(home.status()).toBe(200)
   expect(homeHtml).toContain('<title>Caitlin Hawley — Frontend Developer &amp; Design System Builder</title>')
   expect(homeHtml).toContain('<meta property="og:title" content="Caitlin Hawley — Frontend Developer">')
+  expect(homeHtml).toContain("localStorage.getItem('caitlin-theme')")
   expectSocialMetadata(homeHtml, '/')
 
   expect(resume.status()).toBe(200)

@@ -1,3 +1,5 @@
+import { THEME_BOOTSTRAP_SCRIPT } from './app/utils/theme'
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-21',
   devtools: { enabled: false },
@@ -24,7 +26,11 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
         { name: 'theme-color', content: '#fdfbf9' },
       ],
-      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      script: [{ innerHTML: THEME_BOOTSTRAP_SCRIPT }],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'stylesheet', href: 'https://use.typekit.net/dsu3xor.css' },
+      ],
     },
   },
 })

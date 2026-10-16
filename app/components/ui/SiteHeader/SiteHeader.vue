@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import { useActiveSection } from '~/composables/useActiveSection'
 import { useMobileNavigation } from '~/composables/useMobileNavigation'
+import ThemeToggle from '~/components/ui/ThemeToggle/ThemeToggle.vue'
 import type { NavigationItem } from '~/types/content'
 
 defineProps<{
@@ -29,6 +30,8 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
       <strong>Caitlin Hawley</strong>
       <span>Frontend developer</span>
     </NuxtLink>
+
+    <ThemeToggle />
 
     <button
       ref="trigger"
@@ -68,9 +71,10 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 <style scoped>
 .site-header {
   align-items: stretch;
-  background: color-mix(in srgb, var(--paper) 95%, transparent);
+  background: color-mix(in srgb, var(--canvas) 95%, transparent);
   display: grid;
-  grid-template-columns: minmax(17rem, 1fr) auto 12rem;
+  grid-template-areas: 'brand navigation theme signature';
+  grid-template-columns: minmax(17rem, 1fr) auto 3.25rem 12rem;
   min-height: var(--header-height);
   position: sticky;
   top: 0;
@@ -93,13 +97,14 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
+  grid-area: brand;
   justify-content: center;
   padding-inline: var(--page-gutter);
   text-decoration: none;
 }
 
 .brand strong {
-  color: var(--ink-strong);
+  color: var(--text-strong);
   font-family: var(--font-display);
   font-size: 1rem;
   letter-spacing: .3em;
@@ -114,7 +119,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   text-transform: uppercase;
 }
 
-.primary-nav { align-items: stretch; display: flex; }
+.primary-nav { align-items: stretch; display: flex; grid-area: navigation; }
 
 .primary-nav__link {
   align-items: center;
@@ -126,7 +131,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 }
 
 .primary-nav__link::after {
-  background: var(--gold);
+  background: var(--action);
   bottom: .75rem;
   content: '';
   height: 2px;
@@ -149,28 +154,35 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   display: flex;
   font-family: var(--font-note);
   font-size: 1.65rem;
+  grid-area: signature;
   justify-content: center;
 }
 
 .signature span { display: inline-block; rotate: -4deg; }
 .signature i { font-family: var(--font-body); font-size: .75rem; font-style: normal; margin-left: .6rem; }
-.nav-trigger { display: none; }
+.site-header :deep(.theme-toggle) { border-left: 0; grid-area: theme; }
+.nav-trigger { display: none; grid-area: trigger; }
 
 @media (max-width: 54rem) {
-  .site-header { grid-template-columns: 1fr auto; }
+  .site-header {
+    grid-template-areas: 'brand navigation theme';
+    grid-template-columns: 1fr auto 4.5rem;
+  }
   .signature { display: none; }
   .primary-nav__link { min-width: auto; padding-inline: .75rem; }
 }
 
 @media (max-width: 40rem) {
   .site-header {
-    grid-template-columns: 1fr 4.5rem;
+    grid-template-areas: 'brand theme trigger';
+    grid-template-columns: minmax(0, 1fr) 4.5rem 4.5rem;
     min-height: 4.5rem;
   }
 
   .brand { padding: .85rem 1.25rem; }
   .brand strong { font-size: .75rem; }
   .brand > span { font-size: .45rem; letter-spacing: .36em; margin-top: .35rem; }
+  .site-header :deep(.theme-toggle) { border-left: 1px solid var(--rule); }
 
   .nav-trigger {
     align-items: center;
@@ -179,6 +191,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     border-left: 1px solid var(--rule);
     cursor: pointer;
     display: flex;
+    grid-area: trigger;
     justify-content: center;
     min-height: 4.5rem;
     min-width: 4.5rem;
@@ -188,13 +201,13 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   }
 
   .nav-trigger > span { display: grid; gap: .42rem; width: 1.4rem; }
-  .nav-trigger i { background: var(--ink); display: block; height: 1px; transition: rotate var(--duration-fast), translate var(--duration-fast); }
+  .nav-trigger i { background: var(--text); display: block; height: 1px; transition: rotate var(--duration-fast), translate var(--duration-fast); }
   .nav-trigger[aria-expanded="true"] i:first-child { rotate: 45deg; translate: 0 .22rem; }
   .nav-trigger[aria-expanded="true"] i:last-child { rotate: -45deg; translate: 0 -.22rem; }
 
   .primary-nav {
     align-content: start;
-    background: var(--paper-deep);
+    background: var(--surface);
     border-bottom: 1px solid var(--rule);
     display: grid;
     grid-column: 1 / -1;
@@ -224,7 +237,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 
   .primary-nav__link::after { bottom: 0; left: 1.25rem; right: 1.25rem; }
   .primary-nav__link i {
-    background: var(--ink);
+    background: var(--text);
     display: block;
     height: 1px;
     position: relative;
@@ -233,7 +246,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 
   .primary-nav__link i::before,
   .primary-nav__link i::after {
-    background: var(--ink);
+    background: var(--text);
     content: '';
     height: 1px;
     position: absolute;

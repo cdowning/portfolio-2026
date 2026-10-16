@@ -4,7 +4,7 @@ import FabricSwatches from '~/components/ui/FabricSwatches/FabricSwatches.vue'
 import CTag from '~/components/ui/CTag/CTag.vue'
 import type { SiteProfile } from '~/types/content'
 
-const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5cb'] as const
+const swatchColors = ['var(--support-highlight)', 'var(--palette-blush-light)', 'var(--action)', 'var(--rule)'] as const
 
 defineProps<{
   capabilities: string[]
@@ -103,7 +103,7 @@ const emit = defineEmits<{
 .resume-kicker b { font-weight: 400; }
 
 .resume-intro h1 {
-  color: var(--ink-strong);
+  color: var(--text-strong);
   font-family: var(--font-display);
   font-size: clamp(5rem, 7.2vw, 7.4rem);
   letter-spacing: -.04em;
@@ -170,7 +170,7 @@ const emit = defineEmits<{
 }
 
 .resume-intro__profile h2 {
-  color: var(--ink-strong);
+  color: var(--text-strong);
   font-family: var(--font-display);
   font-size: 2rem;
   letter-spacing: -.035em;
@@ -201,7 +201,7 @@ const emit = defineEmits<{
 
 .resume-intro__profile :deep(.skill-tag) {
   align-items: center;
-  background: color-mix(in srgb, var(--teal) 28%, var(--paper));
+  background: color-mix(in srgb, var(--support-highlight) 28%, var(--canvas));
   display: flex;
   grid-column: span 2;
   justify-content: center;
@@ -217,7 +217,7 @@ const emit = defineEmits<{
   height: 75%;
   left: -3.5rem;
   position: absolute;
-  stroke: var(--ink);
+  stroke: var(--text);
   stroke-dasharray: 7 6;
   stroke-width: 1;
   top: 0;
@@ -257,7 +257,7 @@ const emit = defineEmits<{
 }
 
 .resume-intro__ruler {
-  background: repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 9px);
+  background: repeating-linear-gradient(90deg, var(--text) 0 1px, transparent 1px 9px);
   bottom: 3.5rem;
   height: .8rem;
   left: 8rem;

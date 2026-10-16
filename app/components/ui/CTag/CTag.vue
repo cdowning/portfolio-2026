@@ -19,7 +19,8 @@ withDefaults(defineProps<{
 }
 
 .skill-tag--soft {
-  background: color-mix(in srgb, var(--teal) 11%, var(--paper));
+  background: var(--support-wash);
+  color: var(--text);
   text-align: center;
 }
 

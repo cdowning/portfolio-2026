@@ -46,7 +46,7 @@ defineProps<{
 }
 
 .about__copy h2 {
-  color: var(--ink-strong);
+  color: var(--text-strong);
   font-family: var(--font-display);
   font-size: clamp(2rem, 2.4vw, 2.8rem);
   letter-spacing: -.04em;
@@ -76,14 +76,14 @@ defineProps<{
 
 .about__photo img {
   aspect-ratio: .82;
-  border: .75rem solid var(--paper);
-  box-shadow: 0 1rem 2rem color-mix(in srgb, var(--ink) 14%, transparent);
+  border: .75rem solid var(--surface-raised);
+  box-shadow: 0 1rem 2rem var(--shadow);
   height: 100%;
   object-fit: cover;
 }
 
 .about__tape {
-  background: color-mix(in srgb, var(--teal) 70%, var(--paper));
+  background: color-mix(in srgb, var(--support-highlight) 70%, var(--canvas));
   height: 2rem;
   left: 31%;
   opacity: .85;
@@ -120,7 +120,7 @@ defineProps<{
   fill: none;
   margin-bottom: 1rem;
   overflow: visible;
-  stroke: var(--ink);
+  stroke: var(--text);
   stroke-dasharray: 7 7;
   stroke-width: 1;
 }
@@ -138,7 +138,7 @@ defineProps<{
 .about__circles strong {
   align-items: center;
   aspect-ratio: 1;
-  border: 1px dashed var(--ink);
+  border: 1px dashed var(--text);
   border-radius: 50%;
   display: flex;
   font-size: .65rem;

@@ -86,8 +86,8 @@ defineProps<{
 }
 
 .resume-experience > ol > li::before {
-  background: var(--paper);
-  border: 1px solid var(--ink);
+  background: var(--canvas);
+  border: 1px solid var(--text);
   border-radius: 50%;
   content: '';
   height: .65rem;

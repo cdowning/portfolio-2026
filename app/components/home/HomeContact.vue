@@ -43,7 +43,8 @@ defineProps<{
 
 <style scoped>
 .contact {
-  background: var(--gold);
+  background: var(--footer);
+  color: var(--on-footer);
   display: grid;
   gap: 2rem;
   grid-template-columns: 3rem minmax(30rem, 1.4fr) minmax(18rem, .7fr) minmax(13rem, .5fr);
@@ -53,10 +54,10 @@ defineProps<{
   width: 100vw;
 }
 
-.contact__marker { --rule-strong: color-mix(in srgb, var(--ink) 50%, transparent); }
+.contact__marker { --rule-strong: color-mix(in srgb, var(--on-footer) 50%, transparent); }
 
 .contact__main h2 {
-  color: var(--ink-strong);
+  color: var(--on-footer);
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 3.5vw, 4rem);
   letter-spacing: -.04em;
@@ -89,7 +90,7 @@ defineProps<{
 
 .contact__drawing svg {
   fill: none;
-  stroke: var(--ink);
+  stroke: var(--on-footer);
   stroke-dasharray: 7 7;
   stroke-width: 1.2;
 }
@@ -101,11 +102,11 @@ defineProps<{
   position: absolute;
   right: 20%;
   rotate: -7deg;
-  top: 41%;
+  top: 62%;
 }
 
 .contact__brand {
-  border-left: 1px solid color-mix(in srgb, var(--ink) 50%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
   display: flex;
   flex-direction: column;
   padding-left: 2rem;
@@ -131,7 +132,7 @@ defineProps<{
 }
 
 .contact__fine-print {
-  border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--on-footer) 25%, transparent);
   display: flex;
   font-size: .55rem;
   grid-column: 1 / -1;

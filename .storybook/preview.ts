@@ -8,10 +8,12 @@ const preview: Preview = {
       test: 'error',
     },
     backgrounds: {
-      default: 'paper',
+      default: 'light canvas',
       values: [
-        { name: 'paper', value: '#fdfbf9' },
+        { name: 'light canvas', value: '#fdfbf9' },
+        { name: 'dark canvas', value: '#151412' },
         { name: 'gold', value: '#f6bd60' },
+        { name: 'blush', value: '#c79591' },
       ],
     },
     controls: {

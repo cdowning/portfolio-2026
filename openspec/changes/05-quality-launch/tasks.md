@@ -9,7 +9,10 @@
 
 ## Release QA
 
+- [x] Place the 2.25rem handwritten hero note in the lower-right open space of the white copy panel, retaining its stacked-layout placement and coverage.
 - [ ] Run automated verification.
 - [ ] Inspect desktop and mobile screenshots in one bounded pass.
 - [ ] Inspect two-page print output.
 - [ ] Fix findings in one batch and confirm once.
+- [ ] Fill the current-position timeline circle while leaving past-position circles outlined.
+- [ ] Move “Good people build great things.” slightly lower and confirm it clears the dashed footer curve.

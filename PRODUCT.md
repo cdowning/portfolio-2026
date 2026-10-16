@@ -15,4 +15,5 @@ Prospective employers and hiring managers need a fast, credible understanding of
 - Lead with the combination of frontend engineering and design craft.
 - Use real public evidence; never fabricate testimonials, metrics, clients, or outcomes.
 - Support keyboard use, visible focus, reduced motion, readable contrast, and responsive layouts.
-- V1 is light-only; dark mode, CMS, contact forms, and hosting migration are out of scope.
+- Screen UI supports light + dark color themes. First visit follows `prefers-color-scheme`; one header button toggles + persists explicit `light`/`dark` override.
+- CMS, contact forms, and hosting migration are out of scope.

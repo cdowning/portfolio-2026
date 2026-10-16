@@ -44,7 +44,8 @@ defineProps<{
 
 <style scoped>
 .resume-contact {
-  background: var(--gold);
+  background: var(--footer);
+  color: var(--on-footer);
   display: grid;
   gap: 2rem;
   grid-template-columns: 3rem minmax(30rem, 1.35fr) minmax(17rem, .65fr) minmax(13rem, .5fr);
@@ -54,10 +55,10 @@ defineProps<{
   width: 100vw;
 }
 
-.resume-contact__marker { --rule-strong: color-mix(in srgb, var(--ink) 50%, transparent); }
+.resume-contact__marker { --rule-strong: color-mix(in srgb, var(--on-footer) 50%, transparent); }
 
 .resume-contact__main h2 {
-  color: var(--ink-strong);
+  color: var(--on-footer);
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 3.5vw, 4rem);
   letter-spacing: -.04em;
@@ -82,7 +83,7 @@ defineProps<{
 }
 
 .resume-contact__drawing { align-self: center; position: relative; }
-.resume-contact__drawing svg { fill: none; stroke: var(--ink); stroke-dasharray: 7 7; stroke-width: 1.2; }
+.resume-contact__drawing svg { fill: none; stroke: var(--on-footer); stroke-dasharray: 7 7; stroke-width: 1.2; }
 .resume-contact__drawing p {
   font-family: var(--font-note);
   font-size: 1.25rem;
@@ -90,11 +91,11 @@ defineProps<{
   position: absolute;
   right: 10%;
   rotate: -8deg;
-  top: 42%;
+  top: 62%;
 }
 
 .resume-contact__brand {
-  border-left: 1px solid color-mix(in srgb, var(--ink) 50%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
   display: flex;
   flex-direction: column;
   padding-left: 2rem;
@@ -117,7 +118,7 @@ defineProps<{
 .resume-contact__brand p { line-height: 1.5; margin-top: 2rem; }
 
 .resume-contact__fine-print {
-  border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--on-footer) 25%, transparent);
   display: flex;
   font-size: .55rem;
   grid-column: 1 / -1;

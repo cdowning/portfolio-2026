@@ -6,7 +6,7 @@ import FabricSwatches from '~/components/ui/FabricSwatches/FabricSwatches.vue'
 import { useHeroScrollMotion } from '~/composables/useHeroScrollMotion'
 import type { SiteProfile } from '~/types/content'
 
-const swatchColors = ['var(--teal)', 'var(--blush-light)', 'var(--gold)', '#ded5cb'] as const
+const swatchColors = ['var(--support-highlight)', 'var(--palette-blush-light)', 'var(--action)', 'var(--rule)'] as const
 
 defineProps<{
   profile: SiteProfile
@@ -24,16 +24,36 @@ useHeroScrollMotion(hero)
         <div class="kicker"><span>01</span><i />Code <b>×</b> Design <b>×</b> People</div>
         <h1 id="hero-title" class="hero__title">I build thoughtful<br>interfaces,<br>from system to screen.</h1>
         <p class="hero__lede">{{ profile.shortSummary }}</p>
-        <CButton class="hero__cta" href="#work" size="large">View my work</CButton>
+        <div class="hero__cta-flow">
+          <CButton class="hero__cta" href="#work" size="large">View my work</CButton>
+          <svg
+            class="hero__cta-connector"
+            viewBox="0 0 600 120"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              class="hero__cta-connector-path"
+              d="M0 60C118 60 142 18 246 34C358 51 378 100 474 84C523 76 554 60 600 60"
+            />
+            <g class="hero__crosshair hero__crosshair--connect" transform="translate(600 60)">
+              <circle r="8" />
+              <path d="M-15 0H15M0-15V15" />
+            </g>
+          </svg>
+        </div>
 
-        <div class="hero__facts">
-          <div>
-            <strong>{{ profile.experienceLabel }}</strong>
-            <span>Building for a brighter,<br> more human web.</span>
-          </div>
-          <div>
-            <strong>Vue · TypeScript · Design systems</strong>
-            <span>Interfaces that carry ideas further.</span>
+        <div class="hero__lower">
+          <p class="hero__margin-note" aria-hidden="true">Good ideas fit here.</p>
+          <div class="hero__facts">
+            <div>
+              <strong>{{ profile.experienceLabel }}</strong>
+              <span>Building for a brighter,<br> more human web.</span>
+            </div>
+            <div>
+              <strong>Vue · TypeScript · Design systems</strong>
+              <span>Interfaces that carry ideas further.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -49,23 +69,15 @@ useHeroScrollMotion(hero)
           d="M1139 79C902 229 866 515 934 770"
         />
         <path
-          class="hero__construction-path hero__construction-path--dashed hero__construction-path--flow"
-          d="M263 535C363 535 390 477 456 493C526 511 542 564 618 554C720 541 747 468 895 468"
-        />
-        <path
           class="hero__construction-path hero__construction-path--dashed hero__construction-path--lower"
           d="M786 735C828 678 873 665 927 677C971 687 1000 712 1028 741"
         />
 
-        <g class="hero__crosshair" transform="translate(895 468)">
-          <circle r="7" />
-          <path d="M-14 0H14M0-14V14" />
-        </g>
-        <g class="hero__crosshair" transform="translate(786 735)">
+        <g class="hero__crosshair hero__crosshair--assemble" transform="translate(786 735)">
           <circle r="8" />
           <path d="M-15 0H15M0-15V15" />
         </g>
-        <g class="hero__crosshair" transform="translate(934 770)">
+        <g class="hero__crosshair hero__crosshair--release" transform="translate(934 770)">
           <path d="M-10-10L10 10M10-10L-10 10" />
         </g>
 
@@ -103,7 +115,6 @@ useHeroScrollMotion(hero)
         <div class="hero__swatches" aria-hidden="true">
           <FabricSwatches :colors="swatchColors" />
         </div>
-        <p class="hero__margin-note" aria-hidden="true">Good ideas fit here.</p>
         <p class="hero__side-note" aria-hidden="true">Patterns<br>ideas<br>people<br>progress</p>
         <div class="hero__ruler" aria-hidden="true" />
       </div>
@@ -148,7 +159,7 @@ useHeroScrollMotion(hero)
   --hero-swatch-2-shift: calc((1 - var(--hero-swatch-2)) * -18px);
   --hero-swatch-3-shift: calc((1 - var(--hero-swatch-3)) * -18px);
   --hero-swatch-4-shift: calc((1 - var(--hero-swatch-4)) * -18px);
-  background: var(--paper);
+  background: var(--canvas);
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(32rem, .88fr);
   isolation: isolate;
@@ -176,10 +187,11 @@ useHeroScrollMotion(hero)
 }
 
 .hero__copy {
+  --hero-copy-inline-end: clamp(2rem, 5vw, 5.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 5vw, 5.5rem) 3.5rem var(--page-gutter);
+  padding: clamp(4rem, 7vw, 7rem) var(--hero-copy-inline-end) 3.5rem var(--page-gutter);
   position: relative;
   z-index: 4;
 }
@@ -206,7 +218,7 @@ useHeroScrollMotion(hero)
 }
 
 .hero__title {
-  color: var(--ink-strong);
+  color: var(--text-strong);
   font-family: var(--font-display);
   font-size: clamp(3.3rem, 5.25vw, 6rem);
   letter-spacing: -.045em;
@@ -221,14 +233,39 @@ useHeroScrollMotion(hero)
   margin-bottom: 2.5rem;
 }
 
-.hero__cta { align-self: flex-start; }
+.hero__cta-flow {
+  align-items: center;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  margin-right: calc(-1 * var(--hero-copy-inline-end));
+}
+
+.hero__cta { align-self: center; }
+
+.hero__cta-connector {
+  display: block;
+  height: clamp(4.2rem, 6vw, 5.5rem);
+  overflow: visible;
+  width: 100%;
+}
+
+.hero__cta-connector-path {
+  clip-path: inset(0 var(--hero-connect-clip) 0 0);
+  fill: none;
+  stroke: var(--text);
+  stroke-dasharray: 8 8;
+  stroke-linecap: round;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.hero__lower { margin-top: auto; }
 
 .hero__facts {
   border-top: 1px solid var(--rule-strong);
   display: grid;
   gap: 2rem;
   grid-template-columns: .75fr 1.25fr;
-  margin-top: auto;
   padding-top: 1.75rem;
 }
 
@@ -279,7 +316,7 @@ useHeroScrollMotion(hero)
 
 .hero__portrait-paper {
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--paper) 32%, transparent), color-mix(in srgb, var(--paper) 12%, transparent));
+    linear-gradient(90deg, color-mix(in srgb, var(--canvas) 32%, transparent), color-mix(in srgb, var(--canvas) 12%, transparent));
   clip-path: inset(0 0 0 var(--hero-paper-clip));
   inset: 0;
   pointer-events: none;
@@ -306,7 +343,7 @@ useHeroScrollMotion(hero)
 .hero__crosshair,
 .hero__measurements {
   fill: none;
-  stroke: var(--ink);
+  stroke: var(--text);
   stroke-linecap: round;
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
@@ -336,7 +373,7 @@ useHeroScrollMotion(hero)
 }
 
 .hero__crosshair circle {
-  fill: var(--paper);
+  fill: var(--canvas);
 }
 
 .hero__crosshair {
@@ -346,8 +383,8 @@ useHeroScrollMotion(hero)
   transform-origin: center;
 }
 
-.hero__crosshair:nth-of-type(2) { opacity: var(--hero-assemble); scale: calc(.55 + var(--hero-assemble) * .45); }
-.hero__crosshair:nth-of-type(3) { opacity: var(--hero-release); scale: calc(.55 + var(--hero-release) * .45); }
+.hero__crosshair--assemble { opacity: var(--hero-assemble); scale: calc(.55 + var(--hero-assemble) * .45); }
+.hero__crosshair--release { opacity: var(--hero-release); scale: calc(.55 + var(--hero-release) * .45); }
 
 .hero__measurements {
   opacity: calc(var(--hero-register) * .68);
@@ -355,7 +392,7 @@ useHeroScrollMotion(hero)
 
 .hero__callout {
   align-items: flex-start;
-  border-left: 1px solid var(--ink);
+  border-left: 1px solid var(--text);
   display: flex;
   font-size: .58rem;
   gap: .7rem;
@@ -369,7 +406,7 @@ useHeroScrollMotion(hero)
 }
 
 .hero__callout::after {
-  background: var(--ink);
+  background: var(--text);
   bottom: 0;
   content: '';
   height: 1px;
@@ -392,7 +429,7 @@ useHeroScrollMotion(hero)
 .hero__callout--03 {
   left: 48.4%;
   opacity: var(--hero-assemble);
-  top: 61%;
+  top: 46%;
 }
 
 .hero__callout--04 {
@@ -417,16 +454,15 @@ useHeroScrollMotion(hero)
 .hero__swatches :deep(.fabric-swatch:nth-child(4)) { opacity: var(--hero-swatch-4); transform: translateY(var(--hero-swatch-4-shift)); }
 
 .hero__margin-note {
-  bottom: 9rem;
   font-family: var(--font-note);
-  font-size: 1.5rem;
-  left: -3.5rem;
-  line-height: .95;
-  position: absolute;
-  rotate: -10deg;
+  font-size: 2.25rem;
+  line-height: 1.4;
+  margin: 0 clamp(1rem, 5vw, 4.5rem) 3.5rem auto;
+  rotate: -6deg;
   clip-path: inset(0 var(--hero-assemble-clip) 0 0);
+  text-align: right;
   white-space: nowrap;
-  z-index: 3;
+  width: max-content;
 }
 
 .hero__side-note {
@@ -443,7 +479,7 @@ useHeroScrollMotion(hero)
 }
 
 .hero__ruler {
-  background: repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 9px);
+  background: repeating-linear-gradient(90deg, var(--text) 0 1px, transparent 1px 9px);
   bottom: 1rem;
   height: .75rem;
   left: 5%;
@@ -458,6 +494,7 @@ useHeroScrollMotion(hero)
   .hero__image,
   .hero__portrait-paper,
   .hero__construction-path,
+  .hero__cta-connector-path,
   .hero__crosshair,
   .hero__measurements,
   .hero__callout,
@@ -504,9 +541,7 @@ useHeroScrollMotion(hero)
     min-height: 0;
   }
 
-  .hero__margin-note {
-    bottom: 6rem;
-  }
+  .hero__margin-note { margin-bottom: 3.5rem; }
 }
 
 @media (max-width: 64rem) {
@@ -519,6 +554,17 @@ useHeroScrollMotion(hero)
     border-top: 1px solid var(--rule);
     min-height: 44rem;
   }
+
+  .hero__cta-flow {
+    display: block;
+    margin-right: 0;
+  }
+
+  .hero__cta-connector { display: none; }
+
+  .hero__lower { margin-top: 2.5rem; }
+
+  .hero__margin-note { margin: 0 1rem 2rem auto; }
 
   .hero__construction {
     bottom: 0;
@@ -567,8 +613,9 @@ useHeroScrollMotion(hero)
 
   .hero__facts {
     grid-template-columns: 1fr;
-    margin-top: 4rem;
   }
+
+  .hero__lower { margin-top: 4rem; }
 
   .hero__facts > div + div {
     border-left: 0;
@@ -596,10 +643,6 @@ useHeroScrollMotion(hero)
     right: 1rem;
     top: 8rem;
     width: 2.7rem;
-  }
-
-  .hero__margin-note {
-    left: .8rem;
   }
 
   .swatch {

@@ -55,11 +55,13 @@ const emit = defineEmits<{
   min-height: 3.5rem;
   padding: 0 1.4rem;
   text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-out);
 }
 
 .action-control--large { font-size: 1.1rem; min-height: 4.2rem; padding-inline: 2rem; }
-.action-control--gold { background: var(--gold); color: var(--ink-strong); }
-.action-control--ink { background: var(--ink-strong); color: var(--paper); }
+.action-control--gold { background: var(--action); color: var(--on-action); }
+.action-control--ink { background: var(--footer-action); color: var(--on-footer-action); }
+.action-control--gold:is(:hover, :focus-visible) { background: var(--action-hover); }
 
 .action-control__arrow {
   display: block;

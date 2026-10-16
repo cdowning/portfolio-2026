@@ -102,8 +102,8 @@ defineProps<{
 }
 
 .experience__list li::before {
-  background: var(--paper);
-  border: 1px solid var(--ink);
+  background: var(--canvas);
+  border: 1px solid var(--text);
   border-radius: 50%;
   content: '';
   height: .6rem;
@@ -147,6 +147,10 @@ defineProps<{
   min-height: 3.2rem;
   position: absolute;
   right: var(--page-gutter);
+}
+
+@media (min-width: 68.0625rem) {
+  .experience__link { bottom: 1.2rem; }
 }
 
 @media (max-width: 68rem) {

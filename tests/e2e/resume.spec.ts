@@ -8,6 +8,7 @@ test.describe('résumé', () => {
   })
 
   test('presents the approved web résumé hierarchy from factual content', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
     await expect(page.getByRole('banner')).toBeVisible()
     await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible()
     await expect(page.getByRole('heading', { level: 1, name: 'Caitlin Hawley' })).toBeVisible()
@@ -48,7 +49,30 @@ test.describe('résumé', () => {
     await expect(page.locator('html')).toHaveAttribute('data-print-invoked', 'true')
   })
 
+  test('keeps print white and black when the screen theme is dark', async ({ page }) => {
+    await page.evaluate(() => {
+      localStorage.setItem('caitlin-theme', 'dark')
+      document.documentElement.dataset.theme = 'dark'
+    })
+    await page.emulateMedia({ media: 'print' })
+
+    const printPresentation = await page.locator('.resume-print').evaluate((element) => ({
+      background: getComputedStyle(document.documentElement).backgroundColor,
+      bodyBackground: getComputedStyle(document.body).backgroundColor,
+      color: getComputedStyle(element).color,
+      themeControlDisplay: getComputedStyle(document.querySelector<HTMLElement>('.theme-toggle')!).display,
+    }))
+
+    expect(printPresentation).toEqual({
+      background: 'rgb(255, 255, 255)',
+      bodyBackground: 'rgb(255, 255, 255)',
+      color: 'rgb(17, 17, 17)',
+      themeControlDisplay: 'none',
+    })
+  })
+
   test('prints as exactly two US Letter pages', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'PDF output is only available in desktop Chromium')
     const pdfPath = testInfo.outputPath('resume.pdf')
 
     await page.emulateMedia({ media: 'print' })

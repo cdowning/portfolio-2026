@@ -143,16 +143,16 @@ defineProps<{
 
 .specimen {
   aspect-ratio: 1.28;
-  background: color-mix(in srgb, var(--paper-deep) 70%, white);
+  background: var(--surface-raised);
   border: 1px solid var(--rule);
-  box-shadow: 0 1.25rem 2.5rem color-mix(in srgb, var(--ink) 8%, transparent);
+  box-shadow: 0 1.25rem 2.5rem var(--shadow);
   overflow: hidden;
   padding: 1.25rem;
   position: relative;
 }
 
 .specimen::before {
-  background: var(--ink);
+  background: var(--text);
   box-shadow: .7rem 0 var(--rule-strong), 1.4rem 0 var(--rule-strong);
   content: '';
   height: .25rem;
@@ -186,14 +186,14 @@ defineProps<{
 }
 
 .specimen__sidebar {
-  background: #e8ece8;
+  background: var(--support-wash);
   display: grid;
   gap: .75rem;
   padding: 2.5rem .85rem 1rem;
 }
 
 .specimen__sidebar i {
-  background: color-mix(in srgb, var(--teal-deep) 45%, transparent);
+  background: color-mix(in srgb, var(--support) 45%, transparent);
   height: .32rem;
   width: 80%;
 }
@@ -209,14 +209,14 @@ defineProps<{
 }
 
 .specimen__buttons i {
-  background: var(--teal-deep);
+  background: var(--support);
   border-radius: .15rem;
   height: 1.5rem;
   width: 3.6rem;
 }
 
-.specimen__buttons i:nth-child(2) { background: transparent; border: 1px solid var(--teal-deep); }
-.specimen__buttons i:nth-child(3) { background: #e4e3e1; }
+.specimen__buttons i:nth-child(2) { background: transparent; border: 1px solid var(--support); }
+.specimen__buttons i:nth-child(3) { background: var(--surface-muted); }
 
 .specimen__rows {
   display: grid;
@@ -224,7 +224,7 @@ defineProps<{
 }
 
 .specimen__rows span {
-  background: linear-gradient(90deg, var(--teal) 0 20%, #e6e8e7 20% 100%);
+  background: linear-gradient(90deg, var(--support-highlight) 0 20%, var(--surface-muted) 20% 100%);
   height: .8rem;
 }
 
@@ -250,15 +250,15 @@ defineProps<{
 }
 
 .flow i {
-  background: var(--paper);
-  border: 1px solid var(--teal-deep);
+  background: var(--surface-raised);
+  border: 1px solid var(--support);
   border-radius: 50%;
   height: .9rem;
   position: relative;
   width: .9rem;
 }
 
-.flow .flow__active { background: var(--teal-deep); }
+.flow .flow__active { background: var(--support); }
 
 .form-lines {
   display: grid;
@@ -272,8 +272,8 @@ defineProps<{
 }
 
 .specimen__button {
-  background: var(--teal-deep);
-  color: white;
+  background: var(--support);
+  color: var(--canvas);
   display: block;
   font-size: .55rem;
   margin-top: .7rem;
@@ -295,7 +295,7 @@ defineProps<{
 }
 
 .system-top i {
-  background: var(--teal);
+  background: var(--support-highlight);
   border-radius: 50%;
   height: .4rem;
   width: .4rem;
@@ -309,13 +309,13 @@ defineProps<{
 }
 
 .system-map i {
-  background: #e7e8e5;
-  border-left: 1px solid var(--teal-deep);
+  background: var(--surface-muted);
+  border-left: 1px solid var(--support);
   height: 2.2rem;
 }
 
 .system-map i:first-child {
-  background: color-mix(in srgb, var(--teal) 25%, white);
+  background: var(--support-wash);
   grid-column: 1 / -1;
 }
 
