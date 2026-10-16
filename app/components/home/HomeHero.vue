@@ -103,6 +103,7 @@ useHeroScrollMotion(hero)
       </div>
 
       <div class="hero__portrait">
+        <div class="hero__portrait-grid" aria-hidden="true" />
         <img
           class="hero__image"
           src="/images/hero-portrait-caitlin.png"
@@ -112,6 +113,7 @@ useHeroScrollMotion(hero)
           fetchpriority="high"
         >
         <div class="hero__portrait-paper" aria-hidden="true" />
+        <div class="hero__portrait-cover" aria-hidden="true" />
         <div class="hero__swatches" aria-hidden="true">
           <FabricSwatches :colors="swatchColors" />
         </div>
@@ -297,9 +299,22 @@ useHeroScrollMotion(hero)
 
 .hero__portrait {
   border-left: 1px solid var(--rule);
+  isolation: isolate;
   min-height: 52rem;
   position: relative;
   z-index: 2;
+}
+
+.hero__portrait-grid {
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 1.65rem 1.65rem;
+  inset: 2rem 3.5rem 5rem 2.5rem;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  opacity: .2;
+  position: absolute;
 }
 
 .hero__image {
@@ -307,11 +322,23 @@ useHeroScrollMotion(hero)
   display: block;
   height: auto;
   left: 50%;
-  max-width: 1098px;
+  max-width: 61rem;
   position: absolute;
   transform: translateX(-50%) translateY(var(--hero-portrait-shift));
-  width: 100%;
+  width: 86%;
   z-index: 1;
+}
+
+.hero__portrait-cover {
+  background: var(--canvas);
+  bottom: 0;
+  clip-path: inset(var(--hero-release-clip) 0 0);
+  height: 20%;
+  inset-inline: 0;
+  max-height: 130px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
 }
 
 .hero__portrait-paper {
@@ -493,6 +520,7 @@ useHeroScrollMotion(hero)
 .hero[data-hero-motion='scroll'] :is(
   .hero__image,
   .hero__portrait-paper,
+  .hero__portrait-cover,
   .hero__construction-path,
   .hero__cta-connector-path,
   .hero__crosshair,
@@ -553,6 +581,14 @@ useHeroScrollMotion(hero)
     border-left: 0;
     border-top: 1px solid var(--rule);
     min-height: 44rem;
+  }
+
+  .hero__portrait-grid {
+    inset: 2rem 2rem 4rem;
+  }
+
+  .hero__image {
+    width: min(92%, 50rem);
   }
 
   .hero__cta-flow {
@@ -624,6 +660,20 @@ useHeroScrollMotion(hero)
 
   .hero__portrait {
     min-height: 34rem;
+  }
+
+  .hero__portrait-grid {
+    background-size: 1.35rem 1.35rem;
+    inset: 1.5rem 1rem 3rem;
+    opacity: .16;
+  }
+
+  .hero__image {
+    width: 100%;
+  }
+
+  .hero__portrait-cover {
+    height: 18%;
   }
 
   .hero__construction {

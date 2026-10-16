@@ -262,4 +262,70 @@ test.describe('homepage composition', () => {
     expect(treatments.swatchBackgroundImage).toBe('none')
     expect(treatments.swatchMaskImage).toContain('conic-gradient')
   })
+
+  test('reveals a solid page-colored rectangle over the portrait during scroll release', async ({ page }) => {
+    await page.setViewportSize({ width: 1984, height: 1275 })
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const hero = page.locator('#top')
+    const portrait = page.locator('.hero__portrait')
+
+    await expect(hero).toHaveAttribute('data-hero-motion', 'scroll')
+    await expect(portrait.locator('.hero__portrait-ground')).toHaveCount(0)
+
+    const treatment = await portrait.evaluate((element) => {
+      const image = element.querySelector<HTMLElement>('.hero__image')
+      const grid = element.querySelector<HTMLElement>('.hero__portrait-grid')
+      const cover = element.querySelector<HTMLElement>('.hero__portrait-cover')
+      if (!image || !grid || !cover) throw new Error('Portrait treatment layers are missing')
+
+      const portraitRect = element.getBoundingClientRect()
+      const imageRect = image.getBoundingClientRect()
+      const gridStyles = getComputedStyle(grid)
+      const coverStyles = getComputedStyle(cover)
+      const canvasColor = getComputedStyle(element.closest<HTMLElement>('.hero__stage')!).backgroundColor
+
+      return {
+        imageWidthRatio: imageRect.width / portraitRect.width,
+        gridBackground: gridStyles.backgroundImage,
+        gridOpacity: Number.parseFloat(gridStyles.opacity),
+        coverBackgroundColor: coverStyles.backgroundColor,
+        coverBackgroundImage: coverStyles.backgroundImage,
+        coverClipPath: coverStyles.clipPath,
+        coverHeight: cover.getBoundingClientRect().height,
+        coverHeightRatio: cover.getBoundingClientRect().height / portraitRect.height,
+        canvasColor,
+      }
+    })
+
+    expect(treatment.imageWidthRatio).toBeGreaterThan(.78)
+    expect(treatment.imageWidthRatio).toBeLessThan(.92)
+    expect(treatment.gridBackground).toContain('linear-gradient')
+    expect(treatment.gridOpacity).toBeGreaterThan(0)
+    expect(treatment.gridOpacity).toBeLessThanOrEqual(.24)
+    expect(treatment.coverBackgroundColor).toBe(treatment.canvasColor)
+    expect(treatment.coverBackgroundImage).toBe('none')
+    expect(treatment.coverClipPath).toContain('100%')
+    expect(treatment.coverHeight).toBeGreaterThan(0)
+    expect(treatment.coverHeight).toBeLessThanOrEqual(130)
+    expect(treatment.coverHeightRatio).toBeLessThanOrEqual(.28)
+
+    const geometry = await hero.evaluate((element) => {
+      const stage = element.querySelector<HTMLElement>('.hero__stage')!
+      return {
+        heroTop: element.getBoundingClientRect().top + window.scrollY,
+        travel: element.scrollHeight - stage.clientHeight,
+      }
+    })
+
+    await page.evaluate(({ heroTop, travel }) => window.scrollTo({
+      top: heroTop + travel + 1,
+      behavior: 'instant',
+    }), geometry)
+
+    await expect.poll(() => portrait.locator('.hero__portrait-cover').evaluate(
+      element => getComputedStyle(element).clipPath,
+    )).not.toContain('100%')
+  })
 })
