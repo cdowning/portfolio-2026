@@ -54,9 +54,9 @@ for (const [theme, expected] of Object.entries(themes)) {
 
     const colors = await page.evaluate(() => {
       const html = getComputedStyle(document.documentElement)
-      const action = getComputedStyle(document.querySelector<HTMLElement>('.hero__cta')!)
+      const action = getComputedStyle(document.querySelector<HTMLElement>('.hero-cta')!)
       const footer = getComputedStyle(document.querySelector<HTMLElement>('#contact')!)
-      const footerAction = getComputedStyle(document.querySelector<HTMLElement>('.contact__primary')!)
+      const footerAction = getComputedStyle(document.querySelector<HTMLElement>('.contact-primary')!)
 
       return {
         canvas: html.backgroundColor,

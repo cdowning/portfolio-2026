@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <section class="toolkit" aria-labelledby="toolkit-title" data-reveal>
-    <CSectionMarker class="toolkit__marker" number="05" />
+    <CSectionMarker class="toolkit-marker" number="05" />
     <header>
       <h2 id="toolkit-title">Toolkit</h2>
       <p>The tools that help ideas take shape.</p>
@@ -30,11 +30,11 @@ defineProps<{
   padding: 2.5rem var(--page-gutter);
 }
 
-.toolkit__marker { align-self: stretch; }
+.toolkit-marker { align-self: stretch; }
 
 .toolkit h2 {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   letter-spacing: -.04em;
   line-height: 1;
   margin-bottom: .7rem;
@@ -42,7 +42,7 @@ defineProps<{
 
 .toolkit header p,
 .toolkit aside p {
-  font-size: .55rem;
+  font-size: var(--text-xs);
   letter-spacing: .25em;
   line-height: 1.65;
   margin: 0;
@@ -50,14 +50,17 @@ defineProps<{
 }
 
 .toolkit ul {
+  --tag-font-size: var(--text-xs);
+  --tag-min-height: 3rem;
+  --tag-padding: .25rem .65rem;
+  --tag-text-align: left;
+
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
-.toolkit :deep(.skill-tag) { font-size: .67rem; min-height: 3rem; padding: .25rem .65rem; text-align: left; }
 
 .toolkit aside {
   align-self: stretch;
@@ -66,7 +69,7 @@ defineProps<{
 }
 
 .toolkit aside span {
-  font-size: .65rem;
+  font-size: var(--text-xs);
 }
 
 .toolkit aside p {
@@ -91,7 +94,7 @@ defineProps<{
     padding: 3rem 1.25rem;
   }
 
-  .toolkit__marker { grid-row: 1 / 3; }
+  .toolkit-marker { grid-row: 1 / 3; }
   .toolkit ul { grid-column: 2; grid-template-columns: repeat(2, 1fr); }
 }
 </style>

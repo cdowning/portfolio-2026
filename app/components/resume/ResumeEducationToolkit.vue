@@ -11,8 +11,8 @@ defineProps<{
 
 <template>
   <section class="resume-foundation" aria-label="Education and toolkit" data-reveal>
-    <div class="resume-foundation__education">
-      <CSectionMarker class="resume-foundation__marker" number="05" />
+    <div class="resume-foundation-education">
+      <CSectionMarker class="resume-foundation-marker" number="05" />
       <div>
         <h2>Education</h2>
         <p class="tagline">Early foundations. Lasting curiosity.</p>
@@ -22,8 +22,8 @@ defineProps<{
         </div>
       </div>
     </div>
-    <div class="resume-foundation__toolkit">
-      <CSectionMarker class="resume-foundation__marker" number="06" />
+    <div class="resume-foundation-toolkit">
+      <CSectionMarker class="resume-foundation-marker" number="06" />
       <div>
         <h2>Toolkit</h2>
         <p class="tagline">The tools that help ideas take shape.</p>
@@ -44,21 +44,21 @@ defineProps<{
   padding: 2.5rem var(--page-gutter);
 }
 
-.resume-foundation__education,
-.resume-foundation__toolkit {
+.resume-foundation-education,
+.resume-foundation-toolkit {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 3rem 1fr;
 }
 
-.resume-foundation__toolkit {
+.resume-foundation-toolkit {
   border-left: 1px dashed var(--rule-strong);
   padding-left: 2rem;
 }
 
 .resume-foundation h2 {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: var(--text-xl);
   letter-spacing: .11em;
   margin-bottom: .45rem;
   text-transform: uppercase;
@@ -66,7 +66,7 @@ defineProps<{
 
 .tagline,
 .resume-foundation aside p {
-  font-size: .54rem;
+  font-size: var(--text-xs);
   letter-spacing: .25em;
   line-height: 1.65;
   text-transform: uppercase;
@@ -81,11 +81,13 @@ defineProps<{
 
 .education-entry strong,
 .education-entry span { display: block; }
-.education-entry strong { font-size: .9rem; }
+.education-entry strong { font-size: var(--text-sm); }
 .education-entry span,
-.education-entry time { font-size: .72rem; }
+.education-entry time { font-size: var(--text-xs); }
 
 .resume-foundation ul {
+  --tag-min-width: 5rem;
+
   display: flex;
   flex-wrap: wrap;
   gap: .65rem;
@@ -93,8 +95,6 @@ defineProps<{
   margin: 2rem 0 0;
   padding: 0;
 }
-
-.resume-foundation :deep(.skill-tag) { min-width: 5rem; }
 
 .resume-foundation aside {
   border-left: 1px solid var(--rule-strong);
@@ -110,14 +110,14 @@ defineProps<{
 
 @media (max-width: 62rem) {
   .resume-foundation { grid-template-columns: 1fr; gap: 3rem; }
-  .resume-foundation__toolkit { border-left: 0; padding-left: 0; }
+  .resume-foundation-toolkit { border-left: 0; padding-left: 0; }
   .resume-foundation aside { display: none; }
 }
 
 @media (max-width: 42rem) {
   .resume-foundation { padding: 3rem 1.25rem; }
-  .resume-foundation__education,
-  .resume-foundation__toolkit { gap: 1rem; grid-template-columns: 2.5rem 1fr; }
+  .resume-foundation-education,
+  .resume-foundation-toolkit { gap: 1rem; grid-template-columns: 2.5rem 1fr; }
   .education-entry { align-items: start; flex-direction: column; gap: .75rem; }
 }
 </style>

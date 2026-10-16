@@ -1,5 +1,27 @@
 import { expect, test } from '@playwright/test'
 
+type Rgb = [number, number, number]
+
+function parseRgb(value: string): Rgb {
+  const channels = value.match(/\d+(?:\.\d+)?/g)?.slice(0, 3).map(Number)
+  if (!channels || channels.length !== 3) throw new Error(`Unable to parse color: ${value}`)
+  return channels as Rgb
+}
+
+function luminance([red, green, blue]: Rgb) {
+  const [r, g, b] = [red, green, blue].map((channel) => {
+    const value = channel / 255
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4
+  })
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+
+function contrast(foreground: string, background: string) {
+  const lighter = Math.max(luminance(parseRgb(foreground)), luminance(parseRgb(background)))
+  const darker = Math.min(luminance(parseRgb(foreground)), luminance(parseRgb(background)))
+  return (lighter + 0.05) / (darker + 0.05)
+}
+
 test.describe('responsive navigation and editorial motion', () => {
   test('mobile navigation opens, closes with Escape, and follows an in-page destination', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
@@ -69,8 +91,8 @@ test.describe('responsive navigation and editorial motion', () => {
 
 test.describe('responsive layout contract', () => {
   for (const footer of [
-    { route: '/', footer: '.contact', drawing: '.contact__drawing', note: '.contact__drawing p' },
-    { route: '/resume', footer: '.resume-contact', drawing: '.resume-contact__drawing', note: '.resume-contact__drawing p' },
+    { route: '/', footer: '.contact', drawing: '.contact-drawing', note: '.contact-drawing p' },
+    { route: '/resume', footer: '.resume-contact', drawing: '.resume-contact-drawing', note: '.resume-contact-drawing p' },
   ]) {
     test(`${footer.route} keeps the footer annotation below the curve`, async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 900 })
@@ -89,28 +111,48 @@ test.describe('responsive layout contract', () => {
       expect(noteOffsetRatio).toBeGreaterThanOrEqual(.56)
     })
 
-    test(`${footer.route} keeps selected footer text visible`, async ({ page }) => {
-      await page.setViewportSize({ width: 1440, height: 900 })
-      await page.goto(footer.route)
+    for (const selection of [
+      {
+        theme: 'light',
+        background: 'rgb(15, 14, 14)',
+        color: 'rgb(246, 189, 96)',
+        contrast: 11.35,
+      },
+      {
+        theme: 'dark',
+        background: 'rgb(21, 20, 18)',
+        color: 'rgb(199, 149, 145)',
+        contrast: 7.13,
+      },
+    ] as const) {
+      test(`${footer.route} keeps selected footer text visible in ${selection.theme} mode`, async ({ page }) => {
+        await page.addInitScript((theme) => localStorage.setItem('caitlin-theme', theme), selection.theme)
+        await page.setViewportSize({ width: 1440, height: 900 })
+        await page.goto(footer.route)
 
-      const presentation = await page.locator(footer.footer).evaluate((element) => {
-        const copy = element.querySelector<HTMLElement>('p')
-        if (!copy) throw new Error('Footer copy is missing')
+        const presentation = await page.locator(footer.footer).evaluate((element) => {
+          const copy = element.querySelector<HTMLElement>('p')
+          if (!copy) throw new Error('Footer copy is missing')
 
-        const footerStyles = getComputedStyle(element)
-        const selectionStyles = getComputedStyle(copy, '::selection')
+          const footerStyles = getComputedStyle(element)
+          const selectionStyles = getComputedStyle(copy, '::selection')
 
-        return {
-          footerBackground: footerStyles.backgroundColor,
-          selectionBackground: selectionStyles.backgroundColor,
-          selectionColor: selectionStyles.color,
-        }
+          return {
+            footerBackground: footerStyles.backgroundColor,
+            footerColor: footerStyles.color,
+            selectionBackground: selectionStyles.backgroundColor,
+            selectionColor: selectionStyles.color,
+          }
+        })
+
+        expect(presentation.selectionBackground).toBe(presentation.footerColor)
+        expect(presentation.selectionColor).toBe(presentation.footerBackground)
+        expect(presentation.selectionBackground).toBe(selection.background)
+        expect(presentation.selectionColor).toBe(selection.color)
+        expect(contrast(presentation.selectionColor, presentation.selectionBackground))
+          .toBeCloseTo(selection.contrast, 2)
       })
-
-      expect(presentation.selectionBackground).not.toBe(presentation.footerBackground)
-      expect(presentation.selectionBackground).toBe('rgb(92, 115, 110)')
-      expect(presentation.selectionColor).toBe('rgb(253, 251, 249)')
-    })
+    }
   }
 
   for (const route of ['/', '/resume']) {

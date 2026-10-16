@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <section id="experience" class="resume-experience" aria-labelledby="resume-experience-title" data-reveal>
-    <CSectionMarker class="resume-experience__marker" number="04" />
+    <CSectionMarker class="resume-experience-marker" number="04" />
     <header>
       <h2 id="resume-experience-title">Experience</h2>
       <p>Real work. Lasting impact.</p>
@@ -18,7 +18,7 @@ defineProps<{
       <li v-for="role in roles" :key="`${role.company}-${role.title}`">
         <time>{{ role.shortPeriod }}</time>
         <article :aria-label="`${role.company}, ${role.title}`">
-          <div class="resume-experience__role">
+          <div class="resume-experience-role">
             <div>
               <h3>{{ role.company }}</h3>
               <p>{{ role.title }}</p>
@@ -44,20 +44,20 @@ defineProps<{
   padding: 3rem var(--page-gutter) 2.5rem;
 }
 
-.resume-experience__marker { grid-row: 1 / 3; }
+.resume-experience-marker { grid-row: 1 / 3; }
 
 .resume-experience header { grid-column: 2; }
 
 .resume-experience h2 {
   font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: var(--text-xl);
   letter-spacing: .12em;
   margin-bottom: .45rem;
   text-transform: uppercase;
 }
 
 .resume-experience header p {
-  font-size: .56rem;
+  font-size: var(--text-xs);
   letter-spacing: .28em;
   text-transform: uppercase;
 }
@@ -98,7 +98,7 @@ defineProps<{
 }
 
 .resume-experience > ol > li > time {
-  font-size: .73rem;
+  font-size: var(--text-xs);
   left: -7rem;
   line-height: 1.6;
   position: absolute;
@@ -112,30 +112,30 @@ defineProps<{
   padding: 0 0 1.35rem;
 }
 
-.resume-experience__role {
+.resume-experience-role {
   align-items: start;
   display: flex;
   justify-content: space-between;
 }
 
-.resume-experience__role h3 {
-  font-size: 1.1rem;
+.resume-experience-role h3 {
+  font-size: var(--text-md);
   margin: 0;
 }
 
-.resume-experience__role p {
-  font-size: .8rem;
+.resume-experience-role p {
+  font-size: var(--text-sm);
   letter-spacing: .1em;
   margin-bottom: .7rem;
 }
 
-.resume-experience__role time {
-  font-size: .75rem;
+.resume-experience-role time {
+  font-size: var(--text-xs);
   white-space: nowrap;
 }
 
 .resume-experience article ul {
-  font-size: .75rem;
+  font-size: var(--text-xs);
   line-height: 1.45;
   padding-left: 1.25rem;
 }
@@ -157,7 +157,7 @@ defineProps<{
 }
 
 .resume-experience aside p {
-  font-size: .55rem;
+  font-size: var(--text-xs);
   letter-spacing: .25em;
   line-height: 1.65;
   text-transform: uppercase;
@@ -166,7 +166,7 @@ defineProps<{
 .resume-experience aside span {
   bottom: 9rem;
   font-family: var(--font-note);
-  font-size: 1.25rem;
+  font-size: var(--text-md);
   line-height: 1;
   position: absolute;
   rotate: -8deg;
@@ -185,7 +185,7 @@ defineProps<{
   .resume-experience > ol > li { padding-top: 2.5rem; }
   .resume-experience > ol > li > time { left: 0; top: 0; width: auto; }
   .resume-experience > ol > li::before { left: -2.3rem; top: 2.9rem; }
-  .resume-experience__role { flex-direction: column; gap: .35rem; }
-  .resume-experience__role time { white-space: normal; }
+  .resume-experience-role { flex-direction: column; gap: .35rem; }
+  .resume-experience-role time { white-space: normal; }
 }
 </style>

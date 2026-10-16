@@ -31,7 +31,9 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
       <span>Frontend developer</span>
     </NuxtLink>
 
-    <ThemeToggle />
+    <div class="header-theme">
+      <ThemeToggle border="mobile" />
+    </div>
 
     <button
       ref="trigger"
@@ -48,13 +50,13 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     <nav
       id="primary-navigation"
       class="primary-nav"
-      :class="{ 'primary-nav--open': isOpen }"
+      :class="{ 'primary-nav-open': isOpen }"
       aria-label="Primary"
     >
       <a
         v-for="item in items"
         :key="item.label"
-        class="primary-nav__link"
+        class="primary-nav-link"
         :aria-current="currentState(item)"
         :href="item.href"
         @click="close()"
@@ -104,14 +106,14 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 .brand strong {
   color: var(--text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--text-base);
   letter-spacing: .3em;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .brand > span {
-  font-size: .55rem;
+  font-size: var(--text-xs);
   letter-spacing: .45em;
   margin-top: .5rem;
   text-transform: uppercase;
@@ -119,7 +121,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
 
 .primary-nav { align-items: stretch; display: flex; grid-area: navigation; }
 
-.primary-nav__link {
+.primary-nav-link {
   align-items: center;
   display: flex;
   min-width: 5.2rem;
@@ -128,7 +130,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   text-decoration: none;
 }
 
-.primary-nav__link::after {
+.primary-nav-link::after {
   background: var(--action);
   bottom: .75rem;
   content: '';
@@ -141,12 +143,12 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   transition: scale var(--duration-fast) var(--ease-out);
 }
 
-.primary-nav__link:is(:hover, :focus-visible)::after,
-.primary-nav__link[aria-current]::after { scale: 1 1; }
+.primary-nav-link:is(:hover, :focus-visible)::after,
+.primary-nav-link[aria-current]::after { scale: 1 1; }
 
-.primary-nav__link i { display: none; font-style: normal; }
+.primary-nav-link i { display: none; font-style: normal; }
 
-.site-header :deep(.theme-toggle) { border-left: 0; grid-area: theme; }
+.header-theme { display: grid; grid-area: theme; }
 .nav-trigger { display: none; grid-area: trigger; }
 
 @media (max-width: 54rem) {
@@ -154,7 +156,7 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     grid-template-areas: 'brand navigation theme';
     grid-template-columns: 1fr auto 4.5rem;
   }
-  .primary-nav__link { min-width: auto; padding-inline: .75rem; }
+  .primary-nav-link { min-width: auto; padding-inline: .75rem; }
 }
 
 @media (max-width: 40rem) {
@@ -165,10 +167,8 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
   }
 
   .brand { padding: .85rem 1.25rem; }
-  .brand strong { font-size: .75rem; }
-  .brand > span { font-size: .45rem; letter-spacing: .36em; margin-top: .35rem; }
-  .site-header :deep(.theme-toggle) { border-left: 1px solid var(--rule); }
-
+  .brand strong { font-size: var(--text-xs); }
+  .brand > span { font-size: var(--text-xs); letter-spacing: .36em; margin-top: .35rem; }
   .nav-trigger {
     align-items: center;
     background: transparent;
@@ -209,19 +209,19 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     visibility: hidden;
   }
 
-  .primary-nav--open { opacity: 1; pointer-events: auto; transform: none; visibility: visible; }
+  .primary-nav-open { opacity: 1; pointer-events: auto; transform: none; visibility: visible; }
 
-  .primary-nav__link {
+  .primary-nav-link {
     border-top: 1px solid var(--rule);
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    font-size: clamp(var(--text-xl), 9vw, var(--text-3xl));
     justify-content: space-between;
     min-height: 4.75rem;
     padding: .75rem 1.25rem;
   }
 
-  .primary-nav__link::after { bottom: 0; left: 1.25rem; right: 1.25rem; }
-  .primary-nav__link i {
+  .primary-nav-link::after { bottom: 0; left: 1.25rem; right: 1.25rem; }
+  .primary-nav-link i {
     background: var(--text);
     display: block;
     height: 1px;
@@ -229,8 +229,8 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     width: 1.1rem;
   }
 
-  .primary-nav__link i::before,
-  .primary-nav__link i::after {
+  .primary-nav-link i::before,
+  .primary-nav-link i::after {
     background: var(--text);
     content: '';
     height: 1px;
@@ -239,8 +239,8 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     width: .4rem;
   }
 
-  .primary-nav__link i::before { rotate: 45deg; transform-origin: right; }
-  .primary-nav__link i::after { rotate: -45deg; transform-origin: right; }
+  .primary-nav-link i::before { rotate: 45deg; transform-origin: right; }
+  .primary-nav-link i::after { rotate: -45deg; transform-origin: right; }
 }
 
 @media (prefers-reduced-motion: reduce) {

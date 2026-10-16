@@ -14,7 +14,7 @@ useEditorialMotion()
 <template>
   <div class="app-shell">
     <a class="skip-link" :href="skipTarget">Skip to content</a>
-    <SiteHeader :items="navigation" />
+    <SiteHeader class="print-hidden" :items="navigation" />
     <NuxtPage />
   </div>
 </template>
@@ -42,6 +42,6 @@ useEditorialMotion()
 
 @media print {
   .skip-link,
-  :deep(.site-header) { display: none !important; }
+  .print-hidden { display: none !important; }
 }
 </style>

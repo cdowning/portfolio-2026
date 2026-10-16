@@ -8,23 +8,24 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <li class="skill-tag" :class="`skill-tag--${variant}`">{{ label }}</li>
+  <li class="tag" :class="`tag-${variant}`">{{ label }}</li>
 </template>
 
 <style scoped>
-.skill-tag {
-  font-size: .72rem;
-  min-height: 2.1rem;
-  padding: .55rem .75rem;
+.tag {
+  font-size: var(--tag-font-size, var(--text-xs));
+  min-height: var(--tag-min-height, 2.1rem);
+  min-width: var(--tag-min-width, 0);
+  padding: var(--tag-padding, .55rem .75rem);
+  text-align: var(--tag-text-align, center);
 }
 
-.skill-tag--soft {
-  background: var(--support-wash);
+.tag-soft {
+  background: var(--tag-background, var(--support-wash));
   color: var(--text);
-  text-align: center;
 }
 
-.skill-tag--ruled {
+.tag-ruled {
   border-left: 1px solid var(--rule-strong);
 }
 </style>

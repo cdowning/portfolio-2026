@@ -7,13 +7,13 @@ test.describe('hero drafting scroll choreography', () => {
     await page.waitForLoadState('networkidle')
 
     const hero = page.locator('#top')
-    const stage = page.locator('.hero__stage')
+    const stage = page.locator('.hero-stage')
 
     await expect(hero).toHaveAttribute('data-hero-motion', 'scroll')
     await expect.poll(() => stage.evaluate(element => getComputedStyle(element).position)).toBe('sticky')
 
     const geometry = await hero.evaluate((element) => {
-      const stageElement = element.querySelector<HTMLElement>('.hero__stage')!
+      const stageElement = element.querySelector<HTMLElement>('.hero-stage')!
       return {
         heroTop: element.getBoundingClientRect().top + window.scrollY,
         travel: element.scrollHeight - stageElement.clientHeight,
@@ -54,7 +54,7 @@ test.describe('hero drafting scroll choreography', () => {
     await page.waitForLoadState('networkidle')
 
     const hero = page.locator('#top')
-    const stage = page.locator('.hero__stage')
+    const stage = page.locator('.hero-stage')
 
     await expect(hero).toHaveAttribute('data-hero-motion', 'scroll')
     await expect.poll(() => stage.evaluate(element => getComputedStyle(element).position)).toBe('sticky')
@@ -62,7 +62,7 @@ test.describe('hero drafting scroll choreography', () => {
     await expect(page.getByText('Interfaces that carry ideas further.', { exact: true })).toBeVisible()
 
     const geometry = await hero.evaluate((element) => {
-      const stageElement = element.querySelector<HTMLElement>('.hero__stage')!
+      const stageElement = element.querySelector<HTMLElement>('.hero-stage')!
       return {
         heroTop: element.getBoundingClientRect().top + window.scrollY,
         travel: element.scrollHeight - stageElement.clientHeight,
@@ -95,7 +95,7 @@ test.describe('hero drafting scroll choreography', () => {
 
     await expect(page).toHaveURL(/#work$/)
     await expect(page.getByRole('heading', { name: 'Selected work' })).toBeVisible()
-    await expect.poll(() => page.locator('.hero__stage').evaluate(element => Number.parseFloat(
+    await expect.poll(() => page.locator('.hero-stage').evaluate(element => Number.parseFloat(
       getComputedStyle(element).getPropertyValue('--hero-progress'),
     ))).toBeCloseTo(1, 1)
     await expect(page.getByRole('heading', {
@@ -110,11 +110,11 @@ test.describe('hero drafting scroll choreography', () => {
     await page.waitForLoadState('networkidle')
 
     const hero = page.locator('#top')
-    const stage = page.locator('.hero__stage')
+    const stage = page.locator('.hero-stage')
 
     await expect(hero).toHaveAttribute('data-hero-motion', 'compact')
     await expect.poll(() => stage.evaluate(element => getComputedStyle(element).position)).not.toBe('sticky')
-    await expect(page.locator('.hero__construction')).toBeVisible()
+    await expect(page.locator('.hero-construction')).toBeVisible()
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390)
   })
 
@@ -124,7 +124,7 @@ test.describe('hero drafting scroll choreography', () => {
     await page.waitForLoadState('networkidle')
 
     const hero = page.locator('#top')
-    const stage = page.locator('.hero__stage')
+    const stage = page.locator('.hero-stage')
 
     await expect(hero).toHaveAttribute('data-hero-motion', 'compact')
     await expect.poll(() => stage.evaluate(element => getComputedStyle(element).position)).not.toBe('sticky')
@@ -139,8 +139,8 @@ test.describe('hero drafting scroll choreography', () => {
     await page.waitForLoadState('networkidle')
 
     const hero = page.locator('#top')
-    const stage = page.locator('.hero__stage')
-    const solidArc = page.locator('.hero__construction-path--solid')
+    const stage = page.locator('.hero-stage')
+    const solidArc = page.locator('.hero-construction-path-solid')
 
     await expect(hero).toHaveAttribute('data-hero-motion', 'reduced')
     await expect.poll(() => stage.evaluate(element => getComputedStyle(element).position)).not.toBe('sticky')

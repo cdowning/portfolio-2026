@@ -31,3 +31,7 @@ export const Dark: Story = {
     `,
   }),
 }
+
+export const Borderless: Story = {
+  args: { border: 'none' },
+}

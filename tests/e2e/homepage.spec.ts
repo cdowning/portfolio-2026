@@ -29,7 +29,7 @@ test.describe('homepage composition', () => {
     await expect(page.getByText('15+ years', { exact: true })).toHaveCount(2)
     await expect(page.getByText('10+ years', { exact: true })).toHaveCount(0)
     await expect(page.getByText('Experience builds perspective')).toHaveCount(0)
-    const experienceAside = page.locator('.experience__aside')
+    const experienceAside = page.locator('.experience-aside')
     await expect(experienceAside).toBeVisible()
     await expect(experienceAside).toBeEmpty()
     await expect.poll(() => page.locator('.experience').evaluate((element) => (
@@ -79,7 +79,7 @@ test.describe('homepage composition', () => {
   })
 
   test('renders the handwritten sign-off with Lindsey Signature from Adobe Fonts', async ({ page }) => {
-    const note = page.locator('.hero__margin-note')
+    const note = page.locator('.hero-margin-note')
 
     await expect(page.locator('link[rel="stylesheet"][href="https://use.typekit.net/dsu3xor.css"]'))
       .toHaveCount(1)
@@ -97,9 +97,9 @@ test.describe('homepage composition', () => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await page.goto('/')
 
-    const presentation = await page.locator('.hero__margin-note').evaluate((element) => {
-      const copy = element.closest<HTMLElement>('.hero__copy')
-      const facts = copy?.querySelector<HTMLElement>('.hero__facts')
+    const presentation = await page.locator('.hero-margin-note').evaluate((element) => {
+      const copy = element.closest<HTMLElement>('.hero-copy')
+      const facts = copy?.querySelector<HTMLElement>('.hero-facts')
       if (!copy || !facts) throw new Error('Hero copy panel is missing')
 
       const noteRect = element.getBoundingClientRect()
@@ -148,12 +148,12 @@ test.describe('homepage composition', () => {
       await page.setViewportSize(viewport)
       await page.goto('/')
 
-      const geometry = await page.locator('.hero__copy').evaluate((copy) => {
-        const button = copy.querySelector<HTMLElement>('.hero__cta')
-        const connector = copy.querySelector<SVGElement>('.hero__cta-connector')
-        const note = copy.querySelector<HTMLElement>('.hero__margin-note')
-        const lower = copy.querySelector<HTMLElement>('.hero__lower')
-        const facts = copy.querySelector<HTMLElement>('.hero__facts')
+      const geometry = await page.locator('.hero-copy').evaluate((copy) => {
+        const button = copy.querySelector<HTMLElement>('.hero-cta')
+        const connector = copy.querySelector<SVGElement>('.hero-cta-connector')
+        const note = copy.querySelector<HTMLElement>('.hero-margin-note')
+        const lower = copy.querySelector<HTMLElement>('.hero-lower')
+        const facts = copy.querySelector<HTMLElement>('.hero-facts')
         if (!button || !connector || !note || !lower || !facts) {
           throw new Error('Anchored hero elements are missing')
         }
@@ -176,7 +176,7 @@ test.describe('homepage composition', () => {
 
       expect(Math.abs(geometry.connectorCenterY - geometry.buttonCenterY)).toBeLessThanOrEqual(1)
       expect(Math.abs(geometry.connectorStartX - geometry.buttonEndX)).toBeLessThanOrEqual(1)
-      expect(geometry.noteParentClass).toContain('hero__lower')
+      expect(geometry.noteParentClass).toContain('hero-lower')
       expect(geometry.notePosition).not.toBe('absolute')
       expect(geometry.noteToFactsGap).toBeGreaterThanOrEqual(16)
     }
@@ -187,7 +187,7 @@ test.describe('homepage composition', () => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await page.goto('/')
 
-    const presentation = await page.locator('.hero__margin-note').evaluate((note) => {
+    const presentation = await page.locator('.hero-margin-note').evaluate((note) => {
       return {
         noteLineHeight: Number.parseFloat(getComputedStyle(note).lineHeight),
         noteFontSize: Number.parseFloat(getComputedStyle(note).fontSize),
@@ -202,9 +202,9 @@ test.describe('homepage composition', () => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await page.goto('/')
 
-    const presentation = await page.locator('.hero__stage').evaluate((stage) => {
-      const button = stage.querySelector<HTMLElement>('.hero__cta')
-      const callout = stage.querySelector<HTMLElement>('.hero__callout--03')
+    const presentation = await page.locator('.hero-stage').evaluate((stage) => {
+      const button = stage.querySelector<HTMLElement>('.hero-cta')
+      const callout = stage.querySelector<HTMLElement>('.hero-callout-03')
       if (!button || !callout) throw new Error('Hero annotations are missing')
 
       const buttonRect = button.getBoundingClientRect()
@@ -229,26 +229,26 @@ test.describe('homepage composition', () => {
     }))).toEqual({ width: 1098, height: 1433 })
     await expect(page.getByText('Original source pending')).toHaveCount(0)
 
-    const construction = page.locator('.hero__construction')
+    const construction = page.locator('.hero-construction')
     await expect(construction).toHaveAttribute('aria-hidden', 'true')
-    await expect(construction.locator('.hero__construction-path--solid')).toHaveCount(1)
-    await expect(construction.locator('.hero__construction-path--dashed')).toHaveCount(2)
-    await expect(construction.locator('.hero__crosshair')).toHaveCount(2)
-    await expect(page.locator('.hero__cta-connector-path')).toHaveCount(1)
-    await expect(page.locator('.hero__crosshair')).toHaveCount(3)
-    await expect(page.locator('.hero__callout')).toHaveCount(3)
-    await expect(page.locator('.hero__callout-index')).toHaveText(['02', '03', '04'])
+    await expect(construction.locator('.hero-construction-path-solid')).toHaveCount(1)
+    await expect(construction.locator('.hero-construction-path-dashed')).toHaveCount(2)
+    await expect(construction.locator('.hero-crosshair')).toHaveCount(2)
+    await expect(page.locator('.hero-cta-connector-path')).toHaveCount(1)
+    await expect(page.locator('.hero-crosshair')).toHaveCount(3)
+    await expect(page.locator('.hero-callout')).toHaveCount(3)
+    await expect(page.locator('.hero-callout-index')).toHaveText(['02', '03', '04'])
 
-    const measurementRuler = page.locator('.hero__measurement-ruler')
-    const measurementTicks = page.locator('.hero__measurement-ticks')
+    const measurementRuler = page.locator('.hero-measurement-ruler')
+    const measurementTicks = page.locator('.hero-measurement-ticks')
     if ((page.viewportSize()?.width ?? 0) > 1024) {
       await expect(measurementRuler).toBeVisible()
       await expect(measurementTicks).toBeVisible()
 
-      const rulerGeometry = await page.locator('.hero__construction').evaluate((element) => {
-        const ruler = element.querySelector<SVGPathElement>('.hero__measurement-ruler')
-        const ticks = element.querySelector<SVGPathElement>('.hero__measurement-ticks')
-        const callout = element.querySelector<HTMLElement>('.hero__callout--04')
+      const rulerGeometry = await page.locator('.hero-construction').evaluate((element) => {
+        const ruler = element.querySelector<SVGPathElement>('.hero-measurement-ruler')
+        const ticks = element.querySelector<SVGPathElement>('.hero-measurement-ticks')
+        const callout = element.querySelector<HTMLElement>('.hero-callout-04')
         if (!ruler || !ticks || !callout) throw new Error('Hero ruler treatment is missing')
 
         const rulerRect = ruler.getBoundingClientRect()
@@ -268,8 +268,8 @@ test.describe('homepage composition', () => {
     }
 
     const constructionStyles = await construction.evaluate((element) => {
-      const solid = element.querySelector<SVGPathElement>('.hero__construction-path--solid')
-      const dashed = element.querySelector<SVGPathElement>('.hero__construction-path--dashed')
+      const solid = element.querySelector<SVGPathElement>('.hero-construction-path-solid')
+      const dashed = element.querySelector<SVGPathElement>('.hero-construction-path-dashed')
       return {
         solidDash: solid ? getComputedStyle(solid).strokeDasharray : '',
         dashedDash: dashed ? getComputedStyle(dashed).strokeDasharray : '',
@@ -278,17 +278,17 @@ test.describe('homepage composition', () => {
     expect(constructionStyles.solidDash).toBe('none')
     expect(constructionStyles.dashedDash).not.toBe('none')
 
-    const firstRole = page.locator('.experience__list > li').first()
+    const firstRole = page.locator('.experience-list > li').first()
     await expect(firstRole).toContainText('Senior Frontend Engineer')
     await expect(firstRole).toContainText('Allocate')
 
     const treatments = await page.evaluate(() => {
-      const swatch = document.querySelector<HTMLElement>('.hero__swatches .fabric-swatch')
+      const swatch = document.querySelector<HTMLElement>('.hero-swatches .fabric-swatch')
       return {
         bodyBackgroundImage: getComputedStyle(document.body).backgroundImage,
         swatchBackgroundImage: swatch ? getComputedStyle(swatch).backgroundImage : '',
         swatchMaskImage: swatch ? getComputedStyle(swatch).maskImage : '',
-        swatchCount: document.querySelectorAll('.hero__swatches .fabric-swatch').length,
+        swatchCount: document.querySelectorAll('.hero-swatches .fabric-swatch').length,
       }
     })
 
@@ -304,22 +304,22 @@ test.describe('homepage composition', () => {
     await page.waitForLoadState('networkidle')
 
     const hero = page.locator('#top')
-    const portrait = page.locator('.hero__portrait')
+    const portrait = page.locator('.hero-portrait')
 
     await expect(hero).toHaveAttribute('data-hero-motion', 'scroll')
-    await expect(portrait.locator('.hero__portrait-ground')).toHaveCount(0)
+    await expect(portrait.locator('.hero-portrait-ground')).toHaveCount(0)
 
     const treatment = await portrait.evaluate((element) => {
-      const image = element.querySelector<HTMLElement>('.hero__image')
-      const grid = element.querySelector<HTMLElement>('.hero__portrait-grid')
-      const cover = element.querySelector<HTMLElement>('.hero__portrait-cover')
+      const image = element.querySelector<HTMLElement>('.hero-image')
+      const grid = element.querySelector<HTMLElement>('.hero-portrait-grid')
+      const cover = element.querySelector<HTMLElement>('.hero-portrait-cover')
       if (!image || !grid || !cover) throw new Error('Portrait treatment layers are missing')
 
       const portraitRect = element.getBoundingClientRect()
       const imageRect = image.getBoundingClientRect()
       const gridStyles = getComputedStyle(grid)
       const coverStyles = getComputedStyle(cover)
-      const canvasColor = getComputedStyle(element.closest<HTMLElement>('.hero__stage')!).backgroundColor
+      const canvasColor = getComputedStyle(element.closest<HTMLElement>('.hero-stage')!).backgroundColor
 
       return {
         imageWidthRatio: imageRect.width / portraitRect.width,
@@ -347,7 +347,7 @@ test.describe('homepage composition', () => {
     expect(treatment.coverHeightRatio).toBeLessThanOrEqual(.28)
 
     const geometry = await hero.evaluate((element) => {
-      const stage = element.querySelector<HTMLElement>('.hero__stage')!
+      const stage = element.querySelector<HTMLElement>('.hero-stage')!
       return {
         heroTop: element.getBoundingClientRect().top + window.scrollY,
         travel: element.scrollHeight - stage.clientHeight,
@@ -359,7 +359,7 @@ test.describe('homepage composition', () => {
       behavior: 'instant',
     }), geometry)
 
-    await expect.poll(() => portrait.locator('.hero__portrait-cover').evaluate(
+    await expect.poll(() => portrait.locator('.hero-portrait-cover').evaluate(
       element => getComputedStyle(element).clipPath,
     )).not.toContain('100%')
   })

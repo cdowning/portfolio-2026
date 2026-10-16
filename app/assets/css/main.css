@@ -279,8 +279,8 @@
   }
 
   footer ::selection {
-    background: var(--support);
-    color: var(--canvas);
+    background: var(--on-footer);
+    color: var(--footer);
   }
 
   :focus-visible {
@@ -302,7 +302,7 @@
     animation: editorial-reveal var(--duration-medium) var(--ease-out) both;
   }
 
-  html[data-motion='enhanced'] [data-reveal='hero'][data-revealed='true'] :is(.hero__arc, .resume-intro__arc) {
+  html[data-motion='enhanced'] [data-reveal='hero'][data-revealed='true'] :is(.hero-arc, .resume-intro-arc) {
     animation: drafting-assembly var(--duration-draw) var(--ease-out) 120ms both;
   }
 

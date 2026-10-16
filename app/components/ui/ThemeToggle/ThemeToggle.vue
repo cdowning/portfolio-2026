@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { useTheme } from '~/composables/useTheme'
 
+withDefaults(defineProps<{
+  border?: 'left' | 'mobile' | 'none'
+}>(), {
+  border: 'left',
+})
+
 const { resolvedTheme, toggleTheme } = useTheme()
 </script>
 
 <template>
   <button
     class="theme-toggle"
+    :class="`theme-toggle-border-${border}`"
     type="button"
     aria-label="Toggle color theme"
     :data-theme-state="resolvedTheme"
@@ -27,7 +34,6 @@ const { resolvedTheme, toggleTheme } = useTheme()
   align-items: center;
   background: transparent;
   border: 0;
-  border-left: 1px solid var(--rule);
   color: var(--text);
   cursor: pointer;
   display: flex;
@@ -36,8 +42,10 @@ const { resolvedTheme, toggleTheme } = useTheme()
   min-height: 2.75rem;
   min-width: 2.75rem;
   padding: 0;
+  width: 100%;
 }
 
+.theme-toggle-border-left { border-left: 1px solid var(--rule); }
 .theme-toggle:focus-visible { outline-offset: -4px; }
 
 .theme-toggle svg {
@@ -55,6 +63,10 @@ const { resolvedTheme, toggleTheme } = useTheme()
 
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle svg { transition-duration: 0s; }
+}
+
+@media (max-width: 40rem) {
+  .theme-toggle-border-mobile { border-left: 1px solid var(--rule); }
 }
 
 @media print {

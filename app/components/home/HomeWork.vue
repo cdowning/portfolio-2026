@@ -9,32 +9,32 @@ defineProps<{
 
 <template>
   <section id="work" class="work" aria-labelledby="work-title" data-reveal>
-    <header class="work__heading">
+    <header class="work-heading">
       <div class="section-index"><span>Next</span><strong>02</strong></div>
       <div>
         <h2 id="work-title">Selected work</h2>
         <p>Real problems. Thoughtful solutions.</p>
       </div>
-      <span class="work__rule" aria-hidden="true" />
-      <p class="work__note" aria-hidden="true">Created<br>with care</p>
+      <span class="work-rule" aria-hidden="true" />
+      <p class="work-note" aria-hidden="true">Created<br>with care</p>
     </header>
 
-    <div class="work__grid">
+    <div class="work-grid">
       <article v-for="item in items" :key="item.index" class="work-card">
         <div class="specimen" :class="`specimen--${item.specimen}`" aria-hidden="true">
           <template v-if="item.specimen === 'components'">
-            <div class="specimen__sidebar"><i v-for="n in 6" :key="n" /></div>
-            <div class="specimen__canvas">
+            <div class="specimen-sidebar"><i v-for="n in 6" :key="n" /></div>
+            <div class="specimen-canvas">
               <small>Buttons</small><b>Component states</b>
-              <div class="specimen__buttons"><i /><i /><i /></div>
-              <div class="specimen__rows"><span v-for="n in 3" :key="n" /></div>
+              <div class="specimen-buttons"><i /><i /><i /></div>
+              <div class="specimen-rows"><span v-for="n in 3" :key="n" /></div>
             </div>
           </template>
           <template v-else-if="item.specimen === 'interaction'">
-            <div class="flow"><i class="flow__active" /><i /><i /><i /></div>
+            <div class="flow"><i class="flow-active" /><i /><i /><i /></div>
             <b>Profile flow</b><small>Clear steps. Less friction.</small>
             <div class="form-lines"><i /><i /><i /></div>
-            <span class="specimen__button">Continue</span>
+            <span class="specimen-button">Continue</span>
           </template>
           <template v-else>
             <div class="system-top"><i /><i /><i /></div>
@@ -43,17 +43,17 @@ defineProps<{
           </template>
         </div>
 
-        <div class="work-card__body">
-          <div class="work-card__index">{{ item.index }}</div>
+        <div class="work-card-body">
+          <div class="work-card-index">{{ item.index }}</div>
           <div>
             <h3>{{ item.title }}</h3>
-            <p class="work-card__eyebrow">{{ item.eyebrow }}</p>
-            <p class="work-card__description">{{ item.description }}</p>
-            <ul class="work-card__tags" aria-label="Technologies and disciplines">
+            <p class="work-card-eyebrow">{{ item.eyebrow }}</p>
+            <p class="work-card-description">{{ item.description }}</p>
+            <ul class="work-card-tags" aria-label="Technologies and disciplines">
               <CTag v-for="tag in item.tags" :key="tag" :label="tag" />
             </ul>
             <a
-              class="work-card__link"
+              class="work-card-link"
               :href="item.href"
               :target="item.external ? '_blank' : undefined"
               :rel="item.external ? 'noreferrer' : undefined"
@@ -74,7 +74,7 @@ defineProps<{
   padding: 2.5rem var(--page-gutter) 4.5rem;
 }
 
-.work__heading {
+.work-heading {
   align-items: center;
   display: grid;
   gap: 2.5rem;
@@ -90,41 +90,41 @@ defineProps<{
 }
 
 .section-index span {
-  font-size: .55rem;
+  font-size: var(--text-xs);
   letter-spacing: .3em;
   text-transform: uppercase;
 }
 
 .section-index strong {
-  font-size: 1.2rem;
+  font-size: var(--text-md);
   font-weight: 400;
 }
 
-.work__heading h2 {
+.work-heading h2 {
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-size: var(--text-3xl);
   letter-spacing: -.04em;
   line-height: 1;
   margin-bottom: .65rem;
 }
 
-.work__heading p {
-  font-size: .6rem;
+.work-heading p {
+  font-size: var(--text-xs);
   letter-spacing: .3em;
   margin: 0;
   text-transform: uppercase;
 }
 
-.work__rule {
+.work-rule {
   background: var(--rule-strong);
   height: 1px;
 }
 
-.work__note {
+.work-note {
   line-height: 1.8;
 }
 
-.work__grid {
+.work-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
@@ -169,66 +169,66 @@ defineProps<{
 }
 
 .specimen b {
-  font-size: .9rem;
+  font-size: var(--text-sm);
   margin-bottom: .45rem;
 }
 
 .specimen small {
-  font-size: .56rem;
+  font-size: var(--text-xs);
   letter-spacing: .08em;
   margin-bottom: 1.1rem;
 }
 
-.specimen--components {
+.specimen-components {
   display: grid;
   grid-template-columns: 23% 1fr;
   padding: 0;
 }
 
-.specimen__sidebar {
+.specimen-sidebar {
   background: var(--support-wash);
   display: grid;
   gap: .75rem;
   padding: 2.5rem .85rem 1rem;
 }
 
-.specimen__sidebar i {
+.specimen-sidebar i {
   background: color-mix(in srgb, var(--support) 45%, transparent);
   height: .32rem;
   width: 80%;
 }
 
-.specimen__canvas {
+.specimen-canvas {
   padding: 2.5rem 1.1rem 1rem;
 }
 
-.specimen__buttons {
+.specimen-buttons {
   display: flex;
   gap: .5rem;
   margin: 1.5rem 0;
 }
 
-.specimen__buttons i {
+.specimen-buttons i {
   background: var(--support);
   border-radius: .15rem;
   height: 1.5rem;
   width: 3.6rem;
 }
 
-.specimen__buttons i:nth-child(2) { background: transparent; border: 1px solid var(--support); }
-.specimen__buttons i:nth-child(3) { background: var(--surface-muted); }
+.specimen-buttons i:nth-child(2) { background: transparent; border: 1px solid var(--support); }
+.specimen-buttons i:nth-child(3) { background: var(--surface-muted); }
 
-.specimen__rows {
+.specimen-rows {
   display: grid;
   gap: .65rem;
 }
 
-.specimen__rows span {
+.specimen-rows span {
   background: linear-gradient(90deg, var(--support-highlight) 0 20%, var(--surface-muted) 20% 100%);
   height: .8rem;
 }
 
-.specimen--interaction {
+.specimen-interaction {
   padding-top: 2.5rem;
 }
 
@@ -258,7 +258,7 @@ defineProps<{
   width: .9rem;
 }
 
-.flow .flow__active { background: var(--support); }
+.flow .flow-active { background: var(--support); }
 
 .form-lines {
   display: grid;
@@ -271,18 +271,18 @@ defineProps<{
   height: 1.35rem;
 }
 
-.specimen__button {
+.specimen-button {
   background: var(--support);
   color: var(--canvas);
   display: block;
-  font-size: .55rem;
+  font-size: var(--text-xs);
   margin-top: .7rem;
   padding: .45rem;
   text-align: center;
   width: 4.5rem;
 }
 
-.specimen--systems {
+.specimen-systems {
   padding-top: 2.5rem;
 }
 
@@ -319,37 +319,41 @@ defineProps<{
   grid-column: 1 / -1;
 }
 
-.work-card__body {
+.work-card-body {
   display: grid;
   gap: 1rem;
   grid-template-columns: 2.4rem 1fr;
   padding-top: 1.5rem;
 }
 
-.work-card__index {
+.work-card-index {
   border-right: 1px solid var(--rule-strong);
-  font-size: .65rem;
+  font-size: var(--text-xs);
 }
 
 .work-card h3 {
-  font-size: 1.3rem;
+  font-size: var(--text-lg);
   font-weight: 500;
   margin: 0 0 .35rem;
 }
 
-.work-card__eyebrow {
-  font-size: .55rem;
+.work-card-eyebrow {
+  font-size: var(--text-xs);
   letter-spacing: .25em;
   text-transform: uppercase;
 }
 
-.work-card__description {
-  font-size: .85rem;
+.work-card-description {
+  font-size: var(--text-sm);
   line-height: 1.45;
   max-width: 34ch;
 }
 
-.work-card__tags {
+.work-card-tags {
+  --tag-font-size: var(--text-xs);
+  --tag-min-height: 0;
+  --tag-padding: .3rem .45rem;
+
   display: flex;
   flex-wrap: wrap;
   gap: .4rem;
@@ -358,22 +362,20 @@ defineProps<{
   padding: 0;
 }
 
-.work-card__tags :deep(.skill-tag) { font-size: .63rem; min-height: 0; padding: .3rem .45rem; }
-
-.work-card__link {
-  font-size: .75rem;
+.work-card-link {
+  font-size: var(--text-xs);
   text-decoration-color: var(--rule-strong);
   text-underline-offset: .3rem;
 }
 
-.work-card__link span {
+.work-card-link span {
   display: inline-block;
-  font-size: 1rem;
+  font-size: var(--text-base);
   margin-left: .5rem;
 }
 
 @media (max-width: 65rem) {
-  .work__grid {
+  .work-grid {
     grid-template-columns: 1fr;
   }
 
@@ -393,14 +395,14 @@ defineProps<{
     padding: 2.5rem 1.25rem;
   }
 
-  .work__heading {
+  .work-heading {
     align-items: start;
     gap: 1rem;
     grid-template-columns: 3.4rem 1fr;
   }
 
-  .work__rule,
-  .work__note {
+  .work-rule,
+  .work-note {
     display: none;
   }
 }

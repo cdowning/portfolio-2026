@@ -21,30 +21,30 @@ const emit = defineEmits<{
 <template>
   <a
     v-if="href"
-    class="action-control"
-    :class="[`action-control--${tone}`, `action-control--${size}`]"
+    class="button"
+    :class="[`button-${tone}`, `button-${size}`]"
     :href="href"
     :aria-label="ariaLabel"
     :target="external ? '_blank' : undefined"
     :rel="external ? 'noreferrer' : undefined"
     @click="emit('click', $event)"
   >
-    <span><slot /></span><i class="action-control__arrow" aria-hidden="true" />
+    <span><slot /></span><i class="button-arrow" aria-hidden="true" />
   </a>
   <button
     v-else
-    class="action-control"
-    :class="[`action-control--${tone}`, `action-control--${size}`]"
+    class="button"
+    :class="[`button-${tone}`, `button-${size}`]"
     type="button"
     :aria-label="ariaLabel"
     @click="emit('click', $event)"
   >
-    <span><slot /></span><i class="action-control__arrow" aria-hidden="true" />
+    <span><slot /></span><i class="button-arrow" aria-hidden="true" />
   </button>
 </template>
 
 <style scoped>
-.action-control {
+.button {
   align-items: center;
   border: 0;
   cursor: pointer;
@@ -58,12 +58,12 @@ const emit = defineEmits<{
   transition: background-color var(--duration-fast) var(--ease-out);
 }
 
-.action-control--large { font-size: 1.1rem; min-height: 4.2rem; padding-inline: 2rem; }
-.action-control--gold { background: var(--action); color: var(--on-action); }
-.action-control--ink { background: var(--footer-action); color: var(--on-footer-action); }
-.action-control--gold:is(:hover, :focus-visible) { background: var(--action-hover); }
+.button-large { font-size: var(--text-md); min-height: 4.2rem; padding-inline: 2rem; }
+.button-gold { background: var(--action); color: var(--on-action); }
+.button-ink { background: var(--footer-action); color: var(--on-footer-action); }
+.button-gold:is(:hover, :focus-visible) { background: var(--action-hover); }
 
-.action-control__arrow {
+.button-arrow {
   display: block;
   height: 1px;
   position: relative;
@@ -71,12 +71,12 @@ const emit = defineEmits<{
   width: 1.15rem;
 }
 
-.action-control__arrow,
-.action-control__arrow::before,
-.action-control__arrow::after { background: currentcolor; }
+.button-arrow,
+.button-arrow::before,
+.button-arrow::after { background: currentcolor; }
 
-.action-control__arrow::before,
-.action-control__arrow::after {
+.button-arrow::before,
+.button-arrow::after {
   content: '';
   height: 1px;
   position: absolute;
@@ -84,11 +84,11 @@ const emit = defineEmits<{
   width: .45rem;
 }
 
-.action-control__arrow::before { rotate: 45deg; transform-origin: right; }
-.action-control__arrow::after { rotate: -45deg; transform-origin: right; }
-.action-control:is(:hover, :focus-visible) .action-control__arrow { translate: .25rem 0; }
+.button-arrow::before { rotate: 45deg; transform-origin: right; }
+.button-arrow::after { rotate: -45deg; transform-origin: right; }
+.button:is(:hover, :focus-visible) .button-arrow { translate: .25rem 0; }
 
 @media (prefers-reduced-motion: reduce) {
-  .action-control__arrow { transition-duration: 0s; }
+  .button-arrow { transition-duration: 0s; }
 }
 </style>

@@ -16,12 +16,12 @@ defineProps<{
 .section-marker {
   border-right: 1px solid var(--rule-strong);
   display: grid;
-  font-size: .7rem;
+  font-size: var(--text-xs);
   gap: .45rem;
 }
 
 .section-marker span {
-  font-size: .55rem;
+  font-size: var(--text-xs);
   letter-spacing: .3em;
   text-transform: uppercase;
 }

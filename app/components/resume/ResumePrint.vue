@@ -16,7 +16,7 @@ function forPrint(value: string) {
 
 <template>
   <div class="resume-print">
-    <section class="print-page print-page--profile">
+    <section class="print-page print-page-profile">
       <header class="print-identity">
         <div>
           <p class="print-label">Frontend developer</p>
@@ -68,15 +68,15 @@ function forPrint(value: string) {
         </ul>
       </section>
 
-      <footer class="print-page__footer">
+      <footer class="print-page-footer">
         <strong>Caitlin Hawley</strong>
         <span>Thoughtful code for a brighter web.</span>
         <span>Page 1 / 2</span>
       </footer>
     </section>
 
-    <section class="print-page print-page--experience">
-      <header class="print-page__heading">
+    <section class="print-page print-page-experience">
+      <header class="print-page-heading">
         <div><p class="print-label">Caitlin Hawley</p><h1>Experience</h1></div>
         <p>More than a decade turning visual ideas into accessible, reusable interfaces.</p>
       </header>
@@ -102,7 +102,7 @@ function forPrint(value: string) {
         </section>
       </div>
 
-      <footer class="print-page__footer">
+      <footer class="print-page-footer">
         <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
         <a :href="profile.website">caitlinhawley.com</a>
         <span>Page 2 / 2</span>
@@ -160,7 +160,7 @@ function forPrint(value: string) {
   }
 
   .print-identity h1,
-  .print-page__heading h1 {
+  .print-page-heading h1 {
     font-family: var(--font-display);
     font-size: 37pt;
     letter-spacing: -.03em;
@@ -184,7 +184,7 @@ function forPrint(value: string) {
   }
 
   .print-identity address a,
-  .print-page__footer a {
+  .print-page-footer a {
     color: #111;
     text-decoration: none;
   }
@@ -253,7 +253,7 @@ function forPrint(value: string) {
   .print-method strong { font-size: 7.5pt; text-transform: uppercase; }
   .print-method span { font-size: 6.5pt; line-height: 1.3; margin-top: .05in; }
 
-  .print-page__footer {
+  .print-page-footer {
     align-items: center;
     border-top: 1px solid #111;
     display: grid;
@@ -263,9 +263,9 @@ function forPrint(value: string) {
     padding-top: .12in;
   }
 
-  .print-page__footer span:nth-child(2) { text-align: center; }
+  .print-page-footer span:nth-child(2) { text-align: center; }
 
-  .print-page__heading {
+  .print-page-heading {
     align-items: end;
     border-bottom: 1.5px solid #111;
     display: grid;
@@ -274,8 +274,8 @@ function forPrint(value: string) {
     padding-bottom: .2in;
   }
 
-  .print-page__heading h1 { font-size: 31pt; margin-bottom: 0; }
-  .print-page__heading > p { font-size: 8.5pt; line-height: 1.35; margin: 0; }
+  .print-page-heading h1 { font-size: 31pt; margin-bottom: 0; }
+  .print-page-heading > p { font-size: 8.5pt; line-height: 1.35; margin: 0; }
 
   .print-roles { list-style: none; margin: .18in 0 0; padding: 0; }
   .print-roles > li {

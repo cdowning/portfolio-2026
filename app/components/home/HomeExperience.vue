@@ -11,16 +11,16 @@ defineProps<{
 
 <template>
   <section id="experience" class="experience" aria-labelledby="experience-title" data-reveal>
-    <CSectionMarker class="experience__marker" number="04" />
-    <header class="experience__heading">
+    <CSectionMarker class="experience-marker" number="04" />
+    <header class="experience-heading">
       <h2 id="experience-title">Experience</h2>
       <p>{{ experienceLabel }} of building, learning, and growing.</p>
     </header>
-    <div class="experience__summary">
+    <div class="experience-summary">
       <strong>{{ experienceLabel }}</strong>
       <span>of frontend<br>development<br>experience</span>
     </div>
-    <ol class="experience__list">
+    <ol class="experience-list">
       <li v-for="role in roles" :key="`${role.company}-${role.title}`">
         <div>
           <strong>{{ role.title }}</strong>
@@ -30,8 +30,8 @@ defineProps<{
         <p>{{ role.skills.join(' · ') }}</p>
       </li>
     </ol>
-    <div class="experience__aside" aria-hidden="true" />
-    <CButton class="experience__link" href="/resume">View full resume</CButton>
+    <div class="experience-aside" aria-hidden="true" />
+    <CButton class="experience-link" href="/resume">View full resume</CButton>
   </section>
 </template>
 
@@ -45,44 +45,44 @@ defineProps<{
   position: relative;
 }
 
-.experience__marker { grid-row: 1 / 3; }
+.experience-marker { grid-row: 1 / 3; }
 
-.experience__heading {
+.experience-heading {
   grid-column: 2 / 4;
 }
 
-.experience__heading h2 {
+.experience-heading h2 {
   font-family: var(--font-display);
-  font-size: 2.35rem;
+  font-size: var(--text-3xl);
   letter-spacing: -.04em;
   line-height: 1;
   margin-bottom: .7rem;
 }
 
-.experience__heading p,
-.experience__summary span {
-  font-size: .56rem;
+.experience-heading p,
+.experience-summary span {
+  font-size: var(--text-xs);
   letter-spacing: .28em;
   line-height: 1.65;
   text-transform: uppercase;
 }
 
-.experience__summary {
+.experience-summary {
   align-self: center;
   grid-column: 2;
 }
 
-.experience__summary strong,
-.experience__summary span {
+.experience-summary strong,
+.experience-summary span {
   display: block;
 }
 
-.experience__summary strong {
-  font-size: 2.1rem;
+.experience-summary strong {
+  font-size: var(--text-2xl);
   margin-bottom: 1rem;
 }
 
-.experience__list {
+.experience-list {
   border-left: 1px solid var(--rule-strong);
   grid-column: 3;
   list-style: none;
@@ -90,7 +90,7 @@ defineProps<{
   padding: 0 0 0 2rem;
 }
 
-.experience__list li {
+.experience-list li {
   align-items: center;
   border-bottom: 1px solid var(--rule);
   display: grid;
@@ -101,7 +101,7 @@ defineProps<{
   position: relative;
 }
 
-.experience__list li::before {
+.experience-list li::before {
   background: var(--canvas);
   border: 1px solid var(--text);
   border-radius: 50%;
@@ -112,45 +112,45 @@ defineProps<{
   width: .6rem;
 }
 
-.experience__list strong,
-.experience__list span {
+.experience-list strong,
+.experience-list span {
   display: block;
 }
 
-.experience__list strong {
-  font-size: .85rem;
+.experience-list strong {
+  font-size: var(--text-sm);
 }
 
-.experience__list span {
-  font-size: .54rem;
+.experience-list span {
+  font-size: var(--text-xs);
   letter-spacing: .22em;
   text-transform: uppercase;
 }
 
-.experience__list time,
-.experience__list p {
-  font-size: .68rem;
+.experience-list time,
+.experience-list p {
+  font-size: var(--text-xs);
   line-height: 1.4;
   margin: 0;
 }
 
-.experience__aside {
+.experience-aside {
   border-left: 1px solid var(--rule-strong);
   grid-column: 4;
   grid-row: 1 / 3;
   padding-left: 1.5rem;
 }
 
-.experience__link {
+.experience-link {
   bottom: 2.25rem;
-  font-size: .75rem;
+  font-size: var(--text-xs);
   min-height: 3.2rem;
   position: absolute;
   right: var(--page-gutter);
 }
 
 @media (min-width: 68.0625rem) {
-  .experience__link { bottom: 1.2rem; }
+  .experience-link { bottom: 1.2rem; }
 }
 
 @media (max-width: 68rem) {
@@ -158,8 +158,8 @@ defineProps<{
     grid-template-columns: 3rem 10rem 1fr;
   }
 
-  .experience__aside { display: none; }
-  .experience__heading { grid-column: 2 / -1; }
+  .experience-aside { display: none; }
+  .experience-heading { grid-column: 2 / -1; }
 }
 
 @media (max-width: 44rem) {
@@ -169,15 +169,15 @@ defineProps<{
     padding: 3rem 1.25rem 7rem;
   }
 
-  .experience__heading,
-  .experience__summary,
-  .experience__list {
+  .experience-heading,
+  .experience-summary,
+  .experience-list {
     grid-column: 2;
   }
 
-  .experience__marker { grid-row: 1 / 4; }
+  .experience-marker { grid-row: 1 / 4; }
 
-  .experience__list li {
+  .experience-list li {
     align-items: start;
     grid-template-columns: 1fr;
     padding: 1rem 0;

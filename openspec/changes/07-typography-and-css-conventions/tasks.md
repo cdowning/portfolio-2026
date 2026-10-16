@@ -27,30 +27,30 @@
 
 ## Task 3: Migrate shared UI classes and variants
 
-- [ ] Convert `CButton`, `CTag`, `CSectionMarker`, `FabricSwatches`, `ThemeToggle`, and `SiteHeader` from BEM to flat scoped classes.
-- [ ] Keep dynamic variants as explicit typed-prop classes such as `.button-large` and `.button-gold`.
-- [ ] Replace avoidable parent `:deep()` dependencies with props, wrappers, or CSS custom properties.
-- [ ] Update component stories and focused tests with each slice.
+- [x] Convert `CButton`, `CTag`, `CSectionMarker`, `FabricSwatches`, `ThemeToggle`, and `SiteHeader` from BEM to flat scoped classes.
+- [x] Keep dynamic variants as explicit typed-prop classes such as `.button-large` and `.button-gold`.
+- [x] Replace avoidable parent `:deep()` dependencies with props, wrappers, or CSS custom properties.
+- [x] Update component stories and focused tests with each slice.
 
 ## Task 4: Migrate homepage and résumé classes
 
-- [ ] Convert homepage components one at a time; update templates, scoped selectors, and tests together.
-- [ ] Convert résumé screen components one at a time; keep print selectors isolated.
-- [ ] Replace styling-class runtime queries with Vue template refs.
-- [ ] Preserve hero scroll geometry, reverse scroll, compact mode, reduced motion, and theme behavior.
+- [x] Convert homepage components one at a time; update templates, scoped selectors, and tests together.
+- [x] Convert résumé screen components one at a time; keep print selectors isolated.
+- [x] Replace styling-class runtime queries with Vue template refs.
+- [x] Preserve hero scroll geometry, reverse scroll, compact mode, reduced motion, and theme behavior.
 
 ## Task 5: Apply shared type roles
 
-- [ ] Map one-off screen font sizes to nearest intentional primitive or semantic role.
-- [ ] Preserve authored hierarchy while removing unjustified intermediate values.
-- [ ] Raise meaningful screen labels below `--text-xs` to readability floor.
-- [ ] Keep decorative exceptions hidden from assistive technology and documented.
+- [x] Map one-off screen font sizes to nearest intentional primitive or semantic role.
+- [x] Preserve authored hierarchy while removing unjustified intermediate values.
+- [x] Raise meaningful screen labels below `--text-xs` to readability floor.
+- [x] Keep decorative exceptions hidden from assistive technology and documented.
 
 ## Task 6: Harmonize footer selection
 
-- [ ] Change footer selection to `background: var(--on-footer)` + `color: var(--footer)`.
-- [ ] Cover light `11.35:1` and dark `7.13:1` selection contrast.
-- [ ] Add light/dark footer selection states to Storybook.
+- [x] Change footer selection to `background: var(--on-footer)` + `color: var(--footer)`.
+- [x] Cover light `11.35:1` and dark `7.13:1` selection contrast.
+- [x] Add light/dark footer selection states to Storybook.
 
 ## Task 7: Verify and stop
 

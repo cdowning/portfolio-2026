@@ -27,7 +27,7 @@ test.describe('résumé', () => {
     await expect(page.getByRole('article', { name: 'ARS Interactive, Frontend Developer' })).toBeVisible()
     await expect(page.getByText('verified roles')).toHaveCount(0)
 
-    const swatches = page.locator('.resume-intro__swatches .fabric-swatch')
+    const swatches = page.locator('.resume-intro-swatches .fabric-swatch')
     await expect(swatches).toHaveCount(4)
     expect(await swatches.first().evaluate((swatch) => ({
       backgroundImage: getComputedStyle(swatch).backgroundImage,

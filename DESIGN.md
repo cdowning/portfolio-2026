@@ -27,6 +27,7 @@ Experience. The homepage leads with Caitlin’s point of view and proof; the ré
 - `--text-xs` is a deliberate `0.75rem` readability floor.
 - Primary body copy uses `--text-base`; meaningful screen copy stays at or above `--text-sm`.
 - Drafting labels stay at or above `--text-xs` unless decorative and hidden from assistive technology.
+- Current screen UI keeps decorative annotations at `--text-xs`; no sub-floor exception remains.
 - Print keeps an independent point-based scale so the résumé remains exactly two US Letter pages.
 
 | Token | Value | Nominal size |

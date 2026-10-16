@@ -9,25 +9,25 @@ defineProps<{
 
 <template>
   <section id="about" class="about" aria-labelledby="about-title" data-reveal>
-    <CSectionMarker class="about__marker" number="03" />
-    <div class="about__copy">
+    <CSectionMarker class="about-marker" number="03" />
+    <div class="about-copy">
       <h2 id="about-title">About / How I work</h2>
-      <p class="about__eyebrow">Thoughtful interfaces for real people.</p>
+      <p class="about-eyebrow">Thoughtful interfaces for real people.</p>
       <p>I’m a frontend developer who cares about the details — from the logic under the hood to the little moments people experience on screen.</p>
       <p>I build accessible, scalable interfaces with Vue and TypeScript, and I love turning complex problems into simple, elegant solutions.</p>
       <p>I’m especially drawn to work that combines design, technology, and human understanding to make the web a little more inclusive and a little more joyful.</p>
     </div>
-    <figure class="about__photo">
-      <span class="about__tape" aria-hidden="true" />
+    <figure class="about-photo">
+      <span class="about-tape" aria-hidden="true" />
       <img src="/images/travel.jpg" alt="Sunlight spilling over clouds viewed from an airplane window">
-      <figcaption class="about__note" aria-hidden="true">Better interfaces<br>for a kinder internet.</figcaption>
+      <figcaption class="about-note" aria-hidden="true">Better interfaces<br>for a kinder internet.</figcaption>
     </figure>
-    <div class="about__method">
-      <p class="about__method-note" aria-hidden="true">The same curiosity everywhere I go</p>
+    <div class="about-method">
+      <p class="about-method-note" aria-hidden="true">The same curiosity everywhere I go</p>
       <svg viewBox="0 0 500 130" aria-hidden="true">
         <path d="M0 48C58 118 95 14 157 63s92 38 143-4 80-53 198 10" />
       </svg>
-      <div class="about__circles">
+      <div class="about-circles">
         <div><strong>Systems</strong><span>Solid foundations</span></div>
         <div><strong>Screens</strong><span>Meaningful experiences</span></div>
         <div><strong>People</strong><span>A more human web</span></div>
@@ -45,36 +45,36 @@ defineProps<{
   padding: clamp(4rem, 6vw, 6.5rem) var(--page-gutter);
 }
 
-.about__copy h2 {
+.about-copy h2 {
   color: var(--text-strong);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 2.4vw, 2.8rem);
+  font-size: var(--text-section-title);
   letter-spacing: -.04em;
   line-height: 1.05;
   margin-bottom: .75rem;
 }
 
-.about__eyebrow {
-  font-size: .57rem;
+.about-eyebrow {
+  font-size: var(--text-xs);
   letter-spacing: .29em;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
 
-.about__copy > p:not(.about__eyebrow) {
-  font-size: .95rem;
+.about-copy > p:not(.about-eyebrow) {
+  font-size: var(--text-base);
   line-height: 1.55;
   max-width: 43ch;
 }
 
-.about__photo {
+.about-photo {
   margin: 0;
   padding: 1rem;
   position: relative;
   rotate: -1.5deg;
 }
 
-.about__photo img {
+.about-photo img {
   aspect-ratio: .82;
   border: .75rem solid var(--surface-raised);
   box-shadow: 0 1rem 2rem var(--shadow);
@@ -82,7 +82,7 @@ defineProps<{
   object-fit: cover;
 }
 
-.about__tape {
+.about-tape {
   background: color-mix(in srgb, var(--support-highlight) 70%, var(--canvas));
   height: 2rem;
   left: 31%;
@@ -93,22 +93,22 @@ defineProps<{
   z-index: 2;
 }
 
-.about__note {
+.about-note {
   bottom: 10%;
   font-family: var(--font-note);
-  font-size: 1.25rem;
+  font-size: var(--text-md);
   left: -5.5rem;
   line-height: 1;
   position: absolute;
   rotate: -6deg;
 }
 
-.about__method {
+.about-method {
   align-self: center;
 }
 
-.about__method-note {
-  font-size: .58rem;
+.about-method-note {
+  font-size: var(--text-xs);
   letter-spacing: .25em;
   line-height: 1.7;
   margin-bottom: 1rem;
@@ -116,7 +116,7 @@ defineProps<{
   text-transform: uppercase;
 }
 
-.about__method svg {
+.about-method svg {
   fill: none;
   margin-bottom: 1rem;
   overflow: visible;
@@ -125,32 +125,32 @@ defineProps<{
   stroke-width: 1;
 }
 
-.about__circles {
+.about-circles {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
-.about__circles div {
+.about-circles div {
   text-align: center;
 }
 
-.about__circles strong {
+.about-circles strong {
   align-items: center;
   aspect-ratio: 1;
   border: 1px dashed var(--text);
   border-radius: 50%;
   display: flex;
-  font-size: .65rem;
+  font-size: var(--text-xs);
   justify-content: center;
   letter-spacing: .12em;
   margin-bottom: .8rem;
   text-transform: uppercase;
 }
 
-.about__circles span {
+.about-circles span {
   display: block;
-  font-size: .58rem;
+  font-size: var(--text-xs);
   letter-spacing: .08em;
   line-height: 1.45;
 }
@@ -160,7 +160,7 @@ defineProps<{
     grid-template-columns: 3rem 1fr 1fr;
   }
 
-  .about__method {
+  .about-method {
     grid-column: 2 / -1;
   }
 }
@@ -172,12 +172,12 @@ defineProps<{
     padding: 3rem 1.25rem;
   }
 
-  .about__photo,
-  .about__method {
+  .about-photo,
+  .about-method {
     grid-column: 2;
   }
 
-  .about__note {
+  .about-note {
     display: none;
   }
 }

@@ -1,11 +1,18 @@
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
+  animated?: boolean
   colors: readonly string[]
-}>()
+}>(), {
+  animated: false,
+})
 </script>
 
 <template>
-  <div class="fabric-swatches" aria-hidden="true">
+  <div
+    class="fabric-swatches"
+    :class="{ 'fabric-swatches-animated': animated }"
+    aria-hidden="true"
+  >
     <span
       v-for="color in colors"
       :key="color"
@@ -51,4 +58,10 @@ defineProps<{
     linear-gradient(#000 0 0) center /
       calc(100% - 2 * var(--tooth)) calc(100% - 2 * var(--tooth)) no-repeat;
 }
+
+.fabric-swatches-animated .fabric-swatch { will-change: opacity, transform; }
+.fabric-swatches-animated .fabric-swatch:nth-child(1) { opacity: var(--swatch-1-opacity, 1); transform: translateY(var(--swatch-1-shift, 0)); }
+.fabric-swatches-animated .fabric-swatch:nth-child(2) { opacity: var(--swatch-2-opacity, 1); transform: translateY(var(--swatch-2-shift, 0)); }
+.fabric-swatches-animated .fabric-swatch:nth-child(3) { opacity: var(--swatch-3-opacity, 1); transform: translateY(var(--swatch-3-shift, 0)); }
+.fabric-swatches-animated .fabric-swatch:nth-child(4) { opacity: var(--swatch-4-opacity, 1); transform: translateY(var(--swatch-4-shift, 0)); }
 </style>

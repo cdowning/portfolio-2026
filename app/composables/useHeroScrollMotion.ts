@@ -6,7 +6,10 @@ function clamp(value: number) {
   return Math.min(1, Math.max(0, value))
 }
 
-export function useHeroScrollMotion(hero: Readonly<ShallowRef<HTMLElement | null>>) {
+export function useHeroScrollMotion(
+  hero: Readonly<ShallowRef<HTMLElement | null>>,
+  stage: Readonly<ShallowRef<HTMLElement | null>>,
+) {
   let animationFrame = 0
   let desktopQuery: MediaQueryList | undefined
   let motionQuery: MediaQueryList | undefined
@@ -61,9 +64,8 @@ export function useHeroScrollMotion(hero: Readonly<ShallowRef<HTMLElement | null
       return
     }
 
-    const stage = element.querySelector<HTMLElement>('.hero__stage')
     heroTop = element.getBoundingClientRect().top + window.scrollY
-    travel = Math.max(1, element.scrollHeight - (stage?.clientHeight ?? window.innerHeight))
+    travel = Math.max(1, element.scrollHeight - (stage.value?.clientHeight ?? window.innerHeight))
     scheduleUpdate()
   }
 
