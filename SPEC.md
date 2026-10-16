@@ -30,6 +30,9 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V11: first paint follows system theme unless valid persisted `light`/`dark`; one accessible header control toggles + persists resolved theme across `/` + `/resume`.
 - V12: semantic surface/text/rule/action/focus/selection/footer roles meet WCAG AA in light + dark; light action/footer = gold; dark action/footer = blush; teal = support.
 - V13: print fixed white/black; theme switch → ⊥ overflow/layout shift/hydration warning/motion requirement.
+- V14: screen type → `1rem` nominal base + `1.2` minor-third tokens; body/labels ≥ readability floor; print point scale isolated + 2 pages.
+- V15: Vue SFC CSS → scoped + flat kebab-case; ⊥ BEM `__`/`--` class syntax; typed props → explicit variant classes; runtime DOM access → template refs.
+- V16: footer selection → `background: var(--on-footer)` + `color: var(--footer)`; WCAG AA in light + dark; ⊥ support-accent clash.
 
 # §T
 id|status|goal|cites
@@ -41,6 +44,7 @@ T4a|x|correct reviewed content, hero fidelity, portrait, grid, and swatches|V2,V
 T4b|x|add reversible, accessible hero drafting scroll choreography|V3,V5,V6,V10
 T5|~|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 T6|x|adaptive light/dark themes, persisted toggle, contrast verification|V3,V4,V5,V6,V9,V11,V12,V13
+T7|.|screen type scale, flat scoped CSS migration, footer selection, Storybook proof|V3,V4,V5,V6,V8,V9,V14,V15,V16
 
 # §B
 id|date|cause|fix

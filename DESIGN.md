@@ -19,6 +19,64 @@ Experience. The homepage leads with Caitlin’s point of view and proof; the ré
 - Gold: `#f6bd60`, `#c5974d`, highlight `#ffd17d`, light wash `#fff1d7`, dark wash `#3d3020`
 - Display/UI: Poppins; body: Work Sans; handwritten notes: Dawning of a New Day.
 
+## Screen typography
+
+- Nominal browser base: `1rem`, normally `16px`.
+- Do not force a root pixel size. Browser and visitor font-size preferences remain effective.
+- Primitive screen sizes follow a `1.2` minor-third ratio.
+- `--text-xs` is a deliberate `0.75rem` readability floor.
+- Primary body copy uses `--text-base`; meaningful screen copy stays at or above `--text-sm`.
+- Drafting labels stay at or above `--text-xs` unless decorative and hidden from assistive technology.
+- Print keeps an independent point-based scale so the résumé remains exactly two US Letter pages.
+
+| Token | Value | Nominal size |
+|---|---:|---:|
+| `--text-xs` | `0.75rem` | `12px` |
+| `--text-sm` | `0.833rem` | `13.33px` |
+| `--text-base` | `1rem` | `16px` |
+| `--text-md` | `1.2rem` | `19.2px` |
+| `--text-lg` | `1.44rem` | `23.04px` |
+| `--text-xl` | `1.728rem` | `27.65px` |
+| `--text-2xl` | `2.074rem` | `33.18px` |
+| `--text-3xl` | `2.488rem` | `39.81px` |
+| `--text-4xl` | `2.986rem` | `47.78px` |
+| `--text-5xl` | `3.583rem` | `57.33px` |
+| `--text-6xl` | `4.3rem` | `68.8px` |
+| `--text-7xl` | `5.16rem` | `82.56px` |
+| `--text-8xl` | `6.192rem` | `99.07px` |
+| `--text-9xl` | `7.43rem` | `118.88px` |
+
+Semantic fluid roles use scale endpoints rather than unrelated intermediate values:
+
+```css
+--text-body: var(--text-base);
+--text-body-large: var(--text-md);
+--text-label: var(--text-sm);
+--text-section-title: clamp(var(--text-2xl), 2.4vw, var(--text-4xl));
+--text-page-title: clamp(var(--text-5xl), 5.25vw, var(--text-8xl));
+```
+
+## Component CSS
+
+- Vue single-file components keep `<style scoped>`.
+- Project-owned classes use flat kebab-case; BEM `block__element` and `block--modifier` syntax is not used.
+- Base classes name the component: `.button`, `.hero`, `.navigation`.
+- Part classes use readable prefixes: `.button-arrow`, `.hero-title`, `.hero-stage`.
+- Variant classes pair with the base: `.button-large`, `.button-gold`.
+- State classes remain explicit: `.navigation-open`, `.theme-dark`.
+- Typed props generate explicit dynamic classes such as `button-${size}` and `button-${tone}`.
+- CSS does not use `data-*` attributes as its primary styling API. ARIA remains the source of accessibility state.
+- Runtime DOM access uses Vue template refs rather than styling classes.
+- Browser tests prefer roles, names, and semantic structure. Dedicated hooks remain acceptable when geometry cannot be observed semantically.
+- Parents avoid `:deep()` dependencies on child internals. Prefer wrappers, props, variants, or CSS custom-property contracts.
+
+## Text selection
+
+- Default selection uses the semantic page selection roles.
+- Footer selection inverts footer roles: background `var(--on-footer)` and text `var(--footer)`.
+- Footer selection contrast: dark theme `7.13:1`; light theme `11.35:1`.
+- Teal remains a supporting accent and does not compete with blush or gold inside the footer.
+
 ## Composition and behavior
 
 - Asymmetrical 12-column editorial grid with fine full-width rules.

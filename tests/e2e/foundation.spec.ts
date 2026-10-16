@@ -49,3 +49,56 @@ test('publishes crawler files for the canonical domain', async ({ request }) => 
   expect(await robots.text()).toContain('Sitemap: https://www.caitlinhawley.com/sitemap.xml')
   expect(await sitemap.text()).toContain('https://www.caitlinhawley.com/resume')
 })
+
+test('publishes the documented screen typography tokens', async ({ page }) => {
+  await page.goto('/')
+
+  const tokens = await page.evaluate(() => {
+    const styles = getComputedStyle(document.documentElement)
+    const names = [
+      '--text-xs',
+      '--text-sm',
+      '--text-base',
+      '--text-md',
+      '--text-lg',
+      '--text-xl',
+      '--text-2xl',
+      '--text-3xl',
+      '--text-4xl',
+      '--text-5xl',
+      '--text-6xl',
+      '--text-7xl',
+      '--text-8xl',
+      '--text-9xl',
+      '--text-body',
+      '--text-body-large',
+      '--text-label',
+      '--text-section-title',
+      '--text-page-title',
+    ]
+
+    return Object.fromEntries(names.map(name => [name, styles.getPropertyValue(name).trim()]))
+  })
+
+  expect(tokens).toEqual({
+    '--text-xs': '0.75rem',
+    '--text-sm': '0.833rem',
+    '--text-base': '1rem',
+    '--text-md': '1.2rem',
+    '--text-lg': '1.44rem',
+    '--text-xl': '1.728rem',
+    '--text-2xl': '2.074rem',
+    '--text-3xl': '2.488rem',
+    '--text-4xl': '2.986rem',
+    '--text-5xl': '3.583rem',
+    '--text-6xl': '4.3rem',
+    '--text-7xl': '5.16rem',
+    '--text-8xl': '6.192rem',
+    '--text-9xl': '7.43rem',
+    '--text-body': '1rem',
+    '--text-body-large': '1.2rem',
+    '--text-label': '0.833rem',
+    '--text-section-title': 'clamp(2.074rem, 2.4vw, 2.986rem)',
+    '--text-page-title': 'clamp(3.583rem, 5.25vw, 6.192rem)',
+  })
+})
