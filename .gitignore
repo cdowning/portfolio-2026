@@ -8,6 +8,7 @@ test-results
 output
 tmp
 storybook-static
+debug-storybook.log
 .DS_Store
 .superpowers
 .nuxtrc
