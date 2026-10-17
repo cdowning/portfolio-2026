@@ -136,27 +136,6 @@ test.describe('responsive layout contract', () => {
     }
   })
 
-  test('/ places the footer annotation over the curve’s upper sweep', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 })
-    await page.goto('/')
-
-    const presentation = await page.locator('.contact-drawing').evaluate((drawing) => {
-      const note = drawing.querySelector<HTMLElement>('p')
-      if (!note) throw new Error('Footer annotation is missing')
-
-      const drawingRect = drawing.getBoundingClientRect()
-      const noteRect = note.getBoundingClientRect()
-      return {
-        fontSize: Number.parseFloat(getComputedStyle(note).fontSize),
-        noteOffsetRatio: (noteRect.top - drawingRect.top) / drawingRect.height,
-      }
-    })
-
-    expect(presentation.fontSize).toBeGreaterThanOrEqual(33)
-    expect(presentation.noteOffsetRatio).toBeGreaterThanOrEqual(-.2)
-    expect(presentation.noteOffsetRatio).toBeLessThanOrEqual(.15)
-  })
-
   test('/resume keeps the footer annotation below the curve', async ({ page }) => {
     const footer = { footer: '.resume-contact', drawing: '.resume-contact-drawing', note: '.resume-contact-drawing p' }
     await page.setViewportSize({ width: 1440, height: 900 })

@@ -25,10 +25,19 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
   <footer id="contact" class="contact" data-reveal>
     <CSectionMarker class="contact-marker" number="06" />
     <div class="contact-main">
-      <h2>Let’s make something thoughtful.</h2>
-      <p>I’m always open to meaningful conversations about interesting work.</p>
-      <div class="contact-links">
+      <h2 class="contact-title">Let’s make something thoughtful.</h2>
+      <p class="contact-intro">I’m always open to meaningful conversations about interesting work.</p>
+      <div class="contact-action">
         <CButton class="contact-primary" :href="`mailto:${profile.email}`" tone="ink">Say hello</CButton>
+        <svg class="contact-flight" viewBox="0 0 680 96" preserveAspectRatio="none" aria-hidden="true">
+          <path class="contact-flight-path" d="M0 48C105 48 119 23 205 26C293 29 317 68 410 67C496 66 535 35 615 38" />
+          <g class="contact-airplane" transform="translate(614 11)">
+            <path d="m0 27 57-24-19 55-12-21L0 27Z" />
+            <path d="M26 37 57 3 17 31" />
+          </g>
+        </svg>
+      </div>
+      <div class="contact-socials" aria-label="Social links">
         <a
           v-for="link in socialContacts"
           :key="link.label"
@@ -41,10 +50,6 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
           <span>{{ link.label }}</span>
         </a>
       </div>
-    </div>
-    <div class="contact-drawing" aria-hidden="true">
-      <svg viewBox="0 0 360 160"><path d="M0 79C84 29 100 151 181 103S264 2 360 57" /></svg>
-      <p>Good people build<br>great things.</p>
     </div>
     <div class="contact-brand">
       <strong>{{ profile.name }}</strong>
@@ -73,74 +78,96 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 
 .contact-marker { --rule-strong: color-mix(in srgb, var(--on-footer) 50%, transparent); }
 
-.contact-main { grid-column: 2; }
+.contact-main {
+  grid-column: 2;
+  min-width: 0;
+}
 
-.contact-main h2 {
+.contact-title {
   color: var(--on-footer);
   font-family: var(--font-display);
-  font-size: clamp(var(--text-3xl), 3.5vw, var(--text-6xl));
+  font-size: clamp(var(--text-3xl), 11vw, var(--text-5xl));
   letter-spacing: -.04em;
-  line-height: 1;
-  margin-bottom: .8rem;
+  line-height: .98;
+  margin-bottom: 1.2rem;
+  max-width: 20ch;
+  text-wrap: balance;
 }
 
-.contact-main > p {
+.contact-intro {
   font-size: var(--text-base);
+  max-width: 68ch;
 }
 
-.contact-links {
+.contact-action {
   align-items: center;
   display: grid;
-  gap: .25rem 1rem;
-  grid-template-columns: repeat(2, max-content);
+  gap: 1rem;
+  grid-template-columns: 1fr;
   margin-top: 2rem;
 }
 
-.contact-primary { grid-column: 1 / -1; }
+.contact-primary {
+  justify-self: start;
+  min-width: 13.75rem;
+}
+
+.contact-flight {
+  color: var(--on-footer);
+  display: none;
+  height: 4.5rem;
+  max-width: 42rem;
+  overflow: visible;
+  width: 100%;
+}
+
+.contact-flight-path {
+  fill: none;
+  stroke: currentcolor;
+  stroke-dasharray: 7 7;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.contact-airplane {
+  fill: var(--footer);
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.contact-socials {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
 
 .contact-social-link {
   align-items: center;
+  color: inherit;
   display: inline-flex;
-  font-size: var(--text-sm);
-  gap: .5rem;
+  font-size: var(--text-base);
+  gap: .7rem;
   min-height: 2.75rem;
-  min-width: 2.75rem;
-  text-underline-offset: .35rem;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .38rem;
 }
 
 .contact-social-icon {
   flex: 0 0 auto;
-  height: 1.125rem;
-  width: 1.125rem;
-}
-
-.contact-drawing {
-  align-self: center;
-  display: none;
-  position: relative;
-}
-
-.contact-drawing svg {
-  fill: none;
-  stroke: var(--on-footer);
-  stroke-dasharray: 7 7;
-  stroke-width: 1.2;
-}
-
-.contact-drawing p {
-  font-family: var(--font-note);
-  font-size: var(--text-2xl);
-  left: 28%;
-  line-height: 1;
-  position: absolute;
-  rotate: -17deg;
-  top: 0;
+  height: 1.45rem;
+  width: 1.45rem;
 }
 
 .contact-brand {
   display: flex;
   flex-direction: column;
   grid-column: 2;
+  margin-top: 2rem;
 }
 
 .contact-brand strong {
@@ -158,8 +185,9 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 }
 
 .contact-brand p {
+  font-size: var(--text-md);
   line-height: 1.55;
-  margin-top: 2.25rem;
+  margin-top: 1.25rem;
 }
 
 .contact-fine-print {
@@ -175,23 +203,42 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 
 @media (min-width: 44.0625rem) {
   .contact {
-    grid-template-columns: 3rem 1fr 16rem;
+    grid-template-columns: 3rem minmax(0, 1fr) 14rem;
     padding-block-start: 3.5rem;
     padding-inline: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2 + var(--page-gutter)));
   }
 
-  .contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .25rem 1.5rem;
+  .contact-title {
+    font-size: clamp(var(--text-4xl), 5.6vw, var(--text-7xl));
   }
 
-  .contact-primary { grid-column: auto; }
+  .contact-intro { font-size: var(--text-md); }
+
+  .contact-action {
+    grid-template-columns: max-content minmax(8rem, 42rem);
+    margin-top: 2.75rem;
+  }
+
+  .contact-flight { display: block; }
+
+  .contact-socials {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1.5rem 3rem;
+    margin-top: 2rem;
+  }
 
   .contact-brand {
     border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
     grid-column: 3;
+    margin-top: 0;
     padding-left: 2rem;
+  }
+
+  .contact-brand p {
+    margin-top: 2.25rem;
   }
 
   .contact-fine-print {
@@ -203,10 +250,7 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 
 @media (min-width: 68.0625rem) {
   .contact {
-    grid-template-columns: 3rem minmax(30rem, 1.4fr) minmax(18rem, .7fr) minmax(13rem, .5fr);
+    grid-template-columns: 3rem minmax(0, 1fr) minmax(15rem, 18rem);
   }
-
-  .contact-drawing { display: block; grid-column: 3; }
-  .contact-brand { grid-column: 4; }
 }
 </style>

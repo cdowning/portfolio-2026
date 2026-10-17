@@ -42,6 +42,51 @@ test.describe('homepage composition', () => {
     )
   })
 
+  test('connects the contact button to a paper airplane above a separate social row', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+
+    const contact = page.locator('.contact')
+    const button = contact.getByRole('link', { name: 'Say hello' })
+    const flight = contact.locator('.contact-flight')
+    const socials = contact.locator('.contact-socials')
+
+    await expect(button).toBeVisible()
+    await expect(flight).toBeVisible()
+    await expect(flight.locator('.contact-airplane')).toHaveCount(1)
+    await expect(socials.getByRole('link')).toHaveText(['LinkedIn', 'GitHub', 'CodePen'])
+    const brand = contact.locator('.contact-brand')
+    await expect(brand.locator('strong')).toHaveText('Caitlin Hawley')
+    await expect(brand.locator('span')).toHaveText('Frontend Developer')
+    await expect(brand.locator('p')).toContainText('Thoughtful code')
+    await expect(brand.locator('p')).toContainText('for a brighter web.')
+    await expect(contact).not.toContainText('Good people build great things.')
+
+    const geometry = await contact.evaluate((element) => {
+      const action = element.querySelector<HTMLElement>('.contact-primary')
+      const flightPath = element.querySelector<SVGElement>('.contact-flight')
+      const socialRow = element.querySelector<HTMLElement>('.contact-socials')
+      if (!action || !flightPath || !socialRow) throw new Error('Contact composition is incomplete')
+
+      const actionRect = action.getBoundingClientRect()
+      const flightRect = flightPath.getBoundingClientRect()
+      const socialRect = socialRow.getBoundingClientRect()
+
+      return {
+        actionCenterY: actionRect.top + actionRect.height / 2,
+        flightCenterY: flightRect.top + flightRect.height / 2,
+        flightStartX: flightRect.left,
+        actionEndX: actionRect.right,
+        socialTop: socialRect.top,
+        actionBottom: actionRect.bottom,
+      }
+    })
+
+    expect(Math.abs(geometry.flightCenterY - geometry.actionCenterY)).toBeLessThanOrEqual(2)
+    expect(geometry.flightStartX - geometry.actionEndX).toBeGreaterThanOrEqual(8)
+    expect(geometry.flightStartX - geometry.actionEndX).toBeLessThanOrEqual(24)
+    expect(geometry.socialTop - geometry.actionBottom).toBeGreaterThanOrEqual(24)
+  })
+
   test('uses verified project destinations without invented portfolio metrics', async ({ page }) => {
     await expect(page.getByRole('link', { name: 'View Component library' })).toHaveAttribute(
       'href',
