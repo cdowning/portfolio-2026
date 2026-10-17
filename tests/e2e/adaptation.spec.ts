@@ -90,27 +90,95 @@ test.describe('responsive navigation and editorial motion', () => {
 })
 
 test.describe('responsive layout contract', () => {
-  for (const footer of [
-    { route: '/', footer: '.contact', drawing: '.contact-drawing', note: '.contact-drawing p' },
-    { route: '/resume', footer: '.resume-contact', drawing: '.resume-contact-drawing', note: '.resume-contact-drawing p' },
-  ]) {
-    test(`${footer.route} keeps the footer annotation below the curve`, async ({ page }) => {
-      await page.setViewportSize({ width: 1440, height: 900 })
-      await page.goto(footer.route)
+  for (const route of ['/', '/resume']) {
+    test(`${route} renders labeled social links locally with mobile touch targets`, async ({ page }) => {
+      const iconifyRequests: string[] = []
+      page.on('request', (request) => {
+        if (request.url().includes('api.iconify.design')) iconifyRequests.push(request.url())
+      })
 
-      const noteOffsetRatio = await page.locator(footer.footer).evaluate((element, selectors) => {
-        const drawing = element.querySelector<HTMLElement>(selectors.drawing)
-        const note = element.querySelector<HTMLElement>(selectors.note)
-        if (!drawing || !note) throw new Error('Footer composition is missing')
+      await page.setViewportSize({ width: 390, height: 844 })
+      await page.goto(route)
 
-        const drawingRect = drawing.getBoundingClientRect()
-        const noteRect = note.getBoundingClientRect()
-        return (noteRect.top - drawingRect.top) / drawingRect.height
-      }, footer)
+      const footer = page.getByRole('contentinfo')
+      for (const label of ['LinkedIn', 'GitHub', 'CodePen']) {
+        const link = footer.getByRole('link', { name: label, exact: true })
+        await expect(link).toBeVisible()
+        await expect(link.locator('svg')).toHaveAttribute('aria-hidden', 'true')
 
-      expect(noteOffsetRatio).toBeGreaterThanOrEqual(.56)
+        const bounds = await link.boundingBox()
+        expect(bounds, `${label} on ${route}`).not.toBeNull()
+        expect(bounds!.width, `${label} width on ${route}`).toBeGreaterThanOrEqual(44)
+        expect(bounds!.height, `${label} height on ${route}`).toBeGreaterThanOrEqual(44)
+      }
+
+      expect(iconifyRequests).toEqual([])
+    })
+  }
+
+  test('keeps the About photo note below the adjacent body copy', async ({ page }) => {
+    for (const width of [1024, 1152, 1280, 1440]) {
+      await page.setViewportSize({ width, height: 900 })
+      await page.goto('/')
+
+      const positions = await page.locator('#about').evaluate((element) => {
+        const copy = element.querySelector<HTMLElement>('.about-copy')
+        const note = element.querySelector<HTMLElement>('.about-note')
+        if (!copy || !note) throw new Error('About composition is missing')
+
+        return {
+          copyBottom: copy.getBoundingClientRect().bottom,
+          noteTop: note.getBoundingClientRect().top,
+        }
+      })
+
+      expect(positions.noteTop, `viewport ${width}px`).toBeGreaterThanOrEqual(positions.copyBottom)
+    }
+  })
+
+  test('/ places the footer annotation over the curve’s upper sweep', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/')
+
+    const presentation = await page.locator('.contact-drawing').evaluate((drawing) => {
+      const note = drawing.querySelector<HTMLElement>('p')
+      if (!note) throw new Error('Footer annotation is missing')
+
+      const drawingRect = drawing.getBoundingClientRect()
+      const noteRect = note.getBoundingClientRect()
+      return {
+        fontSize: Number.parseFloat(getComputedStyle(note).fontSize),
+        noteOffsetRatio: (noteRect.top - drawingRect.top) / drawingRect.height,
+      }
     })
 
+    expect(presentation.fontSize).toBeGreaterThanOrEqual(33)
+    expect(presentation.noteOffsetRatio).toBeGreaterThanOrEqual(-.2)
+    expect(presentation.noteOffsetRatio).toBeLessThanOrEqual(.15)
+  })
+
+  test('/resume keeps the footer annotation below the curve', async ({ page }) => {
+    const footer = { footer: '.resume-contact', drawing: '.resume-contact-drawing', note: '.resume-contact-drawing p' }
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/resume')
+
+    const noteOffsetRatio = await page.locator(footer.footer).evaluate((element, selectors) => {
+      const drawing = element.querySelector<HTMLElement>(selectors.drawing)
+      const note = element.querySelector<HTMLElement>(selectors.note)
+      if (!drawing || !note) throw new Error('Footer composition is missing')
+
+      const drawingRect = drawing.getBoundingClientRect()
+      const noteRect = note.getBoundingClientRect()
+      return (noteRect.top - drawingRect.top) / drawingRect.height
+    }, footer)
+
+    expect(noteOffsetRatio).toBeGreaterThanOrEqual(.56)
+  })
+
+  for (const footer of [
+    { route: '/', footer: '.contact' },
+    { route: '/resume', footer: '.resume-contact' },
+  ]) {
     for (const selection of [
       {
         theme: 'light',

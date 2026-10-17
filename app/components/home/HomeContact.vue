@@ -1,11 +1,24 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import CButton from '~/components/ui/CButton/CButton.vue'
 import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
 import type { SiteProfile } from '~/types/content'
 
-defineProps<{
+const props = defineProps<{
   profile: SiteProfile
 }>()
+
+const socialIconNames = {
+  CodePen: 'ph:codepen-logo',
+  GitHub: 'ph:github-logo',
+  LinkedIn: 'ph:linkedin-logo',
+} as const
+
+const socialContacts = computed(() => props.profile.contacts.flatMap((contact) => {
+  const icon = socialIconNames[contact.label as keyof typeof socialIconNames]
+  return icon ? [{ ...contact, icon }] : []
+}))
 </script>
 
 <template>
@@ -17,12 +30,16 @@ defineProps<{
       <div class="contact-links">
         <CButton class="contact-primary" :href="`mailto:${profile.email}`" tone="ink">Say hello</CButton>
         <a
-          v-for="link in profile.contacts.filter((item) => item.label === 'LinkedIn' || item.label === 'GitHub')"
+          v-for="link in socialContacts"
           :key="link.label"
+          class="contact-social-link"
           :href="link.href"
           target="_blank"
           rel="noreferrer"
-        >{{ link.label }}</a>
+        >
+          <Icon class="contact-social-icon" :name="link.icon" mode="svg" aria-hidden="true" />
+          <span>{{ link.label }}</span>
+        </a>
       </div>
     </div>
     <div class="contact-drawing" aria-hidden="true">
@@ -47,14 +64,16 @@ defineProps<{
   color: var(--on-footer);
   display: grid;
   gap: 2rem;
-  grid-template-columns: 3rem minmax(30rem, 1.4fr) minmax(18rem, .7fr) minmax(13rem, .5fr);
+  grid-template-columns: 2.5rem minmax(0, 1fr);
   margin-left: calc(50% - 50vw);
-  padding: 3.5rem var(--page-gutter) 1.5rem;
-  padding-inline: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2 + var(--page-gutter)));
+  padding-block: 3rem max(1.5rem, env(safe-area-inset-bottom));
+  padding-inline: max(1.25rem, env(safe-area-inset-left)) max(1.25rem, env(safe-area-inset-right));
   width: 100vw;
 }
 
 .contact-marker { --rule-strong: color-mix(in srgb, var(--on-footer) 50%, transparent); }
+
+.contact-main { grid-column: 2; }
 
 .contact-main h2 {
   color: var(--on-footer);
@@ -71,20 +90,33 @@ defineProps<{
 
 .contact-links {
   align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  display: grid;
+  gap: .25rem 1rem;
+  grid-template-columns: repeat(2, max-content);
   margin-top: 2rem;
 }
 
-.contact-links a:not(.contact-primary) {
+.contact-primary { grid-column: 1 / -1; }
+
+.contact-social-link {
+  align-items: center;
+  display: inline-flex;
   font-size: var(--text-sm);
+  gap: .5rem;
+  min-height: 2.75rem;
   min-width: 2.75rem;
   text-underline-offset: .35rem;
 }
 
+.contact-social-icon {
+  flex: 0 0 auto;
+  height: 1.125rem;
+  width: 1.125rem;
+}
+
 .contact-drawing {
   align-self: center;
+  display: none;
   position: relative;
 }
 
@@ -97,19 +129,18 @@ defineProps<{
 
 .contact-drawing p {
   font-family: var(--font-note);
-  font-size: var(--text-lg);
+  font-size: var(--text-2xl);
+  left: 28%;
   line-height: 1;
   position: absolute;
-  right: 20%;
-  rotate: -7deg;
-  top: 62%;
+  rotate: -17deg;
+  top: 0;
 }
 
 .contact-brand {
-  border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
   display: flex;
   flex-direction: column;
-  padding-left: 2rem;
+  grid-column: 2;
 }
 
 .contact-brand strong {
@@ -134,36 +165,48 @@ defineProps<{
 .contact-fine-print {
   border-top: 1px solid color-mix(in srgb, var(--on-footer) 25%, transparent);
   display: flex;
+  flex-direction: column;
   font-size: var(--text-xs);
+  gap: .65rem;
   grid-column: 1 / -1;
-  justify-content: space-between;
   margin-top: 1.25rem;
   padding-top: 1.2rem;
 }
 
-@media (max-width: 68rem) {
+@media (min-width: 44.0625rem) {
   .contact {
     grid-template-columns: 3rem 1fr 16rem;
+    padding-block-start: 3.5rem;
+    padding-inline: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2 + var(--page-gutter)));
   }
 
-  .contact-drawing { display: none; }
-}
-
-@media (max-width: 44rem) {
-  .contact {
-    grid-template-columns: 2.5rem 1fr;
-    padding: 3rem 1.25rem 1.5rem;
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem 1.5rem;
   }
+
+  .contact-primary { grid-column: auto; }
 
   .contact-brand {
-    border-left: 0;
-    grid-column: 2;
-    padding-left: 0;
+    border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
+    grid-column: 3;
+    padding-left: 2rem;
   }
 
   .contact-fine-print {
-    flex-direction: column;
-    gap: .65rem;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
   }
+}
+
+@media (min-width: 68.0625rem) {
+  .contact {
+    grid-template-columns: 3rem minmax(30rem, 1.4fr) minmax(18rem, .7fr) minmax(13rem, .5fr);
+  }
+
+  .contact-drawing { display: block; grid-column: 3; }
+  .contact-brand { grid-column: 4; }
 }
 </style>

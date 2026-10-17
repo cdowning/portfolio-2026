@@ -54,7 +54,7 @@
 
 ## Task 7: Verify and stop
 
-- [ ] Assert no project-owned class contains BEM `__` or modifier `--` syntax.
-- [ ] Run unit, focused browser, full browser, typecheck, lint, static generation, and Storybook build checks.
-- [ ] Inspect homepage, résumé, component stories, both themes, responsive widths, and two-page print output.
-- [ ] Confirm no layout, motion, content, theme, or accessibility drift.
+- [x] Assert no project-owned class contains BEM `__` or modifier `--` syntax.
+- [x] Run unit, focused browser, full browser, typecheck, lint, static generation, and Storybook build checks.
+- [x] Inspect homepage, résumé, component stories, both themes, responsive widths, and two-page print output.
+- [x] Confirm no layout, motion, content, theme, or accessibility drift.

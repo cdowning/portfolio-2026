@@ -8,11 +8,10 @@ Explore an expanded Toolkit section that reflects both established frontend skil
 - Do not replace it with another transition label or decorative phrase.
 - Let the Toolkit section end cleanly before the contact section begins.
 - Add `Claude Code`, `Codex`, and `Spec-driven development` to the toolkit content.
+- Retain the existing horizontal single-row composition and rebalance it for the expanded content.
 - Preserve the existing dark Pattern Table visual language, fine rules, typography, and section marker `05`.
 
-## Candidate layouts
-
-### Option A: single row
+## Selected layout
 
 Retain the current horizontal one-row composition and extend or rebalance it for the additional items.
 
@@ -20,9 +19,9 @@ Retain the current horizontal one-row composition and extend or rebalance it for
 - The layout should preserve the existing open, continuous rhythm.
 - The expanded list must remain readable without forcing narrow or awkward cells.
 
-### Option B: grouped matrix
+## Considered alternative
 
-Use the grouped Build and Workflow composition shown during exploration, with the decorative `06` aside removed.
+The grouped Build and Workflow matrix shown during exploration remains a useful reference but is not the selected implementation.
 
 **Build**
 
@@ -42,7 +41,7 @@ Use the grouped Build and Workflow composition shown during exploration, with th
 - Codex
 - Spec-driven development
 
-The grouped matrix is a potential option, not the selected implementation. It should be evaluated against the single-row baseline at desktop and mobile sizes before choosing a final direction.
+The grouped matrix should not be implemented as part of this change.
 
 ## Layout requirements
 
@@ -57,5 +56,4 @@ The grouped matrix is a potential option, not the selected implementation. It sh
 
 - No implementation during exploration.
 - Do not change the contact section number or content as part of this decision.
-- Do not rename or remove existing toolkit items until a final layout is chosen.
-- Do not treat the grouped matrix as approved solely because it is documented here.
+- Do not rename or remove existing toolkit items beyond the approved additions.

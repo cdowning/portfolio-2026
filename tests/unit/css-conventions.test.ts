@@ -25,10 +25,11 @@ describe('screen CSS conventions', () => {
     }
   })
 
-  it('uses flat class names across homepage and résumé components', () => {
+  it('uses flat class names across project-owned Vue files', () => {
     const files = [
-      ...vueFiles(new URL('../../app/components/home/', import.meta.url)),
-      ...vueFiles(new URL('../../app/components/resume/', import.meta.url)),
+      new URL('../../app/app.vue', import.meta.url),
+      ...vueFiles(new URL('../../app/components/', import.meta.url)),
+      ...vueFiles(new URL('../../app/pages/', import.meta.url)),
     ]
 
     for (const file of files) {

@@ -28,7 +28,10 @@
     "vue-router": "^5.0.0"
   },
   "devDependencies": {
+    "@iconify-json/devicon": "^1.2.71",
+    "@iconify-json/ph": "^1.2.2",
     "@nuxt/eslint": "^1.9.0",
+    "@nuxt/icon": "^2.5.1",
     "@nuxt/test-utils": "^3.19.2",
     "@playwright/test": "^1.55.0",
     "@storybook/addon-a11y": "^10.6.0",

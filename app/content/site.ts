@@ -168,4 +168,17 @@ export const skillGroups: SkillGroup[] = [
   },
 ]
 
-export const toolkit = ['Vue', 'TypeScript', 'JavaScript', 'Sass', 'Tailwind', 'Figma', 'Storybook', 'Accessibility', 'Design systems']
+export const toolkit = [
+  'Vue',
+  'TypeScript',
+  'JavaScript',
+  'Sass',
+  'Tailwind',
+  'Figma',
+  'Storybook',
+  'Accessibility',
+  'Design systems',
+  'Claude Code',
+  'Codex',
+  'Spec-driven development',
+]

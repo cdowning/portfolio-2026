@@ -25,7 +25,7 @@ Preserve the existing `caitlinhawley.com` GA4 reporting history when the rebuilt
 
 - Page views for `/` and `/resume`.
 - Outbound project links.
-- Résumé download or résumé destination use, if a downloadable asset or external destination is present at launch.
+- Résumé download intent through a stable `resume_download` event contract. Change 10 will consume this contract when the final PDF link is added.
 - Contact CTA use.
 - Optional social-profile link use only if it answers a real portfolio question.
 

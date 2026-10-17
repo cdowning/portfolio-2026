@@ -9,14 +9,13 @@ defineProps<{
 <template>
   <section class="toolkit" aria-labelledby="toolkit-title" data-reveal>
     <CSectionMarker class="toolkit-marker" number="05" />
-    <header>
-      <h2 id="toolkit-title">Toolkit</h2>
-      <p>The tools that help ideas take shape.</p>
+    <header class="toolkit-header">
+      <h2 id="toolkit-title" class="toolkit-title">Toolkit</h2>
+      <p class="toolkit-copy">The tools that help ideas take shape.</p>
     </header>
-    <ul>
+    <ul class="toolkit-list">
       <CTag v-for="item in items" :key="item" :label="item" variant="ruled" />
     </ul>
-    <aside aria-hidden="true"><span>06</span><p>Tools<br>people<br>possibilities</p></aside>
   </section>
 </template>
 
@@ -25,14 +24,14 @@ defineProps<{
   align-items: center;
   border-bottom: 1px solid var(--rule);
   display: grid;
-  gap: 2rem;
-  grid-template-columns: 3rem 15rem 1fr 8rem;
+  gap: 1.5rem;
+  grid-template-columns: 3rem 13.5rem minmax(0, 1fr);
   padding: 2.5rem var(--page-gutter);
 }
 
 .toolkit-marker { align-self: stretch; }
 
-.toolkit h2 {
+.toolkit-title {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   letter-spacing: -.04em;
@@ -40,8 +39,7 @@ defineProps<{
   margin-bottom: .7rem;
 }
 
-.toolkit header p,
-.toolkit aside p {
+.toolkit-copy {
   font-size: var(--text-xs);
   letter-spacing: .25em;
   line-height: 1.65;
@@ -49,41 +47,32 @@ defineProps<{
   text-transform: uppercase;
 }
 
-.toolkit ul {
+.toolkit-list {
   --tag-font-size: var(--text-xs);
   --tag-min-height: 3rem;
-  --tag-padding: .25rem .65rem;
+  --tag-padding: .25rem .4rem;
   --tag-text-align: left;
 
   display: grid;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 0 clamp(.15rem, .45vw, .55rem);
+  grid-template-columns: repeat(12, max-content);
+  justify-content: space-between;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.toolkit aside {
-  align-self: stretch;
-  border-left: 1px solid var(--rule-strong);
-  padding-left: 1.5rem;
-}
-
-.toolkit aside span {
-  font-size: var(--text-xs);
-}
-
-.toolkit aside p {
-  margin-top: .5rem;
-}
-
-@media (max-width: 72rem) {
+@media (max-width: 88rem) {
   .toolkit {
     grid-template-columns: 3rem 12rem 1fr;
   }
 
-  .toolkit aside { display: none; }
-  .toolkit ul { grid-template-columns: repeat(3, 1fr); }
-  .toolkit li { padding-block: .7rem; }
+  .toolkit-list {
+    --tag-padding: .7rem .65rem;
+
+    gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 42rem) {
@@ -95,6 +84,6 @@ defineProps<{
   }
 
   .toolkit-marker { grid-row: 1 / 3; }
-  .toolkit ul { grid-column: 2; grid-template-columns: repeat(2, 1fr); }
+  .toolkit-list { grid-column: 2; grid-template-columns: repeat(2, 1fr); }
 }
 </style>

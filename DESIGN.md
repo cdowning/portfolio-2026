@@ -92,6 +92,16 @@ Semantic fluid roles use scale endpoints rather than unrelated intermediate valu
 - Mobile becomes one deliberate reading column; decorative notes may move or disappear only when redundant.
 - Print stays white/black and removes navigation, theme controls, paths, and backgrounds while preserving content and section rules.
 
+## Toolkit section
+
+- Keep the homepage Toolkit as one continuous horizontal row on desktop.
+- Preserve the `05` section marker, heading, construction rules, and shared ruled tags.
+- The content order is frontend foundations, interface workflow, then AI-assisted development practices.
+- The approved additions are Claude Code, Codex, and Spec-driven development.
+- Do not restore the decorative `06 / Tools / People / Possibilities` rail or replace it with another transition label.
+- Below `88rem` the list becomes three columns before the desktop row can crowd. Below `42rem` it becomes two columns in DOM order.
+- The grouped Build/Workflow matrix remains an exploration reference, not an implementation pattern.
+
 ## Approved references
 
 - Homepage: `references/caitlin-hawley-full-homepage-exploration.png`

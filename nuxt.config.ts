@@ -4,7 +4,18 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-09-21',
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxt/eslint', 'nuxt-gtag'],
+  modules: ['@nuxt/eslint', '@nuxt/icon', 'nuxt-gtag'],
+  icon: {
+    provider: 'none',
+    serverBundle: {
+      collections: ['devicon', 'ph'],
+    },
+    clientBundle: {
+      icons: ['ph:codepen-logo', 'ph:github-logo', 'ph:linkedin-logo'],
+      scan: false,
+      sizeLimitKb: 32,
+    },
+  },
   runtimeConfig: {
     public: {
       siteUrl: 'https://www.caitlinhawley.com',

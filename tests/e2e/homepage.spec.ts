@@ -61,6 +61,58 @@ test.describe('homepage composition', () => {
     await expect(page.getByRole('img', { name: /Sunlight spilling over clouds/i })).toBeVisible()
   })
 
+  test('presents the expanded toolkit as one desktop row without a trailing rail', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/')
+
+    const toolkit = page.locator('section[aria-labelledby="toolkit-title"]')
+    const items = toolkit.getByRole('listitem')
+
+    await expect(items).toHaveText([
+      'Vue',
+      'TypeScript',
+      'JavaScript',
+      'Sass',
+      'Tailwind',
+      'Figma',
+      'Storybook',
+      'Accessibility',
+      'Design systems',
+      'Claude Code',
+      'Codex',
+      'Spec-driven development',
+    ])
+    await expect(toolkit.locator('aside')).toHaveCount(0)
+
+    const rowPositions = await items.evaluateAll(elements => (
+      [...new Set(elements.map(element => Math.round(element.getBoundingClientRect().top)))]
+    ))
+    expect(rowPositions).toHaveLength(1)
+    const toolkitList = toolkit.locator('.toolkit-list')
+    expect(await toolkitList.evaluate(element => element.scrollWidth)).toBeLessThanOrEqual(
+      await toolkitList.evaluate(element => element.clientWidth),
+    )
+  })
+
+  test('reflows the toolkit before the single row can overflow', async ({ page }) => {
+    for (const width of [1153, 1280, 1377, 1408]) {
+      await page.setViewportSize({ width, height: 900 })
+      await page.goto('/')
+
+      const toolkit = page.locator('section[aria-labelledby="toolkit-title"]')
+      const items = toolkit.getByRole('listitem')
+      const rowPositions = await items.evaluateAll(elements => (
+        [...new Set(elements.map(element => Math.round(element.getBoundingClientRect().top)))]
+      ))
+
+      expect(rowPositions.length).toBeGreaterThan(1)
+      const toolkitList = toolkit.locator('.toolkit-list')
+      expect(await toolkitList.evaluate(element => element.scrollWidth)).toBeLessThanOrEqual(
+        await toolkitList.evaluate(element => element.clientWidth),
+      )
+    }
+  })
+
   test('lowers the desktop résumé action without shifting tablet or mobile', async ({ page }) => {
     const resumeAction = page.getByRole('link', { name: 'View full resume' })
 

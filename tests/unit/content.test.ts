@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { education, experience, navigation, profile, workItems } from '../../app/content/site'
+import { education, experience, navigation, profile, toolkit, workItems } from '../../app/content/site'
 
 describe('portfolio content contract', () => {
   it('keeps the two public destinations and factual work links', () => {
@@ -38,5 +38,22 @@ describe('portfolio content contract', () => {
       expect(item).not.toHaveProperty('metrics')
       expect(item.description).not.toMatch(/\b\d+%\b/)
     }
+  })
+
+  it('presents the approved homepage toolkit in reading order', () => {
+    expect(toolkit).toEqual([
+      'Vue',
+      'TypeScript',
+      'JavaScript',
+      'Sass',
+      'Tailwind',
+      'Figma',
+      'Storybook',
+      'Accessibility',
+      'Design systems',
+      'Claude Code',
+      'Codex',
+      'Spec-driven development',
+    ])
   })
 })

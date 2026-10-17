@@ -94,7 +94,7 @@ defineProps<{
 }
 
 .about-note {
-  bottom: 10%;
+  bottom: -3rem;
   font-family: var(--font-note);
   font-size: var(--text-md);
   left: -5.5rem;

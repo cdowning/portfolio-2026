@@ -26,7 +26,8 @@
 ## Task 4: Add the minimal event model
 
 - [ ] Preserve automatic page views for `/` and `/resume`.
-- [ ] Add only approved contact, outbound project, and résumé events.
+- [ ] Add only approved contact and outbound project events that exist before launch.
+- [ ] Define the centralized `resume_download` event contract for change 10; do not emit it until the final PDF link exists.
 - [ ] Centralize event names and parameters to prevent naming drift.
 - [ ] Document each event's question, trigger, and parameters.
 
