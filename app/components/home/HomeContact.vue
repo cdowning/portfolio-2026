@@ -29,12 +29,21 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
       <p class="contact-intro">I’m always open to meaningful conversations about interesting work.</p>
       <div class="contact-action">
         <CButton class="contact-primary" :href="`mailto:${profile.email}`" tone="ink">Say hello</CButton>
-        <svg class="contact-flight" viewBox="0 0 680 96" preserveAspectRatio="none" aria-hidden="true">
-          <path class="contact-flight-path" d="M0 48C105 48 119 23 205 26C293 29 317 68 410 67C496 66 535 35 615 38" />
-          <g class="contact-airplane" transform="translate(614 11)">
-            <path d="m0 27 57-24-19 55-12-21L0 27Z" />
-            <path d="M26 37 57 3 17 31" />
-          </g>
+        <svg class="contact-flight" viewBox="0 32.5 700 145" aria-hidden="true">
+          <path
+            class="contact-flight-path"
+            d="M0 105C90 105 130 75 220 77C310 79 330 135 410 133C465 131 495 95 540 107C568 87 568 57 540 57C512 57 512 87 540 107C568 125 582 95 615 99"
+          />
+          <path class="contact-flight-tip" d="M603 99 615 99" />
+          <image
+            class="contact-airplane"
+            href="/images/contact-paper-airplane.png"
+            x="584"
+            y="5"
+            width="112"
+            height="97"
+            preserveAspectRatio="xMidYMid meet"
+          />
         </svg>
       </div>
       <div class="contact-socials" aria-label="Social links">
@@ -113,9 +122,9 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 }
 
 .contact-flight {
+  aspect-ratio: 700 / 145;
   color: var(--on-footer);
   display: none;
-  height: 4.5rem;
   max-width: 42rem;
   overflow: visible;
   width: 100%;
@@ -124,18 +133,22 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 .contact-flight-path {
   fill: none;
   stroke: currentcolor;
-  stroke-dasharray: 7 7;
-  stroke-width: 1.2;
+  stroke-dasharray: 8 9;
+  stroke-linecap: round;
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.contact-flight-tip {
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-width: 1.6;
   vector-effect: non-scaling-stroke;
 }
 
 .contact-airplane {
-  fill: var(--footer);
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  vector-effect: non-scaling-stroke;
+  opacity: 1;
 }
 
 .contact-socials {

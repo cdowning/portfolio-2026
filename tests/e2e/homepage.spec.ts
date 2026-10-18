@@ -63,17 +63,22 @@ test.describe('homepage composition', () => {
 
     const geometry = await contact.evaluate((element) => {
       const action = element.querySelector<HTMLElement>('.contact-primary')
-      const flightPath = element.querySelector<SVGElement>('.contact-flight')
+      const flight = element.querySelector<SVGElement>('.contact-flight')
+      const flightPath = element.querySelector<SVGPathElement>('.contact-flight-path')
       const socialRow = element.querySelector<HTMLElement>('.contact-socials')
-      if (!action || !flightPath || !socialRow) throw new Error('Contact composition is incomplete')
+      if (!action || !flight || !flightPath || !socialRow) throw new Error('Contact composition is incomplete')
 
       const actionRect = action.getBoundingClientRect()
-      const flightRect = flightPath.getBoundingClientRect()
+      const flightRect = flight.getBoundingClientRect()
       const socialRect = socialRow.getBoundingClientRect()
+      const flightMatrix = flightPath.getScreenCTM()
+      if (!flightMatrix) throw new Error('Contact flight geometry is unavailable')
+
+      const flightStart = flightPath.getPointAtLength(0).matrixTransform(flightMatrix)
 
       return {
         actionCenterY: actionRect.top + actionRect.height / 2,
-        flightCenterY: flightRect.top + flightRect.height / 2,
+        flightStartY: flightStart.y,
         flightStartX: flightRect.left,
         actionEndX: actionRect.right,
         socialTop: socialRect.top,
@@ -81,10 +86,63 @@ test.describe('homepage composition', () => {
       }
     })
 
-    expect(Math.abs(geometry.flightCenterY - geometry.actionCenterY)).toBeLessThanOrEqual(2)
+    expect(Math.abs(geometry.flightStartY - geometry.actionCenterY)).toBeLessThanOrEqual(2)
     expect(geometry.flightStartX - geometry.actionEndX).toBeGreaterThanOrEqual(8)
     expect(geometry.flightStartX - geometry.actionEndX).toBeLessThanOrEqual(24)
     expect(geometry.socialTop - geometry.actionBottom).toBeGreaterThanOrEqual(24)
+  })
+
+  test('shows the approved wavy route and paper airplane as static footer artwork', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.waitForFunction(() => document.documentElement.dataset.motion === 'enhanced')
+
+    const contact = page.locator('.contact')
+    await contact.evaluate(element => element.scrollIntoView({ block: 'center' }))
+    await expect(contact).toHaveAttribute('data-revealed', 'true')
+
+    const artwork = await contact.evaluate((element) => {
+      const route = element.querySelector<SVGPathElement>('.contact-flight-path')
+      const airplane = element.querySelector<SVGImageElement>('.contact-airplane')
+      if (!route || !airplane) throw new Error('Contact flight artwork is incomplete')
+
+      return {
+        airplaneAnimation: getComputedStyle(airplane).animationName,
+        airplaneAsset: airplane.getAttribute('href'),
+        airplaneOpacity: getComputedStyle(airplane).opacity,
+        airplaneTransform: getComputedStyle(airplane).transform,
+        routeAnimation: getComputedStyle(route).animationName,
+      }
+    })
+
+    expect(artwork.routeAnimation).toBe('none')
+    expect(artwork.airplaneAnimation).toBe('none')
+    expect(artwork.airplaneAsset).toBe('/images/contact-paper-airplane.png')
+    expect(artwork.airplaneOpacity).toBe('1')
+    expect(artwork.airplaneTransform).toBe('none')
+
+    const alignment = await contact.evaluate((element) => {
+      const route = element.querySelector<SVGPathElement>('.contact-flight-path')
+      const airplane = element.querySelector<SVGImageElement>('.contact-airplane')
+      if (!route || !airplane) throw new Error('Contact flight artwork is incomplete')
+
+      const routeMatrix = route.getScreenCTM()
+      const airplaneMatrix = airplane.getScreenCTM()
+      if (!routeMatrix || !airplaneMatrix) throw new Error('Contact flight geometry is unavailable')
+
+      const routePoint = route.getPointAtLength(route.getTotalLength())
+      const routeScreenPoint = new DOMPoint(routePoint.x, routePoint.y).matrixTransform(routeMatrix)
+      const airplaneTail = new DOMPoint(
+        airplane.x.baseVal.value + 31,
+        airplane.y.baseVal.value + 94,
+      ).matrixTransform(airplaneMatrix)
+
+      return Math.hypot(
+        airplaneTail.x - routeScreenPoint.x,
+        airplaneTail.y - routeScreenPoint.y,
+      )
+    })
+
+    expect(alignment).toBeLessThanOrEqual(4)
   })
 
   test('uses verified project destinations without invented portfolio metrics', async ({ page }) => {
