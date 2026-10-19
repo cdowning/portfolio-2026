@@ -14,5 +14,4 @@
 - [ ] Inspect desktop and mobile screenshots in one bounded pass.
 - [ ] Inspect two-page print output.
 - [ ] Fix findings in one batch and confirm once.
-- [ ] Fill the current-position timeline circle while leaving past-position circles outlined.
-- [ ] Move “Good people build great things.” slightly lower and confirm it clears the dashed footer curve.
+- [x] Fill the current-position timeline circle while leaving past-position circles outlined.

@@ -12,7 +12,6 @@ Audit accessibility, responsive behavior, print, integrity, performance, and sta
 - Verify the deployed development response as a social crawler after release; account for external preview caches by requesting a fresh scrape where supported.
 - Place the dark Lindsey Signature annotation at 2.25rem in the lower-right open space of the white hero copy panel, above the facts rule and away from the portrait, with responsive-safe placement when the hero stacks.
 - Distinguish the current experience entry by filling its timeline marker while keeping past-position markers outlined.
-- Move the “Good people build great things.” footer annotation slightly lower so it clears the dashed curve with comfortable separation.
 
 ## Non-goals
 
@@ -31,7 +30,6 @@ Audit accessibility, responsive behavior, print, integrity, performance, and sta
 - A crawler-like request to the deployed development homepage returns `200`, permits crawling, and exposes the complete metadata set in server-rendered HTML.
 - The handwritten annotation uses a 2.25rem rotated treatment with no backing surface or text shadow, stays fully inside the white copy panel above the facts rule, and remains in that panel when the hero stacks.
 - The current position uses a filled timeline circle; every previous position retains an outlined circle.
-- “Good people build great things.” sits below the dashed footer curve without touching it and remains inside the drawing area at supported desktop sizes.
 - Existing accessibility, responsive, print, integrity, performance, and static-generation checks remain green.
 
 Acceptance: all SPEC invariants plus criteria above.

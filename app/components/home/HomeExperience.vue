@@ -21,7 +21,12 @@ defineProps<{
       <span>of frontend<br>development<br>experience</span>
     </div>
     <ol class="experience-list">
-      <li v-for="role in roles" :key="`${role.company}-${role.title}`">
+      <li
+        v-for="role in roles"
+        :key="`${role.company}-${role.title}`"
+        :aria-current="role.current ? 'true' : undefined"
+        :class="{ 'experience-current': role.current }"
+      >
         <div>
           <strong>{{ role.title }}</strong>
           <span>{{ role.company }}</span>
@@ -110,6 +115,10 @@ defineProps<{
   left: -2.35rem;
   position: absolute;
   width: .6rem;
+}
+
+.experience-list .experience-current::before {
+  background: var(--text);
 }
 
 .experience-list strong,

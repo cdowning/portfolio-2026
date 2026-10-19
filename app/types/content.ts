@@ -35,6 +35,7 @@ export interface WorkItem {
 
 export interface ExperienceRole {
   company: string
+  current?: boolean
   title: string
   period: string
   shortPeriod: string

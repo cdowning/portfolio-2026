@@ -136,27 +136,9 @@ test.describe('responsive layout contract', () => {
     }
   })
 
-  test('/resume keeps the footer annotation below the curve', async ({ page }) => {
-    const footer = { footer: '.resume-contact', drawing: '.resume-contact-drawing', note: '.resume-contact-drawing p' }
-    await page.setViewportSize({ width: 1440, height: 900 })
-    await page.goto('/resume')
-
-    const noteOffsetRatio = await page.locator(footer.footer).evaluate((element, selectors) => {
-      const drawing = element.querySelector<HTMLElement>(selectors.drawing)
-      const note = element.querySelector<HTMLElement>(selectors.note)
-      if (!drawing || !note) throw new Error('Footer composition is missing')
-
-      const drawingRect = drawing.getBoundingClientRect()
-      const noteRect = note.getBoundingClientRect()
-      return (noteRect.top - drawingRect.top) / drawingRect.height
-    }, footer)
-
-    expect(noteOffsetRatio).toBeGreaterThanOrEqual(.56)
-  })
-
   for (const footer of [
     { route: '/', footer: '.contact' },
-    { route: '/resume', footer: '.resume-contact' },
+    { route: '/resume', footer: '.contact' },
   ]) {
     for (const selection of [
       {

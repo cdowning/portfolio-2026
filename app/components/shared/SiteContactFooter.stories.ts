@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { onUnmounted } from 'vue'
 
 import { profile } from '../../content/site'
-import HomeContact from './HomeContact.vue'
+import SiteContactFooter from './SiteContactFooter.vue'
 
 function withTheme(theme: 'light' | 'dark') {
   return () => ({
@@ -22,10 +22,10 @@ function withTheme(theme: 'light' | 'dark') {
 
 const meta = {
   title: 'Sections/Footer Selection',
-  component: HomeContact,
-  args: { profile },
+  component: SiteContactFooter,
+  args: { profile, sectionNumber: '06' },
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<typeof HomeContact>
+} satisfies Meta<typeof SiteContactFooter>
 
 export default meta
 type Story = StoryObj<typeof meta>

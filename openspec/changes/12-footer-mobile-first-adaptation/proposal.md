@@ -1,6 +1,6 @@
 # Footer mobile-first adaptation
 
-Rewrite both screen footer layouts from a narrow-screen base while preserving their approved content, visual hierarchy, and the social links delivered by change 11.
+Rewrite the shared screen footer layout from a narrow-screen base while preserving its approved content, visual hierarchy, and the social links delivered by change 11 on both public routes.
 
 ## Dependency
 
@@ -9,7 +9,7 @@ Rewrite both screen footer layouts from a narrow-screen base while preserving th
 
 ## Confirmed direction
 
-- Limit the refactor to `HomeContact` and `ResumeContact`.
+- Limit the refactor to `SiteContactFooter`.
 - Make narrow-screen layout the base CSS instead of overriding a desktop grid through `max-width` queries.
 - Layer tablet and desktop composition through content-driven `min-width` queries.
 - Keep one logical source and focus order across every layout.
@@ -41,9 +41,9 @@ Rewrite both screen footer layouts from a narrow-screen base while preserving th
 ## Acceptance
 
 - Base footer CSS represents the narrow-screen layout; larger compositions use `min-width` enhancements.
-- Both footers retain all approved content and social links at every supported width.
+- The shared footer retains all approved content and social links on both routes at every supported width.
 - Footer links meet the 44px touch-target requirement and preserve keyboard focus visibility.
-- Both footers remain free of horizontal overflow at 320, 390, 768, 1024, and wide desktop widths.
+- The shared footer remains free of horizontal overflow at 320, 390, 768, 1024, and wide desktop widths.
 - Phone landscape and safe-area behavior remain intentional.
 - Light and dark footer contrast remain WCAG AA.
 - `impeccable adapt` review and focused automated checks pass before completion.

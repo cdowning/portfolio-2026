@@ -8,9 +8,9 @@
 - [ ] Record source order, focus order, visibility rules, theme contrast, and decorative drawing behavior.
 - [ ] Add focused regression assertions before restructuring CSS.
 
-## Task 2: Rebuild both footers mobile first
+## Task 2: Rebuild the shared footer mobile first
 
-- [ ] Make narrow-screen footer layout the base CSS for `HomeContact` and `ResumeContact`.
+- [ ] Make narrow-screen footer layout the base CSS for `SiteContactFooter`.
 - [ ] Add tablet and desktop layouts with content-driven `min-width` queries.
 - [ ] Remove obsolete footer-only `max-width` overrides after equivalent behavior is proven.
 - [ ] Provide at least 44px touch targets and sufficient separation for every footer action.
@@ -20,7 +20,7 @@
 
 ## Task 3: Extend responsive coverage
 
-- [ ] Test both footers at 320, 390, 768, 1024, and wide desktop widths.
+- [ ] Test the shared footer on both routes at 320, 390, 768, 1024, and wide desktop widths.
 - [ ] Assert no horizontal overflow, 44px targets, logical keyboard order, and visible focus.
 - [ ] Verify portrait and landscape behavior with touch and fine-pointer inputs.
 - [ ] Recheck light and dark footer contrast after layout changes.
@@ -28,8 +28,8 @@
 
 ## Task 4: Impeccable adaptation review
 
-- [ ] Run project-scoped `impeccable adapt` against the homepage and résumé footers.
-- [ ] Review both footers together at phone, tablet, and desktop sizes.
+- [ ] Run project-scoped `impeccable adapt` against the shared footer on the homepage and résumé routes.
+- [ ] Review both footer contexts together at phone, tablet, and desktop sizes.
 - [ ] Check portrait and landscape, touch and fine-pointer behavior, keyboard navigation, and both themes.
 - [ ] Fix all findings in one bounded batch, then perform at most one confirmation pass.
 - [ ] Keep the project skill, supporting agents, and detector hooks versioned and reproducible.

@@ -42,6 +42,33 @@ test.describe('homepage composition', () => {
     )
   })
 
+  test('fills only the current experience timeline marker', async ({ page }) => {
+    const roles = page.locator('.experience-list li')
+    const currentRole = roles.filter({ hasText: 'Senior Frontend Engineer' })
+
+    await expect(currentRole).toHaveAttribute('aria-current', 'true')
+    await expect(page.locator('.experience-list li[aria-current="true"]')).toHaveCount(1)
+
+    const markerStyles = await roles.evaluateAll((items) => items.map((item) => {
+      const role = getComputedStyle(item)
+      const marker = getComputedStyle(item, '::before')
+
+      return {
+        current: item.getAttribute('aria-current') === 'true',
+        fill: marker.backgroundColor,
+        text: role.color,
+      }
+    }))
+
+    expect(markerStyles[0]).toMatchObject({ current: true })
+    expect(markerStyles[0]?.fill).toBe(markerStyles[0]?.text)
+
+    for (const previousRole of markerStyles.slice(1)) {
+      expect(previousRole.current).toBe(false)
+      expect(previousRole.fill).not.toBe(previousRole.text)
+    }
+  })
+
   test('connects the contact button to a paper airplane above a separate social row', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })
 

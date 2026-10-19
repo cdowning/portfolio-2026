@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import HomeAbout from '~/components/home/HomeAbout.vue'
-import HomeContact from '~/components/home/HomeContact.vue'
 import HomeExperience from '~/components/home/HomeExperience.vue'
 import HomeHero from '~/components/home/HomeHero.vue'
 import HomeToolkit from '~/components/home/HomeToolkit.vue'
 import HomeWork from '~/components/home/HomeWork.vue'
+import SiteContactFooter from '~/components/shared/SiteContactFooter.vue'
 import { experience, profile, toolkit, workItems } from '~/content/site'
 import { createPageSeo } from '~/utils/seo'
 
@@ -33,7 +33,7 @@ useHead({
       <HomeExperience :experience-label="profile.experienceLabel" :roles="experience" />
       <HomeToolkit :items="toolkit" />
     </main>
-    <HomeContact :profile="profile" />
+    <SiteContactFooter :profile="profile" section-number="06" />
   </div>
 </template>
 

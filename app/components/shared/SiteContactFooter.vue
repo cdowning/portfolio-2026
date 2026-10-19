@@ -7,6 +7,7 @@ import type { SiteProfile } from '~/types/content'
 
 const props = defineProps<{
   profile: SiteProfile
+  sectionNumber: string
 }>()
 
 const socialIconNames = {
@@ -23,7 +24,7 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 
 <template>
   <footer id="contact" class="contact" data-reveal>
-    <CSectionMarker class="contact-marker" number="06" />
+    <CSectionMarker class="contact-marker" :number="sectionNumber" />
     <div class="contact-main">
       <h2 class="contact-title">Let’s make something thoughtful.</h2>
       <p class="contact-intro">I’m always open to meaningful conversations about interesting work.</p>

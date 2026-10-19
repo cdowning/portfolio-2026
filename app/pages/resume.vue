@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ResumeContact from '~/components/resume/ResumeContact.vue'
 import ResumeEducationToolkit from '~/components/resume/ResumeEducationToolkit.vue'
 import ResumeExperience from '~/components/resume/ResumeExperience.vue'
 import ResumeIntro from '~/components/resume/ResumeIntro.vue'
 import ResumePrint from '~/components/resume/ResumePrint.vue'
 import ResumeSkills from '~/components/resume/ResumeSkills.vue'
+import SiteContactFooter from '~/components/shared/SiteContactFooter.vue'
 import { usePrintResume } from '~/composables/usePrintResume'
 import { education, experience, profile, skillGroups, toolkit } from '~/content/site'
 import { createPageSeo } from '~/utils/seo'
@@ -37,7 +37,7 @@ useHead({
         <ResumeExperience :roles="experience" />
         <ResumeEducationToolkit :education="education" :toolkit="toolkit" />
       </main>
-      <ResumeContact :profile="profile" />
+      <SiteContactFooter :profile="profile" section-number="07" />
     </div>
     <ResumePrint
       :education="education"

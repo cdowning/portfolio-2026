@@ -69,6 +69,7 @@ export const workItems: WorkItem[] = [
 export const experience: ExperienceRole[] = [
   {
     company: 'Allocate',
+    current: true,
     title: 'Senior Frontend Engineer',
     period: '2026 — Present',
     shortPeriod: '2026 — Present',
