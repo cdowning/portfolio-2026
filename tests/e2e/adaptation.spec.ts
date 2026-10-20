@@ -46,6 +46,23 @@ test.describe('responsive navigation and editorial motion', () => {
     await expect(navigation).not.toBeVisible()
   })
 
+  test('mobile Contact navigation leaves the footer heading clear of the sticky header', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+    await page.getByRole('button', { name: 'Open navigation' }).click()
+    await expect(page.getByRole('button', { name: 'Close navigation' })).toBeVisible()
+    await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Contact' }).click()
+    await expect(page).toHaveURL(/\/#contact$/)
+
+    await expect.poll(async () => page.evaluate(() => {
+      const header = document.querySelector<HTMLElement>('.site-header')
+      const footer = document.querySelector<HTMLElement>('footer#contact')
+      if (!header || !footer) throw new Error('Header or footer is missing')
+      return footer.getBoundingClientRect().top - header.getBoundingClientRect().bottom
+    })).toBeGreaterThanOrEqual(0)
+  })
+
   test('desktop navigation reports the section currently in view', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 })
     await page.goto('/')
@@ -216,6 +233,82 @@ test.describe('responsive layout contract', () => {
       expect(bounds!.width).toBeCloseTo(2048, 0)
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(2048)
     })
+  }
+
+  for (const route of ['/', '/resume']) {
+    test(`${route} preserves the shared footer contract across responsive contexts`, async ({ page }) => {
+      for (const width of [320, 390, 768, 1024, 1440]) {
+        await page.setViewportSize({ width, height: 900 })
+        await page.goto(route)
+
+        const footer = page.locator('footer#contact')
+        const presentation = await footer.evaluate((element) => {
+          const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('a'))
+          const flight = element.querySelector<SVGElement>('.contact-flight')
+          if (!flight) throw new Error('Footer flight artwork is missing')
+
+          return {
+            focusOrder: links.map((link) => link.textContent?.trim()),
+            flightDisplay: getComputedStyle(flight).display,
+            footerRight: element.getBoundingClientRect().right,
+            footerWidth: element.getBoundingClientRect().width,
+          }
+        })
+
+        expect(presentation.focusOrder, `${route} at ${width}px`).toEqual([
+          'Say hello',
+          'LinkedIn',
+          'GitHub',
+          'CodePen',
+        ])
+        expect(presentation.footerWidth, `${route} at ${width}px`).toBeCloseTo(width, 0)
+        expect(presentation.footerRight, `${route} at ${width}px`).toBeLessThanOrEqual(width)
+        expect(presentation.flightDisplay, `${route} at ${width}px`)
+          .toBe(width >= 768 ? 'block' : 'none')
+
+        for (const label of ['Say hello', 'LinkedIn', 'GitHub', 'CodePen']) {
+          const bounds = await footer.getByRole('link', { name: label, exact: true }).boundingBox()
+          expect(bounds, `${label} on ${route} at ${width}px`).not.toBeNull()
+          expect(bounds!.width, `${label} width on ${route} at ${width}px`).toBeGreaterThanOrEqual(44)
+          expect(bounds!.height, `${label} height on ${route} at ${width}px`).toBeGreaterThanOrEqual(44)
+        }
+      }
+    })
+
+    test(`${route} keeps the primary footer action visibly focused`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 })
+      await page.goto(route)
+
+      const action = page.getByRole('contentinfo').getByRole('link', { name: 'Say hello' })
+      await action.focus()
+
+      const focus = await action.evaluate((element) => {
+        const style = getComputedStyle(element)
+        return { outlineStyle: style.outlineStyle, outlineWidth: Number.parseFloat(style.outlineWidth) }
+      })
+
+      expect(focus.outlineStyle).toBe('solid')
+      expect(focus.outlineWidth).toBeGreaterThanOrEqual(2)
+    })
+  }
+
+  for (const viewport of [
+    { width: 667, height: 375 },
+    { width: 844, height: 390 },
+  ]) {
+    for (const route of ['/', '/resume']) {
+      test(`${route} keeps the footer contained at ${viewport.width}×${viewport.height}`, async ({ page }) => {
+        await page.setViewportSize(viewport)
+        await page.goto(route)
+
+        const dimensions = await page.evaluate(() => ({
+          clientWidth: document.documentElement.clientWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+        }))
+
+        expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
+      })
+    }
   }
 
   for (const width of [320, 390, 768, 1024]) {

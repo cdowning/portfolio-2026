@@ -1,34 +1,163 @@
-# Design
+---
+name: Caitlin Hawley Portfolio
+description: A precise, tactile, and quietly joyful portfolio where frontend engineering and design judgment share one pattern table.
+colors:
+  canvas: "#fdfbf9"
+  surface: "#fbf6f1"
+  surface-raised: "#fffdfa"
+  surface-muted: "#f5efea"
+  text-strong: "#0f0e0e"
+  text: "#252422"
+  text-secondary: "#6f6861"
+  text-muted: "#827970"
+  rule: "#ded5cb"
+  rule-strong: "#b9aea2"
+  teal: "#84a59d"
+  teal-deep: "#5c736e"
+  teal-wash: "#e7efed"
+  blush: "#ddb6b0"
+  blush-light: "#f5cac3"
+  blush-wash: "#f8e8e5"
+  gold: "#f6bd60"
+  gold-deep: "#c5974d"
+  gold-highlight: "#ffd17d"
+  gold-wash: "#fff1d7"
+  dark-canvas: "#151412"
+  dark-surface: "#1c1a18"
+  dark-surface-raised: "#24211e"
+  dark-surface-muted: "#2d2925"
+  dark-text-strong: "#fffaf5"
+  dark-text: "#f5f0ea"
+  dark-text-secondary: "#b6ada4"
+  dark-text-muted: "#938b83"
+  dark-rule: "#3f3934"
+  dark-rule-strong: "#6b6259"
+  dark-teal: "#94b8ae"
+  dark-teal-highlight: "#b1d0c8"
+  dark-teal-wash: "#26312e"
+  dark-blush: "#c79591"
+  dark-blush-highlight: "#dca7a2"
+  dark-blush-wash: "#342726"
+  dark-gold-wash: "#3d3020"
+typography:
+  page-title:
+    fontFamily: "Poppins, sans-serif"
+    fontSize: "clamp(3.583rem, 5.25vw, 6.192rem)"
+    fontWeight: "700"
+    lineHeight: "0.91"
+    letterSpacing: "-0.045em"
+  section-title:
+    fontFamily: "Poppins, sans-serif"
+    fontSize: "clamp(2.074rem, 2.4vw, 2.986rem)"
+    fontWeight: "700"
+    lineHeight: "1"
+    letterSpacing: "-0.04em"
+  body:
+    fontFamily: "Work Sans, sans-serif"
+    fontSize: "1rem"
+    fontWeight: "400"
+    lineHeight: "1.35"
+  body-large:
+    fontFamily: "Work Sans, sans-serif"
+    fontSize: "1.2rem"
+    fontWeight: "400"
+    lineHeight: "1.45"
+  label:
+    fontFamily: "Work Sans, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: "600"
+    lineHeight: "1.5"
+    letterSpacing: "0.3em"
+  note:
+    fontFamily: "Dawning of a New Day, cursive"
+    fontSize: "1.2rem"
+    fontWeight: "400"
+    lineHeight: "1"
+spacing:
+  page-gutter: "clamp(1.25rem, 4vw, 4rem)"
+  section-gap: "clamp(3rem, 7vw, 7rem)"
+components:
+  primary-button:
+    backgroundColor: "{colors.gold}"
+    textColor: "{colors.text-strong}"
+    typography: "{typography.body}"
+    rounded: "0"
+    padding: "0 1.4rem"
+    height: "3.5rem"
+  dark-primary-button:
+    backgroundColor: "{colors.dark-blush}"
+    textColor: "{colors.dark-canvas}"
+    typography: "{typography.body}"
+    rounded: "0"
+    padding: "0 1.4rem"
+    height: "3.5rem"
+  soft-tag:
+    backgroundColor: "{colors.teal-wash}"
+    textColor: "{colors.text}"
+    typography: "{typography.label}"
+    rounded: "0"
+    padding: "0.35rem 0.55rem"
+---
 
-## Direction
+# Design System: Caitlin Hawley Portfolio
 
-**The Pattern Table** presents frontend development and visual design as one act of careful construction: measured rules, drafting arcs, clipped photography, numbered annotations, restrained swatches, and flat ruled sheets.
+## Overview
 
-## Mode
+**Creative North Star: "The Pattern Table"**
 
-Experience. The homepage leads with Caitlin’s point of view and proof; the résumé turns the same language into a dense reading surface.
+**The Pattern Table** presents frontend development and visual design as one act of careful construction. Its North Star is precise, tactile, and quietly joyful: measured rules, drafting arcs, clipped photography, numbered annotations, restrained fabric swatches, and flat ruled sheets make the work feel considered without becoming precious.
 
-## Tokens
+The portfolio is an experience rather than a résumé template. The homepage leads with Caitlin’s point of view and proof; the résumé turns the same language into a denser reading and print surface. Both should communicate thoughtful frontend engineering, strong user-experience judgment, and care for the people using the interface.
 
-- Light surfaces: canvas `#fdfbf9`, surface `#fbf6f1`, raised `#fffdfa`, muted `#f5efea`
-- Light text/rules: strong `#0f0e0e`, primary `#252422`, secondary `#6f6861`, muted `#827970`, rule `#ded5cb`, strong rule `#b9aea2`
-- Dark surfaces: canvas `#151412`, surface `#1c1a18`, raised `#24211e`, muted `#2d2925`
-- Dark text/rules: strong `#fffaf5`, primary `#f5f0ea`, secondary `#b6ada4`, muted `#938b83`, rule `#3f3934`, strong rule `#6b6259`
-- Teal: light `#84a59d` / `#5c736e` / wash `#e7efed`; dark `#94b8ae` / `#b1d0c8` / wash `#26312e`
-- Blush: light `#ddb6b0`, `#f5cac3`, wash `#f8e8e5`; dark action/footer `#c79591`, highlight `#dca7a2`, wash `#342726`
-- Gold: `#f6bd60`, `#c5974d`, highlight `#ffd17d`, light wash `#fff1d7`, dark wash `#3d3020`
-- Display/UI: Poppins; body: Work Sans; handwritten notes: Dawning of a New Day.
+The system is measured, tactile, direct, and accessible by default. Avoid generic SaaS cards, excessive rounding, glass effects, gradient-heavy styling, and decorative complexity that weakens hierarchy or readability.
 
-## Screen typography
+**Key Characteristics:**
 
-- Nominal browser base: `1rem`, normally `16px`.
-- Do not force a root pixel size. Browser and visitor font-size preferences remain effective.
-- Primitive screen sizes follow a `1.2` minor-third ratio.
-- `--text-xs` is a deliberate `0.75rem` readability floor.
-- Primary body copy uses `--text-base`; meaningful screen copy stays at or above `--text-sm`.
-- Drafting labels stay at or above `--text-xs` unless decorative and hidden from assistive technology.
-- Current screen UI keeps decorative annotations at `--text-xs`; no sub-floor exception remains.
-- Print keeps an independent point-based scale so the résumé remains exactly two US Letter pages.
+- Warm paper and charcoal themes with restrained gold, blush, and teal accents.
+- Editorial grids, fine rules, measurements, contextual numbering, and material samples.
+- Square, direct controls with visible focus treatment and generous touch targets.
+- Motion that assembles, draws, or connects rather than merely decorates.
+
+Approved visual references:
+
+- Homepage: `references/caitlin-hawley-full-homepage-exploration.png`
+- Résumé: `references/resume-final-direction.png`
+
+## Colors
+
+Color tokens in the frontmatter are normative. Components consume semantic roles—canvas, surface, text, rule, action, focus, selection, and footer contrast—rather than reaching for palette primitives. Palette primitives remain appropriate for authored swatches and drafting details.
+
+Light mode uses warm paper surfaces, graphite text, teal support, and gold for primary actions and the footer. Dark mode uses charcoal surfaces, warm white text, teal support, blush for primary actions and the footer, and gold only for rare drafting or navigation details.
+
+Key light roles:
+
+- Surfaces: canvas `#fdfbf9`, surface `#fbf6f1`, raised `#fffdfa`, muted `#f5efea`.
+- Text and rules: strong `#0f0e0e`, primary `#252422`, secondary `#6f6861`, muted `#827970`, rule `#ded5cb`, strong rule `#b9aea2`.
+- Teal: `#84a59d`, deep `#5c736e`, wash `#e7efed`.
+- Blush: `#ddb6b0`, light `#f5cac3`, wash `#f8e8e5`.
+- Gold: `#f6bd60`, deep `#c5974d`, highlight `#ffd17d`, wash `#fff1d7`.
+
+Key dark roles:
+
+- Surfaces: canvas `#151412`, surface `#1c1a18`, raised `#24211e`, muted `#2d2925`.
+- Text and rules: strong `#fffaf5`, primary `#f5f0ea`, secondary `#b6ada4`, muted `#938b83`, rule `#3f3934`, strong rule `#6b6259`.
+- Teal: `#94b8ae`, highlight `#b1d0c8`, wash `#26312e`.
+- Blush: action/footer `#c79591`, highlight `#dca7a2`, wash `#342726`.
+- Gold wash: `#3d3020`.
+
+A numeric family scale such as `blush-40` or `blush-50` is intentionally deferred. The existing colors are theme-specific roles, not yet a perceptually ordered palette. Establish numeric steps only after arranging each family by measured lightness and testing text, UI, and adjacent-color contrast. Generated tonal ramps in `.impeccable/design.json` are exploratory aids, not approved tokens.
+
+**The Semantic Role Rule.** Components consume semantic roles; palette primitives are reserved for authored swatches and drafting details.
+
+**The Honest Scale Rule.** Do not assign numeric color steps until the families are perceptually ordered and contrast-tested.
+
+Default text selection uses the semantic page selection roles. Footer selection reverses footer roles—`var(--on-footer)` behind `var(--footer)`—with measured contrast of `7.13:1` in dark mode and `11.35:1` in light mode.
+
+## Typography
+
+Poppins carries display and identity moments. Work Sans carries body copy, navigation, controls, and dense information. Dawning of a New Day, with `lindsey-signature` as an optional first choice, is reserved for brief handwritten notes.
+
+The nominal browser base is `1rem`, normally `16px`; never force a root pixel size. Browser and visitor font-size preferences remain effective. Screen primitives follow a `1.2` minor-third ratio:
 
 | Token | Value | Nominal size |
 |---|---:|---:|
@@ -57,52 +186,74 @@ Semantic fluid roles use scale endpoints rather than unrelated intermediate valu
 --text-page-title: clamp(var(--text-5xl), 5.25vw, var(--text-8xl));
 ```
 
-## Component CSS
+Primary body copy uses `--text-base`; meaningful screen copy stays at or above `--text-sm`. Drafting labels stay at or above `--text-xs` unless decorative and hidden from assistive technology. Print retains an independent point-based scale so the résumé remains exactly two US Letter pages.
 
-- Vue single-file components keep `<style scoped>`.
-- Project-owned classes use flat kebab-case; BEM `block__element` and `block--modifier` syntax is not used.
-- Base classes name the component: `.button`, `.hero`, `.navigation`.
-- Part classes use readable prefixes: `.button-arrow`, `.hero-title`, `.hero-stage`.
-- Variant classes pair with the base: `.button-large`, `.button-gold`.
-- State classes remain explicit: `.navigation-open`, `.theme-dark`.
-- Typed props generate explicit dynamic classes such as `button-${size}` and `button-${tone}`.
-- CSS does not use `data-*` attributes as its primary styling API. ARIA remains the source of accessibility state.
-- Runtime DOM access uses Vue template refs rather than styling classes.
-- Browser tests prefer roles, names, and semantic structure. Dedicated hooks remain acceptable when geometry cannot be observed semantically.
-- Parents avoid `:deep()` dependencies on child internals. Prefer wrappers, props, variants, or CSS custom-property contracts.
+**The Readability Floor Rule.** Meaningful interface copy never drops below the established screen floor; smaller marks are decorative and hidden from assistive technology.
 
-## Text selection
+## Layout
 
-- Default selection uses the semantic page selection roles.
-- Footer selection inverts footer roles: background `var(--on-footer)` and text `var(--footer)`.
-- Footer selection contrast: dark theme `7.13:1`; light theme `11.35:1`.
-- Teal remains a supporting accent and does not compete with blush or gold inside the footer.
+The core composition is an asymmetrical editorial grid with fine full-width rules. Sections begin with contextual index numbers and construction labels. `--page-gutter` scales from `1.25rem` to `4rem`, content is capped at `100rem`, and the sticky header is `5.25rem` tall on wide screens.
 
-## Composition and behavior
+Photography behaves like a material sample rather than a generic banner. It can be clipped, gridded, measured, and paired with construction marks, but it remains legible and respectful of the subject. Palette swatches appear as solid fabric samples with small pinked edges and unpatterned interiors.
 
-- Asymmetrical 12-column editorial grid with fine full-width rules.
-- Sections begin with index numbers and construction labels.
-- Photography is a material sample, not a generic banner.
-- Palette swatches are solid fabric samples with small pinked edges; their interiors are unpatterned.
-- Navigation uses an underline marker; primary actions use gold.
-- Light theme uses gold for primary actions + footer. Dark theme uses blush for primary actions + footer, black footer action, teal support, gold only for rare drafting/navigation details.
-- Components consume semantic surface, text, rule, action, focus, selection, and footer contrast roles; palette primitives remain for authored swatches/details.
-- First visit follows system preference; a single icon button toggles + persists `light`/`dark`. Desktop ends the header with the compact 52px utility cell directly after navigation; mobile gives the control its own 44px target between brand + navigation. The handwritten Caitlin sign-off lives in the lower hero copy panel and reveals with the assembly phase.
-- Motion draws rules and reveals relationships; hover movement stays within 2–4px.
-- Mobile becomes one deliberate reading column; decorative notes may move or disappear only when redundant.
-- Print stays white/black and removes navigation, theme controls, paths, and backgrounds while preserving content and section rules.
+The homepage Toolkit stays one continuous horizontal row on desktop, preserving the `05` marker, heading, construction rules, and shared ruled tags. Its order is frontend foundations, interface workflow, then AI-assisted development practices. Claude Code, Codex, and Spec-driven development are approved additions. Below `88rem` the list becomes three columns; below `42rem` it becomes two columns in DOM order. Do not restore the decorative `06 / Tools / People / Possibilities` rail. The grouped Build/Workflow matrix remains an exploration reference, not an implementation pattern.
 
-## Toolkit section
+Mobile becomes one deliberate reading column. Interactive controls retain at least a `2.75rem` target below `40rem`; decorative notes may move or disappear only when redundant. Print stays black on white and removes navigation, theme controls, paths, backgrounds, and nonessential decoration while preserving content and section rules.
 
-- Keep the homepage Toolkit as one continuous horizontal row on desktop.
-- Preserve the `05` section marker, heading, construction rules, and shared ruled tags.
-- The content order is frontend foundations, interface workflow, then AI-assisted development practices.
-- The approved additions are Claude Code, Codex, and Spec-driven development.
-- Do not restore the decorative `06 / Tools / People / Possibilities` rail or replace it with another transition label.
-- Below `88rem` the list becomes three columns before the desktop row can crowd. Below `42rem` it becomes two columns in DOM order.
-- The grouped Build/Workflow matrix remains an exploration reference, not an implementation pattern.
+## Elevation & Depth
 
-## Approved references
+The interface is mostly flat. Shadows appear only when a physical specimen seems lifted from the page. The work specimens use a restrained `0 1.25rem 2.5rem` shadow—12% graphite in light mode and 36% black in dark mode—while navigation, buttons, tags, sections, and footer remain unshadowed.
 
-- Homepage: `references/caitlin-hawley-full-homepage-exploration.png`
-- Résumé: `references/resume-final-direction.png`
+Depth otherwise comes from overlapping paper, clipped photography, ruled boundaries, grids, and contrast between surface roles. Do not add floating cards or ambient shadows simply to separate content.
+
+Motion should draw rules, assemble material, or reveal relationships. The shared curve is `cubic-bezier(.16, 1, .3, 1)`, with `160ms` for immediate UI feedback, `360ms` for standard transitions, and `650ms` for drawn paths. Hover movement stays within `2–4px`. Respect `prefers-reduced-motion` by removing nonessential animation and transition.
+
+**The Flat-by-Default Rule.** Shadows appear only when a physical specimen seems lifted from the page.
+
+## Shapes
+
+The default shape language is square, ruled, and architectural. Buttons, tags, content panels, and navigation cells have no radius. Circles are reserved for timeline nodes, measurement points, crosshairs, and small system indicators. Tiny radii up to `.15rem` may appear inside miniature interface specimens, where they describe the represented product rather than the portfolio shell.
+
+Rules are generally `1px`. Dashed paths use rounded line caps and measured gaps. Fabric swatches use a pinked-edge mask with a small tooth rather than rounded corners. Decorative marks must reinforce construction, sequence, or relationship; they are not filler.
+
+## Components
+
+Components are measured, tactile, direct, and accessible by default.
+
+- **Buttons:** square gold actions in light mode and blush actions in dark mode; footer buttons use the inverse ink treatment. Regular buttons are at least `3.5rem` tall and large buttons `4.2rem`. The arrow may move `.25rem` on hover.
+- **Tags:** soft tags use a support wash; ruled tags use a strong left rule. Both expose CSS custom properties for deliberate parent-level composition.
+- **Section markers:** contextual number plus vertical rule, using compact uppercase labels and generous tracking.
+- **Site header:** sticky, nearly opaque against the canvas, with a measured underline for the active navigation state and a dedicated theme-control cell.
+- **Theme toggle:** a `2.75rem` icon button with a visible focus state, an understated rotation on interaction, and no print output.
+- **Fabric swatches:** stacked color samples with pinked edges. Animation is optional and must follow the shared motion and reduced-motion rules.
+- **Contact footer:** a full-bleed action surface shared by the homepage and résumé, pairing a direct invitation with social links, brand lockup, and restrained line illustration.
+- **Timeline:** `CTimeline` is planned in OpenSpec Change 15 but is not yet part of the implemented system. Do not document or consume it as shipped until that change is complete.
+
+Vue single-file components keep `<style scoped>`. Project-owned classes use flat kebab-case rather than BEM. Base classes name the component (`.button`, `.hero`, `.navigation`); parts use readable prefixes (`.button-arrow`, `.hero-title`); variants pair with the base (`.button-large`, `.button-gold`); states remain explicit (`.navigation-open`, `.theme-dark`). Typed props generate explicit classes such as `button-${size}` and `button-${tone}`.
+
+CSS does not use `data-*` attributes as its primary styling API. ARIA remains the source of accessibility state. Runtime DOM access uses Vue template refs. Browser tests prefer roles, names, and semantic structure. Parents avoid `:deep()` dependencies on child internals; prefer wrappers, props, variants, or documented CSS custom-property contracts.
+
+Every interactive component needs a visible `2px` focus ring with `4px` offset, adequate target size, semantic HTML, and keyboard behavior equivalent to pointer behavior.
+
+**The Accessible-by-Default Rule.** A component is incomplete until its focus, target size, semantics, keyboard behavior, and reduced-motion behavior are defined.
+
+## Do's and Don'ts
+
+### Do
+
+- Use measured rules, contextual numbering, and construction marks to establish sequence and hierarchy.
+- Let content, typography, and carefully placed material samples carry the composition.
+- Use semantic color roles and verify contrast in both themes.
+- Preserve the same design language across the homepage, résumé, Storybook, and print output.
+- Keep responsive adaptations intentional: simplify the construction without flattening the identity.
+- Use motion to explain assembly, connection, or state change.
+
+### Don't
+
+- Do not turn sections into generic rounded SaaS cards.
+- Do not introduce glass effects, heavy gradients, pill-shaped controls, or ambient shadow stacks.
+- Do not use palette primitives where a semantic role exists.
+- Do not shrink meaningful copy below the established readability floor.
+- Do not hide information on mobile merely to preserve a desktop composition.
+- Do not fabricate project outcomes, metrics, testimonials, or client proof.
+- Do not publish private design explorations without an explicit decision to share them.

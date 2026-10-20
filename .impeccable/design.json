@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T13:49:34-05:00",
+  "title": "Design System: Caitlin Hawley Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "canvas": { "role": "neutral", "displayName": "Pattern Paper", "canonical": "#fdfbf9", "tonalRamp": ["oklch(15% 0.0034 67.784)", "oklch(27% 0.0034 67.784)", "oklch(39% 0.0034 67.784)", "oklch(51% 0.0034 67.784)", "oklch(63% 0.0034 67.784)", "oklch(75% 0.0034 67.784)", "oklch(87% 0.0034 67.784)", "oklch(95% 0.0034 67.784)"], "tonalRampStatus": "exploratory-not-normative" },
+      "surface": { "role": "neutral", "displayName": "Warm Surface", "canonical": "#fbf6f1", "tonalRamp": ["oklch(15% 0.0085 67.7254)", "oklch(27% 0.0085 67.7254)", "oklch(39% 0.0085 67.7254)", "oklch(51% 0.0085 67.7254)", "oklch(63% 0.0085 67.7254)", "oklch(75% 0.0085 67.7254)", "oklch(87% 0.0085 67.7254)", "oklch(95% 0.0085 67.7254)"], "tonalRampStatus": "exploratory-not-normative" },
+      "surface-raised": { "role": "neutral", "displayName": "Raised Paper", "canonical": "#fffdfa", "tonalRamp": ["oklch(15% 0.0045 78.2986)", "oklch(27% 0.0045 78.2986)", "oklch(39% 0.0045 78.2986)", "oklch(51% 0.0045 78.2986)", "oklch(63% 0.0045 78.2986)", "oklch(75% 0.0045 78.2986)", "oklch(87% 0.0045 78.2986)", "oklch(95% 0.0045 78.2986)"], "tonalRampStatus": "exploratory-not-normative" },
+      "surface-muted": { "role": "neutral", "displayName": "Muted Paper", "canonical": "#f5efea", "tonalRamp": ["oklch(15% 0.0093 62.5844)", "oklch(27% 0.0093 62.5844)", "oklch(39% 0.0093 62.5844)", "oklch(51% 0.0093 62.5844)", "oklch(63% 0.0093 62.5844)", "oklch(75% 0.0093 62.5844)", "oklch(87% 0.0093 62.5844)", "oklch(95% 0.0093 62.5844)"], "tonalRampStatus": "exploratory-not-normative" },
+      "text-strong": { "role": "neutral", "displayName": "Strong Drafting Ink", "canonical": "#0f0e0e", "tonalRamp": ["oklch(15% 0.0017 17.3265)", "oklch(27% 0.0017 17.3265)", "oklch(39% 0.0017 17.3265)", "oklch(51% 0.0017 17.3265)", "oklch(63% 0.0017 17.3265)", "oklch(75% 0.0017 17.3265)", "oklch(87% 0.0017 17.3265)", "oklch(95% 0.0017 17.3265)"], "tonalRampStatus": "exploratory-not-normative" },
+      "text": { "role": "neutral", "displayName": "Drafting Ink", "canonical": "#252422", "tonalRamp": ["oklch(15% 0.004 84.5838)", "oklch(27% 0.004 84.5838)", "oklch(39% 0.004 84.5838)", "oklch(51% 0.004 84.5838)", "oklch(63% 0.004 84.5838)", "oklch(75% 0.004 84.5838)", "oklch(87% 0.004 84.5838)", "oklch(95% 0.004 84.5838)"], "tonalRampStatus": "exploratory-not-normative" },
+      "text-secondary": { "role": "neutral", "displayName": "Secondary Graphite", "canonical": "#6f6861", "tonalRamp": ["oklch(15% 0.014 67.5143)", "oklch(27% 0.014 67.5143)", "oklch(39% 0.014 67.5143)", "oklch(51% 0.014 67.5143)", "oklch(63% 0.014 67.5143)", "oklch(75% 0.014 67.5143)", "oklch(87% 0.014 67.5143)", "oklch(95% 0.014 67.5143)"], "tonalRampStatus": "exploratory-not-normative" },
+      "text-muted": { "role": "neutral", "displayName": "Muted Graphite", "canonical": "#827970", "tonalRamp": ["oklch(15% 0.0175 67.4736)", "oklch(27% 0.0175 67.4736)", "oklch(39% 0.0175 67.4736)", "oklch(51% 0.0175 67.4736)", "oklch(63% 0.0175 67.4736)", "oklch(75% 0.0175 67.4736)", "oklch(87% 0.0175 67.4736)", "oklch(95% 0.0175 67.4736)"], "tonalRampStatus": "exploratory-not-normative" },
+      "rule": { "role": "neutral", "displayName": "Fine Rule", "canonical": "#ded5cb", "tonalRamp": ["oklch(15% 0.0168 70.5127)", "oklch(27% 0.0168 70.5127)", "oklch(39% 0.0168 70.5127)", "oklch(51% 0.0168 70.5127)", "oklch(63% 0.0168 70.5127)", "oklch(75% 0.0168 70.5127)", "oklch(87% 0.0168 70.5127)", "oklch(95% 0.0168 70.5127)"], "tonalRampStatus": "exploratory-not-normative" },
+      "rule-strong": { "role": "neutral", "displayName": "Strong Rule", "canonical": "#b9aea2", "tonalRamp": ["oklch(15% 0.0211 69.917)", "oklch(27% 0.0211 69.917)", "oklch(39% 0.0211 69.917)", "oklch(51% 0.0211 69.917)", "oklch(63% 0.0211 69.917)", "oklch(75% 0.0211 69.917)", "oklch(87% 0.0211 69.917)", "oklch(95% 0.0211 69.917)"], "tonalRampStatus": "exploratory-not-normative" },
+      "teal": { "role": "secondary", "displayName": "Measuring Teal", "canonical": "#84a59d", "tonalRamp": ["oklch(15% 0.0382 178.7041)", "oklch(27% 0.0382 178.7041)", "oklch(39% 0.0382 178.7041)", "oklch(51% 0.0382 178.7041)", "oklch(63% 0.0382 178.7041)", "oklch(75% 0.0382 178.7041)", "oklch(87% 0.0382 178.7041)", "oklch(95% 0.0382 178.7041)"], "tonalRampStatus": "exploratory-not-normative" },
+      "teal-deep": { "role": "secondary", "displayName": "Deep Measuring Teal", "canonical": "#5c736e", "tonalRamp": ["oklch(15% 0.0282 180.4731)", "oklch(27% 0.0282 180.4731)", "oklch(39% 0.0282 180.4731)", "oklch(51% 0.0282 180.4731)", "oklch(63% 0.0282 180.4731)", "oklch(75% 0.0282 180.4731)", "oklch(87% 0.0282 180.4731)", "oklch(95% 0.0282 180.4731)"], "tonalRampStatus": "exploratory-not-normative" },
+      "teal-wash": { "role": "secondary", "displayName": "Teal Wash", "canonical": "#e7efed", "tonalRamp": ["oklch(15% 0.0089 179.5955)", "oklch(27% 0.0089 179.5955)", "oklch(39% 0.0089 179.5955)", "oklch(51% 0.0089 179.5955)", "oklch(63% 0.0089 179.5955)", "oklch(75% 0.0089 179.5955)", "oklch(87% 0.0089 179.5955)", "oklch(95% 0.0089 179.5955)"], "tonalRampStatus": "exploratory-not-normative" },
+      "blush": { "role": "tertiary", "displayName": "Tailor’s Blush", "canonical": "#ddb6b0", "tonalRamp": ["oklch(15% 0.0461 28.3319)", "oklch(27% 0.0461 28.3319)", "oklch(39% 0.0461 28.3319)", "oklch(51% 0.0461 28.3319)", "oklch(63% 0.0461 28.3319)", "oklch(75% 0.0461 28.3319)", "oklch(87% 0.0461 28.3319)", "oklch(95% 0.0461 28.3319)"], "tonalRampStatus": "exploratory-not-normative" },
+      "blush-light": { "role": "tertiary", "displayName": "Light Tailor’s Blush", "canonical": "#f5cac3", "tonalRamp": ["oklch(15% 0.05 28.907)", "oklch(27% 0.05 28.907)", "oklch(39% 0.05 28.907)", "oklch(51% 0.05 28.907)", "oklch(63% 0.05 28.907)", "oklch(75% 0.05 28.907)", "oklch(87% 0.05 28.907)", "oklch(95% 0.05 28.907)"], "tonalRampStatus": "exploratory-not-normative" },
+      "blush-wash": { "role": "tertiary", "displayName": "Blush Wash", "canonical": "#f8e8e5", "tonalRamp": ["oklch(15% 0.018 30.269)", "oklch(27% 0.018 30.269)", "oklch(39% 0.018 30.269)", "oklch(51% 0.018 30.269)", "oklch(63% 0.018 30.269)", "oklch(75% 0.018 30.269)", "oklch(87% 0.018 30.269)", "oklch(95% 0.018 30.269)"], "tonalRampStatus": "exploratory-not-normative" },
+      "gold": { "role": "primary", "displayName": "Tailor’s Gold", "canonical": "#f6bd60", "tonalRamp": ["oklch(15% 0.1281 77.6621)", "oklch(27% 0.1281 77.6621)", "oklch(39% 0.1281 77.6621)", "oklch(51% 0.1281 77.6621)", "oklch(63% 0.1281 77.6621)", "oklch(75% 0.1281 77.6621)", "oklch(87% 0.1281 77.6621)", "oklch(95% 0.1281 77.6621)"], "tonalRampStatus": "exploratory-not-normative" },
+      "gold-deep": { "role": "primary", "displayName": "Deep Tailor’s Gold", "canonical": "#c5974d", "tonalRamp": ["oklch(15% 0.107 77.4066)", "oklch(27% 0.107 77.4066)", "oklch(39% 0.107 77.4066)", "oklch(51% 0.107 77.4066)", "oklch(63% 0.107 77.4066)", "oklch(75% 0.107 77.4066)", "oklch(87% 0.107 77.4066)", "oklch(95% 0.107 77.4066)"], "tonalRampStatus": "exploratory-not-normative" },
+      "gold-highlight": { "role": "primary", "displayName": "Gold Highlight", "canonical": "#ffd17d", "tonalRamp": ["oklch(15% 0.1148 81.432)", "oklch(27% 0.1148 81.432)", "oklch(39% 0.1148 81.432)", "oklch(51% 0.1148 81.432)", "oklch(63% 0.1148 81.432)", "oklch(75% 0.1148 81.432)", "oklch(87% 0.1148 81.432)", "oklch(95% 0.1148 81.432)"], "tonalRampStatus": "exploratory-not-normative" },
+      "gold-wash": { "role": "primary", "displayName": "Gold Wash", "canonical": "#fff1d7", "tonalRamp": ["oklch(15% 0.0373 83.0338)", "oklch(27% 0.0373 83.0338)", "oklch(39% 0.0373 83.0338)", "oklch(51% 0.0373 83.0338)", "oklch(63% 0.0373 83.0338)", "oklch(75% 0.0373 83.0338)", "oklch(87% 0.0373 83.0338)", "oklch(95% 0.0373 83.0338)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-canvas": { "role": "neutral", "displayName": "Dark Pattern Table", "canonical": "#151412", "tonalRamp": ["oklch(15% 0.0043 84.5912)", "oklch(27% 0.0043 84.5912)", "oklch(39% 0.0043 84.5912)", "oklch(51% 0.0043 84.5912)", "oklch(63% 0.0043 84.5912)", "oklch(75% 0.0043 84.5912)", "oklch(87% 0.0043 84.5912)", "oklch(95% 0.0043 84.5912)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-surface": { "role": "neutral", "displayName": "Dark Surface", "canonical": "#1c1a18", "tonalRamp": ["oklch(15% 0.005 67.5651)", "oklch(27% 0.005 67.5651)", "oklch(39% 0.005 67.5651)", "oklch(51% 0.005 67.5651)", "oklch(63% 0.005 67.5651)", "oklch(75% 0.005 67.5651)", "oklch(87% 0.005 67.5651)", "oklch(95% 0.005 67.5651)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-surface-raised": { "role": "neutral", "displayName": "Raised Charcoal", "canonical": "#24211e", "tonalRamp": ["oklch(15% 0.0072 67.4895)", "oklch(27% 0.0072 67.4895)", "oklch(39% 0.0072 67.4895)", "oklch(51% 0.0072 67.4895)", "oklch(63% 0.0072 67.4895)", "oklch(75% 0.0072 67.4895)", "oklch(87% 0.0072 67.4895)", "oklch(95% 0.0072 67.4895)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-surface-muted": { "role": "neutral", "displayName": "Muted Charcoal", "canonical": "#2d2925", "tonalRamp": ["oklch(15% 0.0093 67.4395)", "oklch(27% 0.0093 67.4395)", "oklch(39% 0.0093 67.4395)", "oklch(51% 0.0093 67.4395)", "oklch(63% 0.0093 67.4395)", "oklch(75% 0.0093 67.4395)", "oklch(87% 0.0093 67.4395)", "oklch(95% 0.0093 67.4395)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-text-strong": { "role": "neutral", "displayName": "Strong Chalk", "canonical": "#fffaf5", "tonalRamp": ["oklch(15% 0.0085 67.7269)", "oklch(27% 0.0085 67.7269)", "oklch(39% 0.0085 67.7269)", "oklch(51% 0.0085 67.7269)", "oklch(63% 0.0085 67.7269)", "oklch(75% 0.0085 67.7269)", "oklch(87% 0.0085 67.7269)", "oklch(95% 0.0085 67.7269)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-text": { "role": "neutral", "displayName": "Chalk", "canonical": "#f5f0ea", "tonalRamp": ["oklch(15% 0.0097 72.6611)", "oklch(27% 0.0097 72.6611)", "oklch(39% 0.0097 72.6611)", "oklch(51% 0.0097 72.6611)", "oklch(63% 0.0097 72.6611)", "oklch(75% 0.0097 72.6611)", "oklch(87% 0.0097 72.6611)", "oklch(95% 0.0097 72.6611)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-text-secondary": { "role": "neutral", "displayName": "Secondary Chalk", "canonical": "#b6ada4", "tonalRamp": ["oklch(15% 0.0164 67.5751)", "oklch(27% 0.0164 67.5751)", "oklch(39% 0.0164 67.5751)", "oklch(51% 0.0164 67.5751)", "oklch(63% 0.0164 67.5751)", "oklch(75% 0.0164 67.5751)", "oklch(87% 0.0164 67.5751)", "oklch(95% 0.0164 67.5751)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-text-muted": { "role": "neutral", "displayName": "Muted Chalk", "canonical": "#938b83", "tonalRamp": ["oklch(15% 0.0152 67.5527)", "oklch(27% 0.0152 67.5527)", "oklch(39% 0.0152 67.5527)", "oklch(51% 0.0152 67.5527)", "oklch(63% 0.0152 67.5527)", "oklch(75% 0.0152 67.5527)", "oklch(87% 0.0152 67.5527)", "oklch(95% 0.0152 67.5527)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-rule": { "role": "neutral", "displayName": "Dark Fine Rule", "canonical": "#3f3934", "tonalRamp": ["oklch(15% 0.012 62.2489)", "oklch(27% 0.012 62.2489)", "oklch(39% 0.012 62.2489)", "oklch(51% 0.012 62.2489)", "oklch(63% 0.012 62.2489)", "oklch(75% 0.012 62.2489)", "oklch(87% 0.012 62.2489)", "oklch(95% 0.012 62.2489)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-rule-strong": { "role": "neutral", "displayName": "Dark Strong Rule", "canonical": "#6b6259", "tonalRamp": ["oklch(15% 0.0181 67.3956)", "oklch(27% 0.0181 67.3956)", "oklch(39% 0.0181 67.3956)", "oklch(51% 0.0181 67.3956)", "oklch(63% 0.0181 67.3956)", "oklch(75% 0.0181 67.3956)", "oklch(87% 0.0181 67.3956)", "oklch(95% 0.0181 67.3956)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-teal": { "role": "secondary", "displayName": "Dark Measuring Teal", "canonical": "#94b8ae", "tonalRamp": ["oklch(15% 0.0414 176.3719)", "oklch(27% 0.0414 176.3719)", "oklch(39% 0.0414 176.3719)", "oklch(51% 0.0414 176.3719)", "oklch(63% 0.0414 176.3719)", "oklch(75% 0.0414 176.3719)", "oklch(87% 0.0414 176.3719)", "oklch(95% 0.0414 176.3719)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-teal-highlight": { "role": "secondary", "displayName": "Dark Teal Highlight", "canonical": "#b1d0c8", "tonalRamp": ["oklch(15% 0.0349 178.0855)", "oklch(27% 0.0349 178.0855)", "oklch(39% 0.0349 178.0855)", "oklch(51% 0.0349 178.0855)", "oklch(63% 0.0349 178.0855)", "oklch(75% 0.0349 178.0855)", "oklch(87% 0.0349 178.0855)", "oklch(95% 0.0349 178.0855)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-teal-wash": { "role": "secondary", "displayName": "Dark Teal Wash", "canonical": "#26312e", "tonalRamp": ["oklch(15% 0.0159 176.7767)", "oklch(27% 0.0159 176.7767)", "oklch(39% 0.0159 176.7767)", "oklch(51% 0.0159 176.7767)", "oklch(63% 0.0159 176.7767)", "oklch(75% 0.0159 176.7767)", "oklch(87% 0.0159 176.7767)", "oklch(95% 0.0159 176.7767)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-blush": { "role": "tertiary", "displayName": "Dark Tailor’s Blush", "canonical": "#c79591", "tonalRamp": ["oklch(15% 0.0609 23.9129)", "oklch(27% 0.0609 23.9129)", "oklch(39% 0.0609 23.9129)", "oklch(51% 0.0609 23.9129)", "oklch(63% 0.0609 23.9129)", "oklch(75% 0.0609 23.9129)", "oklch(87% 0.0609 23.9129)", "oklch(95% 0.0609 23.9129)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-blush-highlight": { "role": "tertiary", "displayName": "Dark Blush Highlight", "canonical": "#dca7a2", "tonalRamp": ["oklch(15% 0.0634 24.7871)", "oklch(27% 0.0634 24.7871)", "oklch(39% 0.0634 24.7871)", "oklch(51% 0.0634 24.7871)", "oklch(63% 0.0634 24.7871)", "oklch(75% 0.0634 24.7871)", "oklch(87% 0.0634 24.7871)", "oklch(95% 0.0634 24.7871)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-blush-wash": { "role": "tertiary", "displayName": "Dark Blush Wash", "canonical": "#342726", "tonalRamp": ["oklch(15% 0.0198 23.4691)", "oklch(27% 0.0198 23.4691)", "oklch(39% 0.0198 23.4691)", "oklch(51% 0.0198 23.4691)", "oklch(63% 0.0198 23.4691)", "oklch(75% 0.0198 23.4691)", "oklch(87% 0.0198 23.4691)", "oklch(95% 0.0198 23.4691)"], "tonalRampStatus": "exploratory-not-normative" },
+      "dark-gold-wash": { "role": "primary", "displayName": "Dark Gold Wash", "canonical": "#3d3020", "tonalRamp": ["oklch(15% 0.0325 72.0326)", "oklch(27% 0.0325 72.0326)", "oklch(39% 0.0325 72.0326)", "oklch(51% 0.0325 72.0326)", "oklch(63% 0.0325 72.0326)", "oklch(75% 0.0325 72.0326)", "oklch(87% 0.0325 72.0326)", "oklch(95% 0.0325 72.0326)"], "tonalRampStatus": "exploratory-not-normative" }
+    },
+    "typographyMeta": {
+      "page-title": { "displayName": "Page Title", "purpose": "High-impact identity and hero statements." },
+      "section-title": { "displayName": "Section Title", "purpose": "Editorial section headings." },
+      "body": { "displayName": "Body", "purpose": "Primary reading copy and interface text." },
+      "body-large": { "displayName": "Large Body", "purpose": "Introductions and prominent explanatory copy." },
+      "label": { "displayName": "Drafting Label", "purpose": "Uppercase indexes, annotations, and compact metadata." },
+      "note": { "displayName": "Handwritten Note", "purpose": "Brief human annotations only." }
+    },
+    "shadows": [
+      { "name": "specimen-light", "value": "0 1.25rem 2.5rem color-mix(in srgb, #252422 12%, transparent)", "purpose": "Lifts a physical work specimen from the light paper surface." },
+      { "name": "specimen-dark", "value": "0 1.25rem 2.5rem rgb(0 0 0 / 36%)", "purpose": "Lifts a physical work specimen from the dark canvas." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Shared easing for responsive, composed movement." },
+      { "name": "fast", "value": "160ms", "purpose": "Immediate hover and control feedback." },
+      { "name": "medium", "value": "360ms", "purpose": "Standard state and layout transitions." },
+      { "name": "draw", "value": "650ms", "purpose": "Rule, path, and relationship drawing." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-control-layout", "value": "40rem" },
+      { "name": "reading-column", "value": "42rem" },
+      { "name": "contact-expanded", "value": "44.0625rem" },
+      { "name": "header-compact", "value": "54rem" },
+      { "name": "wide-editorial", "value": "68.0625rem" },
+      { "name": "toolkit-row", "value": "88rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "primary-button",
+      "description": "The square, direct call to action used against normal page surfaces.",
+      "html": "<button class=\"ds-button ds-button-primary\">View my work <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-button{align-items:center;border:0;border-radius:0;cursor:pointer;display:inline-flex;font:600 1.2rem/1.35 'Work Sans',sans-serif;gap:.85rem;justify-content:center;min-height:3.5rem;padding:0 1.4rem;transition:background 160ms cubic-bezier(.16,1,.3,1),color 160ms cubic-bezier(.16,1,.3,1)}.ds-button-primary{background:var(--action,#f6bd60);color:var(--on-action,#0f0e0e)}.ds-button span{transition:transform 160ms cubic-bezier(.16,1,.3,1)}.ds-button:hover span{transform:translateX(.25rem)}.ds-button:focus-visible{outline:2px solid var(--focus-ring,#5c736e);outline-offset:4px}.ds-button:active{filter:brightness(.94)}"
+    },
+    {
+      "name": "Footer Ink Button",
+      "kind": "button",
+      "description": "The inverse action used on the full-bleed contact footer.",
+      "html": "<button class=\"ds-button ds-button-ink\">Say hello <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-button{align-items:center;border:0;border-radius:0;cursor:pointer;display:inline-flex;font:600 1rem/1.35 'Work Sans',sans-serif;gap:.85rem;justify-content:center;min-height:3.5rem;min-width:13.75rem;padding:0 1.4rem}.ds-button-ink{background:var(--text-strong,#0f0e0e);color:var(--canvas,#fdfbf9);transition:filter 160ms cubic-bezier(.16,1,.3,1)}.ds-button-ink:hover{filter:brightness(1.2)}.ds-button-ink:focus-visible{outline:2px solid currentColor;outline-offset:4px}.ds-button-ink:active{filter:brightness(.9)}"
+    },
+    {
+      "name": "Soft Tag",
+      "kind": "chip",
+      "refersTo": "soft-tag",
+      "description": "A compact support-wash label for technologies and disciplines.",
+      "html": "<span class=\"ds-tag-soft\">TypeScript</span>",
+      "css": ".ds-tag-soft{align-items:center;background:var(--support-wash,#e7efed);border-radius:0;color:var(--text,#252422);display:inline-flex;font:600 .75rem/1.5 'Work Sans',sans-serif;letter-spacing:.08em;min-height:2rem;padding:.35rem .55rem}.ds-tag-soft:hover{background:color-mix(in srgb,var(--support,#84a59d) 26%,var(--canvas,#fdfbf9))}.ds-tag-soft:focus-visible{outline:2px solid var(--focus-ring,#5c736e);outline-offset:4px}"
+    },
+    {
+      "name": "Ruled Tag",
+      "kind": "chip",
+      "description": "A text label registered to a strong construction rule.",
+      "html": "<span class=\"ds-tag-ruled\">Accessibility</span>",
+      "css": ".ds-tag-ruled{align-items:center;border-left:1px solid var(--rule-strong,#b9aea2);border-radius:0;color:var(--text,#252422);display:inline-flex;font:400 1rem/1.35 'Work Sans',sans-serif;min-height:2.75rem;padding:.5rem 1rem}.ds-tag-ruled:hover{border-left-color:var(--support-deep,#5c736e)}.ds-tag-ruled:focus-visible{outline:2px solid var(--focus-ring,#5c736e);outline-offset:4px}"
+    },
+    {
+      "name": "Section Marker",
+      "kind": "custom",
+      "description": "Contextual numbering paired with a vertical drafting rule.",
+      "html": "<div class=\"ds-section-marker\" aria-hidden=\"true\"><span>Next</span><strong>04</strong></div>",
+      "css": ".ds-section-marker{border-right:1px solid var(--rule-strong,#b9aea2);display:grid;gap:.45rem;min-height:4.5rem;padding-right:1rem;width:4rem}.ds-section-marker span{font:600 .75rem/1.5 'Work Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase}.ds-section-marker strong{font:400 1.2rem/1.35 'Work Sans',sans-serif}"
+    },
+    {
+      "name": "Theme Toggle",
+      "kind": "button",
+      "description": "A compact utility-cell control for switching and persisting the color theme.",
+      "html": "<button class=\"ds-theme-toggle\" aria-label=\"Toggle color theme\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42\"/></svg></button>",
+      "css": ".ds-theme-toggle{align-items:center;background:transparent;border:0;border-radius:0;color:var(--text,#252422);cursor:pointer;display:inline-flex;height:2.75rem;justify-content:center;min-width:2.75rem;transition:transform 160ms cubic-bezier(.16,1,.3,1)}.ds-theme-toggle svg{fill:none;height:1.5rem;stroke:currentColor;stroke-linecap:round;stroke-width:1.4;width:1.5rem}.ds-theme-toggle:hover{transform:rotate(18deg)}.ds-theme-toggle:focus-visible{outline:2px solid var(--focus-ring,#5c736e);outline-offset:4px}.ds-theme-toggle:active{transform:rotate(9deg) scale(.96)}"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "description": "Quiet editorial navigation with a measured active underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><a href=\"#work\" aria-current=\"page\">Work</a><a href=\"#about\">About</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav{align-items:stretch;display:flex;font:400 1rem/1.35 'Work Sans',sans-serif}.ds-nav a{align-items:center;color:var(--text,#252422);display:inline-flex;min-height:3.25rem;padding:0 1.2rem;position:relative;text-decoration:none}.ds-nav a::after{background:var(--action,#f6bd60);bottom:0;content:'';height:2px;left:1.2rem;position:absolute;right:1.2rem;transform:scaleX(0);transform-origin:left;transition:transform 160ms cubic-bezier(.16,1,.3,1)}.ds-nav a:hover::after,.ds-nav a[aria-current=page]::after{transform:scaleX(1)}.ds-nav a:focus-visible{outline:2px solid var(--focus-ring,#5c736e);outline-offset:-4px}"
+    },
+    {
+      "name": "Fabric Swatches",
+      "kind": "custom",
+      "description": "Stacked solid material samples with subtle pinked edges.",
+      "html": "<div class=\"ds-swatches\" aria-hidden=\"true\"><i></i><i></i><i></i><i></i></div>",
+      "css": ".ds-swatches{display:grid;gap:.45rem;width:5rem}.ds-swatches i{display:block;height:3.5rem;clip-path:polygon(0 3px,3px 0,6px 3px,9px 0,12px 3px,15px 0,18px 3px,21px 0,24px 3px,27px 0,30px 3px,33px 0,36px 3px,39px 0,42px 3px,45px 0,48px 3px,51px 0,54px 3px,57px 0,60px 3px,63px 0,66px 3px,69px 0,72px 3px,75px 0,78px 3px,100% 0,100% 100%,0 100%)}.ds-swatches i:nth-child(1){background:var(--support-highlight,#84a59d)}.ds-swatches i:nth-child(2){background:#f5cac3}.ds-swatches i:nth-child(3){background:var(--action,#f6bd60)}.ds-swatches i:nth-child(4){background:var(--rule,#ded5cb)}"
+    },
+    {
+      "name": "Lifted Work Specimen",
+      "kind": "card",
+      "description": "A rare raised surface that presents interface work as a physical sample.",
+      "html": "<article class=\"ds-specimen\"><small>Component study</small><h3>System to screen</h3><p>Reusable patterns in production.</p></article>",
+      "css": ".ds-specimen{background:var(--surface-raised,#fffdfa);border:1px solid var(--rule,#ded5cb);border-radius:0;box-shadow:0 1.25rem 2.5rem color-mix(in srgb,var(--text,#252422) 12%,transparent);color:var(--text,#252422);font-family:'Work Sans',sans-serif;padding:1.25rem;position:relative}.ds-specimen::before{background:var(--text,#252422);box-shadow:.7rem 0 var(--rule-strong,#b9aea2),1.4rem 0 var(--rule-strong,#b9aea2);content:'';height:.25rem;left:.75rem;opacity:.45;position:absolute;top:.6rem;width:.25rem}.ds-specimen small{display:block;font-size:.75rem;letter-spacing:.08em;margin:1rem 0 .6rem}.ds-specimen h3{font-size:1.2rem;margin:0 0 .45rem}.ds-specimen p{font-size:.833rem;margin:0}.ds-specimen:hover{transform:translateY(-2px);transition:transform 160ms cubic-bezier(.16,1,.3,1)}.ds-specimen:focus-within{outline:2px solid var(--focus-ring,#5c736e);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Pattern Table",
+    "overview": "The Pattern Table presents frontend development and visual design as one act of careful construction. Its North Star is precise, tactile, and quietly joyful: measured rules, drafting arcs, clipped photography, numbered annotations, restrained fabric swatches, and flat ruled sheets make the work feel considered without becoming precious.\n\nThe portfolio is an experience rather than a résumé template. The homepage leads with Caitlin’s point of view and proof; the résumé turns the same language into a denser reading and print surface. Both should communicate thoughtful frontend engineering, strong user-experience judgment, and care for the people using the interface.\n\nThe system is measured, tactile, direct, and accessible by default. Avoid generic SaaS cards, excessive rounding, glass effects, gradient-heavy styling, and decorative complexity that weakens hierarchy or readability.",
+    "keyCharacteristics": [
+      "Warm paper and charcoal themes with restrained gold, blush, and teal accents.",
+      "Editorial grids, fine rules, measurements, contextual numbering, and material samples.",
+      "Square, direct controls with visible focus treatment and generous touch targets.",
+      "Motion that assembles, draws, or connects rather than merely decorates."
+    ],
+    "rules": [
+      { "name": "The Semantic Role Rule", "body": "Components consume semantic roles; palette primitives are reserved for authored swatches and drafting details.", "section": "colors" },
+      { "name": "The Honest Scale Rule", "body": "Do not assign numeric color steps until the families are perceptually ordered and contrast-tested.", "section": "colors" },
+      { "name": "The Readability Floor Rule", "body": "Meaningful interface copy never drops below the established screen floor; smaller marks are decorative and hidden from assistive technology.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Shadows appear only when a physical specimen seems lifted from the page.", "section": "elevation" },
+      { "name": "The Accessible-by-Default Rule", "body": "A component is incomplete until its focus, target size, semantics, keyboard behavior, and reduced-motion behavior are defined.", "section": "components" }
+    ],
+    "dos": [
+      "Use measured rules, contextual numbering, and construction marks to establish sequence and hierarchy.",
+      "Let content, typography, and carefully placed material samples carry the composition.",
+      "Use semantic color roles and verify contrast in both themes.",
+      "Preserve the same design language across the homepage, résumé, Storybook, and print output.",
+      "Keep responsive adaptations intentional: simplify the construction without flattening the identity.",
+      "Use motion to explain assembly, connection, or state change."
+    ],
+    "donts": [
+      "Do not turn sections into generic rounded SaaS cards.",
+      "Do not introduce glass effects, heavy gradients, pill-shaped controls, or ambient shadow stacks.",
+      "Do not use palette primitives where a semantic role exists.",
+      "Do not shrink meaningful copy below the established readability floor.",
+      "Do not hide information on mobile merely to preserve a desktop composition.",
+      "Do not fabricate project outcomes, metrics, testimonials, or client proof.",
+      "Do not publish private design explorations without an explicit decision to share them."
+    ]
+  }
+}
