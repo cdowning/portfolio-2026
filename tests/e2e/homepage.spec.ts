@@ -545,4 +545,37 @@ test.describe('homepage composition', () => {
       element => getComputedStyle(element).clipPath,
     )).not.toContain('100%')
   })
+
+  test('keeps the portrait treatment proportional on large desktop monitors', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.setViewportSize({ width: 1440, height: 960 })
+    await page.goto('/')
+
+    const treatment = await page.locator('.hero-portrait').evaluate((portrait) => {
+      const stage = portrait.closest<HTMLElement>('.hero-stage')
+      const image = portrait.querySelector<HTMLElement>('.hero-image')
+      const cover = portrait.querySelector<HTMLElement>('.hero-portrait-cover')
+      if (!stage || !image || !cover) throw new Error('Portrait treatment layers are missing')
+
+      const stageRect = stage.getBoundingClientRect()
+      const portraitRect = portrait.getBoundingClientRect()
+      const imageRect = image.getBoundingClientRect()
+      const coverRect = cover.getBoundingClientRect()
+
+      return {
+        coverBackgroundColor: getComputedStyle(cover).backgroundColor,
+        coverClipPath: getComputedStyle(cover).clipPath,
+        coverHeightRatio: coverRect.height / portraitRect.height,
+        imageHeightRatio: imageRect.height / portraitRect.height,
+        portraitOverflow: portraitRect.bottom - stageRect.bottom,
+        stageBackgroundColor: getComputedStyle(stage).backgroundColor,
+      }
+    })
+
+    expect(treatment.portraitOverflow).toBeLessThanOrEqual(1)
+    expect(treatment.imageHeightRatio).toBeGreaterThanOrEqual(.78)
+    expect(treatment.coverHeightRatio).toBeGreaterThanOrEqual(.14)
+    expect(treatment.coverBackgroundColor).toBe(treatment.stageBackgroundColor)
+    expect(treatment.coverClipPath).not.toContain('100%')
+  })
 })

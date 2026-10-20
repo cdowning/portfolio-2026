@@ -548,7 +548,7 @@ useHeroScrollMotion(hero, stage)
   will-change: clip-path, opacity, transform;
 }
 
-@media (min-width: 64.001rem) and (max-height: 58rem) {
+@media (min-width: 64.001rem) and (max-height: 64rem) {
   .hero-copy {
     padding-block: 1.5rem 1.25rem;
   }
