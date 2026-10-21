@@ -1,24 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import { onUnmounted } from 'vue'
 
 import { profile } from '../../content/site'
 import SiteContactFooter from './SiteContactFooter.vue'
-
-function withTheme(theme: 'light' | 'dark') {
-  return () => ({
-    setup() {
-      const root = document.documentElement
-      const previousTheme = root.dataset.theme
-
-      root.dataset.theme = theme
-      onUnmounted(() => {
-        if (previousTheme) root.dataset.theme = previousTheme
-        else delete root.dataset.theme
-      })
-    },
-    template: '<div style="min-width: 100vw"><story /></div>',
-  })
-}
 
 const meta = {
   title: 'Sections/Footer Selection',
@@ -42,11 +25,11 @@ const selectFooterCopy: NonNullable<Story['play']> = async ({ canvasElement }) =
 }
 
 export const Light: Story = {
-  decorators: [withTheme('light')],
+  globals: { theme: 'light' },
   play: selectFooterCopy,
 }
 
 export const Dark: Story = {
-  decorators: [withTheme('dark')],
+  globals: { theme: 'dark' },
   play: selectFooterCopy,
 }

@@ -1,20 +1,23 @@
-import type { Preview } from '@storybook/vue3-vite'
+import { withThemeByDataAttribute } from '@storybook/addon-themes'
+import type { Preview, Renderer } from '@storybook/vue3-vite'
 
 import '../app/assets/css/main.css'
 
 const preview: Preview = {
+  decorators: [
+    withThemeByDataAttribute<Renderer>({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+      attributeName: 'data-theme',
+      parentSelector: 'html',
+    }),
+  ],
   parameters: {
     a11y: {
       test: 'error',
-    },
-    backgrounds: {
-      default: 'light canvas',
-      values: [
-        { name: 'light canvas', value: '#fdfbf9' },
-        { name: 'dark canvas', value: '#151412' },
-        { name: 'gold', value: '#f6bd60' },
-        { name: 'blush', value: '#c79591' },
-      ],
     },
     controls: {
       matchers: {
