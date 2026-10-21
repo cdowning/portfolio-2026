@@ -14,7 +14,7 @@
 - [ ] Configure Storybook to discover documentation pages alongside component stories.
 - [ ] Enable Autodocs for public component and section story families.
 - [ ] Add an overview page describing the portfolio design system, navigation, and documentation scope.
-- [ ] Add a color-foundation page based on implemented semantic tokens and their light and dark mappings.
+- [x] Consume the completed primitive scales and light/dark semantic mappings from `color-foundation-and-storybook-documentation` as the Storybook color-foundation page.
 - [ ] Extend the typography foundation with purpose, hierarchy, typeface roles, and usage guidance.
 - [ ] Keep documentation configuration compatible with the existing Vue 3, Vite, and Storybook versions.
 
@@ -22,7 +22,7 @@
 
 - [ ] Document Toolkit and Footer as composed public sections, including responsive and theme behavior.
 - [ ] Document Button, Section Marker, Timeline, Tag, Fabric Swatches, and Theme Toggle with purpose, usage, variants, meaningful controls, and accessibility notes.
-- [ ] Complete change 15 first and include its shared `CTimeline` API, slot contract, current-state semantics, and geometry controls.
+- [x] Complete change 15 first and include its shared `CTimeline` API, slot contract, current-state semantics, and geometry controls.
 - [ ] Add Site Header stories and documentation covering navigation behavior, active context, theme control, keyboard use, and narrow layouts.
 - [ ] Document props, slots, and source examples only where they accurately reflect the public component API.
 - [ ] Separate or rename test-specific states so the public story hierarchy remains understandable while regression coverage is preserved.
@@ -52,4 +52,5 @@
 - [ ] Run typecheck, lint, Nuxt generation, and the Storybook static build.
 - [ ] Deploy the development branch and verify `https://dev.caitlinhawley.com/storybook/` publicly.
 - [ ] Confirm `https://storybook.caitlinhawley.com/` remains unchanged by this development deployment.
+- [x] Revisit whether `app/components/ui` should use `pathPrefix: false`; verify the resulting DevTools names, generated component types, and absence of registration collisions before deciding.
 - [ ] Record completion only after the public development URL and documentation coverage pass review.

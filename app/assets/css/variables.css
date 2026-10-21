@@ -1,0 +1,177 @@
+@layer tokens {
+  :root {
+    color-scheme: light;
+
+    --color-paper-00: #fffdfa;
+    --color-paper-10: #fdfbf9;
+    --color-paper-20: #fffaf5;
+    --color-paper-30: #fbf6f1;
+    --color-paper-40: #f5f0ea;
+    --color-paper-50: #f5efea;
+    --color-paper-70: #ded5cb;
+    --color-paper-90: #b9aea2;
+    --color-paper-100: #b6ada4;
+    --color-ink-00: #938b83;
+    --color-ink-10: #827970;
+    --color-ink-20: #6f6861;
+    --color-ink-30: #6b6259;
+    --color-ink-40: #3f3934;
+    --color-ink-50: #2d2925;
+    --color-ink-60: #252422;
+    --color-ink-70: #24211e;
+    --color-ink-80: #1c1a18;
+    --color-ink-90: #151412;
+    --color-ink-100: #0f0e0e;
+    --color-teal-00: #e7efed;
+    --color-teal-30: #b1d0c8;
+    --color-teal-40: #94b8ae;
+    --color-teal-50: #84a59d;
+    --color-teal-70: #5c736e;
+    --color-teal-100: #26312e;
+    --color-blush-30: #f5cac3;
+    --color-blush-50: #dca7a2;
+    --color-blush-60: #c79591;
+    --color-gold-30: #ffd17d;
+    --color-gold-40: #f6bd60;
+
+    --canvas: var(--color-paper-10);
+    --surface: var(--color-paper-30);
+    --surface-raised: var(--color-paper-00);
+    --surface-muted: var(--color-paper-50);
+    --text-strong: var(--color-ink-100);
+    --text: var(--color-ink-60);
+    --text-secondary: var(--color-ink-20);
+    --text-muted: var(--color-ink-10);
+    --rule: var(--color-paper-70);
+    --rule-strong: var(--color-paper-90);
+    --action: var(--color-gold-40);
+    --action-hover: var(--color-gold-30);
+    --on-action: var(--color-ink-100);
+    --support: var(--color-teal-70);
+    --support-highlight: var(--color-teal-50);
+    --support-wash: var(--color-teal-00);
+    --footer: var(--color-gold-40);
+    --on-footer: var(--color-ink-100);
+    --footer-action: var(--color-ink-100);
+    --on-footer-action: var(--color-paper-00);
+    --focus-ring: var(--color-teal-70);
+    --selection: var(--color-gold-40);
+    --on-selection: var(--color-ink-100);
+    --shadow: color-mix(in srgb, var(--color-ink-60) 12%, transparent);
+    --font-display: 'Poppins', sans-serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-note: 'lindsey-signature', 'Dawning of a New Day', cursive;
+    --text-xs: 0.75rem;
+    --text-sm: 0.833rem;
+    --text-base: 1rem;
+    --text-md: 1.2rem;
+    --text-lg: 1.44rem;
+    --text-xl: 1.728rem;
+    --text-2xl: 2.074rem;
+    --text-3xl: 2.488rem;
+    --text-4xl: 2.986rem;
+    --text-5xl: 3.583rem;
+    --text-6xl: 4.3rem;
+    --text-7xl: 5.16rem;
+    --text-8xl: 6.192rem;
+    --text-9xl: 7.43rem;
+    --text-body: var(--text-base);
+    --text-body-large: var(--text-md);
+    --text-label: var(--text-sm);
+    --text-section-title: clamp(var(--text-2xl), 2.4vw, var(--text-4xl));
+    --text-page-title: clamp(var(--text-5xl), 5.25vw, var(--text-8xl));
+    --page-gutter: clamp(1.25rem, 4vw, 4rem);
+    --content-max: 100rem;
+    --header-height: 5.25rem;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 160ms;
+    --duration-medium: 360ms;
+    --duration-draw: 650ms;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --canvas: var(--color-paper-10);
+    --surface: var(--color-paper-30);
+    --surface-raised: var(--color-paper-00);
+    --surface-muted: var(--color-paper-50);
+    --text-strong: var(--color-ink-100);
+    --text: var(--color-ink-60);
+    --text-secondary: var(--color-ink-20);
+    --text-muted: var(--color-ink-10);
+    --rule: var(--color-paper-70);
+    --rule-strong: var(--color-paper-90);
+    --action: var(--color-gold-40);
+    --action-hover: var(--color-gold-30);
+    --on-action: var(--color-ink-100);
+    --support: var(--color-teal-70);
+    --support-highlight: var(--color-teal-50);
+    --support-wash: var(--color-teal-00);
+    --footer: var(--color-gold-40);
+    --on-footer: var(--color-ink-100);
+    --footer-action: var(--color-ink-100);
+    --on-footer-action: var(--color-paper-00);
+    --focus-ring: var(--color-teal-70);
+    --selection: var(--color-gold-40);
+    --on-selection: var(--color-ink-100);
+    --shadow: color-mix(in srgb, var(--color-ink-60) 12%, transparent);
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --canvas: var(--color-ink-90);
+    --surface: var(--color-ink-80);
+    --surface-raised: var(--color-ink-70);
+    --surface-muted: var(--color-ink-50);
+    --text-strong: var(--color-paper-20);
+    --text: var(--color-paper-40);
+    --text-secondary: var(--color-paper-100);
+    --text-muted: var(--color-ink-00);
+    --rule: var(--color-ink-40);
+    --rule-strong: var(--color-ink-30);
+    --action: var(--color-blush-60);
+    --action-hover: var(--color-blush-50);
+    --on-action: var(--color-ink-90);
+    --support: var(--color-teal-40);
+    --support-highlight: var(--color-teal-30);
+    --support-wash: var(--color-teal-100);
+    --footer: var(--color-blush-60);
+    --on-footer: var(--color-ink-90);
+    --footer-action: var(--color-ink-90);
+    --on-footer-action: var(--color-paper-20);
+    --focus-ring: var(--color-teal-40);
+    --selection: var(--color-blush-60);
+    --on-selection: var(--color-ink-90);
+    --shadow: rgb(0 0 0 / 36%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      color-scheme: dark;
+      --canvas: var(--color-ink-90);
+      --surface: var(--color-ink-80);
+      --surface-raised: var(--color-ink-70);
+      --surface-muted: var(--color-ink-50);
+      --text-strong: var(--color-paper-20);
+      --text: var(--color-paper-40);
+      --text-secondary: var(--color-paper-100);
+      --text-muted: var(--color-ink-00);
+      --rule: var(--color-ink-40);
+      --rule-strong: var(--color-ink-30);
+      --action: var(--color-blush-60);
+      --action-hover: var(--color-blush-50);
+      --on-action: var(--color-ink-90);
+      --support: var(--color-teal-40);
+      --support-highlight: var(--color-teal-30);
+      --support-wash: var(--color-teal-100);
+      --footer: var(--color-blush-60);
+      --on-footer: var(--color-ink-90);
+      --footer-action: var(--color-ink-90);
+      --on-footer-action: var(--color-paper-20);
+      --focus-ring: var(--color-teal-40);
+      --selection: var(--color-blush-60);
+      --on-selection: var(--color-ink-90);
+      --shadow: rgb(0 0 0 / 36%);
+    }
+  }
+}

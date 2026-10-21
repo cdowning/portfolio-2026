@@ -43,15 +43,17 @@ test.describe('homepage composition', () => {
   })
 
   test('fills only the current experience timeline marker', async ({ page }) => {
-    const roles = page.locator('.experience-list li')
+    const roles = page.locator('.experience-list .timeline-item')
     const currentRole = roles.filter({ hasText: 'Senior Frontend Engineer' })
 
     await expect(currentRole).toHaveAttribute('aria-current', 'true')
-    await expect(page.locator('.experience-list li[aria-current="true"]')).toHaveCount(1)
+    await expect(page.locator('.experience-list .timeline-item[aria-current="true"]')).toHaveCount(1)
 
     const markerStyles = await roles.evaluateAll((items) => items.map((item) => {
       const role = getComputedStyle(item)
-      const marker = getComputedStyle(item, '::before')
+      const markerElement = item.querySelector<HTMLElement>('.timeline-marker')
+      if (!markerElement) throw new Error('Timeline marker is missing')
+      const marker = getComputedStyle(markerElement)
 
       return {
         current: item.getAttribute('aria-current') === 'true',
@@ -460,7 +462,7 @@ test.describe('homepage composition', () => {
     expect(constructionStyles.solidDash).toBe('none')
     expect(constructionStyles.dashedDash).not.toBe('none')
 
-    const firstRole = page.locator('.experience-list > li').first()
+    const firstRole = page.locator('.experience-list > .timeline-item').first()
     await expect(firstRole).toContainText('Senior Frontend Engineer')
     await expect(firstRole).toContainText('Allocate')
 

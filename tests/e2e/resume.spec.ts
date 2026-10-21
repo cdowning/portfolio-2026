@@ -44,6 +44,35 @@ test.describe('résumé', () => {
     })
   })
 
+  test('fills only the current experience timeline marker', async ({ page }) => {
+    const roles = page.locator('.resume-experience-list .timeline-item')
+    const currentRole = roles.filter({ hasText: 'Senior Frontend Engineer' })
+
+    await expect(currentRole).toHaveAttribute('aria-current', 'true')
+    await expect(page.locator('.resume-experience-list .timeline-item[aria-current="true"]')).toHaveCount(1)
+
+    const markerStyles = await roles.evaluateAll((items) => items.map((item) => {
+      const role = getComputedStyle(item)
+      const markerElement = item.querySelector<HTMLElement>('.timeline-marker')
+      if (!markerElement) throw new Error('Timeline marker is missing')
+      const marker = getComputedStyle(markerElement)
+
+      return {
+        current: item.getAttribute('aria-current') === 'true',
+        fill: marker.backgroundColor,
+        text: role.color,
+      }
+    }))
+
+    expect(markerStyles[0]).toMatchObject({ current: true })
+    expect(markerStyles[0]?.fill).toBe(markerStyles[0]?.text)
+
+    for (const previousRole of markerStyles.slice(1)) {
+      expect(previousRole.current).toBe(false)
+      expect(previousRole.fill).not.toBe(previousRole.text)
+    }
+  })
+
   test('the print control invokes the browser print action', async ({ page }) => {
     await page.evaluate(() => {
       window.print = () => {

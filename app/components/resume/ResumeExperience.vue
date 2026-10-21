@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
+import CTimeline from '~/components/ui/CTimeline/CTimeline.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
   roles: ExperienceRole[]
 }>()
+
+const roleKey = (role: ExperienceRole) => `${role.company}-${role.title}`
+const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
 </script>
 
 <template>
@@ -14,8 +18,14 @@ defineProps<{
       <h2 id="resume-experience-title">Experience</h2>
       <p>Real work. Lasting impact.</p>
     </header>
-    <ol>
-      <li v-for="role in roles" :key="`${role.company}-${role.title}`">
+    <CTimeline
+      v-slot="{ item: role }"
+      class="resume-experience-list"
+      :items="roles"
+      :item-key="roleKey"
+      :is-current="isCurrentRole"
+    >
+      <div class="resume-experience-item">
         <time>{{ role.shortPeriod }}</time>
         <article :aria-label="`${role.company}, ${role.title}`">
           <div class="resume-experience-role">
@@ -29,8 +39,8 @@ defineProps<{
             <li v-for="bullet in role.bullets" :key="bullet">{{ bullet }}</li>
           </ul>
         </article>
-      </li>
-    </ol>
+      </div>
+    </CTimeline>
     <aside aria-hidden="true"><i /><p>Different<br>places<br>same<br>passion</p><span>Building for people always fits. — C</span></aside>
   </section>
 </template>
@@ -62,42 +72,21 @@ defineProps<{
   text-transform: uppercase;
 }
 
-.resume-experience > ol {
+.resume-experience-list {
+  --timeline-content-inset: 7rem;
+  --timeline-axis-position: 5rem;
+  --timeline-item-min-size: 10.5rem;
+  --timeline-marker-block-offset: .7125rem;
+
   grid-column: 2;
-  list-style: none;
-  margin: 0;
-  padding: 0 0 0 7rem;
+}
+
+.resume-experience-item {
+  min-height: inherit;
   position: relative;
 }
 
-.resume-experience > ol::before {
-  background: var(--rule-strong);
-  bottom: 0;
-  content: '';
-  left: 5rem;
-  position: absolute;
-  top: 0;
-  width: 1px;
-}
-
-.resume-experience > ol > li {
-  min-height: 10.5rem;
-  position: relative;
-}
-
-.resume-experience > ol > li::before {
-  background: var(--canvas);
-  border: 1px solid var(--text);
-  border-radius: 50%;
-  content: '';
-  height: .65rem;
-  left: -2.35rem;
-  position: absolute;
-  top: .4rem;
-  width: .65rem;
-}
-
-.resume-experience > ol > li > time {
+.resume-experience-item > time {
   font-size: var(--text-xs);
   left: -7rem;
   line-height: 1.6;
@@ -180,11 +169,13 @@ defineProps<{
 
 @media (max-width: 42rem) {
   .resume-experience { gap: 1.5rem 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); padding: 3rem 1.25rem; }
-  .resume-experience > ol { padding-left: 2.5rem; }
-  .resume-experience > ol::before { left: .5rem; }
-  .resume-experience > ol > li { padding-top: 2.5rem; }
-  .resume-experience > ol > li > time { left: 0; top: 0; width: auto; }
-  .resume-experience > ol > li::before { left: -2.3rem; top: 2.9rem; }
+  .resume-experience-list {
+    --timeline-content-inset: 2.5rem;
+    --timeline-axis-position: .5rem;
+    --timeline-marker-block-offset: 3.2125rem;
+  }
+  .resume-experience-item { padding-top: 2.5rem; }
+  .resume-experience-item > time { left: 0; top: 0; width: auto; }
   .resume-experience-role { flex-direction: column; gap: .35rem; }
   .resume-experience-role time { white-space: normal; }
 }

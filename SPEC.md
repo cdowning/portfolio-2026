@@ -33,6 +33,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V14: screen type → `1rem` nominal base + `1.2` minor-third tokens; body/labels ≥ readability floor; print point scale isolated + 2 pages.
 - V15: Vue SFC CSS → scoped + flat kebab-case; ⊥ BEM `__`/`--` class syntax; typed props → explicit variant classes; runtime DOM access → template refs.
 - V16: footer selection → `background: var(--on-footer)` + `color: var(--footer)`; WCAG AA in light + dark; ⊥ support-accent clash.
+- V17: color foundation → exact 31-token `paper`/`ink`/`teal`/`blush`/`gold` scales; semantic roles reference primitives; plain CSS split into fonts/variables/main; Storybook documents implemented values; ⊥ visual drift/generated-ramp promotion.
 
 # §T
 id|status|goal|cites
@@ -45,6 +46,7 @@ T4b|x|add reversible, accessible hero drafting scroll choreography|V3,V5,V6,V10
 T5|~|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 T6|x|adaptive light/dark themes, persisted toggle, contrast verification|V3,V4,V5,V6,V9,V11,V12,V13
 T7|.|screen type scale, flat scoped CSS migration, footer selection, Storybook proof|V3,V4,V5,V6,V8,V9,V14,V15,V16
+T8|x|primitive color scales, CSS ownership split, Storybook color foundation, no-drift proof|V3,V9,V11,V12,V13,V17
 
 # §B
 id|date|cause|fix

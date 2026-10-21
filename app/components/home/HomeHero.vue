@@ -6,7 +6,7 @@ import FabricSwatches from '~/components/ui/FabricSwatches/FabricSwatches.vue'
 import { useHeroScrollMotion } from '~/composables/useHeroScrollMotion'
 import type { SiteProfile } from '~/types/content'
 
-const swatchColors = ['var(--support-highlight)', 'var(--palette-blush-light)', 'var(--action)', 'var(--rule)'] as const
+const swatchColors = ['var(--support-highlight)', 'var(--color-blush-30)', 'var(--action)', 'var(--rule)'] as const
 
 defineProps<{
   profile: SiteProfile

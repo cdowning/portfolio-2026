@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import CButton from '~/components/ui/CButton/CButton.vue'
 import CSectionMarker from '~/components/ui/CSectionMarker/CSectionMarker.vue'
+import CTimeline from '~/components/ui/CTimeline/CTimeline.vue'
 import type { ExperienceRole } from '~/types/content'
 
 defineProps<{
   experienceLabel: string
   roles: ExperienceRole[]
 }>()
+
+const roleKey = (role: ExperienceRole) => `${role.company}-${role.title}`
+const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
 </script>
 
 <template>
@@ -20,21 +24,22 @@ defineProps<{
       <strong>{{ experienceLabel }}</strong>
       <span>of frontend<br>development<br>experience</span>
     </div>
-    <ol class="experience-list">
-      <li
-        v-for="role in roles"
-        :key="`${role.company}-${role.title}`"
-        :aria-current="role.current ? 'true' : undefined"
-        :class="{ 'experience-current': role.current }"
-      >
+    <CTimeline
+      v-slot="{ item: role }"
+      class="experience-list"
+      :items="roles"
+      :item-key="roleKey"
+      :is-current="isCurrentRole"
+    >
+      <div class="experience-role">
         <div>
           <strong>{{ role.title }}</strong>
           <span>{{ role.company }}</span>
         </div>
         <time>{{ role.shortPeriod }}</time>
         <p>{{ role.skills.join(' · ') }}</p>
-      </li>
-    </ol>
+      </div>
+    </CTimeline>
     <div class="experience-aside" aria-hidden="true" />
     <CButton class="experience-link" href="/resume">View full resume</CButton>
   </section>
@@ -88,37 +93,22 @@ defineProps<{
 }
 
 .experience-list {
-  border-left: 1px solid var(--rule-strong);
+  --timeline-content-inset: 2rem;
+  --timeline-axis-position: 0rem;
+  --timeline-item-min-size: 4.4rem;
+  --timeline-marker-block-offset: 50%;
+
   grid-column: 3;
-  list-style: none;
-  margin: 0;
-  padding: 0 0 0 2rem;
 }
 
-.experience-list li {
+.experience-role {
   align-items: center;
   border-bottom: 1px solid var(--rule);
   display: grid;
   gap: 1.2rem;
   grid-template-columns: 1.1fr .65fr 1fr;
-  min-height: 4.4rem;
+  min-height: inherit;
   padding: .6rem 0;
-  position: relative;
-}
-
-.experience-list li::before {
-  background: var(--canvas);
-  border: 1px solid var(--text);
-  border-radius: 50%;
-  content: '';
-  height: .6rem;
-  left: -2.35rem;
-  position: absolute;
-  width: .6rem;
-}
-
-.experience-list .experience-current::before {
-  background: var(--text);
 }
 
 .experience-list strong,
@@ -186,7 +176,7 @@ defineProps<{
 
   .experience-marker { grid-row: 1 / 4; }
 
-  .experience-list li {
+  .experience-role {
     align-items: start;
     grid-template-columns: 1fr;
     padding: 1rem 0;

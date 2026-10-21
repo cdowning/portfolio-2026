@@ -1,0 +1,177 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+The portfolio uses five approved primitive families and maps them to semantic roles for light and dark themes. Components normally consume semantic roles such as `--canvas`, `--text`, and `--action`; direct primitive use is reserved for approved authored swatches and drafting details.
+
+Scale numbers are ordinal positions from `00` (lightest approved member) to `100` (darkest approved member). They are intentionally sparse and are not literal OKLCH lightness percentages. Hex values are canonical; measured OKLCH lightness orders the families and guides future additions.
+
+## Primitive scales
+
+<ColorPalette>
+  <ColorItem
+    title="Paper"
+    subtitle="Warm light surfaces and dark-theme text"
+    colors={{
+      '--color-paper-00': '#fffdfa',
+      '--color-paper-10': '#fdfbf9',
+      '--color-paper-20': '#fffaf5',
+      '--color-paper-30': '#fbf6f1',
+      '--color-paper-40': '#f5f0ea',
+      '--color-paper-50': '#f5efea',
+      '--color-paper-70': '#ded5cb',
+      '--color-paper-90': '#b9aea2',
+      '--color-paper-100': '#b6ada4',
+    }}
+  />
+  <ColorItem
+    title="Ink"
+    subtitle="Graphite text, rules, and dark surfaces"
+    colors={{
+      '--color-ink-00': '#938b83',
+      '--color-ink-10': '#827970',
+      '--color-ink-20': '#6f6861',
+      '--color-ink-30': '#6b6259',
+      '--color-ink-40': '#3f3934',
+      '--color-ink-50': '#2d2925',
+      '--color-ink-60': '#252422',
+      '--color-ink-70': '#24211e',
+      '--color-ink-80': '#1c1a18',
+      '--color-ink-90': '#151412',
+      '--color-ink-100': '#0f0e0e',
+    }}
+  />
+  <ColorItem
+    title="Teal"
+    subtitle="Supporting accents, highlights, focus, and washes"
+    colors={{
+      '--color-teal-00': '#e7efed',
+      '--color-teal-30': '#b1d0c8',
+      '--color-teal-40': '#94b8ae',
+      '--color-teal-50': '#84a59d',
+      '--color-teal-70': '#5c736e',
+      '--color-teal-100': '#26312e',
+    }}
+  />
+  <ColorItem
+    title="Blush"
+    subtitle="Dark-theme actions and an authored fabric swatch"
+    colors={{
+      '--color-blush-30': '#f5cac3',
+      '--color-blush-50': '#dca7a2',
+      '--color-blush-60': '#c79591',
+    }}
+  />
+  <ColorItem
+    title="Gold"
+    subtitle="Light-theme actions and footer"
+    colors={{
+      '--color-gold-30': '#ffd17d',
+      '--color-gold-40': '#f6bd60',
+    }}
+  />
+</ColorPalette>
+
+## Light semantic roles
+
+<ColorPalette>
+  <ColorItem
+    title="Light surfaces"
+    subtitle="Canvas, surface, raised surface, and muted surface"
+    colors={{
+      '--canvas · paper-10': '#fdfbf9',
+      '--surface · paper-30': '#fbf6f1',
+      '--surface-raised · paper-00': '#fffdfa',
+      '--surface-muted · paper-50': '#f5efea',
+    }}
+  />
+  <ColorItem
+    title="Light text and rules"
+    colors={{
+      '--text-strong · ink-100': '#0f0e0e',
+      '--text · ink-60': '#252422',
+      '--text-secondary · ink-20': '#6f6861',
+      '--text-muted · ink-10': '#827970',
+      '--rule · paper-70': '#ded5cb',
+      '--rule-strong · paper-90': '#b9aea2',
+    }}
+  />
+  <ColorItem
+    title="Light action and support"
+    colors={{
+      '--action / --footer · gold-40': '#f6bd60',
+      '--action-hover · gold-30': '#ffd17d',
+      '--support / --focus-ring · teal-70': '#5c736e',
+      '--support-highlight · teal-50': '#84a59d',
+      '--support-wash · teal-00': '#e7efed',
+    }}
+  />
+  <ColorItem
+    title="Light contrast pairs and selection"
+    colors={{
+      '--on-action / --on-footer / --on-selection · ink-100': '#0f0e0e',
+      '--footer-action · ink-100': '#0f0e0e',
+      '--on-footer-action · paper-00': '#fffdfa',
+      '--selection · gold-40': '#f6bd60',
+    }}
+  />
+</ColorPalette>
+
+## Dark semantic roles
+
+<ColorPalette>
+  <ColorItem
+    title="Dark surfaces"
+    subtitle="Canvas, surface, raised surface, and muted surface"
+    colors={{
+      '--canvas · ink-90': '#151412',
+      '--surface · ink-80': '#1c1a18',
+      '--surface-raised · ink-70': '#24211e',
+      '--surface-muted · ink-50': '#2d2925',
+    }}
+  />
+  <ColorItem
+    title="Dark text and rules"
+    colors={{
+      '--text-strong · paper-20': '#fffaf5',
+      '--text · paper-40': '#f5f0ea',
+      '--text-secondary · paper-100': '#b6ada4',
+      '--text-muted · ink-00': '#938b83',
+      '--rule · ink-40': '#3f3934',
+      '--rule-strong · ink-30': '#6b6259',
+    }}
+  />
+  <ColorItem
+    title="Dark action and support"
+    colors={{
+      '--action / --footer · blush-60': '#c79591',
+      '--action-hover · blush-50': '#dca7a2',
+      '--support / --focus-ring · teal-40': '#94b8ae',
+      '--support-highlight · teal-30': '#b1d0c8',
+      '--support-wash · teal-100': '#26312e',
+    }}
+  />
+  <ColorItem
+    title="Dark contrast pairs and selection"
+    colors={{
+      '--on-action / --on-footer / --on-selection · ink-90': '#151412',
+      '--footer-action · ink-90': '#151412',
+      '--on-footer-action · paper-20': '#fffaf5',
+      '--selection · blush-60': '#c79591',
+    }}
+  />
+</ColorPalette>
+
+## Extending the palette
+
+Resolve a new color need in this order:
+
+1. Use an existing semantic role when its purpose fits.
+2. Otherwise use an approved primitive step.
+3. If the closest family lacks the needed lightness, shape a candidate from that family in OKLCH.
+4. Test foreground/background and adjacent-color contrast, then visually review every relevant theme.
+5. Promote the accepted value together into CSS, `DESIGN.md`, and Storybook.
+
+Generated Impeccable ramps remain exploratory until they complete this review. Unused or design-only values are not part of the public implemented palette.

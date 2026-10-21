@@ -2,43 +2,37 @@
 name: Caitlin Hawley Portfolio
 description: A precise, tactile, and quietly joyful portfolio where frontend engineering and design judgment share one pattern table.
 colors:
-  canvas: "#fdfbf9"
-  surface: "#fbf6f1"
-  surface-raised: "#fffdfa"
-  surface-muted: "#f5efea"
-  text-strong: "#0f0e0e"
-  text: "#252422"
-  text-secondary: "#6f6861"
-  text-muted: "#827970"
-  rule: "#ded5cb"
-  rule-strong: "#b9aea2"
-  teal: "#84a59d"
-  teal-deep: "#5c736e"
-  teal-wash: "#e7efed"
-  blush: "#ddb6b0"
-  blush-light: "#f5cac3"
-  blush-wash: "#f8e8e5"
-  gold: "#f6bd60"
-  gold-deep: "#c5974d"
-  gold-highlight: "#ffd17d"
-  gold-wash: "#fff1d7"
-  dark-canvas: "#151412"
-  dark-surface: "#1c1a18"
-  dark-surface-raised: "#24211e"
-  dark-surface-muted: "#2d2925"
-  dark-text-strong: "#fffaf5"
-  dark-text: "#f5f0ea"
-  dark-text-secondary: "#b6ada4"
-  dark-text-muted: "#938b83"
-  dark-rule: "#3f3934"
-  dark-rule-strong: "#6b6259"
-  dark-teal: "#94b8ae"
-  dark-teal-highlight: "#b1d0c8"
-  dark-teal-wash: "#26312e"
-  dark-blush: "#c79591"
-  dark-blush-highlight: "#dca7a2"
-  dark-blush-wash: "#342726"
-  dark-gold-wash: "#3d3020"
+  paper-00: "#fffdfa"
+  paper-10: "#fdfbf9"
+  paper-20: "#fffaf5"
+  paper-30: "#fbf6f1"
+  paper-40: "#f5f0ea"
+  paper-50: "#f5efea"
+  paper-70: "#ded5cb"
+  paper-90: "#b9aea2"
+  paper-100: "#b6ada4"
+  ink-00: "#938b83"
+  ink-10: "#827970"
+  ink-20: "#6f6861"
+  ink-30: "#6b6259"
+  ink-40: "#3f3934"
+  ink-50: "#2d2925"
+  ink-60: "#252422"
+  ink-70: "#24211e"
+  ink-80: "#1c1a18"
+  ink-90: "#151412"
+  ink-100: "#0f0e0e"
+  teal-00: "#e7efed"
+  teal-30: "#b1d0c8"
+  teal-40: "#94b8ae"
+  teal-50: "#84a59d"
+  teal-70: "#5c736e"
+  teal-100: "#26312e"
+  blush-30: "#f5cac3"
+  blush-50: "#dca7a2"
+  blush-60: "#c79591"
+  gold-30: "#ffd17d"
+  gold-40: "#f6bd60"
 typography:
   page-title:
     fontFamily: "Poppins, sans-serif"
@@ -78,22 +72,22 @@ spacing:
   section-gap: "clamp(3rem, 7vw, 7rem)"
 components:
   primary-button:
-    backgroundColor: "{colors.gold}"
-    textColor: "{colors.text-strong}"
+    backgroundColor: "{colors.gold-40}"
+    textColor: "{colors.ink-100}"
     typography: "{typography.body}"
     rounded: "0"
     padding: "0 1.4rem"
     height: "3.5rem"
   dark-primary-button:
-    backgroundColor: "{colors.dark-blush}"
-    textColor: "{colors.dark-canvas}"
+    backgroundColor: "{colors.blush-60}"
+    textColor: "{colors.ink-90}"
     typography: "{typography.body}"
     rounded: "0"
     padding: "0 1.4rem"
     height: "3.5rem"
   soft-tag:
-    backgroundColor: "{colors.teal-wash}"
-    textColor: "{colors.text}"
+    backgroundColor: "{colors.teal-00}"
+    textColor: "{colors.ink-60}"
     typography: "{typography.label}"
     rounded: "0"
     padding: "0.35rem 0.55rem"
@@ -125,31 +119,52 @@ Approved visual references:
 
 ## Colors
 
-Color tokens in the frontmatter are normative. Components consume semantic roles—canvas, surface, text, rule, action, focus, selection, and footer contrast—rather than reaching for palette primitives. Palette primitives remain appropriate for authored swatches and drafting details.
+Color tokens in the frontmatter are normative. The implemented palette contains only colors rendered by the current portfolio. Each family uses sparse ordinal steps from `00` (lightest approved member) to `100` (darkest approved member); the numbers communicate order, not literal OKLCH lightness. Open positions remain undefined until a real use is approved.
 
-Light mode uses warm paper surfaces, graphite text, teal support, and gold for primary actions and the footer. Dark mode uses charcoal surfaces, warm white text, teal support, blush for primary actions and the footer, and gold only for rare drafting or navigation details.
+Hex values are canonical in CSS and documentation for exact rendering parity and familiar browser tooling. Measured OKLCH lightness orders each family, and OKLCH is the design instrument for shaping future candidates because its lightness and chroma adjustments are more perceptually predictable.
 
-Key light roles:
+| Family | Approved steps, light → dark |
+|---|---|
+| Paper | `paper-00 #fffdfa`, `paper-10 #fdfbf9`, `paper-20 #fffaf5`, `paper-30 #fbf6f1`, `paper-40 #f5f0ea`, `paper-50 #f5efea`, `paper-70 #ded5cb`, `paper-90 #b9aea2`, `paper-100 #b6ada4` |
+| Ink | `ink-00 #938b83`, `ink-10 #827970`, `ink-20 #6f6861`, `ink-30 #6b6259`, `ink-40 #3f3934`, `ink-50 #2d2925`, `ink-60 #252422`, `ink-70 #24211e`, `ink-80 #1c1a18`, `ink-90 #151412`, `ink-100 #0f0e0e` |
+| Teal | `teal-00 #e7efed`, `teal-30 #b1d0c8`, `teal-40 #94b8ae`, `teal-50 #84a59d`, `teal-70 #5c736e`, `teal-100 #26312e` |
+| Blush | `blush-30 #f5cac3`, `blush-50 #dca7a2`, `blush-60 #c79591` |
+| Gold | `gold-30 #ffd17d`, `gold-40 #f6bd60` |
 
-- Surfaces: canvas `#fdfbf9`, surface `#fbf6f1`, raised `#fffdfa`, muted `#f5efea`.
-- Text and rules: strong `#0f0e0e`, primary `#252422`, secondary `#6f6861`, muted `#827970`, rule `#ded5cb`, strong rule `#b9aea2`.
-- Teal: `#84a59d`, deep `#5c736e`, wash `#e7efed`.
-- Blush: `#ddb6b0`, light `#f5cac3`, wash `#f8e8e5`.
-- Gold: `#f6bd60`, deep `#c5974d`, highlight `#ffd17d`, wash `#fff1d7`.
+Components consume semantic roles—canvas, surface, text, rule, action, focus, selection, and footer contrast—rather than reaching for palette primitives. Palette primitives remain appropriate only for approved authored swatches and drafting details.
 
-Key dark roles:
+| Semantic role | Light | Dark |
+|---|---|---|
+| Canvas | `paper-10` | `ink-90` |
+| Surface | `paper-30` | `ink-80` |
+| Raised surface | `paper-00` | `ink-70` |
+| Muted surface | `paper-50` | `ink-50` |
+| Strong text | `ink-100` | `paper-20` |
+| Primary text | `ink-60` | `paper-40` |
+| Secondary text | `ink-20` | `paper-100` |
+| Muted text | `ink-10` | `ink-00` |
+| Rule / strong rule | `paper-70` / `paper-90` | `ink-40` / `ink-30` |
+| Action / hover | `gold-40` / `gold-30` | `blush-60` / `blush-50` |
+| On action | `ink-100` | `ink-90` |
+| Support / highlight / wash | `teal-70` / `teal-50` / `teal-00` | `teal-40` / `teal-30` / `teal-100` |
+| Footer / on footer | `gold-40` / `ink-100` | `blush-60` / `ink-90` |
+| Footer action / on footer action | `ink-100` / `paper-00` | `ink-90` / `paper-20` |
+| Focus ring | `teal-70` | `teal-40` |
+| Selection / on selection | `gold-40` / `ink-100` | `blush-60` / `ink-90` |
 
-- Surfaces: canvas `#151412`, surface `#1c1a18`, raised `#24211e`, muted `#2d2925`.
-- Text and rules: strong `#fffaf5`, primary `#f5f0ea`, secondary `#b6ada4`, muted `#938b83`, rule `#3f3934`, strong rule `#6b6259`.
-- Teal: `#94b8ae`, highlight `#b1d0c8`, wash `#26312e`.
-- Blush: action/footer `#c79591`, highlight `#dca7a2`, wash `#342726`.
-- Gold wash: `#3d3020`.
+**The Palette Extension Rule.** Resolve every new color need in this order:
 
-A numeric family scale such as `blush-40` or `blush-50` is intentionally deferred. The existing colors are theme-specific roles, not yet a perceptually ordered palette. Establish numeric steps only after arranging each family by measured lightness and testing text, UI, and adjacent-color contrast. Generated tonal ramps in `.impeccable/design.json` are exploratory aids, not approved tokens.
+1. Use an existing semantic role when its purpose fits.
+2. Otherwise use an approved primitive step.
+3. If the closest family lacks the needed lightness, shape a candidate from that family in OKLCH.
+4. Test foreground/background and adjacent-color contrast, then visually review every relevant theme.
+5. Promote an accepted value together into CSS, `DESIGN.md`, and Storybook.
+
+Generated tonal ramps in `.impeccable/design.json` remain exploratory until they complete this sequence. The unused `#ddb6b0` and `#c5974d` declarations and design-only `#f8e8e5`, `#fff1d7`, `#342726`, and `#3d3020` values are not approved primitive tokens.
 
 **The Semantic Role Rule.** Components consume semantic roles; palette primitives are reserved for authored swatches and drafting details.
 
-**The Honest Scale Rule.** Do not assign numeric color steps until the families are perceptually ordered and contrast-tested.
+**The Honest Scale Rule.** Numeric steps represent a perceptually ordered, contrast-reviewed family; they never imply unreviewed interpolation or literal OKLCH lightness.
 
 Default text selection uses the semantic page selection roles. Footer selection reverses footer roles—`var(--on-footer)` behind `var(--footer)`—with measured contrast of `7.13:1` in dark mode and `11.35:1` in light mode.
 

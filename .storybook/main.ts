@@ -7,8 +7,14 @@ import { mergeConfig } from 'vite'
 const appRoot = fileURLToPath(new URL('../app', import.meta.url))
 
 const config: StorybookConfig = {
-  stories: ['../app/components/**/*.stories.ts'],
-  addons: ['@storybook/addon-a11y'],
+  stories: [
+    '../app/components/**/*.mdx',
+    '../app/components/**/*.stories.ts',
+  ],
+  addons: [
+    '@storybook/addon-docs',
+    '@storybook/addon-a11y',
+  ],
   framework: {
     name: '@storybook/vue3-vite',
     options: {
