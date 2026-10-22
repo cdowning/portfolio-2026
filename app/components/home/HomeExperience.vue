@@ -182,4 +182,22 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
     padding: 1rem 0;
   }
 }
+
+@media (max-width: 40rem) {
+  .experience {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+
+  .experience-marker {
+    grid-column: 1;
+    grid-row: 1 / 4;
+  }
+
+  .experience-heading,
+  .experience-summary,
+  .experience-list {
+    grid-column: 2;
+  }
+}
 </style>

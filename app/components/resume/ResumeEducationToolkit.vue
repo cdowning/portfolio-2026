@@ -120,4 +120,12 @@ defineProps<{
   .resume-foundation-toolkit { gap: 1rem; grid-template-columns: 2.5rem 1fr; }
   .education-entry { align-items: start; flex-direction: column; gap: .75rem; }
 }
+
+@media (max-width: 40rem) {
+  .resume-foundation-education,
+  .resume-foundation-toolkit {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
 </style>

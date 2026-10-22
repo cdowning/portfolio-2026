@@ -107,6 +107,94 @@ test.describe('responsive navigation and editorial motion', () => {
 })
 
 test.describe('responsive layout contract', () => {
+  test('mobile header keeps the complete wordmark compact', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 900 })
+    await page.goto('/')
+
+    const wordmark = await page.locator('.brand > span').evaluate((element) => {
+      const styles = getComputedStyle(element)
+      return {
+        height: element.getBoundingClientRect().height,
+        lineHeight: Number.parseFloat(styles.lineHeight),
+        text: element.textContent?.trim(),
+      }
+    })
+
+    expect(wordmark.text).toBe('Frontend developer')
+    expect(wordmark.height).toBeLessThanOrEqual(wordmark.lineHeight * 1.1)
+  })
+
+  test('mobile résumé removes repeated copy and compacts capability tags', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 900 })
+    await page.goto('/resume')
+
+    await expect(page.locator('.resume-intro-summary')).not.toBeVisible()
+
+    const columns = await page.locator('.resume-intro-profile ul').evaluate((element) => (
+      getComputedStyle(element).gridTemplateColumns.split(' ').length
+    ))
+    expect(columns).toBe(2)
+  })
+
+  test('mobile numbered sections share one compact rail-free marker gutter', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 900 })
+
+    for (const route of ['/', '/resume']) {
+      await page.goto(route)
+      const markers = await page.locator('.section-marker').evaluateAll((elements) => (
+        elements.map((element) => ({
+          border: Number.parseFloat(getComputedStyle(element).borderRightWidth),
+          width: element.getBoundingClientRect().width,
+        }))
+      ))
+
+      expect(markers.length, route).toBeGreaterThan(0)
+      expect(markers.every(({ border }) => border === 0), route).toBe(true)
+      expect(markers.every(({ width }) => width <= 24), `${route}: ${JSON.stringify(markers)}`).toBe(true)
+    }
+
+    await page.goto('/')
+    const experience = await page.locator('#experience').evaluate((element) => {
+      const marker = element.querySelector<HTMLElement>('.experience-marker')
+      const heading = element.querySelector<HTMLElement>('.experience-heading')
+      const timeline = element.querySelector<HTMLElement>('.experience-list')
+      if (!marker || !heading || !timeline) throw new Error('Experience composition is missing')
+
+      return {
+        columns: getComputedStyle(element).gridTemplateColumns.split(' ').length,
+        headingLeft: heading.getBoundingClientRect().left,
+        markerBorder: Number.parseFloat(getComputedStyle(marker).borderRightWidth),
+        markerLeft: marker.getBoundingClientRect().left,
+        timelineRule: getComputedStyle(timeline, '::before').width,
+      }
+    })
+
+    expect(experience.columns).toBe(2)
+    expect(experience.markerBorder).toBe(0)
+    expect(experience.headingLeft).toBeGreaterThan(experience.markerLeft)
+    expect(experience.timelineRule).toBe('1px')
+  })
+
+  test('tablet retains the full résumé and Experience compositions', async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 900 })
+
+    await page.goto('/resume')
+    await expect(page.locator('.resume-intro-summary')).toBeVisible()
+
+    await page.goto('/')
+    const experience = await page.locator('#experience').evaluate((element) => {
+      const marker = element.querySelector<HTMLElement>('.experience-marker')
+      if (!marker) throw new Error('Experience marker is missing')
+      return {
+        columns: getComputedStyle(element).gridTemplateColumns.split(' ').length,
+        markerBorder: Number.parseFloat(getComputedStyle(marker).borderRightWidth),
+      }
+    })
+
+    expect(experience.columns).toBeGreaterThan(1)
+    expect(experience.markerBorder).toBe(1)
+  })
+
   for (const route of ['/', '/resume']) {
     test(`${route} renders labeled social links locally with mobile touch targets`, async ({ page }) => {
       const iconifyRequests: string[] = []

@@ -292,4 +292,10 @@ const emit = defineEmits<{
   .resume-intro-print > span { display: none; }
   .resume-intro-ruler { left: 1.25rem; right: 1.25rem; }
 }
+
+@media (max-width: 40rem) {
+  .resume-intro-summary { display: none; }
+  .resume-intro-profile ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .resume-intro-profile .profile-tag:last-child { grid-column: 1 / -1; }
+}
 </style>

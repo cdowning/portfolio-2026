@@ -86,4 +86,11 @@ defineProps<{
   .toolkit-marker { grid-row: 1 / 3; }
   .toolkit-list { grid-column: 2; grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 40rem) {
+  .toolkit {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
 </style>

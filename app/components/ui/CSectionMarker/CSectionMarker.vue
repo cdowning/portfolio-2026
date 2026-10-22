@@ -27,4 +27,8 @@ defineProps<{
 }
 
 .section-marker strong { font-size: inherit; font-weight: 400; }
+
+@media (max-width: 40rem) {
+  .section-marker { border-right: 0; }
+}
 </style>

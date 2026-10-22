@@ -181,4 +181,11 @@ defineProps<{
     display: none;
   }
 }
+
+@media (max-width: 40rem) {
+  .about {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
 </style>

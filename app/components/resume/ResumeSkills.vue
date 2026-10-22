@@ -120,4 +120,11 @@ defineProps<{
   .resume-skills-group:first-of-type { grid-column: 2; }
   .resume-skills-group { border-left: 0; padding: 0; }
 }
+
+@media (max-width: 40rem) {
+  .resume-skills {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
 </style>

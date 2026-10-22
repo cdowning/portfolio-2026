@@ -179,4 +179,11 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
   .resume-experience-role { flex-direction: column; gap: .35rem; }
   .resume-experience-role time { white-space: normal; }
 }
+
+@media (max-width: 40rem) {
+  .resume-experience {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
 </style>

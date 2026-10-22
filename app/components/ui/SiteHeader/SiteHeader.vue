@@ -166,9 +166,9 @@ function currentState(item: NavigationItem): 'page' | 'location' | undefined {
     min-height: 4.5rem;
   }
 
-  .brand { padding: .85rem 1.25rem; }
-  .brand strong { font-size: var(--text-xs); }
-  .brand > span { font-size: var(--text-xs); letter-spacing: .36em; margin-top: .35rem; }
+  .brand { min-width: 0; padding: .85rem 1.25rem; }
+  .brand strong { font-size: var(--text-xs); letter-spacing: .2em; white-space: nowrap; }
+  .brand > span { font-size: var(--text-xs); letter-spacing: .14em; margin-top: .35rem; white-space: nowrap; }
   .nav-trigger {
     align-items: center;
     background: transparent;

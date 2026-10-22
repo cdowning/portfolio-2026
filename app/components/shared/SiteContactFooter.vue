@@ -215,6 +215,13 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
   padding-top: 1.2rem;
 }
 
+@media (max-width: 40rem) {
+  .contact {
+    column-gap: .5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
+
 @media (min-width: 44.0625rem) {
   .contact {
     grid-template-columns: 3rem minmax(0, 1fr) 14rem;
