@@ -178,28 +178,24 @@ const semanticRoles = [
   line-height: 1.15;
 }
 
-@media (max-width: 52rem) {
-  .type-section,
-  .type-row,
-  .type-role {
-    grid-template-columns: 1fr;
-  }
+.type-section,
+.type-row,
+.type-role { grid-template-columns: 1fr; }
 
-  .type-row,
-  .type-role {
-    gap: .75rem;
-  }
+.type-row,
+.type-role { gap: .75rem; }
 
-  .type-meta {
-    grid-template-columns: minmax(7rem, 1fr) auto auto;
-  }
+.type-meta,
+.type-role .type-meta { gap: .25rem; grid-template-columns: 1fr; }
+
+@media (min-width: 40rem) {
+  .type-meta { gap: 1rem; grid-template-columns: minmax(7rem, 1fr) auto auto; }
+  .type-role .type-meta { gap: 1rem; grid-template-columns: minmax(9rem, 1fr) minmax(0, 1.5fr); }
 }
 
-@media (max-width: 32rem) {
-  .type-meta,
-  .type-role .type-meta {
-    grid-template-columns: 1fr;
-    gap: .25rem;
-  }
+@media (min-width: 48rem) {
+  .type-section { grid-template-columns: minmax(8rem, .65fr) minmax(0, 3.35fr); }
+  .type-row,
+  .type-role { gap: 1.5rem; grid-template-columns: minmax(13rem, .8fr) minmax(0, 2.2fr); }
 }
 </style>

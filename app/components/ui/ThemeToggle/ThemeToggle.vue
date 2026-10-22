@@ -46,6 +46,7 @@ const { resolvedTheme, toggleTheme } = useTheme()
 }
 
 .theme-toggle-border-left { border-left: 1px solid var(--rule); }
+.theme-toggle-border-mobile { border-left: 1px solid var(--rule); }
 .theme-toggle:focus-visible { outline-offset: -4px; }
 
 .theme-toggle svg {
@@ -65,8 +66,8 @@ const { resolvedTheme, toggleTheme } = useTheme()
   .theme-toggle svg { transition-duration: 0s; }
 }
 
-@media (max-width: 40rem) {
-  .theme-toggle-border-mobile { border-left: 1px solid var(--rule); }
+@media (min-width: 48rem) {
+  .theme-toggle-border-mobile { border-left: 0; }
 }
 
 @media print {

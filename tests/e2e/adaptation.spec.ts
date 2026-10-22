@@ -107,6 +107,36 @@ test.describe('responsive navigation and editorial motion', () => {
 })
 
 test.describe('responsive layout contract', () => {
+  test('uses the shared mobile-first breakpoints for chrome and major grids', async ({ page }) => {
+    for (const width of [320, 640, 768, 1024, 1280, 1536]) {
+      await page.setViewportSize({ width, height: 900 })
+      await page.goto('/')
+
+      const layout = await page.evaluate(() => {
+        const columns = (selector: string) => {
+          const element = document.querySelector<HTMLElement>(selector)
+          if (!element) throw new Error(`${selector} is missing`)
+          return getComputedStyle(element).gridTemplateColumns.split(' ').length
+        }
+        const marker = document.querySelector<HTMLElement>('.section-marker')
+        const trigger = document.querySelector<HTMLElement>('.nav-trigger')
+        if (!marker || !trigger) throw new Error('Shared chrome is missing')
+
+        return {
+          heroColumns: columns('.hero-stage'),
+          markerBorder: Number.parseFloat(getComputedStyle(marker).borderRightWidth),
+          triggerDisplay: getComputedStyle(trigger).display,
+          workColumns: columns('.work-grid'),
+        }
+      })
+
+      expect(layout.triggerDisplay, `navigation at ${width}px`).toBe(width >= 768 ? 'none' : 'flex')
+      expect(layout.markerBorder, `marker at ${width}px`).toBe(width >= 640 ? 1 : 0)
+      expect(layout.heroColumns, `hero at ${width}px`).toBe(width >= 1024 ? 2 : 1)
+      expect(layout.workColumns, `work at ${width}px`).toBe(width >= 1024 ? 3 : 1)
+    }
+  })
+
   test('mobile header keeps the complete wordmark compact', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 900 })
     await page.goto('/')
@@ -352,7 +382,7 @@ test.describe('responsive layout contract', () => {
         expect(presentation.footerWidth, `${route} at ${width}px`).toBeCloseTo(width, 0)
         expect(presentation.footerRight, `${route} at ${width}px`).toBeLessThanOrEqual(width)
         expect(presentation.flightDisplay, `${route} at ${width}px`)
-          .toBe(width >= 768 ? 'block' : 'none')
+          .toBe(width >= 1024 ? 'block' : 'none')
 
         for (const label of ['Say hello', 'LinkedIn', 'GitHub', 'CodePen']) {
           const bounds = await footer.getByRole('link', { name: label, exact: true }).boundingBox()
@@ -360,6 +390,29 @@ test.describe('responsive layout contract', () => {
           expect(bounds!.width, `${label} width on ${route} at ${width}px`).toBeGreaterThanOrEqual(44)
           expect(bounds!.height, `${label} height on ${route} at ${width}px`).toBeGreaterThanOrEqual(44)
         }
+      }
+    })
+
+    test(`${route} stacks the footer brand before 2xl without shrinking the airplane`, async ({ page }) => {
+      for (const width of [1024, 1440, 1536]) {
+        await page.setViewportSize({ width, height: 900 })
+        await page.goto(route)
+
+        const presentation = await page.locator('footer#contact').evaluate((element) => {
+          const brand = element.querySelector<HTMLElement>('.contact-brand')
+          const airplane = element.querySelector<SVGImageElement>('.contact-airplane')
+          if (!brand || !airplane) throw new Error('Footer composition is incomplete')
+
+          return {
+            airplaneWidth: airplane.getBoundingClientRect().width,
+            brandColumn: getComputedStyle(brand).gridColumnStart,
+            columns: getComputedStyle(element).gridTemplateColumns.split(' ').length,
+          }
+        })
+
+        expect(presentation.columns, `${route} at ${width}px`).toBe(width >= 1536 ? 3 : 2)
+        expect(presentation.brandColumn, `${route} at ${width}px`).toBe(width >= 1536 ? '3' : '2')
+        expect(presentation.airplaneWidth, `${route} at ${width}px`).toBeGreaterThanOrEqual(96)
       }
     })
 

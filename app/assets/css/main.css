@@ -112,14 +112,23 @@
     to { clip-path: inset(0); opacity: 1; }
   }
 
-  @media (max-width: 40rem) {
-    body.navigation-open { overflow: hidden; }
+  body.navigation-open { overflow: hidden; }
+
+  :where(a, button) {
+    align-items: center;
+    display: inline-flex;
+    min-height: 2.75rem;
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 48rem) {
+    body.navigation-open { overflow: visible; }
 
     :where(a, button) {
-      align-items: center;
-      display: inline-flex;
-      min-height: 2.75rem;
-      overflow-wrap: anywhere;
+      align-items: normal;
+      display: inline;
+      min-height: 0;
+      overflow-wrap: normal;
     }
   }
 

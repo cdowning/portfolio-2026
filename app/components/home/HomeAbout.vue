@@ -155,37 +155,38 @@ defineProps<{
   line-height: 1.45;
 }
 
-@media (max-width: 72rem) {
+.about {
+  column-gap: .5rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  padding: 3rem 1.25rem;
+}
+
+.about-photo,
+.about-method { grid-column: 2; }
+
+.about-note { display: none; }
+
+@media (min-width: 40rem) {
+  .about { column-gap: 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
+}
+
+@media (min-width: 48rem) {
   .about {
+    gap: clamp(2rem, 4vw, 4rem);
     grid-template-columns: 3rem 1fr 1fr;
+    padding: clamp(4rem, 6vw, 6.5rem) var(--page-gutter);
   }
 
-  .about-method {
-    grid-column: 2 / -1;
-  }
+  .about-photo { grid-column: auto; }
+  .about-method { grid-column: 2 / -1; }
+  .about-note { display: block; }
 }
 
-@media (max-width: 42rem) {
+@media (min-width: 80rem) {
   .about {
-    gap: 2rem 1rem;
-    grid-template-columns: 2.5rem 1fr;
-    padding: 3rem 1.25rem;
+    grid-template-columns: 3rem minmax(18rem, .9fr) minmax(20rem, .85fr) minmax(20rem, 1fr);
   }
 
-  .about-photo,
-  .about-method {
-    grid-column: 2;
-  }
-
-  .about-note {
-    display: none;
-  }
-}
-
-@media (max-width: 40rem) {
-  .about {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
-  }
+  .about-method { grid-column: auto; }
 }
 </style>

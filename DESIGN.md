@@ -252,6 +252,18 @@ Every interactive component needs a visible `2px` focus ring with `4px` offset, 
 
 **The Accessible-by-Default Rule.** A component is incomplete until its focus, target size, semantics, keyboard behavior, and reduced-motion behavior are defined.
 
+## Responsive Scale
+
+The site is mobile-first. Narrow-screen composition is the base CSS; wider layouts are progressive enhancements using one shared scale:
+
+- `sm`: `40rem` / `640px`
+- `md`: `48rem` / `768px`
+- `lg`: `64rem` / `1024px`
+- `xl`: `80rem` / `1280px`
+- `2xl`: `96rem` / `1536px`
+
+Width-based media queries use these values with `min-width`. Do not introduce component-specific width breakpoints. Media features that solve a different constraint—viewport height, print, color preference, pointer capability, or reduced motion—remain independent of this scale.
+
 ## Do's and Don'ts
 
 ### Do

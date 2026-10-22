@@ -78,8 +78,8 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
   background: var(--footer);
   color: var(--on-footer);
   display: grid;
-  gap: 2rem;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 2rem .5rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
   margin-left: calc(50% - 50vw);
   padding-block: 3rem max(1.5rem, env(safe-area-inset-bottom));
   padding-inline: max(1.25rem, env(safe-area-inset-left)) max(1.25rem, env(safe-area-inset-right));
@@ -215,16 +215,16 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
   padding-top: 1.2rem;
 }
 
-@media (max-width: 40rem) {
+@media (min-width: 40rem) {
   .contact {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
+    column-gap: 2rem;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
   }
 }
 
-@media (min-width: 44.0625rem) {
+@media (min-width: 48rem) {
   .contact {
-    grid-template-columns: 3rem minmax(0, 1fr) 14rem;
+    grid-template-columns: 3rem minmax(0, 1fr);
     padding-block-start: 3.5rem;
     padding-inline: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2 + var(--page-gutter)));
   }
@@ -235,12 +235,7 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
 
   .contact-intro { font-size: var(--text-md); }
 
-  .contact-action {
-    grid-template-columns: max-content minmax(8rem, 42rem);
-    margin-top: 2.75rem;
-  }
-
-  .contact-flight { display: block; }
+  .contact-action { margin-top: 2.75rem; }
 
   .contact-socials {
     align-items: center;
@@ -252,10 +247,7 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
   }
 
   .contact-brand {
-    border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
-    grid-column: 3;
-    margin-top: 0;
-    padding-left: 2rem;
+    grid-column: 2;
   }
 
   .contact-brand p {
@@ -269,9 +261,27 @@ const socialContacts = computed(() => props.profile.contacts.flatMap((contact) =
   }
 }
 
-@media (min-width: 68.0625rem) {
+@media (min-width: 64rem) {
+  .contact-action {
+    grid-template-columns: max-content minmax(38rem, 42rem);
+  }
+
+  .contact-flight {
+    display: block;
+    min-width: 38rem;
+  }
+}
+
+@media (min-width: 96rem) {
   .contact {
     grid-template-columns: 3rem minmax(0, 1fr) minmax(15rem, 18rem);
+  }
+
+  .contact-brand {
+    border-left: 1px solid color-mix(in srgb, var(--on-footer) 50%, transparent);
+    grid-column: 3;
+    margin-top: 0;
+    padding-left: 2rem;
   }
 }
 </style>

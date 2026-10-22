@@ -374,36 +374,49 @@ defineProps<{
   margin-left: .5rem;
 }
 
-@media (max-width: 65rem) {
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
+.work { padding: 2.5rem 1.25rem; }
 
-  .work-card {
-    border-bottom: 1px solid var(--rule);
-    border-right: 0;
-    padding: 0 0 2.5rem;
-  }
-
-  .specimen {
-    max-height: 32rem;
-  }
+.work-heading {
+  align-items: start;
+  gap: 1rem;
+  grid-template-columns: 3.4rem 1fr;
 }
 
-@media (max-width: 40rem) {
-  .work {
-    padding: 2.5rem 1.25rem;
-  }
+.work-rule,
+.work-note { display: none; }
 
+.work-grid { grid-template-columns: 1fr; }
+
+.work-card {
+  border-bottom: 1px solid var(--rule);
+  border-right: 0;
+  padding: 0 0 2.5rem;
+}
+
+.specimen { max-height: 32rem; }
+
+@media (min-width: 40rem) {
+  .work { padding: 2.5rem var(--page-gutter) 4.5rem; }
   .work-heading {
-    align-items: start;
-    gap: 1rem;
-    grid-template-columns: 3.4rem 1fr;
+    align-items: center;
+    gap: 2.5rem;
+    grid-template-columns: 5rem auto 1fr 7rem;
   }
 
   .work-rule,
-  .work-note {
-    display: none;
+  .work-note { display: block; }
+}
+
+@media (min-width: 64rem) {
+  .work-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .work-card {
+    border-bottom: 0;
+    border-right: 1px solid var(--rule);
+    padding: 0 1rem 0 0;
   }
+
+  .work-card:last-child { border-right: 0; padding-right: 0; }
+  .specimen { max-height: none; }
 }
 </style>

@@ -62,35 +62,52 @@ defineProps<{
   padding: 0;
 }
 
-@media (max-width: 88rem) {
+.toolkit {
+  align-items: start;
+  column-gap: .5rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  padding: 3rem 1.25rem;
+}
+
+.toolkit-marker { grid-row: 1 / 3; }
+
+.toolkit-list {
+  --tag-padding: .7rem .65rem;
+
+  gap: 0;
+  grid-column: 2;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 40rem) {
+  .toolkit { column-gap: 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
+}
+
+@media (min-width: 48rem) {
   .toolkit {
+    align-items: center;
+    gap: 1.5rem;
     grid-template-columns: 3rem 12rem 1fr;
+    padding: 2.5rem var(--page-gutter);
   }
 
+  .toolkit-marker { grid-row: auto; }
   .toolkit-list {
-    --tag-padding: .7rem .65rem;
-
-    gap: 0;
+    grid-column: 3;
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 42rem) {
+@media (min-width: 96rem) {
   .toolkit {
-    align-items: start;
-    gap: 1.5rem 1rem;
-    grid-template-columns: 2.5rem 1fr;
-    padding: 3rem 1.25rem;
+    grid-template-columns: 3rem 13.5rem minmax(0, 1fr);
   }
 
-  .toolkit-marker { grid-row: 1 / 3; }
-  .toolkit-list { grid-column: 2; grid-template-columns: repeat(2, 1fr); }
-}
+  .toolkit-list {
+    --tag-padding: .25rem .4rem;
 
-@media (max-width: 40rem) {
-  .toolkit {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 0 clamp(.15rem, .45vw, .55rem);
+    grid-template-columns: repeat(12, max-content);
   }
 }
 </style>

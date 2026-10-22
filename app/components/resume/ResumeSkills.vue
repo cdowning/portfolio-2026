@@ -105,26 +105,40 @@ defineProps<{
   text-transform: uppercase;
 }
 
-@media (max-width: 72rem) {
-  .resume-skills { grid-template-columns: 3rem repeat(2, 1fr); }
-  .resume-skills-intro { grid-column: 2 / -1; }
-  .resume-skills-group:first-of-type { grid-column: 2; }
-  .resume-skills aside { display: none; }
+.resume-skills {
+  column-gap: .5rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  padding: 3rem 1.25rem;
 }
 
-@media (max-width: 42rem) {
-  .resume-skills { gap: 2rem 1rem; grid-template-columns: 2.5rem 1fr; padding: 3rem 1.25rem; }
-  .resume-skills-marker { grid-row: 1 / 4; }
-  .resume-skills-intro,
-  .resume-skills-group,
-  .resume-skills-group:first-of-type { grid-column: 2; }
-  .resume-skills-group { border-left: 0; padding: 0; }
+.resume-skills-marker { grid-row: 1 / 4; }
+.resume-skills-intro,
+.resume-skills-group,
+.resume-skills-group:first-of-type { grid-column: 2; }
+.resume-skills-group { border-left: 0; padding: 0; }
+.resume-skills aside { display: none; }
+
+@media (min-width: 40rem) {
+  .resume-skills { column-gap: 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
 }
 
-@media (max-width: 40rem) {
+@media (min-width: 48rem) {
   .resume-skills {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 2.5rem;
+    grid-template-columns: 3rem repeat(2, 1fr);
+    padding: 3rem var(--page-gutter);
   }
+
+  .resume-skills-marker { grid-row: auto; }
+  .resume-skills-intro { grid-column: 2 / -1; }
+  .resume-skills-group { border-left: 1px dashed var(--rule-strong); padding-left: 2.5rem; padding-top: 3.5rem; }
+  .resume-skills-group:first-of-type { grid-column: 2; }
+}
+
+@media (min-width: 80rem) {
+  .resume-skills { grid-template-columns: 3rem minmax(18rem, .85fr) repeat(2, minmax(19rem, 1fr)) 7rem; }
+  .resume-skills-intro,
+  .resume-skills-group { grid-column: auto; }
+  .resume-skills aside { display: block; }
 }
 </style>

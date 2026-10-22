@@ -34,6 +34,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V15: Vue SFC CSS → scoped + flat kebab-case; ⊥ BEM `__`/`--` class syntax; typed props → explicit variant classes; runtime DOM access → template refs.
 - V16: footer selection → `background: var(--on-footer)` + `color: var(--footer)`; WCAG AA in light + dark; ⊥ support-accent clash.
 - V17: color foundation → exact 31-token `paper`/`ink`/`teal`/`blush`/`gold` scales; semantic roles reference primitives; plain CSS split into fonts/variables/main; Storybook documents implemented values; ⊥ visual drift/generated-ramp promotion.
+- V18: résumé profile/skills at `xl` → intro + both skill groups + margin note occupy one ordered grid row; tablet/mobile may stack intentionally.
 
 # §T
 id|status|goal|cites
@@ -63,3 +64,4 @@ B10|2026-09-21|résumé experience grid used intrinsic `1fr`, allowing role date
 B11|2026-09-22|manual visual-QA server occupied Playwright's isolated port during verification|no new §V; B2 already specifies isolated-port behavior, stop preview before release suite
 B12|2026-09-22|focused mobile verification could not launch after Playwright's expected WebKit revision was absent from the host cache|no new §V; host dependency state, use an installed browser for focused proof or install the matching revision before the release suite
 B13|2026-10-14|desktop drafting geometry activated by width alone, clipping hero facts on short viewports and crossing the portrait on phones|V5,V6,V10; require sufficient height for sticky mode + use portrait-safe mobile geometry
+B14|2026-10-22|`xl` reset targeted `.resume-skills-group:first-of-type`, which matched no group and left both groups pinned to column 2|V18; reset every skill group to auto placement + browser row-order assertion

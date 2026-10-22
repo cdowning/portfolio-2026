@@ -148,56 +148,58 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
   right: var(--page-gutter);
 }
 
-@media (min-width: 68.0625rem) {
-  .experience-link { bottom: 1.2rem; }
+.experience {
+  column-gap: .5rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  padding: 3rem 1.25rem 7rem;
 }
 
-@media (max-width: 68rem) {
-  .experience {
-    grid-template-columns: 3rem 10rem 1fr;
-  }
+.experience-aside { display: none; }
+.experience-marker { grid-column: 1; grid-row: 1 / 4; }
 
-  .experience-aside { display: none; }
-  .experience-heading { grid-column: 2 / -1; }
+.experience-heading,
+.experience-summary,
+.experience-list { grid-column: 2; }
+
+.experience-role {
+  align-items: start;
+  grid-template-columns: 1fr;
+  padding: 1rem 0;
 }
 
-@media (max-width: 44rem) {
+@media (min-width: 40rem) {
   .experience {
-    gap: 2rem 1rem;
+    column-gap: 1rem;
     grid-template-columns: 2.5rem 1fr;
-    padding: 3rem 1.25rem 7rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .experience {
+    gap: 1.5rem 2.5rem;
+    grid-template-columns: 3rem 10rem 1fr;
+    padding: 3.5rem var(--page-gutter);
   }
 
-  .experience-heading,
-  .experience-summary,
-  .experience-list {
-    grid-column: 2;
-  }
-
-  .experience-marker { grid-row: 1 / 4; }
+  .experience-marker { grid-row: 1 / 3; }
+  .experience-heading { grid-column: 2 / -1; }
+  .experience-summary { grid-column: 2; }
+  .experience-list { grid-column: 3; }
 
   .experience-role {
-    align-items: start;
-    grid-template-columns: 1fr;
-    padding: 1rem 0;
+    align-items: center;
+    grid-template-columns: 1.1fr .65fr 1fr;
+    padding: .6rem 0;
   }
 }
 
-@media (max-width: 40rem) {
+@media (min-width: 80rem) {
   .experience {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
+    grid-template-columns: 3rem 14rem 1fr 8rem;
   }
 
-  .experience-marker {
-    grid-column: 1;
-    grid-row: 1 / 4;
-  }
-
-  .experience-heading,
-  .experience-summary,
-  .experience-list {
-    grid-column: 2;
-  }
+  .experience-aside { display: block; }
+  .experience-heading { grid-column: 2 / 4; }
+  .experience-link { bottom: 1.2rem; }
 }
 </style>

@@ -7,6 +7,27 @@ test.describe('résumé', () => {
     await page.waitForLoadState('networkidle')
   })
 
+  test('V18 keeps profile copy, skill groups, and note on one wide-screen row', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+
+    const layout = await page.locator('.resume-skills').evaluate((section) => {
+      const items = [
+        section.querySelector<HTMLElement>('.resume-skills-intro'),
+        ...section.querySelectorAll<HTMLElement>('.resume-skills-group'),
+        section.querySelector<HTMLElement>('aside'),
+      ]
+      if (items.some(item => !item)) throw new Error('Résumé skills composition is incomplete')
+
+      return items.map((item) => {
+        const bounds = item!.getBoundingClientRect()
+        return { left: Math.round(bounds.left), top: Math.round(bounds.top) }
+      })
+    })
+
+    expect(new Set(layout.map(item => item.top)).size).toBe(1)
+    expect(layout.map(item => item.left)).toEqual([...layout.map(item => item.left)].sort((a, b) => a - b))
+  })
+
   test('presents the approved web résumé hierarchy from factual content', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await expect(page.getByRole('banner')).toBeVisible()

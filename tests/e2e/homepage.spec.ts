@@ -194,7 +194,7 @@ test.describe('homepage composition', () => {
   })
 
   test('presents the expanded toolkit as one desktop row without a trailing rail', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.setViewportSize({ width: 1536, height: 900 })
     await page.goto('/')
 
     const toolkit = page.locator('section[aria-labelledby="toolkit-title"]')
@@ -227,7 +227,7 @@ test.describe('homepage composition', () => {
   })
 
   test('reflows the toolkit before the single row can overflow', async ({ page }) => {
-    for (const width of [1153, 1280, 1377, 1408]) {
+    for (const width of [1024, 1280, 1408, 1440]) {
       await page.setViewportSize({ width, height: 900 })
       await page.goto('/')
 

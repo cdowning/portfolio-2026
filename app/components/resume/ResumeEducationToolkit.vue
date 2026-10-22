@@ -108,24 +108,28 @@ defineProps<{
   margin: .8rem 0 1.5rem;
 }
 
-@media (max-width: 62rem) {
-  .resume-foundation { grid-template-columns: 1fr; gap: 3rem; }
-  .resume-foundation-toolkit { border-left: 0; padding-left: 0; }
-  .resume-foundation aside { display: none; }
+.resume-foundation { gap: 3rem; grid-template-columns: 1fr; padding: 3rem 1.25rem; }
+.resume-foundation-education,
+.resume-foundation-toolkit { column-gap: .5rem; grid-template-columns: 1.5rem minmax(0, 1fr); }
+.resume-foundation-toolkit { border-left: 0; padding-left: 0; }
+.resume-foundation aside { display: none; }
+.education-entry { align-items: start; flex-direction: column; gap: .75rem; }
+
+@media (min-width: 40rem) {
+  .resume-foundation-education,
+  .resume-foundation-toolkit { column-gap: 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
 }
 
-@media (max-width: 42rem) {
-  .resume-foundation { padding: 3rem 1.25rem; }
+@media (min-width: 48rem) {
+  .resume-foundation { padding: 2.5rem var(--page-gutter); }
   .resume-foundation-education,
-  .resume-foundation-toolkit { gap: 1rem; grid-template-columns: 2.5rem 1fr; }
-  .education-entry { align-items: start; flex-direction: column; gap: .75rem; }
+  .resume-foundation-toolkit { gap: 1.5rem; grid-template-columns: 3rem 1fr; }
+  .education-entry { align-items: end; flex-direction: row; gap: 0; }
 }
 
-@media (max-width: 40rem) {
-  .resume-foundation-education,
-  .resume-foundation-toolkit {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
-  }
+@media (min-width: 64rem) {
+  .resume-foundation { gap: 0; grid-template-columns: 1fr 1fr 7rem; }
+  .resume-foundation-toolkit { border-left: 1px dashed var(--rule-strong); padding-left: 2rem; }
+  .resume-foundation aside { display: block; }
 }
 </style>

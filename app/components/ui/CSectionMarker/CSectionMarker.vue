@@ -14,7 +14,7 @@ defineProps<{
 
 <style scoped>
 .section-marker {
-  border-right: 1px solid var(--rule-strong);
+  border-right: 0;
   display: grid;
   font-size: var(--text-xs);
   gap: .45rem;
@@ -28,7 +28,7 @@ defineProps<{
 
 .section-marker strong { font-size: inherit; font-weight: 400; }
 
-@media (max-width: 40rem) {
-  .section-marker { border-right: 0; }
+@media (min-width: 40rem) {
+  .section-marker { border-right: 1px solid var(--rule-strong); }
 }
 </style>

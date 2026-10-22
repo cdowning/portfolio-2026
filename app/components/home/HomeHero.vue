@@ -548,14 +548,108 @@ useHeroScrollMotion(hero, stage)
   will-change: clip-path, opacity, transform;
 }
 
-@media (min-width: 64.001rem) and (max-height: 64rem) {
-  .hero-copy {
-    padding-block: 1.5rem 1.25rem;
-  }
+.hero-stage { grid-template-columns: 1fr; }
 
-  .kicker {
-    margin-bottom: 1.35rem;
+.hero-portrait {
+  border-left: 0;
+  border-top: 1px solid var(--rule);
+  min-height: 34rem;
+}
+
+.hero-portrait-grid {
+  background-size: 1.35rem 1.35rem;
+  inset: 1.5rem 1rem 3rem;
+  opacity: .16;
+}
+
+.hero-image { width: 100%; }
+
+.hero-cta-flow { display: block; margin-right: 0; }
+.hero-cta-connector { display: none; }
+.hero-lower { margin-top: 4rem; }
+.hero-margin-note { margin: 0 1rem 2rem auto; }
+
+.hero-construction {
+  bottom: 0;
+  height: 34rem;
+  inset-inline: 0;
+  top: auto;
+}
+
+.hero-construction-drawing { transform: translateX(18%); }
+
+.hero-construction-path-flow,
+.hero-construction-path-lower,
+.hero-measurements,
+.hero-callout-03,
+.hero-callout-04,
+.hero-callout-02,
+.hero-side-note { display: none; }
+
+.hero-callout-02 { left: 55%; top: 5%; }
+
+.hero-copy { padding: 3rem 1.25rem; }
+
+.kicker { gap: .65rem; letter-spacing: .2em; margin-bottom: 2rem; }
+.hero-title { font-size: clamp(var(--text-4xl), 14vw, var(--text-6xl)); }
+.hero-facts { grid-template-columns: 1fr; }
+.hero-facts > div + div { border-left: 0; padding-left: 0; }
+.hero-portrait-cover { height: 18%; }
+.hero-swatches { right: 1rem; top: 8rem; width: 2.7rem; }
+.swatch { height: 2.5rem; }
+
+@media (min-width: 40rem) {
+  .hero-copy { padding: clamp(4rem, 7vw, 7rem) var(--hero-copy-inline-end) 3.5rem var(--page-gutter); }
+  .kicker { gap: 1.1rem; letter-spacing: .34em; margin-bottom: 3.5rem; }
+  .hero-title { font-size: var(--text-page-title); }
+  .hero-facts { grid-template-columns: .75fr 1.25fr; }
+  .hero-facts > div + div { border-left: 1px solid var(--rule-strong); padding-left: 2.5rem; }
+  .hero-lower { margin-top: 2.5rem; }
+  .hero-portrait { min-height: 44rem; }
+  .hero-portrait-grid { background-size: 1.65rem 1.65rem; inset: 2rem 2rem 4rem; opacity: .2; }
+  .hero-image { width: min(92%, 50rem); }
+  .hero-portrait-cover { height: 20%; }
+  .hero-construction { height: 44rem; }
+  .hero-construction-drawing { transform: none; }
+  .hero-callout-02 { display: flex; }
+  .hero-side-note { display: block; }
+  .hero-swatches { right: 2rem; top: 8rem; width: 3.8rem; }
+  .swatch { height: auto; }
+}
+
+.hero[data-hero-motion='compact'][data-revealed='true'] .hero-construction-path-solid,
+.hero[data-hero-motion='compact'][data-revealed='true'] .hero-construction-path-dashed {
+  animation: hero-compact-cut 720ms var(--ease-out) both;
+}
+
+.hero[data-hero-motion='compact'][data-revealed='true'] .hero-crosshair {
+  animation: hero-compact-register 420ms var(--ease-out) 440ms both;
+}
+
+@media (min-width: 64rem) {
+  .hero-stage { grid-template-columns: minmax(0, 1.12fr) minmax(32rem, .88fr); }
+  .hero-portrait {
+    border-left: 1px solid var(--rule);
+    border-top: 0;
+    min-height: 52rem;
   }
+  .hero-portrait-grid { inset: 2rem 3.5rem 5rem 2.5rem; }
+  .hero-image { width: 86%; }
+  .hero-cta-flow { display: grid; margin-right: calc(-1 * var(--hero-copy-inline-end)); }
+  .hero-cta-connector { display: block; }
+  .hero-lower { margin-top: auto; }
+  .hero-margin-note { margin: 0 clamp(1rem, 5vw, 4.5rem) 3.5rem auto; }
+  .hero-construction { height: auto; inset: 0; }
+  .hero-construction-path-flow,
+  .hero-construction-path-lower,
+  .hero-measurements { display: block; }
+  .hero-callout-03,
+  .hero-callout-04 { display: flex; }
+}
+
+@media (min-width: 64rem) and (max-height: 64rem) {
+  .hero-copy { padding-block: 1.5rem 1.25rem; }
+  .kicker { margin-bottom: 1.35rem; }
 
   .hero-title {
     font-size: clamp(var(--text-5xl), 5vw, var(--text-6xl));
@@ -567,152 +661,11 @@ useHeroScrollMotion(hero, stage)
     margin-bottom: 1.35rem;
   }
 
-  .hero-facts {
-    gap: 1.25rem;
-    padding-top: 1rem;
-  }
-
-  .hero-facts > div + div {
-    padding-left: 1.5rem;
-  }
-
-  .hero-facts strong {
-    margin-bottom: .45rem;
-  }
-
-  .hero-portrait {
-    min-height: 0;
-  }
-
+  .hero-facts { gap: 1.25rem; padding-top: 1rem; }
+  .hero-facts > div + div { padding-left: 1.5rem; }
+  .hero-facts strong { margin-bottom: .45rem; }
+  .hero-portrait { min-height: 0; }
   .hero-margin-note { margin-bottom: 3.5rem; }
-}
-
-@media (max-width: 64rem) {
-  .hero-stage {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-portrait {
-    border-left: 0;
-    border-top: 1px solid var(--rule);
-    min-height: 44rem;
-  }
-
-  .hero-portrait-grid {
-    inset: 2rem 2rem 4rem;
-  }
-
-  .hero-image {
-    width: min(92%, 50rem);
-  }
-
-  .hero-cta-flow {
-    display: block;
-    margin-right: 0;
-  }
-
-  .hero-cta-connector { display: none; }
-
-  .hero-lower { margin-top: 2.5rem; }
-
-  .hero-margin-note { margin: 0 1rem 2rem auto; }
-
-  .hero-construction {
-    bottom: 0;
-    height: 44rem;
-    inset-inline: 0;
-    top: auto;
-  }
-
-  .hero-construction-path-flow,
-  .hero-construction-path-lower,
-  .hero-measurements,
-  .hero-callout-03,
-  .hero-callout-04 {
-    display: none;
-  }
-
-  .hero-callout-02 {
-    left: 55%;
-    top: 5%;
-  }
-
-  .hero[data-hero-motion='compact'][data-revealed='true'] .hero-construction-path-solid,
-  .hero[data-hero-motion='compact'][data-revealed='true'] .hero-construction-path-dashed {
-    animation: hero-compact-cut 720ms var(--ease-out) both;
-  }
-
-  .hero[data-hero-motion='compact'][data-revealed='true'] .hero-crosshair {
-    animation: hero-compact-register 420ms var(--ease-out) 440ms both;
-  }
-}
-
-@media (max-width: 40rem) {
-  .hero-copy {
-    padding: 3rem 1.25rem;
-  }
-
-  .kicker {
-    gap: .65rem;
-    letter-spacing: .2em;
-    margin-bottom: 2rem;
-  }
-
-  .hero-title {
-    font-size: clamp(var(--text-4xl), 14vw, var(--text-6xl));
-  }
-
-  .hero-facts {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-lower { margin-top: 4rem; }
-
-  .hero-facts > div + div {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .hero-portrait {
-    min-height: 34rem;
-  }
-
-  .hero-portrait-grid {
-    background-size: 1.35rem 1.35rem;
-    inset: 1.5rem 1rem 3rem;
-    opacity: .16;
-  }
-
-  .hero-image {
-    width: 100%;
-  }
-
-  .hero-portrait-cover {
-    height: 18%;
-  }
-
-  .hero-construction {
-    height: 34rem;
-  }
-
-  .hero-construction-drawing {
-    transform: translateX(18%);
-  }
-
-  .hero-callout-02,
-  .hero-side-note {
-    display: none;
-  }
-
-  .hero-swatches {
-    right: 1rem;
-    top: 8rem;
-    width: 2.7rem;
-  }
-
-  .swatch {
-    height: 2.5rem;
-  }
 }
 
 @keyframes hero-compact-cut {

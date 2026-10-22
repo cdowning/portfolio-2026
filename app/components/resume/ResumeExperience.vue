@@ -162,28 +162,42 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
   width: 6rem;
 }
 
-@media (max-width: 64rem) {
-  .resume-experience { grid-template-columns: 3rem minmax(0, 1fr); }
-  .resume-experience aside { display: none; }
+.resume-experience {
+  column-gap: .5rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  padding: 3rem 1.25rem;
 }
 
-@media (max-width: 42rem) {
-  .resume-experience { gap: 1.5rem 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); padding: 3rem 1.25rem; }
+.resume-experience aside { display: none; }
+.resume-experience-list {
+  --timeline-content-inset: 2.5rem;
+  --timeline-axis-position: .5rem;
+  --timeline-marker-block-offset: 3.2125rem;
+}
+.resume-experience-item { padding-top: 2.5rem; }
+.resume-experience-item > time { left: 0; top: 0; width: auto; }
+.resume-experience-role { flex-direction: column; gap: .35rem; }
+.resume-experience-role time { white-space: normal; }
+
+@media (min-width: 40rem) {
+  .resume-experience { column-gap: 1rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
+}
+
+@media (min-width: 48rem) {
+  .resume-experience { gap: 1.5rem 2.5rem; grid-template-columns: 3rem minmax(0, 1fr); padding: 3rem var(--page-gutter) 2.5rem; }
   .resume-experience-list {
-    --timeline-content-inset: 2.5rem;
-    --timeline-axis-position: .5rem;
-    --timeline-marker-block-offset: 3.2125rem;
+    --timeline-content-inset: 7rem;
+    --timeline-axis-position: 5rem;
+    --timeline-marker-block-offset: .7125rem;
   }
-  .resume-experience-item { padding-top: 2.5rem; }
-  .resume-experience-item > time { left: 0; top: 0; width: auto; }
-  .resume-experience-role { flex-direction: column; gap: .35rem; }
-  .resume-experience-role time { white-space: normal; }
+  .resume-experience-item { padding-top: 0; }
+  .resume-experience-item > time { left: -7rem; top: 0; width: 4rem; }
+  .resume-experience-role { flex-direction: row; gap: 0; }
+  .resume-experience-role time { white-space: nowrap; }
 }
 
-@media (max-width: 40rem) {
-  .resume-experience {
-    column-gap: .5rem;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
-  }
+@media (min-width: 80rem) {
+  .resume-experience { grid-template-columns: 3rem 1fr 7rem; }
+  .resume-experience aside { display: block; }
 }
 </style>
