@@ -51,7 +51,7 @@
 
   Confirm `PRODUCT.md`, `DESIGN.md`, `SPEC.md`, and this proposal describe the same two themes, the same binary toggle, and the same print boundary.
 
-- [ ] **Step 4: Commit the approved contracts**
+- [x] **Step 4: Commit the approved contracts**
 
   Commit: `docs(theme): specify adaptive color themes`
 
@@ -87,7 +87,7 @@
 
   Run: `pnpm test -- tests/unit/theme.test.ts && pnpm typecheck && pnpm lint`
 
-- [ ] **Step 6: Commit the theme domain**
+- [x] **Step 6: Commit the theme domain**
 
   Commit: `feat(theme): add preference resolution and persistence`
 
@@ -135,7 +135,7 @@
 
   Run: `pnpm test:e2e -- tests/e2e/theme.spec.ts && pnpm test`
 
-- [ ] **Step 6: Commit the semantic color system**
+- [x] **Step 6: Commit the semantic color system**
 
   Commit: `feat(theme): add semantic light and dark color roles`
 
@@ -176,7 +176,7 @@
 
   Run: `pnpm test:e2e -- tests/e2e/theme.spec.ts tests/e2e/adaptation.spec.ts && pnpm storybook:build && pnpm typecheck && pnpm lint`
 
-- [ ] **Step 7: Commit the header control**
+- [x] **Step 7: Commit the header control**
 
   Commit: `feat(theme): add accessible header theme toggle`
 
@@ -214,7 +214,7 @@
 
   Run: `pnpm test:e2e -- tests/e2e/theme.spec.ts tests/e2e/resume.spec.ts tests/e2e/foundation.spec.ts && pnpm storybook:build`
 
-- [ ] **Step 6: Commit the edge-case coverage**
+- [x] **Step 6: Commit the edge-case coverage**
 
   Commit: `test(theme): cover metadata print and first paint`
 
@@ -243,7 +243,7 @@
 
   Run: `pnpm lint && pnpm typecheck && pnpm test && pnpm test:e2e && pnpm generate && pnpm storybook:build`
 
-- [ ] **Step 5: Record completion and commit**
+- [x] **Step 5: Record completion and commit**
 
   Mark the OpenSpec tasks complete only after the release suite passes.
 
