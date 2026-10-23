@@ -6,7 +6,7 @@
 - `app/components/shared` contains only `SiteContactFooter`; `shared` describes reuse but not ownership.
 - Nuxt scans both `app/components/ui` and all of `app/components`; `pathPrefix: false` gives UI primitives clean names, but page and site components also remain globally discoverable.
 - Large SFC line counts mostly come from cohesive scoped styling, not multiple runtime responsibilities.
-- Existing uncommitted `CTimeline` work must remain intact throughout this refactor.
+- The completed `CTimeline` component, consumers, stories, and tests must remain intact throughout this refactor.
 
 ## Goals / Non-Goals
 
@@ -16,7 +16,7 @@
 - Preserve shallow homepage and résumé slices.
 - Separate public UI primitives from app-specific site chrome.
 - Keep component-specific DOM lifecycle behavior with its owner.
-- Make Nuxt discovery match the intended public primitive surface.
+- Remove the unused global registration surface for project-owned components.
 - Preserve current runtime and rendered behavior.
 
 **Non-Goals:**
@@ -85,11 +85,11 @@ Alternative rejected: retain `shared`. The name does not distinguish public prim
 
 Alternative rejected: move every composable into a slice. Ownership, consumer scope, and lifecycle determine location; technical type alone does not.
 
-### Restrict component discovery to public primitives
+### Disable project component auto-discovery
 
-Configure Nuxt to scan only `app/components/ui` with `pathPrefix: false`. Existing explicit imports remain the contract for site, home, resume, and foundation components.
+Set Nuxt `components: false`. Explicit imports are already the contract for every project-owned UI, site, home, résumé, and foundation component, so retaining an auto-discovered subset adds a second loading convention without serving a current consumer.
 
-This preserves `CButton`, `CTimeline`, and other primitive names while preventing page sections and site chrome from appearing as unintended global component registrations.
+Nuxt framework components and components registered by modules remain available through their own integrations. Typecheck and generated-output verification must prove that `NuxtLink`, `NuxtPage`, and the Nuxt Icon `Icon` component still resolve while no project-owned component appears as an unintended global registration.
 
 ### Enforce one-way dependency direction
 
@@ -115,15 +115,15 @@ resume ⊥ import home
 
 - Update `DESIGN.md` with route composition, ownership categories, dependency direction, discovery policy, and composable colocation.
 - Amend `SPEC.md` V8: shared UI requires either at least three same-intent production uses or an explicitly approved context-independent public primitive with distinct consumers and a documented typed contract.
-- Add a dedicated implementation task while keeping V1-V16 behavior guarantees intact.
+- Add a dedicated implementation task while keeping V1-V18 behavior guarantees intact.
 
 ## Risks / Trade-offs
 
 - [Path-only refactor can hide accidental behavior drift] → Move one ownership slice at a time; run focused tests after each move and full verification at completion.
-- [Nuxt discovery reduction can expose implicit component usage] → Search generated component types and templates first; require explicit imports outside `ui`; run typecheck and static generation.
+- [Disabling project component discovery can expose implicit usage or module-integration assumptions] → Verify every project component has an explicit import, inspect generated component types, and run typecheck, static generation, and focused browser coverage for Nuxt and module-provided components.
 - [Storybook imports can become stale] → Move stories with owners and build Storybook after each story-bearing slice.
 - [Tests and OpenSpec documents can retain obsolete paths] → Search repository-wide for each old path before completing its migration.
-- [Concurrent `CTimeline` work can be overwritten] → Preserve current working-tree content and use move-only patches around those files.
+- [Completed `CTimeline` paths or documentation can regress] → Keep the primitive and both consumers unchanged, update only affected path references, and retain its focused tests and stories.
 - [More component directories can add ceremony] → Create directories only when a component has supporting stories, composables, tests, or assets.
 
 ## Migration Plan
@@ -131,7 +131,7 @@ resume ⊥ import home
 1. Record durable ownership contracts and add structural verification for discovery and dependency boundaries.
 2. Move `SiteHeader`, `ThemeToggle`, `SiteContactFooter`, their stories, and header-owned composables into `components/site`; update explicit imports and focused tests.
 3. Colocate `useHeroScrollMotion` with `HomeHero`; preserve its public signature and lifecycle behavior.
-4. Restrict Nuxt discovery to `components/ui`; verify generated component names and absence of unintended registrations.
+4. Disable project component auto-discovery; verify explicit imports, generated types, framework/module components, and absence of project-owned global registrations.
 5. Update remaining test, Storybook, OpenSpec, and documentation paths.
 6. Run focused and full unit/browser verification, typecheck, lint, static generation, and Storybook build.
 

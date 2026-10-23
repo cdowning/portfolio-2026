@@ -4,13 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-09-21',
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
-  components: [
-    {
-      path: '~/components/ui',
-      pathPrefix: false,
-    },
-    '~/components',
-  ],
+  components: false,
   modules: ['@nuxt/eslint', '@nuxt/icon', 'nuxt-gtag'],
   icon: {
     provider: 'none',

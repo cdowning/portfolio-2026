@@ -26,7 +26,7 @@ describe('Storybook theme controls', () => {
 
   it.each([
     'app/components/foundations/TypographySpecimen/TypographySpecimen.stories.ts',
-    'app/components/shared/SiteContactFooter.stories.ts',
+    'app/components/site/SiteContactFooter/SiteContactFooter.stories.ts',
   ])('uses story globals instead of manually mutating the document in %s', (path) => {
     const story = readProjectFile(path)
 

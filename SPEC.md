@@ -24,7 +24,7 @@ Ship faithful, accessible, static Nuxt portfolio at `/` + `/resume` from approve
 - V5: keyboard + focus + semantic landmarks + reduced-motion work; decorative graphics hidden from AT.
 - V6: 320/390/768/1024/desktop have no horizontal overflow; touch controls >=44px.
 - V7: no fake metrics/client claims; work images derive from real public work or abstract labeled specimens.
-- V8: shared UI extracted only after >=3 same-intent uses; typed props/events.
+- V8: UI primitive requires >=3 same-intent uses or explicit approval as a context-independent public primitive with distinct consumers + typed contract; project components use explicit imports; component-owned DOM lifecycle stays colocated.
 - V9: lint + typecheck + generate + Storybook build exit 0; ⊥ project-owned or dependency-compat warnings.
 - V10: hero scroll → bounded five-frame drafting sequence; content always readable; desktop sticky only; mobile/reduced-motion intentional; ⊥ scroll trap/layout thrash.
 - V11: first paint follows system theme unless valid persisted `light`/`dark`; one accessible header control toggles + persists resolved theme across `/` + `/resume`.
@@ -48,6 +48,7 @@ T5|~|audit, visual QA, static generation, release checks|V1,V3,V4,V5,V6,V7
 T6|x|adaptive light/dark themes, persisted toggle, contrast verification|V3,V4,V5,V6,V9,V11,V12,V13
 T7|.|screen type scale, flat scoped CSS migration, footer selection, Storybook proof|V3,V4,V5,V6,V8,V9,V14,V15,V16
 T8|x|primitive color scales, CSS ownership split, Storybook color foundation, no-drift proof|V3,V9,V11,V12,V13,V17
+T9|x|component ownership, colocated lifecycle behavior, explicit imports, no-drift proof|V1,V2,V3,V4,V5,V6,V8,V9,V10,V11,V12,V13,V14,V15,V16,V17,V18
 
 # §B
 id|date|cause|fix

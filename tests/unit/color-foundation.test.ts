@@ -143,7 +143,7 @@ describe('color foundation', () => {
   it('publishes only approved colors without obsolete aliases', () => {
     const activeSources = [
       readProjectFile('app/assets/css/variables.css'),
-      readProjectFile('app/components/home/HomeHero.vue'),
+      readProjectFile('app/components/home/HomeHero/HomeHero.vue'),
       readProjectFile('app/components/resume/ResumeIntro.vue'),
       readProjectFile('app/components/foundations/Colors/Colors.mdx'),
     ].join('\n')

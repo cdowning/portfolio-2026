@@ -242,7 +242,18 @@ Components are measured, tactile, direct, and accessible by default.
 - **Theme toggle:** a `2.75rem` icon button with a visible focus state, an understated rotation on interaction, and no print output.
 - **Fabric swatches:** stacked color samples with pinked edges. Animation is optional and must follow the shared motion and reduced-motion rules.
 - **Contact footer:** a full-bleed action surface shared by the homepage and résumé, pairing a direct invitation with social links, brand lockup, and restrained line illustration.
-- **Timeline:** `CTimeline` is planned in OpenSpec Change 15 but is not yet part of the implemented system. Do not document or consume it as shipped until that change is complete.
+- **Timeline:** `CTimeline` owns chronological list semantics, the connecting line, role markers, and current-state presentation. Homepage and résumé consumers supply their distinct row content through its typed slot contract.
+
+### Component ownership
+
+- `app/pages` is the URL map. Route SFCs own metadata and compose page sections directly; do not add pass-through view wrappers.
+- `app/components/ui` contains only context-independent public primitives with typed contracts.
+- `app/components/site` owns application-specific chrome shared across routes, including the header, theme control, and contact footer.
+- `app/components/home` and `app/components/resume` own their route-specific sections and must not import one another.
+- Component-specific DOM lifecycle behavior lives beside its owning component. Application-wide behavior remains in `app/composables`.
+- Project-owned components use explicit imports. Nuxt component auto-discovery is disabled; framework and module components remain owned by their integrations.
+
+Dependency direction remains one-way: routes compose home, résumé, and site components; those layers may consume UI primitives, content, types, utilities, and application-wide composables; UI primitives must not import page or site layers.
 
 Vue single-file components keep `<style scoped>`. Project-owned classes use flat kebab-case rather than BEM. Base classes name the component (`.button`, `.hero`, `.navigation`); parts use readable prefixes (`.button-arrow`, `.hero-title`); variants pair with the base (`.button-large`, `.button-gold`); states remain explicit (`.navigation-open`, `.theme-dark`). Typed props generate explicit classes such as `button-${size}` and `button-${tone}`.
 

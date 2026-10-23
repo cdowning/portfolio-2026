@@ -10,7 +10,7 @@ Component ownership is obscured by `app/components/ui` mixing public primitives 
 - Add `app/components/site` for cross-route application chrome: `SiteHeader`, `SiteContactFooter`, and `ThemeToggle`.
 - Colocate `useHeroScrollMotion`, `useActiveSection`, and `useMobileNavigation` with their owning components.
 - Keep genuinely application-wide `useEditorialMotion` and `useTheme` composables global.
-- Restrict Nuxt component auto-discovery to `app/components/ui` with `pathPrefix: false`; explicitly import site and page components.
+- Disable Nuxt auto-discovery for project-owned components and require explicit imports across UI, site, page, and foundation layers.
 - Amend durable ownership guidance without changing rendered behavior.
 
 ## Capabilities
@@ -27,4 +27,4 @@ None.
 
 - Moves Vue SFCs, stories, and three component-owned composables; updates explicit imports and path-based tests.
 - Updates `nuxt.config.ts`, `DESIGN.md`, `SPEC.md`, and affected OpenSpec path references.
-- Preserves public routes, content, visual output, accessibility, themes, motion, print output, generated static output, and runtime dependencies.
+- Preserves V1-V18, public routes, content, visual output, accessibility, themes, motion, print output, generated static output, and runtime dependencies.

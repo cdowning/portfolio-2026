@@ -56,13 +56,13 @@ Composables that exclusively implement one component's DOM lifecycle MUST live w
 - **WHEN** global composable ownership is inspected
 - **THEN** `useEditorialMotion` and `useTheme` remain in `app/composables` with unchanged public contracts
 
-### Requirement: Nuxt discovery matches the primitive surface
-Nuxt MUST auto-discover only `app/components/ui` with `pathPrefix: false`; site, home, résumé, and foundation components MUST use explicit imports.
+### Requirement: Project components use explicit imports
+Nuxt MUST disable auto-discovery for project-owned components, and every UI, site, home, résumé, and foundation component MUST be explicitly imported by its consumers.
 
 #### Scenario: Generated component types
 - **WHEN** Nuxt prepares generated component types
-- **THEN** approved UI primitives appear with unprefixed names
-- **AND** site, home, résumé, and foundation components do not appear as generated project component registrations
+- **THEN** no project-owned UI, site, home, résumé, or foundation component appears as a generated global registration
+- **AND** Nuxt framework components and the Nuxt Icon `Icon` component continue to resolve through their owning framework or module integration
 - **AND** no component collision warning is emitted
 
 ### Requirement: Structural migration preserves behavior

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import SiteHeader from '~/components/ui/SiteHeader/SiteHeader.vue'
+import SiteHeader from '~/components/site/SiteHeader/SiteHeader.vue'
 import { useEditorialMotion } from '~/composables/useEditorialMotion'
 import { navigation } from '~/content/site'
 

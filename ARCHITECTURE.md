@@ -1,33 +1,28 @@
 # Component map
 
-Route files remain composition-only and consume the typed exports in `app/content/site.ts`.
+Project-owned components use explicit imports. Nuxt auto-discovery is disabled so file location communicates ownership rather than global registration.
 
-## Page components
+## Composition roots
 
-- `pages/index.vue`: homepage metadata and section composition.
-- `home/HomeHero.vue`: opening statement, CTA, portrait sample, and drafting annotations; no props.
-- `home/HomeWork.vue`: work-grid composition; `items: WorkItem[]`.
-- `home/HomeAbout.vue`: biography and process diagram; `profile: SiteProfile`.
-- `home/HomeExperience.vue`: compact experience summary; `roles: ExperienceRole[]`.
-- `home/HomeToolkit.vue`: compact toolkit strip; `items: string[]`.
-- `pages/resume.vue`: résumé metadata and section composition.
-- `resume/ResumeIntro.vue`: identity/profile/contact/print entry; `profile: SiteProfile`; emits `print`.
-- `resume/ResumeSkills.vue`: profile copy and skill groups; `groups: SkillGroup[]`.
-- `resume/ResumeExperience.vue`: full work timeline; `roles: ExperienceRole[]`.
-- `resume/ResumeEducation.vue`: education and toolkit; `education: EducationEntry`, `tools: string[]`.
+- `app/app.vue`: application shell, skip link, site header, and cross-route editorial motion.
+- `app/pages/index.vue`: homepage metadata and direct section composition.
+- `app/pages/resume.vue`: résumé metadata, web composition, and print composition.
 
-## Shared candidates
+## Ownership layers
 
-Extract only after at least three same-intent uses are visible across both pages:
+- `app/components/ui`: context-independent primitives — `CButton`, `CSectionMarker`, `CTag`, `CTimeline`, and `FabricSwatches`.
+- `app/components/site`: cross-route application chrome — `SiteHeader`, `ThemeToggle`, and `SiteContactFooter`.
+- `app/components/home`: homepage-only sections. `HomeHero/` also owns its scroll-motion lifecycle composable.
+- `app/components/resume`: résumé-only sections and the print source.
+- `app/components/foundations`: Storybook foundation documentation and specimens.
 
-- `SiteHeader`: navigation; `items: NavigationItem[]`; owns open/close state and emits no domain events.
-- `CSectionMarker`: numbered editorial heading; `index`, `label`, optional `titleId`.
-- `DraftingPath`: decorative SVG variant; `variant`, optional `animated`; always `aria-hidden`.
-- `CTag`: one presentational label; `label`, optional `tone`.
-- `ContactFooter`: gold contact panel; `profile: SiteProfile`.
+Dependencies flow from routes into page and site components, then into UI primitives. UI primitives do not import site or page layers; home and résumé slices do not import each other.
 
 ## Browser behavior
 
-- `useActiveSection`: readonly active anchor plus observer lifecycle.
-- `useReducedMotion`: readonly preference with media-query cleanup.
-- `usePrintResume`: small `print()` action guarded for client runtime.
+- `SiteHeader/useActiveSection`: readonly active anchor with scroll, resize, animation-frame, and cleanup ownership.
+- `SiteHeader/useMobileNavigation`: menu state, Escape handling, focus restoration, body state, and cleanup.
+- `HomeHero/useHeroScrollMotion`: hero measurement, media-query, observer, scroll fallback, and cleanup.
+- `app/composables/useEditorialMotion`: application-wide route reveal behavior.
+- `app/composables/useTheme`: application-wide theme state, persistence, and document metadata.
+- `app/composables/usePrintResume`: deferred visitor print action retained until Change 10 replaces it with the final downloadable PDF.

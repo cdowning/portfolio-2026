@@ -16,8 +16,9 @@ describe('shared UI class contracts', () => {
       '../../app/components/ui/CTag/CTag.vue',
       '../../app/components/ui/CSectionMarker/CSectionMarker.vue',
       '../../app/components/ui/FabricSwatches/FabricSwatches.vue',
-      '../../app/components/ui/ThemeToggle/ThemeToggle.vue',
-      '../../app/components/ui/SiteHeader/SiteHeader.vue',
+      '../../app/components/site/SiteContactFooter/SiteContactFooter.vue',
+      '../../app/components/site/SiteHeader/SiteHeader.vue',
+      '../../app/components/site/ThemeToggle/ThemeToggle.vue',
       '../../app/components/ui/CTimeline/CTimeline.vue',
     ]
 

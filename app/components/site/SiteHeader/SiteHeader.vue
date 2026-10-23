@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useActiveSection } from '~/composables/useActiveSection'
-import { useMobileNavigation } from '~/composables/useMobileNavigation'
-import ThemeToggle from '~/components/ui/ThemeToggle/ThemeToggle.vue'
+import ThemeToggle from '~/components/site/ThemeToggle/ThemeToggle.vue'
 import type { NavigationItem } from '~/types/content'
+
+import { useActiveSection } from './useActiveSection'
+import { useMobileNavigation } from './useMobileNavigation'
 
 defineProps<{
   items: NavigationItem[]

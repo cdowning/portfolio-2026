@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { profile } from '../../content/site'
+import { profile } from '~/content/site'
 import SiteContactFooter from './SiteContactFooter.vue'
 
 const meta = {

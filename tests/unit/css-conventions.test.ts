@@ -13,6 +13,7 @@ describe('screen CSS conventions', () => {
     const files = [
       ...vueFiles(new URL('../../app/components/home/', import.meta.url)),
       ...vueFiles(new URL('../../app/components/resume/', import.meta.url)),
+      ...vueFiles(new URL('../../app/components/site/', import.meta.url)),
       ...vueFiles(new URL('../../app/components/ui/', import.meta.url)),
     ].filter(file => !file.pathname.endsWith('/ResumePrint.vue'))
 
@@ -42,7 +43,7 @@ describe('screen CSS conventions', () => {
 
   it('uses a template ref for hero stage access', () => {
     const source = readFileSync(
-      new URL('../../app/composables/useHeroScrollMotion.ts', import.meta.url),
+      new URL('../../app/components/home/HomeHero/useHeroScrollMotion.ts', import.meta.url),
       'utf8',
     )
 

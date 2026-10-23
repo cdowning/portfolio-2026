@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import HomeAbout from '~/components/home/HomeAbout.vue'
 import HomeExperience from '~/components/home/HomeExperience.vue'
-import HomeHero from '~/components/home/HomeHero.vue'
+import HomeHero from '~/components/home/HomeHero/HomeHero.vue'
 import HomeToolkit from '~/components/home/HomeToolkit.vue'
 import HomeWork from '~/components/home/HomeWork.vue'
-import SiteContactFooter from '~/components/shared/SiteContactFooter.vue'
+import SiteContactFooter from '~/components/site/SiteContactFooter/SiteContactFooter.vue'
 import { experience, profile, toolkit, workItems } from '~/content/site'
 import { createPageSeo } from '~/utils/seo'
 
