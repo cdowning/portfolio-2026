@@ -42,6 +42,9 @@ describe('social metadata contract', () => {
     expect(meta).toMatchObject({
       title: 'Caitlin Hawley — Résumé',
       description: 'Explore Caitlin Hawley’s 15+ years of frontend experience across Vue, Nuxt, TypeScript, accessibility, and design systems.',
+      ogSiteName: SITE_NAME,
+      ogTitle: 'Caitlin Hawley — Résumé',
+      ogDescription: 'Explore Caitlin Hawley’s 15+ years of frontend experience across Vue, Nuxt, TypeScript, accessibility, and design systems.',
       ogUrl: expectedCanonical,
       ogImage: `${siteUrl}${SOCIAL_PREVIEW.path}`,
       ogImageWidth: 1200,
@@ -49,7 +52,10 @@ describe('social metadata contract', () => {
       ogImageType: 'image/png',
       ogImageAlt: SOCIAL_PREVIEW.alt,
       twitterCard: 'summary_large_image',
+      twitterTitle: 'Caitlin Hawley — Résumé',
+      twitterDescription: 'Explore Caitlin Hawley’s 15+ years of frontend experience across Vue, Nuxt, TypeScript, accessibility, and design systems.',
       twitterImage: `${siteUrl}${SOCIAL_PREVIEW.path}`,
+      twitterImageAlt: SOCIAL_PREVIEW.alt,
     })
   })
 

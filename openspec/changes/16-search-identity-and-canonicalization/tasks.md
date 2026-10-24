@@ -1,6 +1,6 @@
 # Search identity and canonicalization plan
 
-**Status:** In progress. Task 1 is complete; Task 2 has not started.
+**Status:** In progress. Tasks 1–2 are complete; Task 3 has not started.
 
 ## Task 1: Centralize search identity and route facts
 
@@ -12,11 +12,11 @@
 
 ## Task 2: Complete route metadata
 
-- [ ] Preserve the approved homepage and résumé titles and apply the approved route-specific descriptions.
-- [ ] Add `og:site_name` and explicit route-specific Open Graph title, description, URL, and image metadata.
-- [ ] Add matching Twitter title, description, card, and image metadata.
-- [ ] Confirm all absolute metadata URLs use the active environment origin and the canonical path policy.
-- [ ] Verify metadata is present in generated HTML before client hydration.
+- [x] Preserve the approved homepage and résumé titles and apply the approved route-specific descriptions.
+- [x] Add `og:site_name` and explicit route-specific Open Graph title, description, URL, and image metadata.
+- [x] Add matching Twitter title, description, card, and image metadata.
+- [x] Confirm all absolute metadata URLs use the active environment origin and the canonical path policy.
+- [x] Verify metadata is present in generated HTML before client hydration.
 
 ## Task 3: Add structured search identity
 

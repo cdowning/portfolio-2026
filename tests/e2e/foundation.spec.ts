@@ -1,10 +1,19 @@
 import { expect, test } from '@playwright/test'
 
-function expectSocialMetadata(html: string, path: '/' | '/resume/', origin: string) {
+function expectSocialMetadata(
+  html: string,
+  path: '/' | '/resume/',
+  origin: string,
+  title: string,
+  description: string,
+) {
   const canonical = new URL(path, origin).toString()
   const socialImage = new URL('/images/social-preview.png', origin).toString()
 
   expect(html).toContain(`<link rel="canonical" href="${canonical}">`)
+  expect(html).toContain(`<meta property="og:site_name" content="Caitlin Hawley">`)
+  expect(html).toContain(`<meta property="og:title" content="${title}">`)
+  expect(html).toContain(`<meta property="og:description" content="${description}">`)
   expect(html).toContain(`<meta property="og:url" content="${canonical}">`)
   expect(html).toContain(`<meta property="og:image" content="${socialImage}">`)
   expect(html).toContain('<meta property="og:image:width" content="1200">')
@@ -12,7 +21,10 @@ function expectSocialMetadata(html: string, path: '/' | '/resume/', origin: stri
   expect(html).toContain('<meta property="og:image:type" content="image/png">')
   expect(html).toContain('<meta property="og:image:alt"')
   expect(html).toContain('<meta name="twitter:card" content="summary_large_image">')
+  expect(html).toContain(`<meta name="twitter:title" content="${title}">`)
+  expect(html).toContain(`<meta name="twitter:description" content="${description}">`)
   expect(html).toContain(`<meta name="twitter:image" content="${socialImage}">`)
+  expect(html).toContain('<meta name="twitter:image:alt"')
 }
 
 test('publishes both portfolio routes with complete server-rendered social metadata', async ({ request }) => {
@@ -27,13 +39,25 @@ test('publishes both portfolio routes with complete server-rendered social metad
   expect(homeHtml).toContain('<meta name="description" content="Frontend developer in Franklin, Tennessee with 15+ years building accessible Vue, Nuxt, TypeScript, and design-system interfaces.">')
   expect(homeHtml).toContain('<meta property="og:title" content="Caitlin Hawley — Frontend Developer">')
   expect(homeHtml).toContain("localStorage.getItem('caitlin-theme')")
-  expectSocialMetadata(homeHtml, '/', localOrigin)
+  expectSocialMetadata(
+    homeHtml,
+    '/',
+    localOrigin,
+    'Caitlin Hawley — Frontend Developer',
+    'Frontend developer in Franklin, Tennessee with 15+ years building accessible Vue, Nuxt, TypeScript, and design-system interfaces.',
+  )
 
   expect(resume.status()).toBe(200)
   expect(resumeHtml).toContain('<title>Caitlin Hawley — Résumé</title>')
   expect(resumeHtml).toContain('<meta name="description" content="Explore Caitlin Hawley’s 15+ years of frontend experience across Vue, Nuxt, TypeScript, accessibility, and design systems.">')
   expect(resumeHtml).toContain('<meta property="og:title" content="Caitlin Hawley — Résumé">')
-  expectSocialMetadata(resumeHtml, '/resume/', localOrigin)
+  expectSocialMetadata(
+    resumeHtml,
+    '/resume/',
+    localOrigin,
+    'Caitlin Hawley — Résumé',
+    'Explore Caitlin Hawley’s 15+ years of frontend experience across Vue, Nuxt, TypeScript, accessibility, and design systems.',
+  )
 })
 
 test('serves the social preview as an image', async ({ request }) => {

@@ -120,6 +120,7 @@ export function createPageSeo(options: PageSeoOptions) {
     meta: {
       title: options.route.title,
       description: options.route.description,
+      ogSiteName: site.siteName,
       ogTitle: options.route.ogTitle,
       ogDescription: options.route.description,
       ogType: options.route.ogType,
@@ -130,6 +131,8 @@ export function createPageSeo(options: PageSeoOptions) {
       ogImageType: SOCIAL_PREVIEW.type,
       ogImageAlt: SOCIAL_PREVIEW.alt,
       twitterCard: 'summary_large_image' as const,
+      twitterTitle: options.route.ogTitle,
+      twitterDescription: options.route.description,
       twitterImage: image,
       twitterImageAlt: SOCIAL_PREVIEW.alt,
     },
