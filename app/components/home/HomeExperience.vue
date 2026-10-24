@@ -141,17 +141,16 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
 }
 
 .experience-link {
-  bottom: 2.25rem;
   font-size: var(--text-xs);
+  grid-column: 2;
+  justify-self: start;
   min-height: 3.2rem;
-  position: absolute;
-  right: var(--page-gutter);
 }
 
 .experience {
   column-gap: .5rem;
   grid-template-columns: 1.5rem minmax(0, 1fr);
-  padding: 3rem 1.25rem 7rem;
+  padding: 3rem 1.25rem;
 }
 
 .experience-aside { display: none; }
@@ -185,6 +184,10 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
   .experience-heading { grid-column: 2 / -1; }
   .experience-summary { grid-column: 2; }
   .experience-list { grid-column: 3; }
+  .experience-link {
+    grid-column: 3;
+    justify-self: end;
+  }
 
   .experience-role {
     align-items: center;
@@ -200,6 +203,6 @@ const isCurrentRole = (role: ExperienceRole) => Boolean(role.current)
 
   .experience-aside { display: block; }
   .experience-heading { grid-column: 2 / 4; }
-  .experience-link { bottom: 1.2rem; }
+  .experience-link { grid-column: 3 / 5; }
 }
 </style>

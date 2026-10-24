@@ -6,16 +6,12 @@ import HomeToolkit from '~/components/home/HomeToolkit.vue'
 import HomeWork from '~/components/home/HomeWork.vue'
 import SiteContactFooter from '~/components/site/SiteContactFooter/SiteContactFooter.vue'
 import { experience, profile, toolkit, workItems } from '~/content/site'
-import { createPageSeo } from '~/utils/seo'
+import { createPageSeo, SEARCH_ROUTES } from '~/utils/seo'
 
 const { canonical, meta } = createPageSeo({
+  requestUrl: import.meta.dev ? useRequestURL().origin : undefined,
   siteUrl: useRuntimeConfig().public.siteUrl,
-  path: '/',
-  title: 'Caitlin Hawley — Frontend Developer & Design System Builder',
-  description: profile.shortSummary,
-  ogTitle: 'Caitlin Hawley — Frontend Developer',
-  ogDescription: profile.shortSummary,
-  ogType: 'website',
+  route: SEARCH_ROUTES.home,
 })
 
 useSeoMeta(meta)

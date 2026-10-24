@@ -7,19 +7,15 @@ import ResumeSkills from '~/components/resume/ResumeSkills.vue'
 import SiteContactFooter from '~/components/site/SiteContactFooter/SiteContactFooter.vue'
 import { usePrintResume } from '~/composables/usePrintResume'
 import { education, experience, profile, skillGroups, toolkit } from '~/content/site'
-import { createPageSeo } from '~/utils/seo'
+import { createPageSeo, SEARCH_ROUTES } from '~/utils/seo'
 
 const { printResume } = usePrintResume()
 const capabilities = ['Vue.js', 'Nuxt', 'TypeScript', 'Accessibility', 'Design systems']
 
 const { canonical, meta } = createPageSeo({
+  requestUrl: import.meta.dev ? useRequestURL().origin : undefined,
   siteUrl: useRuntimeConfig().public.siteUrl,
-  path: '/resume',
-  title: 'Caitlin Hawley — Résumé',
-  description: `${profile.role} experience, skills, tools, and education.`,
-  ogTitle: 'Caitlin Hawley — Résumé',
-  ogDescription: profile.summary,
-  ogType: 'profile',
+  route: SEARCH_ROUTES.resume,
 })
 
 useSeoMeta(meta)

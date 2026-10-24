@@ -1,4 +1,5 @@
 import { THEME_BOOTSTRAP_SCRIPT } from './app/utils/theme'
+import { DEFAULT_LOCAL_ORIGIN } from './app/utils/seo'
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-21',
@@ -19,7 +20,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: 'https://www.caitlinhawley.com',
+      siteUrl: DEFAULT_LOCAL_ORIGIN,
     },
   },
   gtag: {

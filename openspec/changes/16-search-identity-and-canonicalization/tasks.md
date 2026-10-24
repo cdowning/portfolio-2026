@@ -1,14 +1,14 @@
 # Search identity and canonicalization plan
 
-**Status:** Proposed. The audit and direction are complete; implementation has not started.
+**Status:** In progress. Task 1 is complete; Task 2 has not started.
 
 ## Task 1: Centralize search identity and route facts
 
-- [ ] Define the production origin, environment origin, canonical path policy, site name, and indexability rules in one typed SEO source.
-- [ ] Define typed canonical route records for `/` and `/resume/` and reuse them across head metadata, structured data, sitemap generation, and tests.
-- [ ] Update the approved homepage and résumé descriptions without duplicating their values across components.
-- [ ] Keep canonical URL construction server-safe and deterministic during static generation.
-- [ ] Add focused unit coverage for production, development, local, and trailing-slash URL resolution.
+- [x] Define the production origin, environment origin, canonical path policy, site name, and indexability rules in one typed SEO source.
+- [x] Define typed canonical route records for `/` and `/resume/` and reuse them across head metadata, structured data, sitemap generation, and tests.
+- [x] Update the approved homepage and résumé descriptions without duplicating their values across components.
+- [x] Keep canonical URL construction server-safe and deterministic during static generation.
+- [x] Add focused unit coverage for production, development, local, and trailing-slash URL resolution.
 
 ## Task 2: Complete route metadata
 

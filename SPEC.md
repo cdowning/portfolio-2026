@@ -66,3 +66,4 @@ B11|2026-09-22|manual visual-QA server occupied Playwright's isolated port durin
 B12|2026-09-22|focused mobile verification could not launch after Playwright's expected WebKit revision was absent from the host cache|no new §V; host dependency state, use an installed browser for focused proof or install the matching revision before the release suite
 B13|2026-10-14|desktop drafting geometry activated by width alone, clipping hero facts on short viewports and crossing the portrait on phones|V5,V6,V10; require sufficient height for sticky mode + use portrait-safe mobile geometry
 B14|2026-10-22|`xl` reset targeted `.resume-skills-group:first-of-type`, which matched no group and left both groups pinned to column 2|V18; reset every skill group to auto placement + browser row-order assertion
+B15|2026-10-23|absolutely positioned résumé CTA overlaid the final Experience row when its copy wrapped|V6; keep the CTA in grid flow + browser non-overlap assertion

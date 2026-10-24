@@ -1,10 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-const productionOrigin = 'https://www.caitlinhawley.com'
-const socialImage = `${productionOrigin}/images/social-preview.png`
-
-function expectSocialMetadata(html: string, path: '/' | '/resume') {
-  const canonical = path === '/' ? `${productionOrigin}/` : `${productionOrigin}${path}`
+function expectSocialMetadata(html: string, path: '/' | '/resume/', origin: string) {
+  const canonical = new URL(path, origin).toString()
+  const socialImage = new URL('/images/social-preview.png', origin).toString()
 
   expect(html).toContain(`<link rel="canonical" href="${canonical}">`)
   expect(html).toContain(`<meta property="og:url" content="${canonical}">`)
@@ -24,15 +22,18 @@ test('publishes both portfolio routes with complete server-rendered social metad
   const resumeHtml = await resume.text()
 
   expect(home.status()).toBe(200)
+  const localOrigin = new URL(home.url()).origin
   expect(homeHtml).toContain('<title>Caitlin Hawley — Frontend Developer &amp; Design System Builder</title>')
+  expect(homeHtml).toContain('<meta name="description" content="Frontend developer in Franklin, Tennessee with 15+ years building accessible Vue, Nuxt, TypeScript, and design-system interfaces.">')
   expect(homeHtml).toContain('<meta property="og:title" content="Caitlin Hawley — Frontend Developer">')
   expect(homeHtml).toContain("localStorage.getItem('caitlin-theme')")
-  expectSocialMetadata(homeHtml, '/')
+  expectSocialMetadata(homeHtml, '/', localOrigin)
 
   expect(resume.status()).toBe(200)
   expect(resumeHtml).toContain('<title>Caitlin Hawley — Résumé</title>')
+  expect(resumeHtml).toContain('<meta name="description" content="Explore Caitlin Hawley’s 15+ years of frontend experience across Vue, Nuxt, TypeScript, accessibility, and design systems.">')
   expect(resumeHtml).toContain('<meta property="og:title" content="Caitlin Hawley — Résumé">')
-  expectSocialMetadata(resumeHtml, '/resume')
+  expectSocialMetadata(resumeHtml, '/resume/', localOrigin)
 })
 
 test('serves the social preview as an image', async ({ request }) => {

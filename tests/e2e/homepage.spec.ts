@@ -245,20 +245,32 @@ test.describe('homepage composition', () => {
     }
   })
 
-  test('lowers the desktop résumé action without shifting tablet or mobile', async ({ page }) => {
-    const resumeAction = page.getByRole('link', { name: 'View full resume' })
-
-    for (const viewport of [
-      { width: 1440, expectedBottom: 19.2 },
-      { width: 1024, expectedBottom: 36 },
-      { width: 390, expectedBottom: 36 },
-    ]) {
-      await page.setViewportSize({ width: viewport.width, height: 900 })
+  test('keeps the résumé action in flow below the experience timeline', async ({ page }) => {
+    for (const width of [390, 1024, 1440, 2048]) {
+      await page.setViewportSize({ width, height: 900 })
       await page.goto('/')
 
-      await expect.poll(() => resumeAction.evaluate(element => (
-        Number.parseFloat(getComputedStyle(element).bottom)
-      ))).toBeCloseTo(viewport.expectedBottom, 1)
+      const layout = await page.locator('#experience').evaluate((section) => {
+        const timeline = section.querySelector<HTMLElement>('.experience-list')
+        const action = section.querySelector<HTMLElement>('.experience-link')
+        if (!timeline || !action) throw new Error('Experience timeline or résumé action is missing')
+
+        const sectionRect = section.getBoundingClientRect()
+        const timelineRect = timeline.getBoundingClientRect()
+        const actionRect = action.getBoundingClientRect()
+
+        return {
+          actionBottom: actionRect.bottom,
+          actionTop: actionRect.top,
+          position: getComputedStyle(action).position,
+          sectionBottom: sectionRect.bottom,
+          timelineBottom: timelineRect.bottom,
+        }
+      })
+
+      expect(layout.position).toBe('static')
+      expect(layout.actionTop).toBeGreaterThanOrEqual(layout.timelineBottom + 20)
+      expect(layout.actionBottom).toBeLessThanOrEqual(layout.sectionBottom)
     }
   })
 
